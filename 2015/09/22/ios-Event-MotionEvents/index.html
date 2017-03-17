@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对Motion Events的机制进行讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Events[4]-Motion Events">
+<meta property="og:url" content="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对Motion Events的机制进行讲解。">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/acceleration_axes_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gyro_rotation_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/rm_times_gravityret_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Events[4]-Motion Events">
+<meta name="twitter:description" content="本文对Motion Events的机制进行讲解。">
+<meta name="twitter:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/"/>
+
+
+
+
+
+  <title> iOS-Events[4]-Motion Events | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Events[4]-Motion Events
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-09-22T00:00:00+08:00">
+                2015-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/22/ios-Event-MotionEvents/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/22/ios-Event-MotionEvents/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对Motion Events的机制进行讲解。</p>
+<a id="more"></a>
+<p>iOS系统的Events类型分为以下几种：Multitouch events, Accelerometer events, Remote control events。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png" alt="Events"></p>
+<h3 id="Motion-Events"><a href="#Motion-Events" class="headerlink" title="Motion Events"></a>Motion Events</h3><p>Motion Events包括设备的定位(Location)、朝向(Orientation)和移动(Movement)。通过处理这些Events，可以对App进行更精妙的处理。加速器(Accelerometer)和陀螺仪(gyroscope)数据可以用于检测设备的倾斜(tilting)、旋转(rotation)和摇晃(shaking)。</p>
+<p>加速器(Accelerometer)实际上是由三个不同维度的加速度构成的，分别对应x, y, z轴，每个加速器测量该维度随着时间沿着线性的速度变化。把这三个组合在一起，就可以取到设备的朝向以及任意方向上的移动。陀螺仪(gyroscope)是测量这三个方向上的旋转速度。</p>
+<h4 id="Getting-the-Current-Device-Orientation-with-UIDevice"><a href="#Getting-the-Current-Device-Orientation-with-UIDevice" class="headerlink" title="Getting the Current Device Orientation with UIDevice"></a>Getting the Current Device Orientation with UIDevice</h4><p>如果只需要获取设备的朝向，而并不需要获取到精准的向量信息，使用<strong>UIDevice</strong>类即可。使用方式如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(void) viewDidLoad &#123;</div><div class="line">     // Request to turn on accelerometer and begin receiving accelerometer events</div><div class="line">     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];</div><div class="line">     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)orientationChanged:(NSNotification *)notification &#123;</div><div class="line">     NSLog(@&quot;%@&quot;, @([UIDevice currentDevice].orientation));</div><div class="line">&#125;</div><div class="line"> </div><div class="line">-(void) viewDidDisappear &#123;</div><div class="line">     // Request to stop receiving accelerometer events and turn off accelerometer</div><div class="line">     [[NSNotificationCenter defaultCenter] removeObserver:self];</div><div class="line">     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里，为了防止硬件处于省电关闭状态，需要先调用一下<strong>beginGeneratingDeviceOrientationNotifications</strong>方法，在不需要时，调用<strong>endGeneratingDeviceOrientationNotifications</strong>方法。</p>
+<h4 id="Detecting-Shake-Motion-Events-with-UIEvent"><a href="#Detecting-Shake-Motion-Events-with-UIEvent" class="headerlink" title="Detecting Shake-Motion Events with UIEvent"></a>Detecting Shake-Motion Events with UIEvent</h4><p>当用户摇晃设备时，iOS系统计算加速器的加速度，一旦达到阈值，则生成一个<strong>UIEvent</strong>，并将其传递给App处理。<strong>Motion Events</strong>只会在开始和结束时候，传递给App，不像Touch Events是连续的。<strong>Motion Events</strong>只包含了一种事件类型<strong>UIEventTypeMotion</strong>，和子事件类型<strong>UIEventSubtypeMotionShake</strong>，以及时间戳<strong>Timestamp</strong>。</p>
+<p>举例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake began..&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake ended..&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake cancelled..&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Setting-and-Checking-Required-Hardware-Capabilities-for-Motion-Events"><a href="#Setting-and-Checking-Required-Hardware-Capabilities-for-Motion-Events" class="headerlink" title="Setting and Checking Required Hardware Capabilities for Motion Events"></a>Setting and Checking Required Hardware Capabilities for Motion Events</h4><p>如果App是严重依赖于设备的加速器或者陀螺仪的数据，而对于那些不支持的设备，App可能并不能起到作用，则App应该在info.plist中加入以下字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;UIRequiredDeviceCapabilities&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">	&lt;string&gt;accelerometer&lt;/string&gt;</div><div class="line">   &lt;string&gt;gyroscope&lt;/string&gt;</div><div class="line">&lt;/array&gt;</div></pre></td></tr></table></figure>
+<p>iOS系统会根据该字段判断是否在必要时运行App，且App Store也会通过该字段确保用户的设备是有上述硬件的。</p>
+<p>如果App并不是严重依赖该硬件，可以在运行时判断硬件是否支持，下面章节会介绍。</p>
+<h4 id="Capturing-Device-Movement-with-Core-Motion"><a href="#Capturing-Device-Movement-with-Core-Motion" class="headerlink" title="Capturing Device Movement with Core Motion"></a>Capturing Device Movement with Core Motion</h4><p>如果需要精确的加速器和陀螺仪数据，可以使用<strong>CoreMotion.framework</strong>。<strong>CoreMotion</strong>与UIKit不同，它与UIEvent无关，也不会使用响应链，而是简单的分发<strong>Core Motion Events</strong>.</p>
+<p><strong>Core Motion Events</strong>包含三种数据，分别是：</p>
+<ul>
+<li>CMAccelerometerData:包含每个轴方向的移动加速度;</li>
+<li>CMGyroData:包含三个轴方向的旋转加速度;</li>
+<li>CMDeviceMotion:包含一些不同的测量数据，例如海拔以及其他一些由旋转加速度和移动加速度构成的数据。</li>
+</ul>
+<p>以上的数据类，都继承自<strong>CMLogItem</strong>,该类包含了时间戳，可以用于比较Event的前后顺序。</p>
+<p>这里用到的类是<strong>CMMotionManager</strong>，每个App都必须只能创造一个该类的实例，否则会导致数据的接收收到影响。例如，检查硬件是否支持：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_motionManager = [CMMotionManager new];</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.gyroAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.accelerometerAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.magnetometerAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.deviceMotionAvailable);</div></pre></td></tr></table></figure>
+<p><strong>CMMotionManager</strong>有两种方式可以获取到数据，分别是：</p>
+<ul>
+<li>Pull:调用CMMotionManager的startUpdate方法，并且通过计时器，去获取CMMotionManager的属性值，来主动获取数据;</li>
+<li>Push:设置CMMotionManager的updateInterval属性，来设置间隔时间，并调用CMMotionManager的startUpdate的block方法，来被动获取数据。</li>
+</ul>
+<p>显然，Push方法更好一些，下面是例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_motionManager = [CMMotionManager new];</div><div class="line">if(_motionManager.gyroAvailable)&#123;</div><div class="line">	_motionManager.gyroUpdateInterval = 3.0;</div><div class="line">	[_motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMGyroData * _Nullable gyroData, NSError * _Nullable error) &#123;</div><div class="line">		if(!error)</div><div class="line">            NSLog(@&quot;x:%lf y:%lf z:%lf&quot;, gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，在不需要数据时，要调用stopUpdate，这样可以关闭传感器，以节省设备电量。</p>
+<p><strong>(1) 间隔时间设置</strong></p>
+<p>下面是获取数据的推荐频率：</p>
+<ul>
+<li>10-20(Hz):用于判断设备朝向;</li>
+<li>30-60(Hz):游戏或者其他App用于获取实时的用户输入;</li>
+<li>70-100(Hz):需要高频Motion的App，例如检测用户点击屏幕或者快速摇晃。</li>
+</ul>
+<p><strong>(2) 三维轴朝向</strong></p>
+<p>加速器的三维轴朝向：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/acceleration_axes_2x.png" alt="Acceleration_Axes"></p>
+<p>陀螺仪的三维轴朝向：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gyro_rotation_2x.png" alt="Gyroscope_Axes"></p>
+<p><strong>(3) Motion Data</strong></p>
+<p><strong>CMDeviceMotion</strong>同时包含了加速器和陀螺仪的数据，另外，对重力加速度(Gravity)与用户的加速度做了区分。</p>
+<p><strong>CMDeviceMotion</strong>的<strong>attitude</strong>属性，包含了以下属性：</p>
+<ul>
+<li>等式(Quaternion)</li>
+<li>旋转矩阵(Rotation Matrix)</li>
+<li>欧拉角(Euler Angles):x轴转过角度(Pitch)、y轴转过角度(Roll)、z轴转过角度(Yaw)</li>
+</ul>
+<p>如果没有设置，则<strong>CMDeviceMotion</strong>的参考轴面是重力轴面，即：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/rm_times_gravityret_2x.png" alt="Gravity"></p>
+<p><strong>CMDeviceMotion</strong>通过这个参考轴面来与当前轴面进行比较，从而得出设备的旋转信息，如果需要，可以修改参考轴面，例如，下面是以Pitch开始的轴面为参考轴面，而不是以重力轴面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(void) startPitch &#123;</div><div class="line">    // referenceAttitude is a property</div><div class="line">    self.referenceAttitude = self.motionManager.deviceMotion.attitude;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)drawView &#123;</div><div class="line">    CMAttitude *currentAttitude = self.motionManager.deviceMotion.attitude;</div><div class="line">    [currentAttitude multiplyByInverseOfAttitude: self.referenceAttitude];</div><div class="line">    // Render bat using currentAttitude</div><div class="line">    [self updateModelsWithAttitude:currentAttitude];</div><div class="line">    [renderer render];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h4><p>利用<strong>Motion Events</strong>可以做很多有意思的事情，例如:</p>
+<p>保持图片永远水平：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;me.jpg&quot;]];</div><div class="line"> iv.frame = self.view.bounds;</div><div class="line"> [self.view addSubview:iv];</div><div class="line">    </div><div class="line"> _motionManager = [CMMotionManager new];</div><div class="line"> if(_motionManager.accelerometerAvailable)&#123;</div><div class="line"> 	_motionManager.accelerometerUpdateInterval = 0.1f;</div><div class="line">  	__weak UIImageView *weakIV = iv;</div><div class="line">   [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</div><div class="line">		double angle = atan2(accelerometerData.acceleration.x, accelerometerData.acceleration.y) - M_PI;</div><div class="line">   		if(fabs(angle - lastAngle) &gt; 0.05f)</div><div class="line">       	weakIV.transform = CGAffineTransformMakeRotation(angle);</div><div class="line">          lastAngle = angle;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>倾斜可以自动滑动列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];</div><div class="line">    [_tv registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cellID&quot;];</div><div class="line">    _tv.dataSource = self;</div><div class="line">    [self.view addSubview:_tv];</div><div class="line">    </div><div class="line">    _row = 10;</div><div class="line">    _motionManager = [CMMotionManager new];</div><div class="line">    if(_motionManager.accelerometerAvailable)&#123;</div><div class="line">        _motionManager.accelerometerUpdateInterval = 0.1f;</div><div class="line">        [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</div><div class="line">            if(accelerometerData.acceleration.z &lt; -0.5f)</div><div class="line">                _row = MIN(_row + 1, 99);</div><div class="line">            else if(accelerometerData.acceleration.z &gt; 0.5f)</div><div class="line">                _row = MAX(0, _row - 1);</div><div class="line">            [_tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_row inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;</div><div class="line">    return 100;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cellID&quot; forIndexPath:indexPath];</div><div class="line">    if(!cell)&#123;</div><div class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;123&quot;];</div><div class="line">    &#125;</div><div class="line">    cell.textLabel.text = [NSString stringWithFormat:@&quot;%d&quot;, (int)indexPath.row + 1];</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/ios-Event-Multitouch Events/" rel="next" title="iOS-Events[3]-Multitouch Events">
+                <i class="fa fa-chevron-left"></i> iOS-Events[3]-Multitouch Events
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/24/ios-Event-RemoteControlEvents/" rel="prev" title="iOS-Events[5]-Remote Control Events">
+                iOS-Events[5]-Remote Control Events <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/22/ios-Event-MotionEvents/"
+           data-title="iOS-Events[4]-Motion Events" data-url="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motion-Events"><span class="nav-number">1.</span> <span class="nav-text">Motion Events</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Getting-the-Current-Device-Orientation-with-UIDevice"><span class="nav-number">1.1.</span> <span class="nav-text">Getting the Current Device Orientation with UIDevice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Detecting-Shake-Motion-Events-with-UIEvent"><span class="nav-number">1.2.</span> <span class="nav-text">Detecting Shake-Motion Events with UIEvent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Setting-and-Checking-Required-Hardware-Capabilities-for-Motion-Events"><span class="nav-number">1.3.</span> <span class="nav-text">Setting and Checking Required Hardware Capabilities for Motion Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Capturing-Device-Movement-with-Core-Motion"><span class="nav-number">1.4.</span> <span class="nav-text">Capturing Device Movement with Core Motion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Applications"><span class="nav-number">1.5.</span> <span class="nav-text">Applications</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

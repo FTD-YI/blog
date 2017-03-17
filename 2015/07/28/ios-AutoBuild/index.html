@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOS的自动编译，主要是使用XCode自带的编译工具xcodebuild来完成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-自动编译">
+<meta property="og:url" content="http://www.linyibin.cn/2015/07/28/ios-AutoBuild/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="iOS的自动编译，主要是使用XCode自带的编译工具xcodebuild来完成。">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoBuild-Product.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoBuild-File.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-自动编译">
+<meta name="twitter:description" content="iOS的自动编译，主要是使用XCode自带的编译工具xcodebuild来完成。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/iOS-AutoBuild-Product.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/07/28/ios-AutoBuild/"/>
+
+
+
+
+
+  <title> iOS-自动编译 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/07/28/ios-AutoBuild/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-自动编译
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-28T00:00:00+08:00">
+                2015-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/28/ios-AutoBuild/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/28/ios-AutoBuild/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS的自动编译，主要是使用XCode自带的编译工具<strong>xcodebuild</strong>来完成。</p>
+<a id="more"></a>
+<h2 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h2><p>主要的语法规则如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">xcodebuild [-project projectname] [-target targetname ...] [-configuration configurationname]</div><div class="line">                [-sdk [sdkfullpath | sdkname]] [buildaction ...] [setting=value ...]</div><div class="line">                [-userdefault=value ...]</div><div class="line">xcodebuild [-project projectname] -scheme schemename [-destination destinationspecifier]</div><div class="line">                [-destination-timeout value] [-configuration configurationname]</div><div class="line">                [-sdk [sdkfullpath | sdkname]] [buildaction ...] [setting=value ...]</div><div class="line">                [-userdefault=value ...]</div><div class="line">xcodebuild -workspace workspacename -scheme schemename [-destination destinationspecifier]</div><div class="line">                [-destination-timeout value] [-configuration configurationname]</div><div class="line">                [-sdk [sdkfullpath | sdkname]] [buildaction ...] [setting=value ...]</div><div class="line">                [-userdefault=value ...]</div><div class="line">xcodebuild -version [-sdk [sdkfullpath | sdkname]] [infoitem]</div><div class="line">xcodebuild -showsdks</div><div class="line">xcodebuild -list [-project projectname | -workspace workspacename]</div><div class="line">xcodebuild -exportArchive -exportFormat format -archivePath xcarchivepath -exportPath destinationpath</div><div class="line">                [-exportProvisioningProfile profilename] [-exportSigningIdentity identityname]</div><div class="line">                [-exportInstallerIdentity identityname]</div></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">xcodebuild clean:清空build目录下的文件;</div><div class="line">xcodebuild -target [Target] OBJROOT=临时文件的存放路径 SYMROOT=生成的App文件存放路径:指定编译对应的Target，并且指定临时文件和App文件的存放路径;</div><div class="line">xcodebuild -showsdks:查看支持的所有SDK，包含OSX, iOS, tvOS, watchOS等;</div><div class="line">xcodebuild -sdk macosx10.6:指定sdk进行编译;</div><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme]:编译该项目中的对应Scheme;</div><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme] archive:编译该项目中的对应Scheme，并生成archive文件;</div><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme] -destination &apos;platform=OS X,arch=x86_64&apos; test:测试单平台上该项目中的对应Scheme;</div><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme] -destination &apos;platform=iOS Simulator,name=iPhone 6&apos; -destination &apos;platform=iOS,name=My iPad&apos; test:测试多个平台上该项目中的对应Scheme;</div><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme] -destination generic/platform=iOS build:用通用的iOS平台编译该项目;</div><div class="line">xcodebuild -exportArchive -exportFormat IPA -archivePath [Product].xcarchive -exportPath [Product].ipa -exportProvisioningProfile &apos;Distribution Profile&apos;:用对应的描述文件，将archive文件导出为ipa文件;</div><div class="line">xcodebuild -exportArchive -exportFormat APP -archivePath MyMacApp.xcarchive -exportPath [Product].pkg -exportSigningIdentity &apos;Developer ID Application: My Team&apos;:用对应的签名文件，将archive文件导出为pkg文件。</div></pre></td></tr></table></figure>
+<h2 id="编译脚本"><a href="#编译脚本" class="headerlink" title="编译脚本"></a>编译脚本</h2><p>通过以下命令可以查看编译选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd 项目目录</div><div class="line">xcodebuild -list</div></pre></td></tr></table></figure>
+<p>结果如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Information about project &quot;TestH5&quot;:</div><div class="line">    Targets:</div><div class="line">        TestH5</div><div class="line"></div><div class="line">    Build Configurations:</div><div class="line">        Debug</div><div class="line">        Release</div><div class="line"></div><div class="line">    If no build configuration is specified and -scheme is not passed then &quot;Release&quot; is used.</div><div class="line"></div><div class="line">    Schemes:</div><div class="line">        TestH5</div></pre></td></tr></table></figure>
+<p>注意，这里的<strong>Debug</strong>和<strong>Release</strong>需要注意大小写。</p>
+<p>如果在XCode中已经配置好了开发证书，脚本如下：</p>
+<h3 id="通过编译生成app文件，再打包成ipa文件的sh脚本-放置在项目根目录中"><a href="#通过编译生成app文件，再打包成ipa文件的sh脚本-放置在项目根目录中" class="headerlink" title="通过编译生成app文件，再打包成ipa文件的sh脚本(放置在项目根目录中):"></a>通过编译生成app文件，再打包成ipa文件的sh脚本(放置在项目根目录中):</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cd .</div><div class="line">xcodebuild clean</div><div class="line">xcodebuild SYMROOT=./build -destination generic/platform=ios build</div><div class="line">mkdir -p ipa/Payload</div><div class="line">cp -r -f ./build/Release-iphoneos/*.app ./ipa/Payload</div><div class="line">cd ipa</div><div class="line">zip -r Product.ipa *</div><div class="line">open .</div></pre></td></tr></table></figure>
+<p>如果是Debug版本，注意修改下Scheme名称:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cd .</div><div class="line">xcodebuild clean</div><div class="line">xcodebuild -scheme TestH5 SYMROOT=./build -destination generic/platform=ios -configuration Debug build</div><div class="line">mkdir -p ipa/Payload</div><div class="line">cp -r -f ./build/Debug-iphoneos/*.app ./ipa/Payload</div><div class="line">cd ipa</div><div class="line">zip -r Product.ipa *</div><div class="line">open .</div></pre></td></tr></table></figure>
+<p>没出现问题的话，就能看到生成ipa文件了。</p>
+<p><img src="/images/iOS-AutoBuild-Product.png" alt="Instruments"></p>
+<h3 id="通过编译生成xcarchive文件，在打包成ipa文件的sh脚本-放置在项目根目录中"><a href="#通过编译生成xcarchive文件，在打包成ipa文件的sh脚本-放置在项目根目录中" class="headerlink" title="通过编译生成xcarchive文件，在打包成ipa文件的sh脚本(放置在项目根目录中):"></a>通过编译生成xcarchive文件，在打包成ipa文件的sh脚本(放置在项目根目录中):</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd .</div><div class="line">xcodebuild clean</div><div class="line">xcodebuild -scheme TestH5 -archivePath ./build/Release-iphoneos/Product  archive</div><div class="line">mkdir -p ipa</div><div class="line">xcodebuild -exportArchive -exportFormat IPA -archivePath ./build/Release-iphoneos/Product.xcarchive -exportPath ./ipa/Product.ipa</div><div class="line">open .</div></pre></td></tr></table></figure>
+<p>如果是Debug版本，注意修改下Scheme名称:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd .</div><div class="line">xcodebuild clean</div><div class="line">xcodebuild -scheme TestH5 -archivePath ./build/Debug-iphoneos/Product -configuration Debug archive</div><div class="line">mkdir -p ipa</div><div class="line">xcodebuild -exportArchive -exportFormat IPA -archivePath ./build/Debug-iphoneos/Product.xcarchive -exportPath ./ipa/Product.ipa</div><div class="line">open .</div></pre></td></tr></table></figure>
+<p>在XCode 8.2中发现，xcarchive生成ipa命令生成的包不能安装，对比了下其内部包含的app文件，发现生成的ipa中的app文件，比xcarchive中的app文件少了一个<strong>archived-expanded-entitilements.xcent</strong>文件，里面包含了签名证书信息，少了该文件，所以ipa文件无法安装。</p>
+<p><img src="/images/iOS-AutoBuild-File.png" alt="Instruments"></p>
+<h2 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h2><p>通过xcodebuild的日志，可以看出其编译步骤为：</p>
+<ul>
+<li>Check dependencies</li>
+<li>Create product structure</li>
+<li>Clean.Remove</li>
+<li>Check dependencies</li>
+<li>Create product structure</li>
+<li>CreateUniversalBinary</li>
+<li>CopyPNGFile</li>
+<li>CpResource</li>
+<li>CompileXIB</li>
+<li>ProcessInfoPlistFile</li>
+<li>GenerateDSYMFile</li>
+<li>LinkStoryboards</li>
+<li>ProcessProductPackaging</li>
+<li>Touch</li>
+<li>CodeSign</li>
+<li>Validate</li>
+<li>BUILD SUCCEEDED</li>
+</ul>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h3><p>如果项目中引入了CocoaPods，需要设置为<strong>xcworkspace</strong>文件，默认的xcodebuild寻找是<strong>xcodeproj</strong>文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcodebuild -workspace [Project].xcworkspace -scheme [Scheme]  -destination generic/platform=ios build</div></pre></td></tr></table></figure>
+<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/23/mac-Cat/" rel="next" title="MAC-文件替换换行符">
+                <i class="fa fa-chevron-left"></i> MAC-文件替换换行符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/04/ios-UIImage-Memory/" rel="prev" title="iOS-UIImage内存分析">
+                iOS-UIImage内存分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/28/ios-AutoBuild/"
+           data-title="iOS-自动编译" data-url="http://www.linyibin.cn/2015/07/28/ios-AutoBuild/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法规则"><span class="nav-number">1.</span> <span class="nav-text">语法规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译脚本"><span class="nav-number">2.</span> <span class="nav-text">编译脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过编译生成app文件，再打包成ipa文件的sh脚本-放置在项目根目录中"><span class="nav-number">2.1.</span> <span class="nav-text">通过编译生成app文件，再打包成ipa文件的sh脚本(放置在项目根目录中):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过编译生成xcarchive文件，在打包成ipa文件的sh脚本-放置在项目根目录中"><span class="nav-number">2.2.</span> <span class="nav-text">通过编译生成xcarchive文件，在打包成ipa文件的sh脚本(放置在项目根目录中):</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译过程"><span class="nav-number">3.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书"><span class="nav-number">4.2.</span> <span class="nav-text">证书</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

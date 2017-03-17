@@ -1,0 +1,1083 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Technology,Network,Computer," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="This chapter presents a broad overview of computer networking and the Internet.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-Computer Networking[1]-Computer Networks and the Internet">
+<meta property="og:url" content="http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="This chapter presents a broad overview of computer networking and the Internet.">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-AccessNetwork.png">
+<meta property="og:image" content="http://www.linyibin.cn/!--￼1-->/images/Technology-ComputerNetworking-Internet-DSL.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-HFC.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-FTTH.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Ethernet.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Home.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-StoreAndForward.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Delay-ETE.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-PacketSwitching.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-CircuitSwitching.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-FDM-TDM.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ISPs.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-PropagationDelay.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TrafficIntensity.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Delay-ETE-Form.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Throughput.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ProtocolStack.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Layers.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DDos.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-Computer Networking[1]-Computer Networks and the Internet">
+<meta name="twitter:description" content="This chapter presents a broad overview of computer networking and the Internet.">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-AccessNetwork.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/"/>
+
+
+
+
+
+  <title> Technology-Computer Networking[1]-Computer Networks and the Internet | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-Computer Networking[1]-Computer Networks and the Internet
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-12T00:00:00+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/12/technology-ComputerNetworking-Internet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/technology-ComputerNetworking-Internet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This chapter presents a broad overview of computer networking and the Internet. </p>
+<a id="more"></a>
+<h2 id="What-Is-the-Internet"><a href="#What-Is-the-Internet" class="headerlink" title="What Is the Internet"></a>What Is the Internet</h2><h3 id="A-Nuts-and-Bolts-Description"><a href="#A-Nuts-and-Bolts-Description" class="headerlink" title="A Nuts-and-Bolts Description"></a>A Nuts-and-Bolts Description</h3><blockquote>
+<p>The Internet is a computer network that interconnects hundreds of millions of com-puting devices throughout the world.</p>
+</blockquote>
+<p>End systems are connected together by a network of communication links and packet switches.</p>
+<p>communication links, which are made up of different types of physical media, including coaxial cable, copper wire, optical fiber, and radio spectrum.</p>
+<p>Packet switches come in many shapes and flavors, but the two most prominent types in today’s Internet are routers and link-layer switches.</p>
+<p>The sequence of communication links and packet switches traversed by a packet from the sending end system to the receiving end system is known as a route or path through the network.</p>
+<blockquote>
+<p>End systems access the Internet through Internet Service Providers (ISPs).</p>
+</blockquote>
+<p>Each ISP is in itself a network of packet switches and communication links. ISPs provide a variety of types of network access to the end systems.ISPs also provide Internet access to content providers, connecting Web sites directly to the Internet.</p>
+<blockquote>
+<p>Internet stan-dards are developed by the Internet Engineering Task Force (IETF)[IETF 2012]. The IETF standards documents are called requests for comments (RFCs).</p>
+</blockquote>
+<h3 id="A-Service-Description"><a href="#A-Service-Description" class="headerlink" title="A Service Description"></a>A Service Description</h3><blockquote>
+<p>But we can also describe the Internet from an entirely different angle—namely, as an infrastructure that provides services to applications.</p>
+</blockquote>
+<p>These applications include electronic mail, Web surfing, social networks, instant messaging, Voice-over-IP(VoIP), video streaming, distributed games, peer-to-peer (P2P) file shar-ing, television over the Internet, remote login, and much, much more.</p>
+<p>End systems attached to the Internet provide an Application Programming Interface (API).</p>
+<h3 id="What-Is-a-Protocol"><a href="#What-Is-a-Protocol" class="headerlink" title="What Is a Protocol"></a>What Is a Protocol</h3><blockquote>
+<p>A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the trans-mission and/or receipt of a message or other event.</p>
+</blockquote>
+<p>End systems, packet switches, and other pieces of the Internet run protocols that control the sending and receiving of information within the Internet.</p>
+<blockquote>
+<p>Transmission Control Protocol (TCP) and the Internet Protocol (IP).</p>
+</blockquote>
+<h2 id="The-Network-Edge"><a href="#The-Network-Edge" class="headerlink" title="The Network Edge"></a>The Network Edge</h2><h3 id="Access-Networks"><a href="#Access-Networks" class="headerlink" title="Access Networks"></a>Access Networks</h3><p>host = end system. Hosts are sometimes further divided into two categories: clients and servers.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-AccessNetwork.png" alt="AccessNetwork"></p>
+<blockquote>
+<p>Home Access: DSL, Cable, FTTH, Dial-Up, and Satellite</p>
+</blockquote>
+<p>Today, the two most prevalent types of broadband residential access are <strong>digital subscriber line (DSL)</strong> and cable.</p>
+<h4 id="DSL"><a href="#DSL" class="headerlink" title="DSL"></a>DSL</h4><p>Each customer’s DSL modem uses the existing telephone line to exchange data with a digital subscriber line access multiplexer (DSLAM) located in the telco’s local central office (CO). </p>
+<p>The residential telephone line carries both data and traditional telephone sig-nals simultaneously, which are encoded at different frequencies:</p>
+<ul>
+<li>A high-speed downstream channel, in the 50 kHz to 1 MHz band</li>
+<li>A medium-speed upstream channel, in the 4 kHz to 50 kHz band</li>
+<li>An ordinary two-way telephone channel, in the 0 to 4 kHz band</li>
+</ul>
+<p><img src="!--￼1--&gt;/images/Technology-ComputerNetworking-Internet-DSL.png" alt="DSL"></p>
+<h4 id="Cable"><a href="#Cable" class="headerlink" title="Cable"></a>Cable</h4><p>cable Internet access makes use of the cable television company’s existing cabletelevision infrastructure.</p>
+<p><strong>hybrid fiber coax (HFC)</strong></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-HFC.png" alt="HFC"></p>
+<p>cable modem termination system (CMTS)</p>
+<p>The DOCSIS 2.0 standard defines downstream rates up to 42.8 Mbps and upstream rates of up to 30.7 Mbps.</p>
+<p>One important characteristic of cable Internet access is that it is a <strong>shared broadcast medium</strong>. In particular, every packet sent by the head end travels down- stream on every link to every home and every packet sent by a home travels on the upstream channel to the head end.</p>
+<h4 id="FTTH"><a href="#FTTH" class="headerlink" title="FTTH"></a>FTTH</h4><p><strong>fiber to the home (FTTH)</strong></p>
+<p>provide an optical fiber path from the CO directly to the home.</p>
+<p>Two competing optical-distribution network architectures that perform this splitting: <strong>active optical networks (AONs)</strong> and <strong>passive optical net- works (PONs)</strong>.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-FTTH.png" alt="FTTH"></p>
+<p>optical network terminator (ONT)</p>
+<p>optical line terminator (OLT)</p>
+<h4 id="Dial-Up"><a href="#Dial-Up" class="headerlink" title="Dial-Up"></a>Dial-Up</h4><p>Dial-up access over traditional phone lines is based on the same model as DSL—a home modem connects over a phone line to a modem in the ISP. Compared with DSL and other broadband access networks, dial-up access is excru- ciatingly <strong>slow at 56 kbps</strong>.</p>
+<h4 id="Satellite"><a href="#Satellite" class="headerlink" title="Satellite"></a>Satellite</h4><p>A satellite link can be used to connect a residence to the Inter- net at speeds of <strong>more than 1 Mbps</strong>.</p>
+<blockquote>
+<p>Enterprise Access: Ethernet and WiFi</p>
+</blockquote>
+<h4 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h4><p><strong>local area network (LAN)</strong></p>
+<p>Ethernet users use twisted-pair copper wire to connect to an Ethernet switch.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Ethernet.png" alt="Ethernet"></p>
+<p>users typically have <strong>100 Mbps</strong> access to the Ethernet switch, whereas servers may have 1 Gbps or even 10 Gbps access.</p>
+<h4 id="WiFi"><a href="#WiFi" class="headerlink" title="WiFi"></a>WiFi</h4><p>Wireless LAN access, provides a shared transmission rate of <strong>up to 54 Mbps</strong>.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Home.png" alt="Home"></p>
+<blockquote>
+<p>Wide-Area Wireless Access: 3G and LTE</p>
+</blockquote>
+<h4 id="3G-and-LTE"><a href="#3G-and-LTE" class="headerlink" title="3G and LTE"></a>3G and LTE</h4><p><strong>third-generation (3G) wireless</strong></p>
+<p>a fourth-generation (4G) of wide-area wireless networks</p>
+<p><strong>LTE(Long-Term Evolution)</strong></p>
+<h3 id="Physical-Media"><a href="#Physical-Media" class="headerlink" title="Physical Media"></a>Physical Media</h3><p>Physical media fall into two categories: <strong>guided(solid) media and unguided(atmosphere) media</strong>.</p>
+<h4 id="Twisted-Pair-Copper-Wire"><a href="#Twisted-Pair-Copper-Wire" class="headerlink" title="Twisted-Pair Copper Wire"></a>Twisted-Pair Copper Wire</h4><p>The least expensive and most commonly used guided transmission medium is twisted-pair copper wire.</p>
+<p><strong>Unshielded twisted pair (UTP)</strong></p>
+<h4 id="Coaxial-Cable"><a href="#Coaxial-Cable" class="headerlink" title="Coaxial Cable"></a>Coaxial Cable</h4><p>Coaxial cable consists of two copper conductors, but the two con- ductors are concentric rather than parallel.</p>
+<h4 id="Fiber-Optics"><a href="#Fiber-Optics" class="headerlink" title="Fiber Optics"></a>Fiber Optics</h4><p>A thin, flexible medium that conducts pulses of light, with each pulse representing a bit.</p>
+<p>The Optical Carrier (OC) standard link speeds range from 51.8 Mbps to 39.8 Gbps; these specifications are often referred to as OC- n, where the link speed equals n × 51.8 Mbps. Standards in use today include OC-1, OC-3, OC-12, OC-24, OC-48, OC-96, OC-192, OC-768.</p>
+<h4 id="Terrestrial-Radio-Channels"><a href="#Terrestrial-Radio-Channels" class="headerlink" title="Terrestrial Radio Channels"></a>Terrestrial Radio Channels</h4><p>Radio channels carry signals in the electromagnetic spectrum.</p>
+<p>The wireless LAN technologies described use local-area radio channels; the cellular access technologies use wide-area radio channels.</p>
+<h4 id="Satellite-Radio-Channels"><a href="#Satellite-Radio-Channels" class="headerlink" title="Satellite Radio Channels"></a>Satellite Radio Channels</h4><p><strong>Geostationary satellites and low-earth orbiting (LEO) satellites.</strong></p>
+<p>Geostationary satellites permanently remain above the same spot on Earth.LEO satellites are placed much closer to Earth and do not remain permanently above one spot on Earth.</p>
+<h2 id="The-Network-Core"><a href="#The-Network-Core" class="headerlink" title="The Network Core"></a>The Network Core</h2><h3 id="Packet-Switching"><a href="#Packet-Switching" class="headerlink" title="Packet Switching"></a>Packet Switching</h3><p>The source breaks long messages into smaller chunks of data known as packets.</p>
+<h4 id="Store-and-forward-transmission"><a href="#Store-and-forward-transmission" class="headerlink" title="Store-and-forward transmission"></a>Store-and-forward transmission</h4><blockquote>
+<p>Store-and-forward transmission means that the packet switch <strong>must receive the entire packet</strong> before it can begin to transmit the first bit of the packet onto the outbound link.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-StoreAndForward.png" alt="StoreAndForward"></p>
+<p>End-to-end delay:Sending one packet from source to desti- nation over a path consisting of N links each of rate R</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Delay-ETE.png" alt="Delay-ETE"></p>
+<h4 id="Queuing-Delays-and-Packet-Loss"><a href="#Queuing-Delays-and-Packet-Loss" class="headerlink" title="Queuing Delays and Packet Loss"></a>Queuing Delays and Packet Loss</h4><p>For each attached link, the packet switch has an <strong>output buffer (also called an output queue)</strong></p>
+<p>queuing delays</p>
+<p>packet loss will occur—either the arriving packet or one of the already-queued packets will be dropped.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-PacketSwitching.png" alt="PacketSwitching"></p>
+<h4 id="Forwarding-Tables-and-Routing-Protocols"><a href="#Forwarding-Tables-and-Routing-Protocols" class="headerlink" title="Forwarding Tables and Routing Protocols"></a>Forwarding Tables and Routing Protocols</h4><p>Each router has a forwarding table that maps destination addresses (or portions of the destination addresses) to that router’s outbound links.</p>
+<p><strong>Routing protocols</strong> that are used to automatically set the forwarding tables.</p>
+<blockquote>
+<p>A routing protocol may, for example, determine the shortest path from each router to each destination and use the shortest path results to configure the forwarding tables in the routers.</p>
+</blockquote>
+<h3 id="Circuit-Switching"><a href="#Circuit-Switching" class="headerlink" title="Circuit Switching"></a>Circuit Switching</h3><p>In circuit-switched networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are reserved for the duration of the communication session between the end systems.</p>
+<p>The sender can transfer the data to the receiver at the <strong>guaranteed constant rate</strong>.</p>
+<h4 id="Multiplexing-in-Circuit-Switched-Networks"><a href="#Multiplexing-in-Circuit-Switched-Networks" class="headerlink" title="Multiplexing in Circuit-Switched Networks"></a>Multiplexing in Circuit-Switched Networks</h4><p><img src="/images/Technology-ComputerNetworking-Internet-CircuitSwitching.png" alt="CircuitSwitching"></p>
+<blockquote>
+<p>frequency-division multiplexing(FDM) or time-division multiplexing (TDM)</p>
+</blockquote>
+<p>With FDM, the frequency spec-trum of a link is divided up among the connections established across the link.</p>
+<p>For a TDM link, time is divided into frames of fixed duration, and each frameis divided into a fixed number of time slots.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-FDM-TDM.png" alt="FDM-TDM"></p>
+<h4 id="Packet-Switching-Versus-Circuit-Switching"><a href="#Packet-Switching-Versus-Circuit-Switching" class="headerlink" title="Packet Switching Versus Circuit Switching"></a>Packet Switching Versus Circuit Switching</h4><p>Circuit switching pre-allocates use of the transmission link regard-less of demand, with allocated but unneeded link time going unused. Packet switching on the other hand allocates link use on demand. Link transmission capac-ity will be shared on a packet-by-packet basis only among those users who have packets that need to be transmitted over the link.</p>
+<h3 id="A-Network-of-Networks"><a href="#A-Network-of-Networks" class="headerlink" title="A Network of Networks"></a>A Network of Networks</h3><blockquote>
+<p>points of presence (PoPs), multi-homing, peering, and Internet exchange points(IXPs)</p>
+</blockquote>
+<p>A PoP is simply a group of one or more routers (at the same location) in the provider’s network where customer ISPs can connect into the provider ISP.</p>
+<p>Any ISP(except for tier-1 ISPs) may choose to multi-home, that is, to connect to two or more provider ISPs.</p>
+<p>A pair of nearby ISPs at the same level of the hierarchy can peer, that is, they can directly connect their networks together.</p>
+<p>Internet Exchange Point (IXP)(typically in a stand-alone building with its own switches), which is a meeting point where multiple ISPs can peer together.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-ISPs.png" alt="ISPs"></p>
+<h2 id="Delay-Loss-and-Throughput-in-Packet-Switched-Networks"><a href="#Delay-Loss-and-Throughput-in-Packet-Switched-Networks" class="headerlink" title="Delay, Loss, and Throughput in Packet-Switched Networks"></a>Delay, Loss, and Throughput in Packet-Switched Networks</h2><p>The physical laws of real- ity introduce delay and loss as well as constrain throughput. </p>
+<h3 id="Overview-of-Delay-in-Packet-Switched-Networks"><a href="#Overview-of-Delay-in-Packet-Switched-Networks" class="headerlink" title="Overview of Delay in Packet-Switched Networks"></a>Overview of Delay in Packet-Switched Networks</h3><blockquote>
+<p>Total nodal delay:nodal processing delay, queuing delay, transmis-sion delay, and propagation delay</p>
+</blockquote>
+<h4 id="Processing-Delay"><a href="#Processing-Delay" class="headerlink" title="Processing Delay"></a>Processing Delay</h4><p>The time required to examine the packet’s header and determine where to direct the packet is part of the processing delay. </p>
+<p><strong>microseconds</strong></p>
+<h4 id="Queuing-Delay"><a href="#Queuing-Delay" class="headerlink" title="Queuing Delay"></a>Queuing Delay</h4><p>At the queue, the packet experiences a queuing delay as it waits to be transmitted onto the link.</p>
+<p><strong>microseconds to milliseconds</strong></p>
+<h4 id="Transmission-Delay"><a href="#Transmission-Delay" class="headerlink" title="Transmission Delay"></a>Transmission Delay</h4><p>The transmission delay is L(bits)/R(bits/sec). This is the amount of time required to push (that is, transmit) all of the packet’s bits into the link.</p>
+<p><strong>microseconds to milliseconds</strong></p>
+<h4 id="Propagation-Delay"><a href="#Propagation-Delay" class="headerlink" title="Propagation Delay"></a>Propagation Delay</h4><p>The time required to propagate from the beginning of the link to router B is the propagation delay.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-PropagationDelay.png" alt="PropagationDelay"></p>
+<h3 id="Queuing-Delay-and-Packet-Loss"><a href="#Queuing-Delay-and-Packet-Loss" class="headerlink" title="Queuing Delay and Packet Loss"></a>Queuing Delay and Packet Loss</h3><blockquote>
+<p>traffic intensity:The ratio La/R (L bits, a is in units of packets/sec, R is the transmission rate)</p>
+</blockquote>
+<p>Nth packet transmitted has a queuing delay of(n-1)L/R seconds.</p>
+<p>The traffic intensity is close to zero, then packet arrivals are few and far between, the average queuing delay will be close to zero.When the traffic intensity is close to 1, there will be intervals of time when the arrival rate exceeds the transmission capacity.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-TrafficIntensity.png" alt="TrafficIntensity"></p>
+<p>With no place to store such a packet, a router will drop that packet; that is, the packet will be lost.</p>
+<h3 id="End-to-End-Delay"><a href="#End-to-End-Delay" class="headerlink" title="End-to-End Delay"></a>End-to-End Delay</h3><p>N links, suppose for the moment that the network is uncon- gested (so that queuing delays are negligible):</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Delay-ETE-Form.png" alt="Delay-ETE"></p>
+<h4 id="Traceroute"><a href="#Traceroute" class="headerlink" title="Traceroute"></a>Traceroute</h4><p>The source will send N special packets into the network, When the nth router receives the nth packet marked n, the router <strong>does not forward</strong> the packet toward its destination, but <strong>instead sends a message back</strong> to the source. The source reconstruct the route taken by packets flowing from source to destination, and the source can determine the round-trip delays:</p>
+<p>Traceroute actually repeats the <strong>experiment just described three times</strong>, so the source actually sends 3 • N packets to the destination.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ID | Title | Round-trip Delays</div><div class="line">1 cs-gw (128.119.240.254) 1.009 ms 0.899 ms 0.993 ms</div><div class="line">2 128.119.3.154 (128.119.3.154) 0.931 ms 0.441 ms 0.651 ms</div><div class="line">3 border4-rt-gi-1-3.gw.umass.edu (128.119.2.194) 1.032 ms 0.484 ms 0.451 ms 4 acr1-ge-2-1-0.Boston.cw.net (208.172.51.129) 10.006 ms 8.150 ms 8.460 ms</div><div class="line">5 agr4-loopback.NewYork.cw.net (206.24.194.104) 12.272 ms 14.344 ms 13.267 ms 6 acr2-loopback.NewYork.cw.net (206.24.194.62) 13.225 ms 12.292 ms 12.148 ms</div><div class="line">7 pos10-2.core2.NewYork1.Level3.net (209.244.160.133) 12.218 ms 11.823 ms 11.793 ms</div><div class="line">8 gige9-1-52.hsipaccess1.NewYork1.Level3.net (64.159.17.39) 13.081 ms 11.556 ms 13.297 ms 9 p0-0.polyu.bbnplanet.net (4.25.109.122) 12.716 ms 13.052 ms 12.786 ms</div><div class="line">10 cis.poly.edu (128.238.32.126) 14.080 ms 13.035 ms 12.802 ms</div></pre></td></tr></table></figure>
+<p>Traceroute places an <strong>asterisk</strong> just after the router number and reports fewer than three round-trip times for that router.<strong>(Further, but return faster)</strong></p>
+<h4 id="End-System-Application-and-Other-Delays"><a href="#End-System-Application-and-Other-Delays" class="headerlink" title="End System, Application, and Other Delays"></a>End System, Application, and Other Delays</h4><blockquote>
+<p>Additional significant delays:purposefully delay &amp; media packetization delay.</p>
+</blockquote>
+<p>Purposefully delay:an end system wanting to transmit a packet into a shared medium.</p>
+<p>Media packetization delay:In VoIP, the sending side must first fill a packet with encoded digitized speech before passing the packet to the Internet. </p>
+<h3 id="Throughput-in-Computer-Networks"><a href="#Throughput-in-Computer-Networks" class="headerlink" title="Throughput in Computer Networks"></a>Throughput in Computer Networks</h3><blockquote>
+<p>The instantaneous throughput at any instant of time is the rate(in bits/sec) at which Host B is receiving the file.</p>
+</blockquote>
+<p>If the file consists of F bits and the transfer takes T seconds for Host B to receive all F bits, then the <strong>average throughput</strong> of the file transfer is F/T bits/sec.</p>
+<p><strong>bottleneck link</strong>:min{R1, R2,…, RN}</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Throughput.png" alt="Throughput"></p>
+<p>the throughput can simply be approximated as the minimum transmission rate along the path between source and destination.</p>
+<h2 id="Protocol-Layers-and-Their-Service-Models"><a href="#Protocol-Layers-and-Their-Service-Models" class="headerlink" title="Protocol Layers and Their Service Models"></a>Protocol Layers and Their Service Models</h2><h3 id="Protocol-Layering"><a href="#Protocol-Layering" class="headerlink" title="Protocol Layering"></a>Protocol Layering</h3><p><img src="/images/Technology-ComputerNetworking-Internet-ProtocolStack.png" alt="ProtocolStack"></p>
+<h4 id="Application-Layer"><a href="#Application-Layer" class="headerlink" title="Application Layer"></a>Application Layer</h4><p>The application layer is where network applications and their application-layer proto-cols reside.</p>
+<blockquote>
+<p>HTTP SMTP FTP DNS</p>
+<p>Message:a application-layer packet</p>
+</blockquote>
+<p>An application-layer protocol is distributed over multiple end systems.</p>
+<h4 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h4><p>The Internet’s transport layer transports application-layer messages between application endpoints.</p>
+<blockquote>
+<p>TCP UDP</p>
+<p>Segment:a transport-layer packet</p>
+</blockquote>
+<h4 id="Network-Layer"><a href="#Network-Layer" class="headerlink" title="Network Layer"></a>Network Layer</h4><p>The Internet’s network layer is responsible for moving network-layer packets known as datagrams from one host to another.</p>
+<blockquote>
+<p>IP Routing</p>
+<p>Datagram:a Network-layer packet</p>
+</blockquote>
+<h4 id="Link-Layer"><a href="#Link-Layer" class="headerlink" title="Link Layer"></a>Link Layer</h4><p>The link layer, which delivers the datagram to the next node along the route.</p>
+<blockquote>
+<p>Ethernet, WiFi, and the cable access network’s DOCSIS protocol</p>
+<p>Frame:a Link-layer packet</p>
+</blockquote>
+<h4 id="Physical-Layer"><a href="#Physical-Layer" class="headerlink" title="Physical Layer"></a>Physical Layer</h4><p>The job of the physical layer is to move the individ-ual bits within the frame from one node to the next.</p>
+<blockquote>
+<p>The protocols in this layer are again link dependent and further depend on the actual transmission medium of the link (for example, twisted-pair copper wire, single-mode fiber optics).</p>
+<p>Bit:A bit is moved across the link in a different way.</p>
+</blockquote>
+<h4 id="Presentation-Layer"><a href="#Presentation-Layer" class="headerlink" title="Presentation Layer"></a>Presentation Layer</h4><p>The role of the presentation layer is to provide services that allow communicating applications to interpret the meaning of data exchanged.</p>
+<blockquote>
+<p>data compression, data encryption, data description</p>
+</blockquote>
+<h4 id="Session-Layer"><a href="#Session-Layer" class="headerlink" title="Session Layer"></a>Session Layer</h4><p>The session layer provides for delimiting and synchronization of data exchange, includ-ing the means to build a checkpointing and recovery scheme.</p>
+<blockquote>
+<p>delimiting and synchronization of data exchange</p>
+</blockquote>
+<h3 id="Encapsulation"><a href="#Encapsulation" class="headerlink" title="Encapsulation"></a>Encapsulation</h3><p>Each layer, a packet has two types of fields: <strong>header fields and a payload field.</strong></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Layers.png" alt="Layers"></p>
+<h2 id="Networks-Under-Attack"><a href="#Networks-Under-Attack" class="headerlink" title="Networks Under Attack"></a>Networks Under Attack</h2><h3 id="The-bad-guys-can-put-malware-into-your-host-via-the-Internet"><a href="#The-bad-guys-can-put-malware-into-your-host-via-the-Internet" class="headerlink" title="The bad guys can put malware into your host via the Internet"></a>The bad guys can put malware into your host via the Internet</h3><p><strong>Botnet</strong>:which the bad guys control and leverage for spam e-mail distribution or distributed denial-of-service attacks (soon to be discussed) against targeted hosts.</p>
+<blockquote>
+<p>Self-replicating</p>
+</blockquote>
+<p>Malware can spread in the form of <strong>a virus or a worm</strong>. Viruses are malware that require some form of user interaction to infect the user’s device.Worms are malware that can enter a device without any explicit user interaction.</p>
+<h3 id="The-bad-guys-can-attack-servers-and-network-infrastructure"><a href="#The-bad-guys-can-attack-servers-and-network-infrastructure" class="headerlink" title="The bad guys can attack servers and network infrastructure"></a>The bad guys can attack servers and network infrastructure</h3><blockquote>
+<p>denial-of-service (DoS) attacks:renders a network, host, or other piece of infrastructure unusable by legitimate users.</p>
+</blockquote>
+<p>Most Internet DoS attacks fall into one of three categories:</p>
+<ul>
+<li><strong>Vulnerability attack</strong>:This involves sending a few well-crafted messages to a vulnerable application or operating system running on a targeted host.</li>
+<li><strong>Bandwidth flooding</strong>:The attacker sends a deluge of packets to the targeted hos</li>
+<li><strong>Connection flooding</strong>:The attacker establishes a large number of half-open or fully open TCP connections.</li>
+</ul>
+<blockquote>
+<p>distributed DoS (DDoS)</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-DDos.png" alt="DDos"></p>
+<h3 id="The-bad-guys-can-sniff-packets"><a href="#The-bad-guys-can-sniff-packets" class="headerlink" title="The bad guys can sniff packets"></a>The bad guys can sniff packets</h3><p><strong>Packet sniffer</strong>:A passive receiver that records a copy of every packet that flies by.</p>
+<h3 id="The-bad-guys-can-masquerade-as-someone-you-trust"><a href="#The-bad-guys-can-masquerade-as-someone-you-trust" class="headerlink" title="The bad guys can masquerade as someone you trust"></a>The bad guys can masquerade as someone you trust</h3><blockquote>
+<p>IP spoofing:The ability to inject packets into the Internet with a false source address.</p>
+</blockquote>
+<p>To solve this problem, we will need <strong>end-point authentication</strong>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/Computer/" rel="tag"># Computer</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/economics-IndexFund/" rel="next" title="Economics-《指数基金投资指南》">
+                <i class="fa fa-chevron-left"></i> Economics-《指数基金投资指南》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/14/technology-ComputerNetworking-ApplicationLayer/" rel="prev" title="Technology-Computer Networking[2]-Application Layer">
+                Technology-Computer Networking[2]-Application Layer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/12/technology-ComputerNetworking-Internet/"
+           data-title="Technology-Computer Networking[1]-Computer Networks and the Internet" data-url="http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Is-the-Internet"><span class="nav-number">1.</span> <span class="nav-text">What Is the Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Nuts-and-Bolts-Description"><span class="nav-number">1.1.</span> <span class="nav-text">A Nuts-and-Bolts Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Service-Description"><span class="nav-number">1.2.</span> <span class="nav-text">A Service Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-Is-a-Protocol"><span class="nav-number">1.3.</span> <span class="nav-text">What Is a Protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Network-Edge"><span class="nav-number">2.</span> <span class="nav-text">The Network Edge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Networks"><span class="nav-number">2.1.</span> <span class="nav-text">Access Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DSL"><span class="nav-number">2.1.1.</span> <span class="nav-text">DSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cable"><span class="nav-number">2.1.2.</span> <span class="nav-text">Cable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FTTH"><span class="nav-number">2.1.3.</span> <span class="nav-text">FTTH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dial-Up"><span class="nav-number">2.1.4.</span> <span class="nav-text">Dial-Up</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Satellite"><span class="nav-number">2.1.5.</span> <span class="nav-text">Satellite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ethernet"><span class="nav-number">2.1.6.</span> <span class="nav-text">Ethernet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WiFi"><span class="nav-number">2.1.7.</span> <span class="nav-text">WiFi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3G-and-LTE"><span class="nav-number">2.1.8.</span> <span class="nav-text">3G and LTE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Physical-Media"><span class="nav-number">2.2.</span> <span class="nav-text">Physical Media</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Twisted-Pair-Copper-Wire"><span class="nav-number">2.2.1.</span> <span class="nav-text">Twisted-Pair Copper Wire</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Coaxial-Cable"><span class="nav-number">2.2.2.</span> <span class="nav-text">Coaxial Cable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fiber-Optics"><span class="nav-number">2.2.3.</span> <span class="nav-text">Fiber Optics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Terrestrial-Radio-Channels"><span class="nav-number">2.2.4.</span> <span class="nav-text">Terrestrial Radio Channels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Satellite-Radio-Channels"><span class="nav-number">2.2.5.</span> <span class="nav-text">Satellite Radio Channels</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Network-Core"><span class="nav-number">3.</span> <span class="nav-text">The Network Core</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Packet-Switching"><span class="nav-number">3.1.</span> <span class="nav-text">Packet Switching</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Store-and-forward-transmission"><span class="nav-number">3.1.1.</span> <span class="nav-text">Store-and-forward transmission</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Queuing-Delays-and-Packet-Loss"><span class="nav-number">3.1.2.</span> <span class="nav-text">Queuing Delays and Packet Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Forwarding-Tables-and-Routing-Protocols"><span class="nav-number">3.1.3.</span> <span class="nav-text">Forwarding Tables and Routing Protocols</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Circuit-Switching"><span class="nav-number">3.2.</span> <span class="nav-text">Circuit Switching</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiplexing-in-Circuit-Switched-Networks"><span class="nav-number">3.2.1.</span> <span class="nav-text">Multiplexing in Circuit-Switched Networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Packet-Switching-Versus-Circuit-Switching"><span class="nav-number">3.2.2.</span> <span class="nav-text">Packet Switching Versus Circuit Switching</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Network-of-Networks"><span class="nav-number">3.3.</span> <span class="nav-text">A Network of Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delay-Loss-and-Throughput-in-Packet-Switched-Networks"><span class="nav-number">4.</span> <span class="nav-text">Delay, Loss, and Throughput in Packet-Switched Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-of-Delay-in-Packet-Switched-Networks"><span class="nav-number">4.1.</span> <span class="nav-text">Overview of Delay in Packet-Switched Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Processing-Delay"><span class="nav-number">4.1.1.</span> <span class="nav-text">Processing Delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Queuing-Delay"><span class="nav-number">4.1.2.</span> <span class="nav-text">Queuing Delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transmission-Delay"><span class="nav-number">4.1.3.</span> <span class="nav-text">Transmission Delay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Propagation-Delay"><span class="nav-number">4.1.4.</span> <span class="nav-text">Propagation Delay</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queuing-Delay-and-Packet-Loss"><span class="nav-number">4.2.</span> <span class="nav-text">Queuing Delay and Packet Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#End-to-End-Delay"><span class="nav-number">4.3.</span> <span class="nav-text">End-to-End Delay</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Traceroute"><span class="nav-number">4.3.1.</span> <span class="nav-text">Traceroute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#End-System-Application-and-Other-Delays"><span class="nav-number">4.3.2.</span> <span class="nav-text">End System, Application, and Other Delays</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Throughput-in-Computer-Networks"><span class="nav-number">4.4.</span> <span class="nav-text">Throughput in Computer Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocol-Layers-and-Their-Service-Models"><span class="nav-number">5.</span> <span class="nav-text">Protocol Layers and Their Service Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-Layering"><span class="nav-number">5.1.</span> <span class="nav-text">Protocol Layering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-Layer"><span class="nav-number">5.1.1.</span> <span class="nav-text">Application Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transport-Layer"><span class="nav-number">5.1.2.</span> <span class="nav-text">Transport Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Network-Layer"><span class="nav-number">5.1.3.</span> <span class="nav-text">Network Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Link-Layer"><span class="nav-number">5.1.4.</span> <span class="nav-text">Link Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Physical-Layer"><span class="nav-number">5.1.5.</span> <span class="nav-text">Physical Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Presentation-Layer"><span class="nav-number">5.1.6.</span> <span class="nav-text">Presentation Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session-Layer"><span class="nav-number">5.1.7.</span> <span class="nav-text">Session Layer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encapsulation"><span class="nav-number">5.2.</span> <span class="nav-text">Encapsulation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Networks-Under-Attack"><span class="nav-number">6.</span> <span class="nav-text">Networks Under Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-bad-guys-can-put-malware-into-your-host-via-the-Internet"><span class="nav-number">6.1.</span> <span class="nav-text">The bad guys can put malware into your host via the Internet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-bad-guys-can-attack-servers-and-network-infrastructure"><span class="nav-number">6.2.</span> <span class="nav-text">The bad guys can attack servers and network infrastructure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-bad-guys-can-sniff-packets"><span class="nav-number">6.3.</span> <span class="nav-text">The bad guys can sniff packets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-bad-guys-can-masquerade-as-someone-you-trust"><span class="nav-number">6.4.</span> <span class="nav-text">The bad guys can masquerade as someone you trust</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

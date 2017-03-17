@@ -1,0 +1,899 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对CoreAnimation的机制进行讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-CoreAnimation[1]-简介">
+<meta property="og:url" content="http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对CoreAnimation的机制进行讲解。">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/ca_architecture_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/basics_layer_rendering_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/basics_animation_types_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_bounds_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_unit_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_anchorpoint_position_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_anchorpoint_transform_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/transform_basic_math_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/transform_manipulations_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/sublayer_hierarchy_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/sublayer_hierarchies_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-CoreAnimation[1]-简介">
+<meta name="twitter:description" content="本文对CoreAnimation的机制进行讲解。">
+<meta name="twitter:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/ca_architecture_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/"/>
+
+
+
+
+
+  <title> iOS-CoreAnimation[1]-简介 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-CoreAnimation[1]-简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-12T00:00:00+08:00">
+                2015-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/10/12/ios-CoreAnimation-Introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/12/ios-CoreAnimation-Introduction/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对CoreAnimation的机制进行讲解。</p>
+<a id="more"></a>
+<h3 id="Core-Animation简介"><a href="#Core-Animation简介" class="headerlink" title="Core Animation简介"></a>Core Animation简介</h3><p>Core Animation是iOS系统上用于处理图形渲染和动画的基础工具。对于动画的每一帧的绘画工作，Core Animation已经帮你完成了，只需要配置一下参数(开始点和结束点)，Core Animation会自动处理物理图形硬件的渲染加速工作，从而达到更高的帧率和更平滑的动画效果而不会占用CPU以及减慢App的速度。</p>
+<p><strong>Core Animation处于UIKit/AppKit的下层，与Cocoa和Cocoa Touch的View工作流紧密相关</strong>，同时Core Animation也暴露了一些接口，可用于控制App的动画。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/ca_architecture_2x.png" alt="Architecture"></p>
+<h3 id="Core-Animation基础"><a href="#Core-Animation基础" class="headerlink" title="Core Animation基础"></a>Core Animation基础</h3><p>Core Animation为动画的Views和其他可视的控件提供了一个通用的处理系统。<strong>Core Animation通过缓存Views中的内容到位图中，从而使其可以直接被图形硬件操作。</strong>在一些场景下，这种缓存策略可能需要你去重新思考App内容的管理和展示方式，但是通常，你不需要考虑这些。</p>
+<p>你可以使用Core Animation去动画式地改变App的Views和可视的控件，例如位置，大小和透明度，尽可能不要把Core Animation当成动画片工具，不要一秒钟60次地替换一个View的内容。</p>
+<h4 id="Layers简介"><a href="#Layers简介" class="headerlink" title="Layers简介"></a>Layers简介</h4><p><strong>Layers提供了绘图和动画的基础。</strong><br>Layers是在一个3D空间中组织的3D平面，是Core Animation的核心。像Views一样，Layers管理平面的几何、内容和可视化属性等信息，但并没有定义自己的外观。一个Layer管理一个位图的状态信息，位图本身可以是一个View本身或者一张图片的绘画结果。因此，App中使用的主要Layers最好是模型化的对象，因为主要是它们在管理数据。</p>
+<h5 id="（1）基于Layers的绘图模型"><a href="#（1）基于Layers的绘图模型" class="headerlink" title="（1）基于Layers的绘图模型"></a>（1）基于Layers的绘图模型</h5><p>大多数的Layers并不做任何可视化的绘图操作，而是，捕获App提供的内容，并缓存到位图中。当你改变了Layer的属性时，其实是在改变Layer对象的状态，当这些改变触发动画时，Core Animation将Layer的位图和状态信息传递给底层的硬件，在硬件操作位图比在软件中操作要快得多。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/basics_layer_rendering_2x.png" alt="Layer-Drawing"></p>
+<p>由于操作一张静态的位图，基于Layers的绘图区别于传统的基于Views的绘图，基于Views的绘图一般调用drawRect:方法去重新绘图，这种方法将在主线程中占用CPU，代价昂贵。基于Layers的绘图可以用尽可能小的代价达到同样的效果。</p>
+<h5 id="（2）基于Layers的动画"><a href="#（2）基于Layers的动画" class="headerlink" title="（2）基于Layers的动画"></a>（2）基于Layers的动画</h5><p>Layer对象的数据和状态信息是与Layer在屏幕上呈现的内容解耦的，这给了Core Animation一种方式去处理从旧状态值到新状态值中间的变化。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/basics_animation_types_2x.png" alt="Layer-Animation"></p>
+<h4 id="Layer定义自身的几何信息"><a href="#Layer定义自身的几何信息" class="headerlink" title="Layer定义自身的几何信息"></a>Layer定义自身的几何信息</h4><p>Layers其中一个工作就是管理其内容的可视化几何信息，包括边界，位置，旋转等。Layer跟View一样有frame和bounds矩阵，同时还有其他自身的属性，例如anchor point(锚点)。</p>
+<h5 id="（1）Layers使用两种坐标系"><a href="#（1）Layers使用两种坐标系" class="headerlink" title="（1）Layers使用两种坐标系"></a>（1）Layers使用两种坐标系</h5><p>Layers使用两种坐标系，<strong>基于点的坐标系和单元坐标系</strong>。当Layer的属性值与屏幕的坐标或者其他Layer相关时，例如位置，使用基于点的坐标系。当与屏幕的坐标无关时，例如锚点，使用单元坐标系。</p>
+<p>基于点的坐标系经常被用于表明Layer的大小和位置信息，对应bounds和postion属性，frame属性由这两个属性构成，但很少用。值得注意的是，其朝向与系统相关，iOS的起始点是左上角。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_bounds_2x.png" alt="Layer-Geometries"></p>
+<p>单元坐标系用于呈现那些随着Layer Size变化而变化的属性，每个坐标值的范围在0到1之间，例如锚点。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_unit_2x.png" alt="Layer-Coordinate"></p>
+<p><strong>为了保证精确地定位，所有坐标系的值都是float型。</strong></p>
+<h5 id="（2）Anchor-Points-锚点-对几何操作的影响"><a href="#（2）Anchor-Points-锚点-对几何操作的影响" class="headerlink" title="（2）Anchor Points(锚点)对几何操作的影响"></a>（2）Anchor Points(锚点)对几何操作的影响</h5><p>Layer与几何相关的操作都与锚点相关，最明显的是postion和transform两个属性。position属性是位于Layer的中心的，其定义随着锚点的值改变而改变，如下图:</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_anchorpoint_position_2x.png" alt="Layer-AnchorPoint-Position"></p>
+<p>transform是绕着锚点旋转的，如下图:</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/layer_coords_anchorpoint_transform_2x.png" alt="Layer-AnchorPoint-Transform"></p>
+<h5 id="（3）Layers可以进行三维运算"><a href="#（3）Layers可以进行三维运算" class="headerlink" title="（3）Layers可以进行三维运算"></a>（3）Layers可以进行三维运算</h5><p>每个Layer有两个transform矩阵，可以用于操作layer以及其内容, 分别是:tranfrom属性可以对layer及subLayers起作用，sublayerTransfrom属性只对subLayers起作用。矩阵运算公式如下图：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/transform_basic_math_2x.png" alt="Layer-Transform"></p>
+<p>常见的转换矩阵如下图：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/transform_manipulations_2x.png" alt="Layer-Matrix"></p>
+<h4 id="Layer树反映动画状态的不同方面"><a href="#Layer树反映动画状态的不同方面" class="headerlink" title="Layer树反映动画状态的不同方面"></a>Layer树反映动画状态的不同方面</h4><p>一个使用Cora Animation的App包含三种集合的Layers对象。</p>
+<p>（1）Modal Layer Tree(Layer Tree)是最常用的与app交互的集合，其储存了任何动画属性的<strong>目标值</strong>。</p>
+<p>（2）Presentation Tree包含了正在运行的动画的<strong>当前值</strong>，例如进度等。</p>
+<p>（3）Render Tree，渲染呈现动画，Core Animation私有，不可调用。</p>
+<p>每一种Layer集合都是按照类似View的层级结构组织的，事实上，如果一个App对其所有View启用Layer,则起始的Layer的层级结构与View是完全对应的。但是，App可以添加其他的Layer对象到层级中，哪怕与View无关，如下图，subLayer1和subLayer2都是独立的Layer。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/sublayer_hierarchy_2x.png" alt="Layer-Hierarchy"></p>
+<p>Modal Layer Tree中的每一个Layer对象，同时有一个对应的Layer对象在Presentaion和Render Tree中。</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Art/sublayer_hierarchies_2x.png" alt="Layer-LayerTree"></p>
+<p><strong>注意：一般情况下都不需要访问Presentation Tree，如果必须要访问时，必须当动画在运行时才行。</strong></p>
+<h4 id="Layers与Views的关系"><a href="#Layers与Views的关系" class="headerlink" title="Layers与Views的关系"></a>Layers与Views的关系</h4><p>Layers并不是Views的替代品，不能创建一个完全由Layers对象构成的可视界面，Layers让Views内容的绘图和动画更便利和高效。然而，Layers不能处理Events，绘制内容，参与响应链，以及其他Views做的事情。</p>
+<p>在iOS系统上，每个View都是layer-backed，系统自动创建一个Layer对象，并于View同步。OSX系统上可以创建Layer-hosting的View,在这种情况下，在View变化时，AppKit不对Layer进行操作。</p>
+<p>另外，可以创建与View无关的Layer对象，并将其嵌入到任何Layer对象下作为SubLayer。例如，可以将一张图片加载到一个单独的Layer对象中，然后在不同的场景中使用，这样可以避免将同一张图片在内容中创建多个副本。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/26/ios-Emoji/" rel="next" title="iOS-Emoji转换">
+                <i class="fa fa-chevron-left"></i> iOS-Emoji转换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/14/ios-CoreAnimation-SettingUpLayer/" rel="prev" title="iOS-CoreAnimation[2]-设置Layer">
+                iOS-CoreAnimation[2]-设置Layer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/12/ios-CoreAnimation-Introduction/"
+           data-title="iOS-CoreAnimation[1]-简介" data-url="http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Animation简介"><span class="nav-number">1.</span> <span class="nav-text">Core Animation简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Animation基础"><span class="nav-number">2.</span> <span class="nav-text">Core Animation基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Layers简介"><span class="nav-number">2.1.</span> <span class="nav-text">Layers简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）基于Layers的绘图模型"><span class="nav-number">2.1.1.</span> <span class="nav-text">（1）基于Layers的绘图模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）基于Layers的动画"><span class="nav-number">2.1.2.</span> <span class="nav-text">（2）基于Layers的动画</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layer定义自身的几何信息"><span class="nav-number">2.2.</span> <span class="nav-text">Layer定义自身的几何信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）Layers使用两种坐标系"><span class="nav-number">2.2.1.</span> <span class="nav-text">（1）Layers使用两种坐标系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）Anchor-Points-锚点-对几何操作的影响"><span class="nav-number">2.2.2.</span> <span class="nav-text">（2）Anchor Points(锚点)对几何操作的影响</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（3）Layers可以进行三维运算"><span class="nav-number">2.2.3.</span> <span class="nav-text">（3）Layers可以进行三维运算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layer树反映动画状态的不同方面"><span class="nav-number">2.3.</span> <span class="nav-text">Layer树反映动画状态的不同方面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layers与Views的关系"><span class="nav-number">2.4.</span> <span class="nav-text">Layers与Views的关系</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

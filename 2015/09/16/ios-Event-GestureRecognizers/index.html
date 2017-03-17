@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对Gesture Recognizers的机制进行讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Events[1]-Gesture Recognizers">
+<meta property="og:url" content="http://www.linyibin.cn/2015/09/16/ios-Event-GestureRecognizers/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对Gesture Recognizers的机制进行讲解。">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gestureRecognizer_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/discrete_vs_continuous_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gr_state_transitions_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/event_touch_time_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/path_of_touches_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/recognize_touch_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Events[1]-Gesture Recognizers">
+<meta name="twitter:description" content="本文对Gesture Recognizers的机制进行讲解。">
+<meta name="twitter:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/09/16/ios-Event-GestureRecognizers/"/>
+
+
+
+
+
+  <title> iOS-Events[1]-Gesture Recognizers | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/09/16/ios-Event-GestureRecognizers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Events[1]-Gesture Recognizers
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-09-16T00:00:00+08:00">
+                2015-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/16/ios-Event-GestureRecognizers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/16/ios-Event-GestureRecognizers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对Gesture Recognizers的机制进行讲解。</p>
+<a id="more"></a>
+<p>iOS系统的Events类型分为以下几种：Multitouch events, Accelerometer events, Remote control events。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png" alt="Events"></p>
+<h3 id="Gesture-Recognizers"><a href="#Gesture-Recognizers" class="headerlink" title="Gesture Recognizers"></a>Gesture Recognizers</h3><p>UIKit提供了Gesture Recognizers，可以直接对Events进行处理。Gesture Recognizers把底层的事件处理封装成更上层的Actions 对象以供开发者调用。Gesture Recognizers判断触碰是否是一个特定的手势，例如滑动(swipe)，缩放(pinch)和旋转(rotation)，如果是，则发送一个Action消息给对应的监听对象，一般是ViewController。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gestureRecognizer_2x.png" alt="Gesture Recognizers"></p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><table>
+<thead>
+<tr>
+<th>Gesture</th>
+<th style="text-align:center">UIKit class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tapping (any number of taps)</td>
+<td style="text-align:center">UITapGestureRecognizer</td>
+</tr>
+<tr>
+<td>Pinching in and out (for zooming a view)</td>
+<td style="text-align:center">UIPinchGestureRecognizer</td>
+</tr>
+<tr>
+<td>Panning or dragging</td>
+<td style="text-align:center">UIPanGestureRecognizer</td>
+</tr>
+<tr>
+<td>Swiping (in any direction)</td>
+<td style="text-align:center">UISwipeGestureRecognizer</td>
+</tr>
+<tr>
+<td>Rotating (fingers moving in opposite directions)</td>
+<td style="text-align:center">UIRotationGestureRecognizer</td>
+</tr>
+<tr>
+<td>Long press (also known as “touch and hold”)</td>
+<td style="text-align:center">UILongPressGestureRecognizer</td>
+</tr>
+</tbody>
+</table>
+<p>手势分为单次(Discrete)和连续(Continuous)的两大类。对于单次的，只会发送一次Action，而对于连续的，会多次发送。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/discrete_vs_continuous_2x.png" alt="Discrete and Continuous Gestures"></p>
+<h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><p>所有手势起始状态都为<strong>Possible</strong>。对于Discrete的手势，则可能切换到<strong>Failed</strong>和<strong>Recognized</strong>两个状态。对于Continuous的手势，则可能切换到<strong>Failed</strong>、<strong>Recognized</strong>和<strong>Canceled</strong>三个状态。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gr_state_transitions_2x.png" alt="State Machines"></p>
+<h4 id="多手势"><a href="#多手势" class="headerlink" title="多手势"></a>多手势</h4><blockquote>
+<p>手势添加</p>
+</blockquote>
+<p>多手势处理，可以通过以下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">addGestureRecognizer:</div><div class="line">removeGestureRecognizer:</div></pre></td></tr></table></figure>
+<blockquote>
+<p>手势禁止</p>
+</blockquote>
+<p>如果想要禁止一个手势识别，可以通过以下回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gestureRecognizer:shouldReceiveTouch:</div><div class="line">gestureRecognizerShouldBegin:</div></pre></td></tr></table></figure>
+<p>两者的区别是，<strong>gestureRecognizer:shouldReceiveTouch:</strong>是在触碰开始时触发，因此不会改变手势的状态，而<strong>gestureRecognizerShouldBegin:</strong>是在手势即将从<strong>Possible</strong>变成其他状态时触发。因此，如果一开始就能判断要禁止手势，使用<strong>gestureRecognizer:shouldReceiveTouch:</strong>，如果需要延后判断，则使用<strong>gestureRecognizerShouldBegin:</strong>。</p>
+<blockquote>
+<p>手势冲突</p>
+</blockquote>
+<p>对于手势可能产生冲突的问题，可以用以下回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gestureRecognizer:shouldRequireFailureOfGestureRecognizer:</div><div class="line">gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:</div></pre></td></tr></table></figure>
+<p>例如，Pan和Swipe都是滑动，如果想要优先识别Swipe，则可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()&lt;UIGestureRecognizerDelegate&gt;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    </div><div class="line">    UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan)];</div><div class="line">    panGR.delegate = self;</div><div class="line">    [self.view addGestureRecognizer:panGR];</div><div class="line">    </div><div class="line">    UISwipeGestureRecognizer *swipeGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];</div><div class="line">    swipeGR.delegate = self;</div><div class="line">    [self.view addGestureRecognizer:swipeGR];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)pan</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;pan...&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)swipe</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;swipe...&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer</div><div class="line">&#123;</div><div class="line">    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &amp;&amp; [otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]])&#123;</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">    return NO;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>手势并发</p>
+</blockquote>
+<p>对于两个可以同时进行的手势，例如Pin和Rotate，可以使用以下回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:</div></pre></td></tr></table></figure>
+<blockquote>
+<p>手势排斥</p>
+</blockquote>
+<p>对于两个单向关系的手势，例如Rotate手势可能排斥Pin，可以使用以下回调:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[rotationGestureRecognizer canPreventGestureRecognizer:pinchGestureRecognizer];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>控件手势</p>
+</blockquote>
+<p>对于iOS系统的内置控件，如果手势与控件的事件发生冲突，则控件的事件会被优先触发：</p>
+<ul>
+<li>Tap与UIButton, UISwitch, UIStepper, UISegmentedControl, and UIPageControl;</li>
+<li>Swipe与UISlider;</li>
+<li>Pan与UISwitch。</li>
+</ul>
+<p>如果希望手势优先被触发，则可以重写内置控件。</p>
+<h4 id="UITouch-amp-UIEvent"><a href="#UITouch-amp-UIEvent" class="headerlink" title="UITouch &amp; UIEvent"></a>UITouch &amp; UIEvent</h4><p>在iOS系统上，一个UITouch代表着单根手指在屏幕上的按压或者移动。一个手势包含一个或者多个UITouch对象，例如，Pin手势包含两个。</p>
+<p>一个UIEvent包含在一次多触摸序列中的所有的UITouch。一次多触摸序列是指当有一个手指触碰屏幕到最后一根手指离开屏幕。当手指移动时，iOS会发送UITouch到UIEvent，并不断更新UITouch的属性，例如状态、位置和时间戳等。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/event_touch_time_2x.png" alt="Touch Events"></p>
+<p>在一次多触摸序列中，App会调用以下回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">touchesBegan:withEvent:一根或多根手指触碰屏幕;</div><div class="line">touchesMoved:withEvent:手指移动;</div><div class="line">touchesEnded:withEvent:一根或多根手指离开屏幕;</div><div class="line">touchesCancelled:withEvent:被系统事件取消，例如来电等;</div></pre></td></tr></table></figure>
+<p><strong>注意，手势的状态并不依赖于UITouch的状态，两者有各自的判断标准</strong>。</p>
+<h4 id="自定义手势"><a href="#自定义手势" class="headerlink" title="自定义手势"></a>自定义手势</h4><p>自定义手势，首先，新建一个<strong>UIGestureRecognizer</strong>的子类，然后根据<strong>UITouch</strong>事件来判断是否是该手势，另外，还需要实现<strong>reset</strong>方法来进行手势能复原到原始状态。</p>
+<p>下面是一个打钩手势的识别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">#import &lt;UIKit/UIGestureRecognizerSubclass.h&gt;</div><div class="line"> </div><div class="line">// Implemented in your custom subclass</div><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    [super touchesBegan:touches withEvent:event];</div><div class="line">    if ([touches count] != 1) &#123;</div><div class="line">        self.state = UIGestureRecognizerStateFailed;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    [super touchesMoved:touches withEvent:event];</div><div class="line">    if (self.state == UIGestureRecognizerStateFailed) return;</div><div class="line">    CGPoint nowPoint = [touches.anyObject locationInView:self.view];</div><div class="line">    CGPoint prevPoint = [touches.anyObject previousLocationInView:self.view];</div><div class="line"> </div><div class="line">    // strokeUp is a property</div><div class="line">    if (!self.strokeUp) &#123;</div><div class="line">        // On downstroke, both x and y increase in positive direction</div><div class="line">        if (nowPoint.x &gt;= prevPoint.x &amp;&amp; nowPoint.y &gt;= prevPoint.y) &#123;</div><div class="line">            self.midPoint = nowPoint;</div><div class="line">            // Upstroke has increasing x value but decreasing y value</div><div class="line">        &#125; else if (nowPoint.x &gt;= prevPoint.x &amp;&amp; nowPoint.y &lt;= prevPoint.y) &#123;</div><div class="line">            self.strokeUp = YES;</div><div class="line">        &#125; else &#123;</div><div class="line">            self.state = UIGestureRecognizerStateFailed;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    [super touchesEnded:touches withEvent:event];</div><div class="line">    if ((self.state == UIGestureRecognizerStatePossible) &amp;&amp; self.strokeUp) &#123;</div><div class="line">        self.state = UIGestureRecognizerStateRecognized;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    [super touchesCancelled:touches withEvent:event];</div><div class="line">    self.midPoint = CGPointZero;</div><div class="line">    self.strokeUp = NO;</div><div class="line">    self.state = UIGestureRecognizerStateFailed;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)reset &#123;</div><div class="line">    [super reset];</div><div class="line">    self.midPoint = CGPointZero;</div><div class="line">    self.strokeUp = NO;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Touches分发机制"><a href="#Touches分发机制" class="headerlink" title="Touches分发机制"></a>Touches分发机制</h4><p>iOS系统上，Touches的分发机制如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UIApplication-&gt;UIWindow-&gt;Gesture Recognizer-&gt;View</div></pre></td></tr></table></figure>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/path_of_touches_2x.png" alt="Touches-Path"></p>
+<p>注意，<strong>Gesture Recognizer</strong>比<strong>UITouch</strong>回调有更高的优先级，如果，<strong>Gesture Recognizer</strong>识别成功了，<strong>UITouch</strong>回调不会进入<strong>Ended</strong>状态，而会进入<strong>Cancelled</strong>。如果识别失败了，则<strong>Gesture Recognizer</strong>会进入<strong>Failed</strong>状态，而<strong>UITouch</strong>回调进入<strong>Ended</strong>状态。</p>
+<p>例如，一个Tap手势和UITouch的事件顺序如下：</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/recognize_touch_2x.png" alt="Touches"></p>
+<p>这个事件顺序是通过两个属性控制的，分别是:</p>
+<ul>
+<li><strong>delaysTouchesBegan</strong>:默认是NO，所以，Gesture Recognizer和View的Touch回调会同时进入Began状态，如果希望View的Touch回调晚点进入Began状态，则可以修改为YES，例如，Tap手势和UITouch;</li>
+<li><strong>delaysTouchesEnded</strong>:默认是YES，所以，View的Touch回调会延迟进入Ended状态，如果Gesture Recognizer识别成功了，则直接进入Cancelled状态。在有需要时，也可以修改为NO。</li>
+</ul>
+<p>如果<strong>Gesture Recognizer</strong>判断识别失败了，则可以调用以下方法，让View的Touch回调立刻被调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ignoreTouch:forEvent:</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/06/java-SougouCorebin/" rel="next" title="Java-解析搜狗输入法核心词库sgim_core.bin文件">
+                <i class="fa fa-chevron-left"></i> Java-解析搜狗输入法核心词库sgim_core.bin文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/18/ios-Event-TheResponseChain/" rel="prev" title="iOS-Events[2]-The Responder Chain">
+                iOS-Events[2]-The Responder Chain <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/16/ios-Event-GestureRecognizers/"
+           data-title="iOS-Events[1]-Gesture Recognizers" data-url="http://www.linyibin.cn/2015/09/16/ios-Event-GestureRecognizers/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gesture-Recognizers"><span class="nav-number">1.</span> <span class="nav-text">Gesture Recognizers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态机"><span class="nav-number">1.2.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多手势"><span class="nav-number">1.3.</span> <span class="nav-text">多手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouch-amp-UIEvent"><span class="nav-number">1.4.</span> <span class="nav-text">UITouch & UIEvent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义手势"><span class="nav-number">1.5.</span> <span class="nav-text">自定义手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Touches分发机制"><span class="nav-number">1.6.</span> <span class="nav-text">Touches分发机制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

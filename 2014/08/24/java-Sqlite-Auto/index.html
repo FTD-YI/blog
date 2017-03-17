@@ -1,0 +1,1067 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,Sqlite," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Java利用映射机制来动态创建SQL语句。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-Sqlite动态创建SQL语句和映射属性">
+<meta property="og:url" content="http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Java利用映射机制来动态创建SQL语句。">
+<meta property="og:image" content="http://www.linyibin.cn/images/JAVA-SQLITE-CREATE.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-Sqlite动态创建SQL语句和映射属性">
+<meta name="twitter:description" content="Java利用映射机制来动态创建SQL语句。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/JAVA-SQLITE-CREATE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/"/>
+
+
+
+
+
+  <title> Java-Sqlite动态创建SQL语句和映射属性 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java-Sqlite动态创建SQL语句和映射属性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-24T00:00:00+08:00">
+                2014-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/08/24/java-Sqlite-Auto/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/24/java-Sqlite-Auto/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java利用映射机制来动态创建SQL语句。</p>
+<a id="more"></a>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h3 id="Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。"><a href="#Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。" class="headerlink" title="Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。"></a>Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。</h3><p>例如：</p>
+<pre><code>Field[] fs = this.getClass().getDeclaredFields();
+for(int index = 0; index &lt; fs.length; ++index){
+    Field f = fs[index];
+   f.setAccessible(true);
+   String name = f.getName();
+   String type = f.getType().toString(); 
+   Object value = f.get(this);
+}
+</code></pre><p><strong>注意：继承的属性获取不到。</strong></p>
+<h3 id="Sqlite语法有一定的规律。"><a href="#Sqlite语法有一定的规律。" class="headerlink" title="Sqlite语法有一定的规律。"></a>Sqlite语法有一定的规律。</h3><p>(1)建表：</p>
+<pre><code>CREATE TABLE database_name.table_name(
+    column1 datatype  PRIMARY KEY(one or more columns),
+    column2 datatype,
+    column3 datatype,
+    .....
+    columnN datatype,
+);
+</code></pre><p>(2)插入：</p>
+<pre><code>INSERT INTO TABLE_NAME VALUES (value1,value2,value3,...valueN);
+</code></pre><p>(3)更新：</p>
+<pre><code>UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition];
+</code></pre><p>(4)查询：</p>
+<pre><code>SELECT * FROM table_name WHERE [condition];
+</code></pre><p>(5)删除：</p>
+<pre><code>DELETE FROM table_name WHERE [condition];
+</code></pre><h3 id="结合"><a href="#结合" class="headerlink" title="结合"></a>结合</h3><p>将两者结合在一起，即可以实现在Java Class中自动管理Sqlite数据库，包括建表，增删改查等，具体思路参考下文。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>一个Class管理一个表，彼此之间实现解耦，但是由于语法基本一致，可以直接在一个基类中定义好大部分的SQL语句模板，而在运行时利用多态，获取到子类的属性，并添加到SQL语句模板中，从而给Sqlite底层调用。</p>
+<p>考虑到，还需要定义一些索引和约束(主外键等)，这些只能在子类中进行自定义配置，然后基类进行获取。</p>
+<p>反过来，从Sqlite获取到值后，还需要一一反映射到子类的属性中。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h3 id="实现基类"><a href="#实现基类" class="headerlink" title="实现基类"></a>实现基类</h3><h4 id="定义基类"><a href="#定义基类" class="headerlink" title="定义基类"></a>定义基类</h4><pre><code>public abstract class BaseDto {
+    public Integer id;
+    public abstract String tableName();
+    protected abstract HashMap&lt;String, String&gt; fieldConstraints();
+    protected abstract String tableConstraint();
+
+    //后续方法见下文
+}
+</code></pre><ul>
+<li>由于每个表都需要id，所以直接在基类中定义好，子类继承即可；</li>
+<li>表名需要子类配置，实现为虚函数；</li>
+<li>fieldConstraints是用于表属性的额外配置，例如，标题是唯一的，fieldConstraints.put(“title”, “UNIQUE”);</li>
+<li>tableConstraint是用于表的约束，例如，外键，”foreign key(vehicle) references vehicle(id)”;</li>
+</ul>
+<h4 id="建表SQL"><a href="#建表SQL" class="headerlink" title="建表SQL"></a>建表SQL</h4><pre><code>public String tableString(){
+    String tableStr = &quot;CREATE TABLE IF NOT EXISTS &quot; + this.tableName() + &quot;(id INTEGER PRIMARY KEY, &quot;;
+    try{
+        HashMap&lt;String, String&gt; fieldConstraints = fieldConstraints();
+        String tableConstraint = tableConstraint();
+        Field[] fs = this.getClass().getDeclaredFields();
+        for(int index = 0; index &lt; fs.length; ++index){
+               Field f = fs[index];
+               f.setAccessible(true);
+               tableStr += f.getName() + &quot; &quot;;
+               String type = f.getType().toString(); 
+               if(type.endsWith(&quot;String&quot;))
+                   tableStr += &quot;TEXT &quot;;
+               else if(type.endsWith(&quot;int&quot;) || type.endsWith(&quot;Integer&quot;) ||
+                       type.endsWith(&quot;boolean&quot;) || type.endsWith(&quot;Boolean&quot;))
+                   tableStr += &quot;INTEGER &quot;;
+               else if(type.endsWith(&quot;float&quot;) || type.endsWith(&quot;Float&quot;))
+                   tableStr += &quot;REAL &quot;;
+               else if(type.endsWith(&quot;double&quot;) || type.endsWith(&quot;Double&quot;))
+                   tableStr += &quot;REAL &quot;;
+               else if(type.endsWith(&quot;Date&quot;))
+                   tableStr += &quot;DATETIME &quot;;
+               else 
+                   throw new Exception(&quot;tableString format tranfer error..&quot;);
+               if(null != fieldConstraints &amp;&amp; fieldConstraints.containsKey(f.getName()))
+                   tableStr += fieldConstraints.get(f.getName());
+               if(index &lt; fs.length - 1)
+                   tableStr += &quot;, &quot;;
+               else if(null != tableConstraint &amp;&amp; !tableConstraint.isEmpty())
+                   tableStr += &quot;, &quot; + tableConstraint;
+        }
+        tableStr +=  &quot; );&quot;;
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+    return tableStr;
+}
+</code></pre><p><strong>这里，需要注意的是，sqlite与Java支持的数据类型是不同的，需要进行一下类型转换。</strong></p>
+<h4 id="插入SQL"><a href="#插入SQL" class="headerlink" title="插入SQL"></a>插入SQL</h4><pre><code>public String insertString(){
+    String insertStr = &quot;INSERT OR IGNORE INTO &quot; + this.tableName() + &quot; VALUES (&quot; + id + &quot;, &quot;;
+    try{
+        Field[] fs = this.getClass().getDeclaredFields();  
+        for(int index = 0; index &lt; fs.length; ++index){
+               Field f = fs[index];
+               f.setAccessible(true);
+               String type = f.getType().toString(); 
+               if(type.endsWith(&quot;String&quot;))
+                   insertStr += &quot;&apos;&quot; + f.get(this) + &quot;&apos;&quot;;
+               else if(type.endsWith(&quot;int&quot;))
+                   insertStr += f.getInt(this);
+               else if(type.endsWith(&quot;boolean&quot;))
+                   insertStr += f.getBoolean(this) ? 1 : 0;
+               else if(type.endsWith(&quot;float&quot;))
+                   insertStr += f.getFloat(this);
+               else if(type.endsWith(&quot;double&quot;))
+                   insertStr += f.getDouble(this);
+               else if(type.endsWith(&quot;Integer&quot;) || type.endsWith(&quot;Float&quot;) || type.endsWith(&quot;Double&quot;) || type.endsWith(&quot;Boolean&quot;))
+                   insertStr += f.get(this);
+               else if(type.endsWith(&quot;Date&quot;))
+                   insertStr += &quot;&apos;&quot; + TimeUtil.dateToString((Date)f.get(this)) + &quot;&apos;&quot;;
+               else 
+                   throw new Exception(&quot;insertStr format tranfer error..&quot;);
+               if(index &lt; fs.length - 1)
+                   insertStr += &quot;, &quot;;
+           }
+        insertStr += &quot;);&quot;;
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+    return insertStr;
+}
+</code></pre><h4 id="更新SQL"><a href="#更新SQL" class="headerlink" title="更新SQL"></a>更新SQL</h4><pre><code>public String updateString(){
+    String updateStr = &quot;UPDATE &quot; + this.tableName() + &quot; SET id = &quot; + id + &quot;, &quot;;
+    try{
+        Field[] fs = this.getClass().getDeclaredFields();  
+        for(int index = 0; index &lt; fs.length; ++index){
+               Field f = fs[index];
+               f.setAccessible(true);
+               updateStr += f.getName() + &quot; = &quot;;
+               String type = f.getType().toString(); 
+               if(type.endsWith(&quot;String&quot;))
+                   updateStr += &quot;&apos;&quot; + f.get(this) + &quot;&apos;&quot;;
+               else if(type.endsWith(&quot;int&quot;))
+                   updateStr += f.getInt(this);
+               else if(type.endsWith(&quot;boolean&quot;))
+                   updateStr += f.getBoolean(this) ? 1 : 0;
+               else if(type.endsWith(&quot;float&quot;))
+                   updateStr += f.getFloat(this);
+               else if(type.endsWith(&quot;double&quot;))
+                   updateStr += f.getDouble(this);
+               else if(type.endsWith(&quot;Integer&quot;) || type.endsWith(&quot;Float&quot;) || type.endsWith(&quot;Double&quot;) || type.endsWith(&quot;Boolean&quot;))
+                   updateStr += f.get(this);
+               else if(type.endsWith(&quot;Date&quot;))
+                   updateStr += &quot;&apos;&quot; + TimeUtil.dateToString((Date)f.get(this)) + &quot;&apos;&quot;;
+               else 
+                   throw new Exception(&quot;updateStr format tranfer error..&quot;);
+               if(index &lt; fs.length - 1)
+                   updateStr += &quot;, &quot;;
+           }
+        updateStr += &quot; WHERE id = &quot; + id + &quot;;&quot;;
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+    return updateStr;
+}
+</code></pre><h4 id="删除SQL"><a href="#删除SQL" class="headerlink" title="删除SQL"></a>删除SQL</h4><pre><code>public String deleteString(){
+    String deleteString = &quot;DELETE FROM &quot; + this.tableName() + &quot; WHERE id = &quot; + id + &quot;;&quot;;
+    return deleteString;
+}
+</code></pre><h4 id="从Sqlite的ResultSet取值反映射到属性中"><a href="#从Sqlite的ResultSet取值反映射到属性中" class="headerlink" title="从Sqlite的ResultSet取值反映射到属性中"></a>从Sqlite的ResultSet取值反映射到属性中</h4><pre><code>public void fromResultSet(ResultSet rs){
+    try{
+        id = (Integer) rs.getObject(&quot;id&quot;);
+        Field[] fs = this.getClass().getDeclaredFields();  
+        for(int index = 0; index &lt; fs.length; ++index){
+               Field f = fs[index];
+               f.setAccessible(true);
+               String type = f.getType().toString(); 
+               if(type.endsWith(&quot;String&quot;))
+                   f.set(this, rs.getString(f.getName()));
+               else if(type.endsWith(&quot;int&quot;))
+                   f.set(this, rs.getInt(f.getName()));
+               else if(type.endsWith(&quot;boolean&quot;))
+                   f.set(this, rs.getBoolean(f.getName()));
+               else if(type.endsWith(&quot;float&quot;))
+                   f.set(this, rs.getFloat(f.getName()));
+               else if(type.endsWith(&quot;double&quot;))
+                   f.set(this, rs.getDouble(f.getName()));
+               else if(type.endsWith(&quot;Integer&quot;) || type.endsWith(&quot;Float&quot;) || type.endsWith(&quot;Double&quot;) || type.endsWith(&quot;Boolean&quot;))
+                   f.set(this, rs.getObject(f.getName()));
+               else if(type.endsWith(&quot;Date&quot;)){
+                   f.set(this, TimeUtil.stringToDate(rs.getString(f.getName())));
+               }
+               else 
+                   throw new Exception(&quot;fromResultSet format tranfer error..&quot;);
+           }
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+}
+</code></pre><h3 id="定义子类"><a href="#定义子类" class="headerlink" title="定义子类"></a>定义子类</h3><p>子类与数据库表一一对应，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public class SSDto extends BaseDto&#123;</div><div class="line"></div><div class="line">	public Integer vehicle;</div><div class="line">	public String name;</div><div class="line">	public String address;</div><div class="line">	public Double lat;</div><div class="line">	public Double lng;</div><div class="line">	public String city;</div><div class="line">	public String tel;</div><div class="line">	</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public String tableName() &#123;</div><div class="line">		return &quot;ss&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	protected HashMap&lt;String, String&gt; fieldConstraints() &#123;</div><div class="line">		HashMap&lt;String, String&gt; fieldConstraints = new HashMap&lt;String, String&gt;();</div><div class="line">		fieldConstraints.put(&quot;address&quot;, &quot;UNIQUE&quot;);</div><div class="line">		return fieldConstraints;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	protected String tableConstraint() &#123;</div><div class="line">		return &quot;foreign key(vehicle) references vehicle(id)&quot;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="定义DAO"><a href="#定义DAO" class="headerlink" title="定义DAO"></a>定义DAO</h3><p>DAO层在Database和Dto之间搭建桥梁，并封装一层，给外部调用。Sqlite连接参考<a href="http://ftd-yi.github.io/blog/java/2014/08/12/Java-Sqlite.html" target="_blank" rel="external">Java-Sqlite连接</a>。</p>
+<p>例如：</p>
+<pre><code>private void create(BaseDto dto){
+    DBManager.manager().executeSQL(dto.tableString());
+}
+
+public void add(BaseDto dto){
+    DBManager.manager().executeSQL(dto.insertString());
+}
+
+public void update(BaseDto dto){
+    DBManager.manager().executeSQL(dto.updateString());
+}
+
+public void delete(BaseDto dto){
+    DBManager.manager().executeSQL(dto.deleteString());
+}
+
+public BaseDto query(BaseDto dto, String sql){
+    ArrayList&lt;BaseDto&gt; dtos = queryAll(dto, sql);
+    if(!dtos.isEmpty())
+        return dtos.get(0);
+    return null;
+}
+</code></pre><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre><code>public void main(String[] s){
+    Dao.dao().create(new SSDto());
+}
+</code></pre><p>用Sqlite管理软件打开db文件，可以看到表已经创建成功了。增删改查这里就不一一列举了。</p>
+<p><img src="/images/JAVA-SQLITE-CREATE.png" alt="JAVA-SQLITE-CREATE"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Sqlite/" rel="tag"># Sqlite</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/22/java-Sqlite-Exception/" rel="next" title="Java-Sqlite异常汇总">
+                <i class="fa fa-chevron-left"></i> Java-Sqlite异常汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/26/java-Web-Timer/" rel="prev" title="Java-Web定时任务">
+                Java-Web定时任务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/08/24/java-Sqlite-Auto/"
+           data-title="Java-Sqlite动态创建SQL语句和映射属性" data-url="http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。"><span class="nav-number">1.0.1.</span> <span class="nav-text">Java有映射机制，可以根据Class来获取其属性的名称，类型以及值。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlite语法有一定的规律。"><span class="nav-number">1.0.2.</span> <span class="nav-text">Sqlite语法有一定的规律。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合"><span class="nav-number">1.0.3.</span> <span class="nav-text">结合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现基类"><span class="nav-number">3.0.1.</span> <span class="nav-text">实现基类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义基类"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">定义基类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建表SQL"><span class="nav-number">3.0.1.2.</span> <span class="nav-text">建表SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入SQL"><span class="nav-number">3.0.1.3.</span> <span class="nav-text">插入SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新SQL"><span class="nav-number">3.0.1.4.</span> <span class="nav-text">更新SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除SQL"><span class="nav-number">3.0.1.5.</span> <span class="nav-text">删除SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从Sqlite的ResultSet取值反映射到属性中"><span class="nav-number">3.0.1.6.</span> <span class="nav-text">从Sqlite的ResultSet取值反映射到属性中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义子类"><span class="nav-number">3.0.2.</span> <span class="nav-text">定义子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义DAO"><span class="nav-number">3.0.3.</span> <span class="nav-text">定义DAO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">3.0.4.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

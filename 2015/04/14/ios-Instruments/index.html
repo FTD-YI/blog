@@ -1,0 +1,966 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Instruments是一款XCode自带的性能分析工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Instruments">
+<meta property="og:url" content="http://www.linyibin.cn/2015/04/14/ios-Instruments/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Instruments是一款XCode自带的性能分析工具。">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_workflow_diagram_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_instruments_menu_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_instruments_menu_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_product_profile_menu_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_toolbar_profile_menuitem_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_scheme_editor_dialog_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_scheme_editor_instrument_popup_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_profilingtemplate_dialog_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_addinstrument_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_withdata_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_timeline_pane_selectingrange_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_detailtypelist_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_calltreeexpanded_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_extendeddetail_pane_hiddensystemcalls_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_usersourcecode_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_sourcecode_viewer_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_sourcecode_viewer_xcode_button_2x.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-ActivityMonitor.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-TimeProfiler.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Counter.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-ActivityMonitor-Memory.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Allocations.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Leaks.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Leaks-Detail.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Leaks-Cycels.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Instruments-Zombies.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_energydiagnostics_data_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_file_menu_symbols_menuitem_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_symbols_dialog_locatedysmpath_button_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_developer_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_logging_startrecording_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_logging_stoprecording_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_file_menu_importloggeddatafromdevice_menuitem_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Instruments">
+<meta name="twitter:description" content="Instruments是一款XCode自带的性能分析工具。">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_workflow_diagram_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/04/14/ios-Instruments/"/>
+
+
+
+
+
+  <title> iOS-Instruments | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/04/14/ios-Instruments/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Instruments
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-14T00:00:00+08:00">
+                2015-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/14/ios-Instruments/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/14/ios-Instruments/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Instruments是一款XCode自带的性能分析工具。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Instruments其本身是独立App,可以单独使用。Instruments可用于：</p>
+<ul>
+<li>测验一个或多个App进程的行为;</li>
+<li>测验设备的相关元素，例如Wi-Fi，蓝牙;</li>
+<li>在真机或者虚拟机上进行分析;</li>
+<li>创建自定义的DTrack Instruments来分析系统以及App的行为;</li>
+<li>跟踪问题在源码中的位置;</li>
+<li>对App进行性能分析;</li>
+<li>发现App的内存问题，例如泄漏，越界等;</li>
+<li>提升App的电池节能;</li>
+<li>进行系统级别的分析解决问题;</li>
+<li>将Instruments设置保存为模板。</li>
+</ul>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>Instruments的工作流如下：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_workflow_diagram_2x.png" alt="Instruments"></p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="打开"><a href="#打开" class="headerlink" title="打开"></a>打开</h3><p>打开方式有如下几种：</p>
+<h4 id="Xcode中打开："><a href="#Xcode中打开：" class="headerlink" title="Xcode中打开："></a>Xcode中打开：</h4><p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_instruments_menu_2x.png" alt="Instruments"></p>
+<h4 id="Dock中打开："><a href="#Dock中打开：" class="headerlink" title="Dock中打开："></a>Dock中打开：</h4><p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_instruments_menu_2x.png" alt="Instruments"></p>
+<h4 id="Terminal中打开："><a href="#Terminal中打开：" class="headerlink" title="Terminal中打开："></a>Terminal中打开：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">open /Applications/Xcode.app/Contents/Applications/Instruments.app</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用方式有如下几种：</p>
+<h4 id="Product-gt-Profile"><a href="#Product-gt-Profile" class="headerlink" title="Product-&gt;Profile:"></a>Product-&gt;Profile:</h4><p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_product_profile_menu_2x.png" alt="Instruments"></p>
+<h4 id="Run-gt-Profile"><a href="#Run-gt-Profile" class="headerlink" title="Run-&gt;Profile:"></a>Run-&gt;Profile:</h4><p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_toolbar_profile_menuitem_2x.png" alt="Instruments"></p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>如果需要多次使用同一个模板，可以Edit Scheme：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_scheme_editor_dialog_2x.png" alt="Instruments"></p>
+<p>Profile里面设置:</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/xcode_scheme_editor_instrument_popup_2x.png" alt="Instruments"></p>
+<h2 id="数据录制"><a href="#数据录制" class="headerlink" title="数据录制"></a>数据录制</h2><p>打开Instruments后，可以看到以下窗口：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_profilingtemplate_dialog_2x.png" alt="Instruments"></p>
+<p>想要查看单独某项的，例如内存或者网络连接，可以直接点击进去，如果想要同时查看多项，点击“Blank”，生成一个空白的面板。然后点击右上角的“+”号，可以将某一项拖到左边的面板上。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_addinstrument_2x.png" alt="Instruments"></p>
+<p>完成后，可以点击左上角的红色按钮开始录制。</p>
+<h2 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h2><p>下面以内存分配为例，录制过程中，下面的详细面板会出现对应的统计信息。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_withdata_2x.png" alt="Instruments"></p>
+<p>如果要查看某个时间段，可以在右上角的时间线那里，拖动选择，还可以通过触摸板手势进行缩放。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_trace_document_timeline_pane_selectingrange_2x.png" alt="Instruments"></p>
+<p>除了统计信息，还可以查看调用的函数栈：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_detailtypelist_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_calltreeexpanded_2x.png" alt="Instruments"></p>
+<p>如果不想查看这么详细的，也可以通过右下角的详情按钮查看核心的函数栈:</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_extendeddetail_pane_hiddensystemcalls_2x.png" alt="Instruments"></p>
+<p>对于App自身的函数，非系统函数的，可以双击查看源码:</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_usersourcecode_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_sourcecode_viewer_2x.png" alt="Instruments"></p>
+<p>如果想在XCode中查看源码，点击下面的Xcode按钮:</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_detail_pane_sourcecode_viewer_xcode_button_2x.png" alt="Instruments"></p>
+<h2 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h2><h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>在追求性能时，我们需要查看App对于CPU的使用情况，方式如下:</p>
+<h4 id="使用Activity-Monitor查看设备的CPU使用率对比。"><a href="#使用Activity-Monitor查看设备的CPU使用率对比。" class="headerlink" title="使用Activity Monitor查看设备的CPU使用率对比。"></a>使用<strong>Activity Monitor</strong>查看设备的CPU使用率对比。</h4><p><img src="/images/iOS-Instruments-ActivityMonitor.png" alt="Instruments"></p>
+<h4 id="使用Time-Profiler查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。"><a href="#使用Time-Profiler查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。" class="headerlink" title="使用Time Profiler查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。"></a>使用<strong>Time Profiler</strong>查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。</h4><p><img src="/images/iOS-Instruments-TimeProfiler.png" alt="Instruments"></p>
+<h4 id="使用Performance-monitor-Counters-PMC-来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。"><a href="#使用Performance-monitor-Counters-PMC-来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。" class="headerlink" title="使用Performance monitor Counters(PMC)来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。"></a>使用<strong>Performance monitor Counters(PMC)</strong>来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。</h4><p><img src="/images/iOS-Instruments-Counter.png" alt="Instruments"></p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><h4 id="使用Activity-Monitor查看设备的物理内存和虚拟内存的使用情况。"><a href="#使用Activity-Monitor查看设备的物理内存和虚拟内存的使用情况。" class="headerlink" title="使用Activity Monitor查看设备的物理内存和虚拟内存的使用情况。"></a>使用<strong>Activity Monitor</strong>查看设备的物理内存和虚拟内存的使用情况。</h4><p><img src="/images/iOS-Instruments-ActivityMonitor-Memory.png" alt="Instruments"></p>
+<p>其中，名词对应如下：</p>
+<ul>
+<li>Physical Memory Wired:操作系统使用的内存大小;</li>
+<li>Physical Memory Active:进程(非操作系统)使用的内存大小;</li>
+<li>Physical Memory Inactive:刚释放的内存大小;</li>
+<li>Physical Memory Used:在录制期间使用的内存大小;</li>
+<li>Physical Memory Free:空闲可用的内存大小;</li>
+<li>Total VM Size:虚拟内存的总大小;</li>
+<li>VM Page Out Bytes:存到硬盘的内存大小;</li>
+<li>VM Swap Used:加载硬盘的内存大小。</li>
+</ul>
+<h4 id="使用Allocations查看App的内存分配情况。"><a href="#使用Allocations查看App的内存分配情况。" class="headerlink" title="使用Allocations查看App的内存分配情况。"></a>使用<strong>Allocations</strong>查看App的内存分配情况。</h4><p><img src="/images/iOS-Instruments-Allocations.png" alt="Instruments"></p>
+<p><strong>Allocations</strong>可以用于发现<strong>Abandoned Memory</strong>。<strong>Abandoned Memory</strong>指被分配，但是没有用到的内存。例如，对同一张图片进行了两次缓存，或者没有用到的数组。<strong>Abandoned Memory</strong>一般会被App某处引用，Instruments无法判断其重要性，只能通过重复执行一组操作，观察内存是否会持续增长来寻找。例如，重复多次的启动和关闭一个游戏App，打开和关闭一个Window，都不应该导致内存的持续增长，而应该是比较稳定的内存状态。</p>
+<h4 id="使用Leaks查找App的内存泄漏。"><a href="#使用Leaks查找App的内存泄漏。" class="headerlink" title="使用Leaks查找App的内存泄漏。"></a>使用<strong>Leaks</strong>查找App的内存泄漏。</h4><p><img src="/images/iOS-Instruments-Leaks.png" alt="Instruments"></p>
+<p><strong>Leaks</strong>可以用于发现<strong>Leaked Memory</strong>。<strong>Abandoned Memory</strong>指被分配，但是没有被释放，并且不再被App引用的内存。因为没有引用，所以也没办法进行内存释放。例如，App每次在绘画时，都生成一个新的矩形对象，但绘画完成后并没有释放，则绘画次数越多，内存泄漏越严重。</p>
+<p>在查看详细信息时，可以点击地址旁边的箭头来查看引用次数，然后点击右边的按钮来屏蔽系统函数。</p>
+<p><img src="/images/iOS-Instruments-Leaks-Detail.png" alt="Instruments"></p>
+<p>对于使用ARC的App，可以通过<strong>Cycels &amp; Roots</strong>视图来寻找循环引用的对象。</p>
+<p><img src="/images/iOS-Instruments-Leaks-Cycels.png" alt="Instruments"></p>
+<h4 id="使用Zombies查找App依然被引用的已释放内存。"><a href="#使用Zombies查找App依然被引用的已释放内存。" class="headerlink" title="使用Zombies查找App依然被引用的已释放内存。"></a>使用<strong>Zombies</strong>查找App依然被引用的已释放内存。</h4><p><strong>Zombies</strong>是指那些已经被释放，且不再使用的内存，但仍然被App在某处引用。例如，图片的缓存已经删除了，但是，App依然对该张图片存在引用对象。</p>
+<p><img src="/images/iOS-Instruments-Zombies.png" alt="Instruments"></p>
+<p>如果在录制过程中，出现<strong>NSZombie</strong>对象，则该对象会被标记，App会自动Crash，并且出现一个Zombie消息弹窗。可以通过其查看该对象的分配和释放过程。尽管Instruments会帮助识别<strong>NSZombie</strong>对象，但是最好还是自己再对其分配和释放过程进行确认，并小心的修改代码，解决问题。</p>
+<h3 id="电量"><a href="#电量" class="headerlink" title="电量"></a>电量</h3><p>对电量造成影响的因素有很多，例如CPU活动，网络活动，屏幕亮度以及其他因素。通过<strong>Energy Log</strong>可以对App的这些因素进行观察，看是否能减少各方面对电量的影响。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_energydiagnostics_data_2x.png" alt="Instruments"></p>
+<p>这里的电量影响水平是用0到20来衡量的，但是这个数字是主观的，有时候App确实需要比较高的数值来保证使用，例如在App进行复杂的网络操作的同时，使用GPS。所以，需要寻找的是那些异常操作的高值，例如做很少的操作，但对电量影响却很高。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="导入dSYM"><a href="#导入dSYM" class="headerlink" title="导入dSYM"></a>导入dSYM</h3><p>对于不是在同一台Mac上调试的App，Mac上会找不到dSYM，对应不到源码，可以在Instruments导入dSYM文件：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_file_menu_symbols_menuitem_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_symbols_dialog_locatedysmpath_button_2x.png" alt="Instruments"></p>
+<h3 id="导入日志"><a href="#导入日志" class="headerlink" title="导入日志"></a>导入日志</h3><p>iphone手机可以在日常使用时，对电量和网络的情况进行录制，操作如下：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_developer_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_logging_startrecording_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/ios_logging_stoprecording_2x.png" alt="Instruments"></p>
+<p><img src="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Art/instruments_file_menu_importloggeddatafromdevice_menuitem_2x.png" alt="Instruments"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/10/ios-TTS/" rel="next" title="iOS-系统自带TTS">
+                <i class="fa fa-chevron-left"></i> iOS-系统自带TTS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/17/ios-MultiThread/" rel="prev" title="iOS-多线程详解">
+                iOS-多线程详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/04/14/ios-Instruments/"
+           data-title="iOS-Instruments" data-url="http://www.linyibin.cn/2015/04/14/ios-Instruments/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流"><span class="nav-number">2.</span> <span class="nav-text">工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方式"><span class="nav-number">3.</span> <span class="nav-text">使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打开"><span class="nav-number">3.1.</span> <span class="nav-text">打开</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Xcode中打开："><span class="nav-number">3.1.1.</span> <span class="nav-text">Xcode中打开：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dock中打开："><span class="nav-number">3.1.2.</span> <span class="nav-text">Dock中打开：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Terminal中打开："><span class="nav-number">3.1.3.</span> <span class="nav-text">Terminal中打开：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Product-gt-Profile"><span class="nav-number">3.2.1.</span> <span class="nav-text">Product->Profile:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Run-gt-Profile"><span class="nav-number">3.2.2.</span> <span class="nav-text">Run->Profile:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板"><span class="nav-number">3.3.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据录制"><span class="nav-number">4.</span> <span class="nav-text">数据录制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分析"><span class="nav-number">5.</span> <span class="nav-text">数据分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见场景"><span class="nav-number">6.</span> <span class="nav-text">常见场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">6.1.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Activity-Monitor查看设备的CPU使用率对比。"><span class="nav-number">6.1.1.</span> <span class="nav-text">使用Activity Monitor查看设备的CPU使用率对比。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Time-Profiler查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用Time Profiler查看CPU的多核的负载情况，包括App、多线程以及对应到某个函数对CPU的负载。例如，如果单个核的负载远高于其他核，那么说明需要进行优化。如果主线程负载过重，那么可能会导致界面相应缓慢，应该把工作移到其他线程上。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Performance-monitor-Counters-PMC-来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。"><span class="nav-number">6.1.3.</span> <span class="nav-text">使用Performance monitor Counters(PMC)来寻找性能瓶颈。例如，通过查看某个硬件相关的Event，例如ARM64Instructions，来查看是否有过度复杂的条件分支，可以进行优化。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">6.2.</span> <span class="nav-text">内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Activity-Monitor查看设备的物理内存和虚拟内存的使用情况。"><span class="nav-number">6.2.1.</span> <span class="nav-text">使用Activity Monitor查看设备的物理内存和虚拟内存的使用情况。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Allocations查看App的内存分配情况。"><span class="nav-number">6.2.2.</span> <span class="nav-text">使用Allocations查看App的内存分配情况。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Leaks查找App的内存泄漏。"><span class="nav-number">6.2.3.</span> <span class="nav-text">使用Leaks查找App的内存泄漏。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Zombies查找App依然被引用的已释放内存。"><span class="nav-number">6.2.4.</span> <span class="nav-text">使用Zombies查找App依然被引用的已释放内存。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电量"><span class="nav-number">6.3.</span> <span class="nav-text">电量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">7.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入dSYM"><span class="nav-number">7.1.</span> <span class="nav-text">导入dSYM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入日志"><span class="nav-number">7.2.</span> <span class="nav-text">导入日志</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JNI," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="JNI编译成Android能使用的so库，与Java工程所能使用的jnilib库不同，需要借助NDK(Native Development Kit)完成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-通过NDK编译so库">
+<meta property="og:url" content="http://www.linyibin.cn/2015/12/28/JNI-android/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="JNI编译成Android能使用的so库，与Java工程所能使用的jnilib库不同，需要借助NDK(Native Development Kit)完成。">
+<meta property="og:image" content="http://www.linyibin.cn/images/JNI-NDK-Install.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/JNI-NDK-Project.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/JNI-NDK-SO.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-通过NDK编译so库">
+<meta name="twitter:description" content="JNI编译成Android能使用的so库，与Java工程所能使用的jnilib库不同，需要借助NDK(Native Development Kit)完成。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/JNI-NDK-Install.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/12/28/JNI-android/"/>
+
+
+
+
+
+  <title> Android-通过NDK编译so库 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/12/28/JNI-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android-通过NDK编译so库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-28T00:00:00+08:00">
+                2015-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/28/JNI-android/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/JNI-android/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JNI编译成Android能使用的so库，与Java工程所能使用的jnilib库不同，需要借助NDK(Native Development Kit)完成。</p>
+<a id="more"></a>
+<p>JNI在Java工程中的步骤参考：<a href="/2015/12/24/JNI-Process">Java-OS X系统下JNI步骤</a></p>
+<p>通过NDK编译so库, 步骤如下：</p>
+<h4 id="安装NDK"><a href="#安装NDK" class="headerlink" title="安装NDK"></a>安装NDK</h4><h5 id="下载NDK，解压"><a href="#下载NDK，解压" class="headerlink" title="下载NDK，解压"></a>下载NDK，解压</h5><h5 id="打开命令行，输入："><a href="#打开命令行，输入：" class="headerlink" title="打开命令行，输入："></a>打开命令行，输入：</h5><pre><code>pico .bash_profile
+</code></pre><h5 id="设置环境变量，如下图"><a href="#设置环境变量，如下图" class="headerlink" title="设置环境变量，如下图"></a>设置环境变量，如下图</h5><p><img src="/images/JNI-NDK-Install.png" alt="NDK-Install"></p>
+<h5 id="按Control-X退出，并按Y保存"><a href="#按Control-X退出，并按Y保存" class="headerlink" title="按Control+X退出，并按Y保存"></a>按Control+X退出，并按Y保存</h5><h5 id="重启命令行，输入"><a href="#重启命令行，输入" class="headerlink" title="重启命令行，输入"></a>重启命令行，输入</h5><pre><code>cd ANDROID_NDK_ROOT
+</code></pre><h5 id="如果能跳到对应的目录，说明设置成功"><a href="#如果能跳到对应的目录，说明设置成功" class="headerlink" title="如果能跳到对应的目录，说明设置成功"></a>如果能跳到对应的目录，说明设置成功</h5><h4 id="编写Demo代码"><a href="#编写Demo代码" class="headerlink" title="编写Demo代码"></a>编写Demo代码</h4><p><strong>注意，Android的Java文件必须有包名，例如下例：</strong></p>
+<pre><code>package com.baidu.carlife;
+import java.util.ArrayList;
+
+public class KeyboardService {
+    public native void initService(String dbPath);
+    public native ArrayList&lt;String&gt; search(String key);
+    public native ArrayList&lt;String&gt;  relateWords(String keyWord);
+}
+</code></pre><h4 id="编译生成-H文件"><a href="#编译生成-H文件" class="headerlink" title="编译生成.H文件"></a>编译生成.H文件</h4><h5 id="在项目根目录下，创建jni文件夹，与src同级"><a href="#在项目根目录下，创建jni文件夹，与src同级" class="headerlink" title="在项目根目录下，创建jni文件夹，与src同级"></a>在项目根目录下，创建jni文件夹，与src同级</h5><p><img src="/images/JNI-NDK-Project.png" alt="NDK-Project"></p>
+<p><strong>注意必须根目录下。</strong></p>
+<h5 id="在命令行中cd到根目录，执行命令"><a href="#在命令行中cd到根目录，执行命令" class="headerlink" title="在命令行中cd到根目录，执行命令"></a>在命令行中cd到根目录，执行命令</h5><pre><code>javac -d ./jni/ src/com/baidu/carlife/KeyboardService.java -classpath /Users/YI/Documents/JavaWorkSplace/Android/platforms/android-21/android.jar
+</code></pre><p>完成后，在jni目录下，会生成文件：</p>
+<pre><code>KeyboardService.class
+</code></pre><h5 id="在命令行中cd到jni目录，执行命令"><a href="#在命令行中cd到jni目录，执行命令" class="headerlink" title="在命令行中cd到jni目录，执行命令"></a>在命令行中cd到jni目录，执行命令</h5><pre><code>javah -jni com.baidu.carlife.KeyboardService
+</code></pre><p>完成后，在jni目录下，会生成文件：</p>
+<pre><code>com_baidu_carlife_KeyboardService.h
+</code></pre><p>其内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/* DO NOT EDIT THIS FILE - it is machine generated */</div><div class="line">#include &lt;jni.h&gt;</div><div class="line">/* Header for class com_baidu_carlife_KeyboardService */</div><div class="line"></div><div class="line">#ifndef _Included_com_baidu_carlife_KeyboardService</div><div class="line">#define _Included_com_baidu_carlife_KeyboardService</div><div class="line">#ifdef __cplusplus</div><div class="line">extern &quot;C&quot; &#123;</div><div class="line">#endif</div><div class="line">/*</div><div class="line"> * Class:     com_baidu_carlife_KeyboardService</div><div class="line"> * Method:    initService</div><div class="line"> * Signature: (Ljava/lang/String;)V</div><div class="line"> */</div><div class="line">JNIEXPORT void JNICALL Java_com_baidu_carlife_KeyboardService_initService</div><div class="line">  (JNIEnv *, jobject, jstring);</div><div class="line"></div><div class="line">/*</div><div class="line"> * Class:     com_baidu_carlife_KeyboardService</div><div class="line"> * Method:    search</div><div class="line"> * Signature: (Ljava/lang/String;)Ljava/util/ArrayList;</div><div class="line"> */</div><div class="line">JNIEXPORT jobject JNICALL Java_com_baidu_carlife_KeyboardService_search</div><div class="line">  (JNIEnv *, jobject, jstring);</div><div class="line"></div><div class="line">/*</div><div class="line"> * Class:     com_baidu_carlife_KeyboardService</div><div class="line"> * Method:    relateWords</div><div class="line"> * Signature: (Ljava/lang/String;)Ljava/util/ArrayList;</div><div class="line"> */</div><div class="line">JNIEXPORT jobject JNICALL Java_com_baidu_carlife_KeyboardService_relateWords</div><div class="line">  (JNIEnv *, jobject, jstring);</div><div class="line"></div><div class="line">#ifdef __cplusplus</div><div class="line">&#125;</div><div class="line">#endif</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<h4 id="编写CPP实现文件"><a href="#编写CPP实现文件" class="headerlink" title="编写CPP实现文件"></a>编写CPP实现文件</h4><h5 id="新建KeyboardService-cpp文件，包含-h头文件并实现函数"><a href="#新建KeyboardService-cpp文件，包含-h头文件并实现函数" class="headerlink" title="新建KeyboardService.cpp文件，包含.h头文件并实现函数"></a>新建KeyboardService.cpp文件，包含.h头文件并实现函数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">#include &quot;com_baidu_carlife_KeyboardService.h&quot;</div></pre></td></tr></table></figure>
+<p>具体实现，可以参考<a href="2015/12/23/JNI-Object">Java-JNI对象构造和字符串转换</a>。</p>
+<p><strong>这里，注意在实现.h文件定义的函数时，不要调用全局变量，否则可能识别不到。同时，函数名不要与系统函数同名。</strong></p>
+<h4 id="创建Android-mk"><a href="#创建Android-mk" class="headerlink" title="创建Android.mk"></a>创建Android.mk</h4><h5 id="在jni目录下，创建Android-mk文件"><a href="#在jni目录下，创建Android-mk文件" class="headerlink" title="在jni目录下，创建Android.mk文件"></a>在jni目录下，创建Android.mk文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE    := KeyboardService</div><div class="line">LOCAL_SRC_FILES := KeyboardService.cpp \</div><div class="line">sqlite3.c</div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<p>这里的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LOCAL_MODULE:最后生成的so名称，会自动加上&quot;lib&quot;前缀和&quot;so&quot;后缀，本例是libKeyboardService.so</div><div class="line">LOCAL_SRC_FILES:需要编译的实现文件，用“\”分割</div></pre></td></tr></table></figure>
+<p>根据需要可以加上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LOCAL_C_INCLUDES:=头文件的搜索路径</div><div class="line">LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog 用于在C++中调用Android的Log方法，打印日志到LogCat</div></pre></td></tr></table></figure>
+<h4 id="创建Application-mk"><a href="#创建Application-mk" class="headerlink" title="创建Application.mk"></a>创建Application.mk</h4><h5 id="在jni目录下，创建Application-mk文件"><a href="#在jni目录下，创建Application-mk文件" class="headerlink" title="在jni目录下，创建Application.mk文件"></a>在jni目录下，创建Application.mk文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">APP_PLATFORM := android-21</div><div class="line">APP_STL := stlport_static</div><div class="line">APP_ABI := all</div></pre></td></tr></table></figure>
+<p>这里的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">APP_PLATFORM:Android版本</div><div class="line">APP_STL:STL库的类型</div><div class="line">APP_ABI:需要编译的CPU平台，如果不设置，默认是armeabi</div></pre></td></tr></table></figure>
+<p><strong>如果不设置APP_STL，会编译出错，标准库的头文件将找不到。</strong></p>
+<h4 id="编译生成so库"><a href="#编译生成so库" class="headerlink" title="编译生成so库"></a>编译生成so库</h4><h5 id="cd到项目的根目录，执行命令"><a href="#cd到项目的根目录，执行命令" class="headerlink" title="cd到项目的根目录，执行命令"></a>cd到项目的根目录，执行命令</h5><pre><code>NDK-BUILD
+</code></pre><p>可以看到，针对多个CPU平台的so库，都编译成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Android NDK: WARNING: Rebuilding STLport libraries from sources!    </div><div class="line">Android NDK: You might want to use $NDK/build/tools/build-cxx-stl.sh --stl=stlport    </div><div class="line">Android NDK: in order to build prebuilt versions to speed up your builds!    </div><div class="line">[arm64-v8a] Install        : libKeyboardService.so =&gt; libs/arm64-v8a/libKeyboardService.so</div><div class="line">[x86_64] Install        : libKeyboardService.so =&gt; libs/x86_64/libKeyboardService.so</div><div class="line">[mips64] Install        : libKeyboardService.so =&gt; libs/mips64/libKeyboardService.so</div><div class="line">[armeabi-v7a] Install        : libKeyboardService.so =&gt; libs/armeabi-v7a/libKeyboardService.so</div><div class="line">[armeabi] Install        : libKeyboardService.so =&gt; libs/armeabi/libKeyboardService.so</div><div class="line">[x86] Install        : libKeyboardService.so =&gt; libs/x86/libKeyboardService.so</div><div class="line">[mips] Install        : libKeyboardService.so =&gt; libs/mips/libKeyboardService.so</div></pre></td></tr></table></figure>
+<p>根目录下，生成了libs文件夹:</p>
+<p><img src="/images/JNI-NDK-SO.png" alt="NDK-Project"></p>
+<h4 id="使用so库"><a href="#使用so库" class="headerlink" title="使用so库"></a>使用so库</h4><h5 id="加载so库"><a href="#加载so库" class="headerlink" title="加载so库"></a>加载so库</h5><pre><code>static {
+    System.loadLibrary(&quot;KeyboardService&quot;);
+    System.load(&quot;/data/data/com.baidu.carlife/libKeyboardService.so&quot;);
+}
+</code></pre><p><strong>这里，有两种加载so文件的方式:</strong></p>
+<p>(1)用loadLibrary调用的时候需要去掉”lib”前缀和”so”后缀;</p>
+<p>(2)用load调用的时候需要写全路径名且不能去掉前缀和后缀.</p>
+<h5 id="调用Demo"><a href="#调用Demo" class="headerlink" title="调用Demo"></a>调用Demo</h5><pre><code>KeyboardService service = new KeyboardService();
+service.initService(“”);
+service.search(&quot;&quot;);
+service.relateWords(&quot;&quot;);
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JNI/" rel="tag"># JNI</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/25/CPP-GppCompile/" rel="next" title="C++-g++编译选项">
+                <i class="fa fa-chevron-left"></i> C++-g++编译选项
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/02/JNI-Eclipse/" rel="prev" title="Android-Eclipse配置NDK环境">
+                Android-Eclipse配置NDK环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/28/JNI-android/"
+           data-title="Android-通过NDK编译so库" data-url="http://www.linyibin.cn/2015/12/28/JNI-android/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装NDK"><span class="nav-number">1.</span> <span class="nav-text">安装NDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载NDK，解压"><span class="nav-number">1.1.</span> <span class="nav-text">下载NDK，解压</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打开命令行，输入："><span class="nav-number">1.2.</span> <span class="nav-text">打开命令行，输入：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置环境变量，如下图"><span class="nav-number">1.3.</span> <span class="nav-text">设置环境变量，如下图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按Control-X退出，并按Y保存"><span class="nav-number">1.4.</span> <span class="nav-text">按Control+X退出，并按Y保存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重启命令行，输入"><span class="nav-number">1.5.</span> <span class="nav-text">重启命令行，输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果能跳到对应的目录，说明设置成功"><span class="nav-number">1.6.</span> <span class="nav-text">如果能跳到对应的目录，说明设置成功</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写Demo代码"><span class="nav-number">2.</span> <span class="nav-text">编写Demo代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译生成-H文件"><span class="nav-number">3.</span> <span class="nav-text">编译生成.H文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在项目根目录下，创建jni文件夹，与src同级"><span class="nav-number">3.1.</span> <span class="nav-text">在项目根目录下，创建jni文件夹，与src同级</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在命令行中cd到根目录，执行命令"><span class="nav-number">3.2.</span> <span class="nav-text">在命令行中cd到根目录，执行命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在命令行中cd到jni目录，执行命令"><span class="nav-number">3.3.</span> <span class="nav-text">在命令行中cd到jni目录，执行命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写CPP实现文件"><span class="nav-number">4.</span> <span class="nav-text">编写CPP实现文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#新建KeyboardService-cpp文件，包含-h头文件并实现函数"><span class="nav-number">4.1.</span> <span class="nav-text">新建KeyboardService.cpp文件，包含.h头文件并实现函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建Android-mk"><span class="nav-number">5.</span> <span class="nav-text">创建Android.mk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在jni目录下，创建Android-mk文件"><span class="nav-number">5.1.</span> <span class="nav-text">在jni目录下，创建Android.mk文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建Application-mk"><span class="nav-number">6.</span> <span class="nav-text">创建Application.mk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在jni目录下，创建Application-mk文件"><span class="nav-number">6.1.</span> <span class="nav-text">在jni目录下，创建Application.mk文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译生成so库"><span class="nav-number">7.</span> <span class="nav-text">编译生成so库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cd到项目的根目录，执行命令"><span class="nav-number">7.1.</span> <span class="nav-text">cd到项目的根目录，执行命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用so库"><span class="nav-number">8.</span> <span class="nav-text">使用so库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加载so库"><span class="nav-number">8.1.</span> <span class="nav-text">加载so库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调用Demo"><span class="nav-number">8.2.</span> <span class="nav-text">调用Demo</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

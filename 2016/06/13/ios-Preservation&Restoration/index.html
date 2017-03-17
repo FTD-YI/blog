@@ -1,0 +1,905 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文介绍了，iOS的状态保存和复原流程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Preservation & Restoration">
+<meta property="og:url" content="http://www.linyibin.cn/2016/06/13/ios-Preservation&Restoration/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文介绍了，iOS的状态保存和复原流程。">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Preservation&Restoration-ID.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/state_vc_hierarchy_preserve_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/save_process_simple_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/restoration_process_simple_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Preservation & Restoration">
+<meta name="twitter:description" content="本文介绍了，iOS的状态保存和复原流程。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/iOS-Preservation&Restoration-ID.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/06/13/ios-Preservation&Restoration/"/>
+
+
+
+
+
+  <title> iOS-Preservation & Restoration | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/06/13/ios-Preservation&Restoration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Preservation & Restoration
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-13T00:00:00+08:00">
+                2016-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/13/ios-Preservation&Restoration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/13/ios-Preservation&Restoration/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍了，iOS的状态保存和复原流程。</p>
+<a id="more"></a>
+<p>UIKit控制整个状态保存和复原流程，UIKit会在需要的时刻执行保存操作，例如当App切到后台时，此时，UIKit判断App的Views和VCs哪些需要保存，然后将其数据写入加密的硬盘文件中，在App下次运行时，UIKit会检索该文件是否存在，存在则尝试复原App的状态。由于该文件是加密的，所以这一过程只会发生在设备已经解锁以后。</p>
+<h3 id="保存过程"><a href="#保存过程" class="headerlink" title="保存过程"></a>保存过程</h3><p>在保存过程中，App需要:</p>
+<ul>
+<li>告诉UIKit需要状态保存;</li>
+<li>告诉UIKit那些VCs和Views需要保存;</li>
+<li>将一些相关的对象的数据编码。</li>
+</ul>
+<p>UIKit是根据<strong>Restoration Identifier</strong>是否设置来判断一个ViewController或者View是否要保存的。</p>
+<p><img src="/images/iOS-Preservation&amp;Restoration-ID.png" alt="iOS-Preservation&amp;Restoration-ID"></p>
+<p>下面是例子：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/state_vc_hierarchy_preserve_2x.png" alt="iOS-Preservation&amp;Restoration-Views"></p>
+<p>注意：如果一个VC没有设置<strong>Restoration Identifier</strong>，则其所有Views也不会被保存。这里，特别注意，如果一个NavigationController没有设置<strong>Restoration Identifier</strong>，则其所有的VC都不会被保存。</p>
+<p>在保存过程中，UIKit识别哪些对象需要保存，并与影响该对象的状态一起写入硬盘，例如VC的Restoration Class。对于每个有Restoration ID的VCs和Views对象，将有一个机会保存一些自身的数据，UIKit会调用VC和View的以下方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)encodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于特殊的TableView和CollectionView，其DataSource必须适配协议：<a href="https://developer.apple.com/reference/uikit/uidatasourcemodelassociation" target="_blank" rel="external">UIDataSourceModelAssociation</a>。</p>
+<p>对于一些不在VC中，但是又需要保存的状态信息，可以在回调中保存：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/save_process_simple_2x.png" alt="iOS-Preservation&amp;Restoration-Process"></p>
+<h3 id="复原过程"><a href="#复原过程" class="headerlink" title="复原过程"></a>复原过程</h3><p>在复原过程中，App需要:</p>
+<ul>
+<li>告诉UIKit需要状态复原;</li>
+<li>提供或者创建UIKit要求的对象;</li>
+<li>解码保存过程中编码的对象，用于状态复原。</li>
+</ul>
+<p>在App重新启动时，UIKit加载App的Storyboard或Nib文件，调用application:willFinishLaunchingWithOptions:回调，然后尝试复原状态。如果不是从Storyboard或Nib文件，则UIKit会让App提供与之前保存的VCs对应的对象组合，如果一个VC有<strong>Restoration class</strong>，则直接让其提供VC对象，否则，让AppDelegate提供:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">// 返回值如果为nil，则表示该VC不需要复原</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Restoration Class</strong>定义了<strong>UIViewControllerRestoration</strong>协议：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@property (nullable, nonatomic, readwrite, assign) Class&lt;UIViewControllerRestoration&gt; restorationClass NS_AVAILABLE_IOS(6_0);</div><div class="line"></div><div class="line">@protocol UIViewControllerRestoration</div><div class="line">+ (nullable UIViewController *) viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">// 返回值如果为nil，则UIKit会尝试隐式地搜索该VC，通过已经New的VCs中匹配路径，以及从Storyboard中匹配路径。</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>这两个回调中的<strong>viewControllerWithRestorationIdentifierPath</strong>的参数，是指VC保存的路径，例如一个TabVC为A，里面第一个Tab是一个NavigationVC为B，其RootVC是C，则路径为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A/B/C，对应上面的数组，注意路径必须是唯一的，且不会产生歧义的。</div></pre></td></tr></table></figure>
+<p>对于可以从Storyboard里面自动加载的VC，则无需设置<strong>Restoration class</strong>，否则，最好对其设置<strong>Restoration class</strong>。</p>
+<p>VC加载完成后，将会调用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)decodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于一些不在VC中，但是又需要复原的状态信息，可以在回调中复原：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void) application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">- &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：无论App成功复原或者复原失败(例如Crash)，上述的保存文件都将被丢弃。且，UIKit不会帮助保存VC之间的关系，例如NavigationController中的多个VC。在复原时，最好尽量完整恢复原来的VC结构树。</strong></p>
+<p>流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/restoration_process_simple_2x.png" alt="iOS-Preservation&amp;Restoration-Process"></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><h4 id="AppDelegate设置支持保存和复原"><a href="#AppDelegate设置支持保存和复原" class="headerlink" title="AppDelegate设置支持保存和复原"></a>AppDelegate设置支持保存和复原</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="VC支持状态保存和复原"><a href="#VC支持状态保存和复原" class="headerlink" title="VC支持状态保存和复原"></a>VC支持状态保存和复原</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (void)encodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">    [super encodeRestorableStateWithCoder:coder];</div><div class="line">    [coder encodeObject:self.view.backgroundColor forKey:@&quot;BGC&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)decodeRestorableStateWithCoder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;decodeRestorableStateWithCoder&quot;);</div><div class="line">    [super decodeRestorableStateWithCoder:coder];</div><div class="line">    self.view.backgroundColor = [coder decodeObjectForKey:@&quot;BGC&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="通过Storyboard"><a href="#通过Storyboard" class="headerlink" title="通过Storyboard"></a>通过Storyboard</h4><p>如果是在Storyboard中的VC，直接在面板设置Restoration ID即可。</p>
+<h4 id="通过RestorationClass"><a href="#通过RestorationClass" class="headerlink" title="通过RestorationClass"></a>通过RestorationClass</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@interface TestVC ()&lt;UIViewControllerRestoration&gt;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation TestVC</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    self.restorationIdentifier = @&quot;TestVC&quot;;</div><div class="line">    self.restorationClass = [self class];</div><div class="line">&#125;</div><div class="line">    </div><div class="line">+ (UIViewController*) viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder &#123;</div><div class="line">   MyViewController* vc;</div><div class="line">   UIStoryboard* sb = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];</div><div class="line">   if (sb) &#123;</div><div class="line">      vc = (PushViewController*)[sb instantiateViewControllerWithIdentifier:@&quot;TestVC&quot;];</div><div class="line">      vc.restorationIdentifier = [identifierComponents lastObject];</div><div class="line">      vc.restorationClass = [TestVC class];</div><div class="line">   &#125;</div><div class="line">    return vc;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h4 id="通过AppDelegate"><a href="#通过AppDelegate" class="headerlink" title="通过AppDelegate"></a>通过AppDelegate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;viewControllerWithRestorationIdentifierPath&quot;);</div><div class="line">    UIViewController *vc = nil;</div><div class="line">    for(NSString *ID in identifierComponents)&#123;</div><div class="line">        if([ID isEqualToString:@&quot;TestVC&quot;])&#123;</div><div class="line">            vc = [CLWechatViewController sharedInstance];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return vc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><ul>
+<li>保存版本信息：最好在状态保存和复原中，自己保存一个App版本信息，以便版本变更时，可以进行控制;</li>
+<li>不要保存数据信息：数据信息不应该保存在状态信息中，因为状态信息的文件无论是否复原成功都会被删除，这可能会导致异常;</li>
+<li>不是所有VC都需要保存：例如密码输入页面可能是不需要保存的，复原的时候，直接复原到登录页面即可;</li>
+<li>不要改变VC的Class信息：UIKit是根据Class信息来复原VC的，所有不要去改变VC的Class;</li>
+<li>用户强制关闭App时，系统会自动删除保存的状态文件:用户通过多任务管理，关闭App时，以及在启动时Crash两次时，状态文件会被删除，所以，不要通过多任务管理调试，而通过XCode直接Kill App。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/" rel="next" title="iOS-Strategies for Handling App State Transitions">
+                <i class="fa fa-chevron-left"></i> iOS-Strategies for Handling App State Transitions
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/" rel="prev" title="iOS-Strategies for Implementing Specific App Features">
+                iOS-Strategies for Implementing Specific App Features <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/13/ios-Preservation&Restoration/"
+           data-title="iOS-Preservation & Restoration" data-url="http://www.linyibin.cn/2016/06/13/ios-Preservation&Restoration/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#保存过程"><span class="nav-number">1.</span> <span class="nav-text">保存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复原过程"><span class="nav-number">2.</span> <span class="nav-text">复原过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AppDelegate设置支持保存和复原"><span class="nav-number">3.1.</span> <span class="nav-text">AppDelegate设置支持保存和复原</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VC支持状态保存和复原"><span class="nav-number">3.2.</span> <span class="nav-text">VC支持状态保存和复原</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过Storyboard"><span class="nav-number">3.3.</span> <span class="nav-text">通过Storyboard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过RestorationClass"><span class="nav-number">3.4.</span> <span class="nav-text">通过RestorationClass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过AppDelegate"><span class="nav-number">3.5.</span> <span class="nav-text">通过AppDelegate</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示"><span class="nav-number">4.</span> <span class="nav-text">提示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

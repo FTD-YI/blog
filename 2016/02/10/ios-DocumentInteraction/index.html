@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOS系统，提供了用于预览一些App不支持的文件的方法，也提供了注册App可以处理的文件格式的方法，以及通过Quick Look Framework进行打印的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Document Interaction">
+<meta property="og:url" content="http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="iOS系统，提供了用于预览一些App不支持的文件的方法，也提供了注册App可以处理的文件格式的方法，以及通过Quick Look Framework进行打印的方法。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Document Interaction">
+<meta name="twitter:description" content="iOS系统，提供了用于预览一些App不支持的文件的方法，也提供了注册App可以处理的文件格式的方法，以及通过Quick Look Framework进行打印的方法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/"/>
+
+
+
+
+
+  <title> iOS-Document Interaction | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Document Interaction
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-10T00:00:00+08:00">
+                2016-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/10/ios-DocumentInteraction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/ios-DocumentInteraction/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS系统，提供了用于预览一些App不支持的文件的方法，也提供了注册App可以处理的文件格式的方法，以及通过Quick Look Framework进行打印的方法。</p>
+<a id="more"></a>
+<h3 id="Previewing-a-Document-or-Presenting-Options"><a href="#Previewing-a-Document-or-Presenting-Options" class="headerlink" title="Previewing a Document or Presenting Options"></a>Previewing a Document or Presenting Options</h3><p>当App需要与不支持的文件交互时，可以使用<strong>UIDocumentInteractionController</strong>对象来管理。<strong>UIDocumentInteractionController</strong>与<strong>Quick Look Framework</strong>交互，并判断一个文件是否可被预览，可被其他App打开，或者两者皆可。</p>
+<p><strong>UIDocumentInteractionController</strong>经常用于处理一些下载的文件，例如Email中的附件，也可以用于处理其他App传过来的文件，同步目录为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Documents/Shared</div></pre></td></tr></table></figure>
+<h4 id="如果是直接预览，调用方式如下："><a href="#如果是直接预览，调用方式如下：" class="headerlink" title="如果是直接预览，调用方式如下："></a>如果是直接预览，调用方式如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()&lt;UIDocumentInteractionControllerDelegate&gt;</div><div class="line">@property (nonatomic, strong) UIDocumentInteractionController *docController;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)open</div><div class="line">&#123;</div><div class="line">    NSURL *fileUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;Background&quot; ofType:@&quot;png&quot;]];</div><div class="line">    _docController = [UIDocumentInteractionController interactionControllerWithURL:fileUrl];</div><div class="line">    _docController.delegate = self;</div><div class="line">    if([_docController presentPreviewAnimated:YES])&#123;</div><div class="line">    	NSLog(@&quot;Success..&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">    	NSLog(@&quot;Failed..&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller</div><div class="line">&#123;</div><div class="line">    return self.navigationController;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>注意，<strong>UIDocumentInteractionControllerDelegate</strong>是必须的，回调也必须实现，且根据<strong>presentPreviewAnimated</strong>方法的返回值判断是否预览成功。</p>
+<h4 id="如果是提供多功能菜单给用户-预览、打开、复制等-，调用方式如下："><a href="#如果是提供多功能菜单给用户-预览、打开、复制等-，调用方式如下：" class="headerlink" title="如果是提供多功能菜单给用户(预览、打开、复制等)，调用方式如下："></a>如果是提供多功能菜单给用户(预览、打开、复制等)，调用方式如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if([_docController presentOptionsMenuFromRect:CGRectZero inView:self.view animated:YES])&#123;</div><div class="line">	NSLog(@&quot;Success..&quot;);</div><div class="line">&#125;else&#123;</div><div class="line">	NSLog(@&quot;Failed..&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="如果只提供单功能菜单给用户-打开-，调用方式如下："><a href="#如果只提供单功能菜单给用户-打开-，调用方式如下：" class="headerlink" title="如果只提供单功能菜单给用户(打开)，调用方式如下："></a>如果只提供单功能菜单给用户(打开)，调用方式如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if([_docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES])&#123;</div><div class="line">	NSLog(@&quot;Success..&quot;);</div><div class="line">&#125;else&#123;</div><div class="line">	NSLog(@&quot;Failed..&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="如果是查看文件的信息，调用方法如下："><a href="#如果是查看文件的信息，调用方法如下：" class="headerlink" title="如果是查看文件的信息，调用方法如下："></a>如果是查看文件的信息，调用方法如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSLog(@&quot;%@:%@ %@&quot;, controller.name, controller.URL, controller.icons);</div></pre></td></tr></table></figure>
+<h4 id="如果是让其他App打开，需要传递额外的信息，调用方法如下："><a href="#如果是让其他App打开，需要传递额外的信息，调用方法如下：" class="headerlink" title="如果是让其他App打开，需要传递额外的信息，调用方法如下："></a>如果是让其他App打开，需要传递额外的信息，调用方法如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">controller.annotation = @&quot;Addtional Information&quot;;</div></pre></td></tr></table></figure>
+<p>对应App的接收方法参考下文。</p>
+<h4 id="如果想要取消预览页面或者菜单，调用方法如下："><a href="#如果想要取消预览页面或者菜单，调用方法如下：" class="headerlink" title="如果想要取消预览页面或者菜单，调用方法如下："></a>如果想要取消预览页面或者菜单，调用方法如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[_docController dismissPreviewAnimated:YES];</div><div class="line">[_docController dismissMenuAnimated:YES];</div></pre></td></tr></table></figure>
+<h3 id="Registering-the-File-Types-Your-App-Supports"><a href="#Registering-the-File-Types-Your-App-Supports" class="headerlink" title="Registering the File Types Your App Supports"></a>Registering the File Types Your App Supports</h3><p>如果App支持打开一些特定格式的文件，可以在<strong>Info.plist</strong>中添加<strong>CFBundleDocumentTypes</strong>字段进行注册。</p>
+<p>格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;dict&gt;</div><div class="line">   &lt;key&gt;CFBundleTypeName&lt;/key&gt;</div><div class="line">   &lt;string&gt;PNG&lt;/string&gt;</div><div class="line">   &lt;key&gt;CFBundleTypeIconFiles&lt;/key&gt;</div><div class="line">       &lt;array&gt;</div><div class="line">           &lt;string&gt;MySmallIcon.png&lt;/string&gt;</div><div class="line">           &lt;string&gt;MyLargeIcon.png&lt;/string&gt;</div><div class="line">       &lt;/array&gt;</div><div class="line">   &lt;key&gt;LSItemContentTypes&lt;/key&gt;</div><div class="line">       &lt;array&gt;</div><div class="line">           &lt;string&gt;public.png&lt;/string&gt;</div><div class="line">       &lt;/array&gt;</div><div class="line">   &lt;key&gt;LSHandlerRank&lt;/key&gt;</div><div class="line">   &lt;string&gt;Default&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div></pre></td></tr></table></figure>
+<p>其中，属性对应如下：</p>
+<ul>
+<li>CFBundleTypeName:文件类型的名称;</li>
+<li>CFBundleTypeIconFiles:文件类型的图标;</li>
+<li>LSItemContentTypes:<a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html" target="_blank" rel="external">UTI</a>格式的文件类型;</li>
+<li>LSHandlerRank:定义了该文件类型是App独有的，还是App只是能打开。</li>
+</ul>
+<p><strong>CFBundleDocumentTypes</strong>字段是一个数组，所以可以声明多个类型，对于多个类型对应同一种的，例如.doc和.docx文件，可以在<strong>LSItemContentTypes</strong>中声明为同一种。这取决于App的属性，例如，对于图片处理App，出于处理上的考虑，.jpeg和.png文件可能声明为不同类型，而对于一个文件处理App，这两者可能都被声明为图片类。</p>
+<h3 id="Opening-Supported-File-Types"><a href="#Opening-Supported-File-Types" class="headerlink" title="Opening Supported File Types"></a>Opening Supported File Types</h3><p>对于声明支持的文件格式，系统随时可能会要求App来打开。在App启动函数中，需要对其立即进行处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</div><div class="line">    NSLog(@&quot;%@&quot;, [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey]);</div><div class="line">    NSLog(@&quot;%@&quot;, [launchOptions valueForKey:UIApplicationLaunchOptionsSourceApplicationKey]);</div><div class="line">    NSLog(@&quot;%@&quot;, [launchOptions valueForKey:UIApplicationLaunchOptionsAnnotationKey]);</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果App已经打开了，那么在监听跳转函数中，对其进行处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, url);</div><div class="line">    NSLog(@&quot;%@&quot;, [options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey]);</div><div class="line">    NSLog(@&quot;%@&quot;, [options valueForKey:UIApplicationOpenURLOptionsAnnotationKey]);</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从打印结果可以看出，实际上文件是被复制到以下目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Documents/Inbox/</div></pre></td></tr></table></figure>
+<h3 id="Using-the-Quick-Look-Framework"><a href="#Using-the-Quick-Look-Framework" class="headerlink" title="Using the Quick Look Framework"></a>Using the Quick Look Framework</h3><p>如果需要更好的控制文件的预览，例如，同时预览多个文件，可以直接使用<strong>Quick Look framework</strong>里面的<strong>QLPreviewController</strong>。使用方式如下：</p>
+<p>先在项目中导入<strong>QuickLook.framework</strong>，然后调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &lt;QuickLook/QuickLook.h&gt;</div><div class="line"></div><div class="line">@interface ViewController ()&lt;QLPreviewControllerDataSource&gt;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)preview</div><div class="line">&#123;</div><div class="line">    QLPreviewController *ql = [QLPreviewController new];</div><div class="line">    ql.dataSource = self;</div><div class="line">    [self.navigationController pushViewController:ql animated:YES];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller</div><div class="line">&#123;</div><div class="line">    return 2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id &lt;QLPreviewItem&gt;)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index</div><div class="line">&#123;</div><div class="line">    if(index == 0)</div><div class="line">        return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;xxx&quot; ofType:@&quot;png&quot;]];</div><div class="line">    else</div><div class="line">        return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;xxx&quot; ofType:@&quot;xlsx&quot;]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>Quick Look默认从路径的最后取文件名，如果要修改，可以通过以下方式修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@interface Item : NSObject &lt;QLPreviewItem&gt;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Item</div><div class="line"></div><div class="line">- (NSString *)previewItemTitle</div><div class="line">&#123;</div><div class="line">    return @&quot;New Name&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSURL *)previewItemURL</div><div class="line">&#123;</div><div class="line">    return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;xxx&quot; ofType:@&quot;png&quot;]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>Quick Look自带打印功能，无需额外编码。另外，Quick Look支持的格式如下：</p>
+<ul>
+<li>iWork文件;</li>
+<li>Office文件;</li>
+<li>Rich Text Format(RTF)文件;</li>
+<li>PDF文件;</li>
+<li>Image文件;</li>
+<li>public.text类别下的文件，参考<a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html" target="_blank" rel="external">UTI</a>;</li>
+<li>Comma-separated value(csv)文件。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/05/JNI-Regex/" rel="next" title="Android-NDK编译支持Regex">
+                <i class="fa fa-chevron-left"></i> Android-NDK编译支持Regex
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/18/ios-DocumentPicker/" rel="prev" title="iOS-Document Picker">
+                iOS-Document Picker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/10/ios-DocumentInteraction/"
+           data-title="iOS-Document Interaction" data-url="http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Previewing-a-Document-or-Presenting-Options"><span class="nav-number">1.</span> <span class="nav-text">Previewing a Document or Presenting Options</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如果是直接预览，调用方式如下："><span class="nav-number">1.1.</span> <span class="nav-text">如果是直接预览，调用方式如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果是提供多功能菜单给用户-预览、打开、复制等-，调用方式如下："><span class="nav-number">1.2.</span> <span class="nav-text">如果是提供多功能菜单给用户(预览、打开、复制等)，调用方式如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果只提供单功能菜单给用户-打开-，调用方式如下："><span class="nav-number">1.3.</span> <span class="nav-text">如果只提供单功能菜单给用户(打开)，调用方式如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果是查看文件的信息，调用方法如下："><span class="nav-number">1.4.</span> <span class="nav-text">如果是查看文件的信息，调用方法如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果是让其他App打开，需要传递额外的信息，调用方法如下："><span class="nav-number">1.5.</span> <span class="nav-text">如果是让其他App打开，需要传递额外的信息，调用方法如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果想要取消预览页面或者菜单，调用方法如下："><span class="nav-number">1.6.</span> <span class="nav-text">如果想要取消预览页面或者菜单，调用方法如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registering-the-File-Types-Your-App-Supports"><span class="nav-number">2.</span> <span class="nav-text">Registering the File Types Your App Supports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Opening-Supported-File-Types"><span class="nav-number">3.</span> <span class="nav-text">Opening Supported File Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-the-Quick-Look-Framework"><span class="nav-number">4.</span> <span class="nav-text">Using the Quick Look Framework</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

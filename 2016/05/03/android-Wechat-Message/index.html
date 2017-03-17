@@ -1,0 +1,1157 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="众所周知，微信本来并没有提供直接收发微信的功能，但是利用一些方法，可以实现直接在App里面变向地收发微信。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-App内部实现收发微信">
+<meta property="og:url" content="http://www.linyibin.cn/2016/05/03/android-Wechat-Message/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="众所周知，微信本来并没有提供直接收发微信的功能，但是利用一些方法，可以实现直接在App里面变向地收发微信。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-App内部实现收发微信">
+<meta name="twitter:description" content="众所周知，微信本来并没有提供直接收发微信的功能，但是利用一些方法，可以实现直接在App里面变向地收发微信。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/05/03/android-Wechat-Message/"/>
+
+
+
+
+
+  <title> Android-App内部实现收发微信 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/05/03/android-Wechat-Message/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android-App内部实现收发微信
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-03T00:00:00+08:00">
+                2016-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/03/android-Wechat-Message/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/android-Wechat-Message/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，微信本来并没有提供直接收发微信的功能，但是利用一些方法，可以实现直接在App里面变向地收发微信。</p>
+<a id="more"></a>
+<p>流程如下：</p>
+<h4 id="利用AccesibilityService接收微信"><a href="#利用AccesibilityService接收微信" class="headerlink" title="利用AccesibilityService接收微信"></a>利用AccesibilityService接收微信</h4><h5 id="首先，利用AccesibilityService监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。"><a href="#首先，利用AccesibilityService监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。" class="headerlink" title="首先，利用AccesibilityService监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。"></a>首先，利用<a href="http://ftd-yi.github.io/blog/android/2016/04/02/Android-AccesibilityService.html" target="_blank" rel="external">AccesibilityService</a>监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。</h5><pre><code>if (eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
+            Notification notification = (Notification) event.getParcelableData();
+            if (null != notification) {
+                Bundle extras = notification.extras;
+                if (null != extras) {
+                    String user = extras.getString(&quot;android.title&quot;);
+                    String content = extras.getString(&quot;android.text&quot;);
+                    if (!TextUtils.isEmpty(content) &amp;&amp; content.contains(&quot;[语音]&quot;)) {
+                        needPlayVoice = true;
+                        Toast.makeText(this, user + &quot;发来语音&quot;, Toast.LENGTH_LONG).show();
+                        MainActivity.playTTS(user + &quot;发来语音&quot;);
+                            final PendingIntent pendingIntent = notification.contentIntent;
+                            new Handler().postDelayed(new Runnable(){  
+                              public void run() { 
+                                  try {
+                                    pendingIntent.send();
+                                } catch (CanceledException e) {
+                                    e.printStackTrace();
+                                }
+                              }
+                      }, 2000);  
+                      }else{
+                          if(content.indexOf(&apos;:&apos;) != -1)
+                              content = content.substring(content.indexOf(&apos;:&apos;) + 1);
+                          Toast.makeText(this, user + &quot;发来消息:&quot; + content, Toast.LENGTH_LONG).show();
+                      }
+                }
+            }
+    }
+</code></pre><h5 id="接着，利用AccesibilityService监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。"><a href="#接着，利用AccesibilityService监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。" class="headerlink" title="接着，利用AccesibilityService监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。"></a>接着，利用<a href="http://ftd-yi.github.io/blog/android/2016/04/02/Android-AccesibilityService.html" target="_blank" rel="external">AccesibilityService</a>监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。</h5><pre><code>else if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+        String clazzName = event.getClassName().toString();
+        AccessibilityNodeInfo nodeInfo = event.getSource();
+        if (clazzName.equals(&quot;com.tencent.mm.ui.LauncherUI&quot;) &amp;&amp; needPlayVoice){
+            needPlayVoice = false;
+            int ms = playAudioMsg(nodeInfo);
+            back(ms * 1000); 
+        }
+}
+</code></pre><p>其中，播放最后一条语音方法如下：</p>
+<pre><code>private int playAudioMsg(AccessibilityNodeInfo nodeInfo){
+    if (null == nodeInfo) return 0;
+    List&lt;AccessibilityNodeInfo&gt; list = nodeInfo.findAccessibilityNodeInfosByText(&quot;语音&quot;);
+    if (null != list &amp;&amp; list.size() &gt; 0) {
+        AccessibilityNodeInfo node = list.get(list.size() - 1);
+        node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+        String content = node.getContentDescription().toString();
+        String number = content.substring(2, content.length() - 2);
+        return Integer.parseInt(number);
+    }
+    return 0;
+}
+</code></pre><p>自动跳回方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">private void back(int time)&#123;</div><div class="line">    	new Handler().postDelayed(new Runnable()&#123;  </div><div class="line">            public void run() &#123; </div><div class="line">            	Intent intent = getPackageManager().getLaunchIntentForPackage(&quot;com.yi.test&quot;);</div><div class="line">                if (intent != null) &#123;</div><div class="line">                	startActivity(intent);</div><div class="line">                &#125;</div><div class="line">            &#125;  </div><div class="line">         &#125;, time);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="利用Receiver获取用户的OpenID"><a href="#利用Receiver获取用户的OpenID" class="headerlink" title="利用Receiver获取用户的OpenID"></a>利用Receiver获取用户的OpenID</h4><h5 id="在AndroidManifest文件中，添加权限："><a href="#在AndroidManifest文件中，添加权限：" class="headerlink" title="在AndroidManifest文件中，添加权限："></a>在AndroidManifest文件中，添加权限：</h5><pre><code> &lt;uses-permission android:name=&quot;com.tencent.mm.plugin.permission.READ&quot; /&gt;  
+&lt;uses-permission android:name=&quot;com.tencent.mm.plugin.permission.WRITE&quot; /&gt;  
+&lt;uses-permission android:name=&quot;com.tencent.mm.plugin.permission.SEND&quot; /&gt; 
+&lt;uses-permission android:name=&quot;com.tencent.mm.permission.MM_MESSAGE&quot; /&gt; 
+</code></pre><h5 id="定义接收微信新消息通知的Receiver"><a href="#定义接收微信新消息通知的Receiver" class="headerlink" title="定义接收微信新消息通知的Receiver"></a>定义接收微信新消息通知的Receiver</h5><pre><code>&lt;receiver android:enabled=&quot;true&quot; android:exported=&quot;true&quot; android:name=&quot;.WXNotifyReceiver&quot; &gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;com.tencent.mm.plugin.openapi.Intent.ACTION_NOTIFY_MSG&quot;/&gt;
+            &lt;category android:name=&quot;com.tencent.mm.category.com.jinglingtec.ijiazu&quot;/&gt;
+        &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre><h5 id="获取微信新消息中用户的OpenID"><a href="#获取微信新消息中用户的OpenID" class="headerlink" title="获取微信新消息中用户的OpenID"></a>获取微信新消息中用户的OpenID</h5><pre><code>public class WXNotifyReceiver extends BroadcastReceiver{
+    public void onReceive(Context paramContext, Intent paramIntent){
+        Log.e(&quot;WXNotifyReceiver&quot;, &quot;new Message&quot; + paramContext.toString() + &quot;\n&quot; + paramIntent.toString());
+        if(paramContext == null || paramIntent == null){
+            Log.e(&quot;[wechat_debug]&quot;, &quot;param null&quot;);
+            return;
+        }
+
+        String notifyType = paramIntent.getStringExtra(&quot;EXTRA_EXT_OPEN_NOTIFY_TYPE&quot;);
+        if(notifyType == null || notifyType.length() &lt; 0){
+            Log.e(&quot;[wechat_debug]&quot;, &quot;wrong intent extra notifyType&quot;);
+            return;
+        }
+
+        if(notifyType.equalsIgnoreCase(&quot;NEW_MESSAGE&quot;)){
+            ArrayList&lt;String&gt; userData = paramIntent.getStringArrayListExtra(&quot;EXTRA_EXT_OPEN_USER_DATA&quot;);
+
+            if ((userData == null) || (userData.size() &lt;= 0))
+            {
+              Log.e(&quot;[wechat_debug]&quot;, &quot;wrong intent extra userDatas&quot;);
+              return;
+            }
+
+            Log.e(&quot;[wechat_debug]&quot;, &quot;notifyType = &quot; + notifyType);
+            Iterator&lt;String&gt; it = userData.iterator();
+
+            while (it.hasNext())
+            {
+              String paramString = (String)it.next();
+              Log.e(&quot;[wechat_debug]&quot;, &quot;userData = &quot; + paramString);
+              String[] params = paramString.split(&quot;,&quot;);
+              if ((params == null) || (params.length &lt; 3))
+              {
+                Log.e(&quot;[wechat_debug]&quot;, &quot;wrong userData&quot;);
+                return;
+              }
+
+              Log.e(&quot;[wechat_debug]&quot;, &quot;receive wechat data ... &quot;);
+              Log.e(&quot;[wechat_debug]&quot;, &quot;openID:&quot; + params[0]));
+            }
+        }
+      }
+  }
+</code></pre><h4 id="利用微信OpenAPI实现发送微信文字"><a href="#利用微信OpenAPI实现发送微信文字" class="headerlink" title="利用微信OpenAPI实现发送微信文字"></a>利用微信OpenAPI实现发送微信文字</h4><h5 id="发送文字信息，可以直接使用微信SDK发送信息到微信，参考Android-接入微信分享。"><a href="#发送文字信息，可以直接使用微信SDK发送信息到微信，参考Android-接入微信分享。" class="headerlink" title="发送文字信息，可以直接使用微信SDK发送信息到微信，参考Android-接入微信分享。"></a>发送文字信息，可以直接使用微信SDK发送信息到微信，参考<a href="http://ftd-yi.github.io/blog/android/2016/04/10/Android-Wechat-Share.html" target="_blank" rel="external">Android-接入微信分享</a>。</h5><h5 id="再利用AccesibilityService自动点击分享和返回按钮即可。"><a href="#再利用AccesibilityService自动点击分享和返回按钮即可。" class="headerlink" title="再利用AccesibilityService自动点击分享和返回按钮即可。"></a>再利用AccesibilityService自动点击分享和返回按钮即可。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">else if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) &#123;</div><div class="line">           String clazzName = event.getClassName().toString();</div><div class="line">           AccessibilityNodeInfo nodeInfo = event.getSource();</div><div class="line">           if(clazzName.equals(&quot;com.tencent.mm.ui.transmit.SelectConversationUI&quot;))</div><div class="line">           	sendToUser(nodeInfo, 好友昵称);</div><div class="line">           else if(clazzName.equals(&quot;com.tencent.mm.ui.base.aa&quot;))</div><div class="line">           	clickByText(nodeInfo, &quot;分享&quot;);</div><div class="line">           else if(clazzName.equals(&quot;android.widget.LinearLayout&quot;))&#123;</div><div class="line">           	if(needSendMsg)&#123;</div><div class="line">           		needSendMsg = false;</div><div class="line">           		back(0);</div><div class="line">           	&#125;</div><div class="line">           &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line"> 	private void sendToUser(AccessibilityNodeInfo nodeInfo, String user)&#123;</div><div class="line">   	if (null == nodeInfo) return;</div><div class="line">   	List&lt;AccessibilityNodeInfo&gt; list = nodeInfo.findAccessibilityNodeInfosByText(user);</div><div class="line">       if (null != list &amp;&amp; list.size() &gt; 0) &#123;</div><div class="line">           AccessibilityNodeInfo node = list.get(list.size() - 1);</div><div class="line">           while(!node.isClickable())&#123;</div><div class="line">           	node = node.getParent();</div><div class="line">           	if(node.isClickable())&#123;</div><div class="line">           		node.performAction(AccessibilityNodeInfo.ACTION_CLICK);</div><div class="line">           		break;</div><div class="line">           	&#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">  	&#125;</div><div class="line">   </div><div class="line">  	private void clickByText(AccessibilityNodeInfo nodeInfo, String text)&#123;</div><div class="line">   	if (null == nodeInfo) return;</div><div class="line">   	List&lt;AccessibilityNodeInfo&gt; list = nodeInfo.findAccessibilityNodeInfosByText(text);</div><div class="line">       if (null != list &amp;&amp; list.size() &gt; 0) &#123;</div><div class="line">           AccessibilityNodeInfo node = list.get(list.size() - 1);</div><div class="line">           node.performAction(AccessibilityNodeInfo.ACTION_CLICK);</div><div class="line">       &#125;</div><div class="line">  	&#125;</div></pre></td></tr></table></figure>
+<h4 id="利用微信OpenAPI实现发送微信语音"><a href="#利用微信OpenAPI实现发送微信语音" class="headerlink" title="利用微信OpenAPI实现发送微信语音"></a>利用微信OpenAPI实现发送微信语音</h4><h5 id="首先，需要通过微信的鉴权，拿到AccessToken，流程参考移动应用微信登录开发指南。"><a href="#首先，需要通过微信的鉴权，拿到AccessToken，流程参考移动应用微信登录开发指南。" class="headerlink" title="首先，需要通过微信的鉴权，拿到AccessToken，流程参考移动应用微信登录开发指南。"></a>首先，需要通过微信的鉴权，拿到AccessToken，流程参考<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419317851&amp;token=&amp;lang=zh_CN" target="_blank" rel="external">移动应用微信登录开发指南</a>。</h5><h5 id="拿到AccessToken后，开始录音，注意必须是amr格式："><a href="#拿到AccessToken后，开始录音，注意必须是amr格式：" class="headerlink" title="拿到AccessToken后，开始录音，注意必须是amr格式："></a>拿到AccessToken后，开始录音，注意必须是amr格式：</h5><pre><code>if(mediaRecorder == null){
+                myButton.setText(&quot;停止录音&quot;);
+                mediaRecorder = new MediaRecorder();   
+                mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);    
+                mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);   
+                mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);  
+                mediaRecorder.setAudioSamplingRate(8000);
+                mediaRecorder.setAudioEncodingBitRate(16);
+                File audioFile;
+                try {
+                    audioFile = File.createTempFile(&quot;record_&quot;, &quot;.amr&quot;); 
+                    filePath = audioFile.getAbsolutePath();
+                    mediaRecorder.setOutputFile(audioFile.getAbsolutePath());  
+                    mediaRecorder.prepare();  
+                    mediaRecorder.start();  
+                    Log.e(&quot;Recorder&quot;, &quot;Record Begin&quot;);
+                } catch (IOException e) {
+                    Log.e(&quot;Recorder&quot;, e.getMessage());
+                }
+            }else{
+                myButton.setText(&quot;开始录音&quot;);
+                mediaRecorder.stop();
+                Log.e(&quot;Recorder&quot;, &quot;Record End&quot;);
+            }
+ }
+</code></pre><h5 id="录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件："><a href="#录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件：" class="headerlink" title="录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件："></a>录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件：</h5><pre><code>new GetMediaAccessTokenThread().start();
+
+public class GetMediaAccessTokenThread extends Thread{
+
+final static String TAG = &quot;GetMediaAccessTokenThread&quot;;
+
+@Override
+public void run() {
+
+    StringBuffer stringBuffer;
+    do
+    {
+      try
+      {
+        HttpsURLConnection con = (HttpsURLConnection)new URL(String.format(&quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=%s&amp;secret=%s&quot;, new Object[] { APP_KEY, SECRET_KEY })).openConnection();
+        con.setDoOutput(true);
+        con.setDoInput(true);
+        con.connect();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        stringBuffer = new StringBuffer();
+        while (true)
+        {
+          String line = bufferedReader.readLine();
+          if (line == null)
+            break;
+          stringBuffer.append(line);
+        }
+        String accessToken = ((JSONObject)new JSONTokener(stringBuffer.toString()).nextValue()).getString(&quot;access_token&quot;);
+        Log.e(TAG, &quot;Media Access Token : &quot; + accessToken);
+      }
+      catch (Exception exception)
+      {
+        Log.e(TAG, &quot;Exception in GetHttps : &quot; + exception.getMessage());
+        return;
+      }
+    }while (stringBuffer.toString() == null);
+
+}
+</code></pre><p>}</p>
+<h5 id="获取MediaAccessToken后，上传录音文件，获取MediaID："><a href="#获取MediaAccessToken后，上传录音文件，获取MediaID：" class="headerlink" title="获取MediaAccessToken后，上传录音文件，获取MediaID："></a>获取MediaAccessToken后，上传录音文件，获取MediaID：</h5><pre><code>public class UploadMediaThread extends Thread{
+
+String accessToken = null;
+final static String TAG = &quot;UploadMediaThread&quot;;
+
+public UploadMediaThread(String accessToken){
+    this.accessToken = accessToken;
+}
+
+@Override
+public void run(){
+    String str = &quot;--&quot; + &quot;---part---&quot; + &quot;\r\n&quot;;
+    String url = String.format(&quot;http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=%s&amp;type=voice&quot;, new Object[] { accessToken });
+    Log.e(TAG, &quot;uploadVoice http = &quot; + url);
+    int length;
+    try
+    {
+        HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
+        con.setReadTimeout(10000);
+        con.setRequestMethod(&quot;POST&quot;);
+        con.setDoOutput(true);
+        con.setDoInput(true);
+        con.setRequestProperty(&quot;Connection&quot;, &quot;keep-alive&quot;);
+        con.setRequestProperty(&quot;Charsert&quot;, &quot;UTF-8&quot;);
+        con.setRequestProperty(&quot;Content-type&quot;, &quot;multipart/form-data;boundary=&quot; + &quot;---part---&quot;);
+        File voiceFile = new File(录音文件路径);
+        if ((voiceFile == null) || (!((File)voiceFile).exists()) || (!((File)voiceFile).isFile()))
+        {
+            Log.e(TAG, &quot;voiceFile error&quot;);
+            return;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(&quot;--&quot; + str + &quot;\r\n&quot;);
+        stringBuilder.append(&quot;Content-Disposition: form-data;name=\&quot;voice\&quot;;filename=\&quot;&quot; + voiceFile.getName() + &quot;\&quot;;filelength=\&quot;&quot; + voiceFile.length() + &quot;\&quot;\r\n&quot;);
+        stringBuilder.append(&quot;Content-Type: application/octet-stream; \r\n\r\n&quot;);
+        OutputStream outputStream = con.getOutputStream();
+        outputStream.write(stringBuilder.toString().getBytes());
+        FileInputStream inputStream = new FileInputStream(voiceFile);
+        byte bytes[] = new byte[1024];
+        while (true)
+        {
+            length = inputStream.read(bytes);
+            if (length == -1)
+                break;
+            outputStream.write(bytes, 0, length);
+        }
+
+        inputStream.close();
+        outputStream.write(&quot;\r\n&quot;.getBytes());
+        outputStream.write((&quot;--&quot; + str + &quot;--\r\n&quot;).getBytes());
+        outputStream.flush();
+        outputStream.close();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        StringBuffer stringBuffer = new StringBuffer();
+        while (true)
+        {
+            String line= bufferedReader.readLine();
+            if (line == null)
+                break;
+            stringBuffer.append(line);
+        }
+        bufferedReader.close();
+        Log.e(TAG, &quot;uploadVoice : &quot; + stringBuffer.toString());
+        JSONObject resultJSON = (JSONObject)new JSONTokener(stringBuffer.toString()).nextValue();
+        if (resultJSON.isNull(&quot;media_id&quot;) &amp;&amp; !resultJSON.isNull(&quot;errcode&quot;))
+        {
+            Log.e(TAG, &quot;uploadVoice Error: &quot; + resultJSON.toString());
+            return;
+        }
+        String mediaID = resultJSON.getString(&quot;media_id&quot;);
+        Log.e(TAG, &quot;uploadVoice MediaID: &quot; + mediaID);
+
+    }catch (Exception exception){
+        Log.e(TAG, &quot;Exception in GetHttps : &quot; + exception.getMessage());
+        return;
+    }
+}
+
+}
+</code></pre><h5 id="获取MediaID后，直接发送给用户的OpenID："><a href="#获取MediaID后，直接发送给用户的OpenID：" class="headerlink" title="获取MediaID后，直接发送给用户的OpenID："></a>获取MediaID后，直接发送给用户的OpenID：</h5><pre><code>public class SendVoiceThread extends Thread{
+
+String accessToken = null;
+String toUserID = null;
+String mediaID = null;
+final static String TAG = &quot;SendVoiceThread&quot;;
+
+public SendVoiceThread(String accessToken, String toUserID, String mediaID){
+    this.accessToken = accessToken;
+    this.toUserID = toUserID;
+    this.mediaID = mediaID;
+}
+
+@Override
+public void run() {
+     String url = String.format(&quot;https://api.weixin.qq.com/sns/authorize/message?access_token=%s&amp;openid=%s&quot;, new Object[] { accessToken, toUserID});
+     Log.e(&quot;SendVoiceThread&quot;, &quot;sendVoiceMsg https = &quot; + (String)url);
+     String toSendJSON;
+     try{
+         HttpsURLConnection con = (HttpsURLConnection)new URL((String)url).openConnection();
+         con.setReadTimeout(8000);
+         con.setRequestMethod(&quot;POST&quot;);
+         con.setDoOutput(true);
+         con.setDoInput(true);
+         toSendJSON = &quot;{\&quot;touser\&quot;:\&quot;&quot; + toUserID + &quot;\&quot;,\&quot;msgtype\&quot;:\&quot;voice\&quot;,\&quot;voice\&quot;:{\&quot;media_id\&quot;:\&quot;&quot; + mediaID + &quot;\&quot;}}&quot;;
+         Log.e(TAG, &quot;sendVoiceMsg json = &quot; + toSendJSON);
+         OutputStream outputStream = con.getOutputStream();
+         outputStream.write(toSendJSON.getBytes());
+         outputStream.flush();
+         outputStream.close();
+         BufferedReader inputStream = new BufferedReader(new InputStreamReader(con.getInputStream()));
+         StringBuffer stringBuffer = new StringBuffer();
+          while (true)
+          {
+            String line = inputStream.readLine();
+            if (line == null)
+              break;
+            stringBuffer.append(line);
+          }
+          Log.e(TAG, &quot;sendVoiceMsg return : &quot; + stringBuffer.toString());
+          JSONObject resultJSON = (JSONObject)new JSONTokener(stringBuffer.toString()).nextValue();
+          if (!resultJSON.isNull(&quot;errcode&quot;))
+          {
+              int errCode = resultJSON.getInt(&quot;errcode&quot;);
+          }else{
+              Log.e(TAG, &quot; &gt;&gt;&gt; sendVoiceMsg Msg success. &quot;);
+          }
+        }
+        catch (Exception localException)
+        {
+            Log.e(TAG, &quot;Exception in GetHttps : &quot; + localException.getMessage());
+            return;
+        }
+}
+
+}
+</code></pre><p> <strong>这里，注意accseeToken是步骤(1)获取的，不是MediaAccessToken。没有出现异常的话，录音就发送成功了~</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/15/android-TTS/" rel="next" title="Android-最简单的方式使用TTS">
+                <i class="fa fa-chevron-left"></i> Android-最简单的方式使用TTS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/ios-IB-Designable/" rel="prev" title="iOS-Interface Builder-创建实时渲染的View">
+                iOS-Interface Builder-创建实时渲染的View <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/03/android-Wechat-Message/"
+           data-title="Android-App内部实现收发微信" data-url="http://www.linyibin.cn/2016/05/03/android-Wechat-Message/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用AccesibilityService接收微信"><span class="nav-number">1.</span> <span class="nav-text">利用AccesibilityService接收微信</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先，利用AccesibilityService监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。"><span class="nav-number">1.1.</span> <span class="nav-text">首先，利用AccesibilityService监听微信的推送通知，如果是文字类型，则直接取出，如果是语音类型，则跳到微信进行播放。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接着，利用AccesibilityService监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。"><span class="nav-number">1.2.</span> <span class="nav-text">接着，利用AccesibilityService监听微信的窗口变化，获取到最后一条语音消息以及其长度，进行播放，播放完成后，自动转回App。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用Receiver获取用户的OpenID"><span class="nav-number">2.</span> <span class="nav-text">利用Receiver获取用户的OpenID</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在AndroidManifest文件中，添加权限："><span class="nav-number">2.1.</span> <span class="nav-text">在AndroidManifest文件中，添加权限：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义接收微信新消息通知的Receiver"><span class="nav-number">2.2.</span> <span class="nav-text">定义接收微信新消息通知的Receiver</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取微信新消息中用户的OpenID"><span class="nav-number">2.3.</span> <span class="nav-text">获取微信新消息中用户的OpenID</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用微信OpenAPI实现发送微信文字"><span class="nav-number">3.</span> <span class="nav-text">利用微信OpenAPI实现发送微信文字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#发送文字信息，可以直接使用微信SDK发送信息到微信，参考Android-接入微信分享。"><span class="nav-number">3.1.</span> <span class="nav-text">发送文字信息，可以直接使用微信SDK发送信息到微信，参考Android-接入微信分享。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再利用AccesibilityService自动点击分享和返回按钮即可。"><span class="nav-number">3.2.</span> <span class="nav-text">再利用AccesibilityService自动点击分享和返回按钮即可。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用微信OpenAPI实现发送微信语音"><span class="nav-number">4.</span> <span class="nav-text">利用微信OpenAPI实现发送微信语音</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先，需要通过微信的鉴权，拿到AccessToken，流程参考移动应用微信登录开发指南。"><span class="nav-number">4.1.</span> <span class="nav-text">首先，需要通过微信的鉴权，拿到AccessToken，流程参考移动应用微信登录开发指南。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#拿到AccessToken后，开始录音，注意必须是amr格式："><span class="nav-number">4.2.</span> <span class="nav-text">拿到AccessToken后，开始录音，注意必须是amr格式：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件："><span class="nav-number">4.3.</span> <span class="nav-text">录音完成后，开始利用微信的OpenAPI获取MediaAccessToken，用于后面的上传录音文件：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取MediaAccessToken后，上传录音文件，获取MediaID："><span class="nav-number">4.4.</span> <span class="nav-text">获取MediaAccessToken后，上传录音文件，获取MediaID：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取MediaID后，直接发送给用户的OpenID："><span class="nav-number">4.5.</span> <span class="nav-text">获取MediaID后，直接发送给用户的OpenID：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

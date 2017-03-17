@@ -1,0 +1,1174 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Multithread," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对iOS系统上的线程的同步方式进行了深入的讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-线程同步详解">
+<meta property="og:url" content="http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对iOS系统上的线程的同步方式进行了深入的讲解。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-线程同步详解">
+<meta name="twitter:description" content="本文对iOS系统上的线程的同步方式进行了深入的讲解。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/"/>
+
+
+
+
+
+  <title> iOS-线程同步详解 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-线程同步详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-18T00:00:00+08:00">
+                2015-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/18/ios-Thread-Sync/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/18/ios-Thread-Sync/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对iOS系统上的线程的同步方式进行了深入的讲解。</p>
+<a id="more"></a>
+<h1 id="同步工具"><a href="#同步工具" class="headerlink" title="同步工具"></a>同步工具</h1><p>线程同步工具可以帮助开发者在开发多线程应用时，尽可能避免线程间互相访问导致各类问题。</p>
+<h2 id="Atomic-Operations-原子操作"><a href="#Atomic-Operations-原子操作" class="headerlink" title="Atomic Operations(原子操作)"></a>Atomic Operations(原子操作)</h2><p>Atomic Operations是一种基于基本数据类型的同步形式，底层用汇编锁来控制变量的变化，保证数据的正确性,好处在于不会block互相竞争的线程，且相比锁耗时很少。例如，一个整形计数器，直接使用Atomic Operations，不需要通过锁来控制计数器变化。</p>
+<p>举例说明：</p>
+<pre><code>long total = 0;
+void click(){
+    for(int i = 0; i &lt; 1000; i++){
+        total++;
+    }
+}
+
+int main(int argc, const char * argv[]) {
+    clock_t start = clock();
+    vector&lt;std::thread&gt; threadGroup;
+    for(int i = 0; i &lt; 100; ++i){
+        threadGroup.push_back(std::thread (click));
+    }
+    for (auto &amp; th:threadGroup)
+        th.join();
+    clock_t finish = clock();
+    cout &lt;&lt; &quot;total:&quot; &lt;&lt; total &lt;&lt; endl;
+    cout &lt;&lt; &quot;duration:&quot; &lt;&lt; (finish - start) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><p>上述代码，在没有用到任何同步工具时，运行结果为：</p>
+<pre><code>total:99098
+duration:6398
+</code></pre><p>可见，结果是不正确的。</p>
+<p>如果使用Lock：</p>
+<pre><code>long total = 0;
+mutex m;
+
+void click(){
+    for(int i = 0; i &lt; 1000; i++){
+        m.lock();
+        total++;
+        m.unlock();
+    }
+}
+</code></pre><p>运行结果为：</p>
+<pre><code>total:100000
+duration:486308
+</code></pre><p>如果使用Atomic Operations：</p>
+<pre><code>atomic_long total(0);
+
+void click(){
+    for(int i = 0; i &lt; 1000; i++){
+        total++;
+    }
+}
+</code></pre><p>运行结果为：</p>
+<pre><code>total:100000
+duration:10141
+</code></pre><p>可见，结果是正确的，耗时相比Lock少非常多。</p>
+<h2 id="Memory-Barriers-内存屏障"><a href="#Memory-Barriers-内存屏障" class="headerlink" title="Memory Barriers(内存屏障)"></a>Memory Barriers(内存屏障)</h2><p>为了达到最佳性能，编译器通常会讲汇编级别的指令进行重新排序，从而保持处理器的指令管道尽可能的满。作为优化的一部分，编译器可能会对内存访问的指令进行重新排序(在它认为不会影响数据的正确性的前提下)，然而，这并不一定都是正确的，顺序的变化可能导致一些变量的值得到不正确的结果。</p>
+<p>Memory Barriers是一种不会造成线程block的同步工具，它用于确保内存操作的正确顺序。Memory Barriers像一道屏障，迫使处理器在其前面完成必须的加载或者存储的操作。Memory Barriers常被用于确保一个线程中可被其他线程访问的内存操作按照预期的顺序执行。具体参考<a href="http://en.wikipedia.org/wiki/Memory_barrier" target="_blank" rel="external">Memory Barriers</a>。</p>
+<p>在程序中应用Memory Barriers只需要在指定地方调用：</p>
+<pre><code>OSMemoryBarrier();
+</code></pre><p>举例说明：</p>
+<pre><code>int x = 0;
+int f = 0;
+
+void A(){
+    while(f == 0);
+    OSMemoryBarrier();
+    cout &lt;&lt; &quot;x = &quot; &lt;&lt; x &lt;&lt; endl;
+}
+
+void B(){
+    x = 42;
+    OSMemoryBarrier();
+    f = 1;
+}
+
+int main(int argc, const char * argv[]) {
+    vector&lt;std::thread&gt; threadGroup;
+    for(int i = 0; i &lt; 2; ++i){
+        threadGroup.push_back(std::thread (i % 2 ? A : B));
+    }
+    for (auto &amp; th:threadGroup)
+        th.join();
+    return 0;
+}
+</code></pre><p>上面的代码中，如果去掉OSMemoryBarrier()，可能会出现由于编译器优化，调整了指令顺序，f=1放到了x=42的前面，而导致结果为：</p>
+<pre><code>x = 0
+</code></pre><h2 id="Volatile-Variables-挥发变量"><a href="#Volatile-Variables-挥发变量" class="headerlink" title="Volatile Variables(挥发变量)"></a>Volatile Variables(挥发变量)</h2><p>Volatile Variables是另外一种针对变量的同步工具。众所周知，CPU访问寄存器的速度比访问内存速度快很多，因此，CPU有时候会将一些变量放置到寄存器中，而不是每次都从内存中读取(例如for循环中的i值)从而优化代码，但是可能会导致错误。<br>例如，一个线程在CPUA中被处理，CPUA从内存获取变量F的值，此时，并没有其他CPU用到变量F，所以CPUA将变量F存到寄存器中，方便下次使用，此时，另一个线程在CPUB中被处理，CPUB从内存中获取变量F的值，改变该值后，更新内存中的F值。但是，由于CPUA每次都只会从寄存器中取F的值，而不会再次从内存中取，所以，CPUA处理后的结果就是不正确的。</p>
+<p>对一个变量加上Volatile关键字可以迫使编译器每次都重新从内存中加载该变量，而不会从寄存器中加载。当一个变量的值可能随时会被一个外部源改变时，应该将该变量声明为Volatile。</p>
+<p>举例说明：</p>
+<pre><code>int x = 0;
+int f = 0;
+
+void A(){
+    while(f == 0);
+    cout &lt;&lt; &quot;x = &quot; &lt;&lt; x &lt;&lt; endl;
+}
+
+void B(){
+    x = 42;
+    f = 1;
+}
+
+int main(int argc, const char * argv[]) {
+    vector&lt;std::thread&gt; threadGroup;
+    for(int i = 0; i &lt; 2; ++i){
+        threadGroup.push_back(std::thread (i % 2 ? A : B));
+    }
+    for (auto &amp; th:threadGroup)
+        th.join();
+    return 0;
+}
+</code></pre><p>上面的代码在运行时(开启编译器优化)，概率出现线程A处于死循环中，即使线程B已经改变了f的值。<br>可以在变量f的定义前面加上Volatile，即可得到预期的结果。</p>
+<pre><code>x = 42
+</code></pre><h2 id="Locks-锁"><a href="#Locks-锁" class="headerlink" title="Locks(锁)"></a>Locks(锁)</h2><p>Locks是一种最常用的同步工具。Locks可以对一段代码进行保护，保证同时只有一个线程在执行该段代码。</p>
+<p>Locks的类型分为以下几种。</p>
+<table><br><tr><br>    <th>Lock</th><br>    <th>Description</th><br></tr><br><tr><br>    <td>Mutex(互斥)</td><br>    <td>如果多个线程同时竞争一个Mutex Lock,只有一个将被允许访问，其他将被block。</td><br></tr><br><tr><br>    <td>Recursive(递归)</td><br>    <td>Recursive Lock也是一种Mutex Lock。它允许一个线程在释放锁前，多次执行锁内代码，其他将被block。</td><br></tr><br><tr><br>    <td>Read-write(读写)</td><br>    <td>多用于多读少写的数据，writer线程只有所有reader都释放锁时，才能获得锁，此时，所有reader都等待锁释放。(POSIX线程才有)</td><br></tr><br><tr><br>    <td>Distributed(分布)</td><br>    <td>进程级别的互斥锁，distributed lock不会block一个进程，而只会通知进程该锁无法获取。</td><br></tr><br><tr><br>    <td>Spin(旋转)</td><br>    <td>Spin Lock将锁的条件重复的变换，知道条件符合。Spin Lock多被用于多处理器系统，当需要等待一个锁的时间尽可能短时，切换锁条件比block一个线程要更高效。iOS系统不支持该锁。</td><br></tr><br><tr><br>    <td>Double-checked(复核)</td><br>    <td>Double-checked Lock即在条件满足，获取锁时，再对条件进行一次判断，多与单例模式结合。由于Double-checked Lock是不安全的，iOS系统并不支持该锁。</td><br></tr><br></table>
+
+<p>下面详细介绍：</p>
+<h3 id="Mutex-Lock"><a href="#Mutex-Lock" class="headerlink" title="Mutex Lock"></a>Mutex Lock</h3><p>(1)POSIX Mutex Lock举例：</p>
+<pre><code>pthread_mutex_t mutex;
+void MyInitFunction()
+{
+    pthread_mutex_init(&amp;mutex, NULL);
+}
+
+void MyLockingFunction()
+{
+    pthread_mutex_lock(&amp;mutex);
+    // Do work.
+    pthread_mutex_unlock(&amp;mutex);
+}
+</code></pre><p>(2)Cocoa NSLock举例：</p>
+<pre><code>BOOL moreToDo = YES;
+NSLock *theLock = [[NSLock alloc] init];
+while (moreToDo) {
+    /* Do another increment of calculation */
+    /* until there’s no more to do. */
+    if ([theLock tryLock]) {
+        /* Update display used by all threads. */
+        [theLock unlock];
+    }
+}
+</code></pre><p>NSLock除了lock, unlock方法外，还有tryLock和lockBeforeDate:方法。tryLock方法尝试获取锁，但不会block线程，获取失败时，返回值为NO。lockBeforeDate:方法同样不会block线程，在设定的时间里会尝试获取锁，获取失败时，返回NO。</p>
+<p>(3)@synchronized指令 举例：</p>
+<pre><code>- (void)myMethod:(id)anObj
+{
+    @synchronized(anObj)
+    {
+        // Everything between the braces is protected by the @synchronized directive.
+    }
+}
+</code></pre><p>@synchronized指令是一种非常方便的Mutex Lock，但是注意，如果指令包含模块中的代码抛出异常，@synchronized指令将会立即自动释放锁，所以需要在代码中捕获异常，或者使用NSLock。</p>
+<p>(4)NSConditionLock<br>NSConditionLock也是一种Mutex Lock,它根据一个特定的整形值来作为条件获取、释放锁。NSConditionLock常用于线程间需要特定顺序进行交互的，例如生产者-消费者，生成者线程完成生成后，释放锁，消费者线程此时获得锁，开始消费。</p>
+<p>举例说明：</p>
+<pre><code>#define NO_DATA  0
+#define HAS_DATA 1
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    _condLock = [[NSConditionLock alloc] initWithCondition:0];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(producer) object:nil] start];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(consumer) object:nil] start];
+}
+
+- (void)producer
+{
+    while(true){
+        [_condLock lockWhenCondition:NO_DATA];
+        NSLog(@&quot;Produce..&quot;);
+        [_condLock unlockWithCondition:HAS_DATA];;
+    }
+}
+
+- (void)consumer
+{
+    while(true){
+        [_condLock lockWhenCondition:HAS_DATA];
+        NSLog(@&quot;Comsume..&quot;);
+        [_condLock unlockWithCondition:NO_DATA];
+    }
+}
+</code></pre><p>运行结果：</p>
+<pre><code>Produce..
+Comsume..
+Produce..
+Comsume..
+...
+</code></pre><h2 id="Distributed-Lock"><a href="#Distributed-Lock" class="headerlink" title="Distributed Lock"></a>Distributed Lock</h2><p>Distributed Lock可以用于限制在不同主机上的多个应用，对共享资源的访问限制。Distributed Lock也是一种Mutex Lock，使用文件系统的元素(文件/目录)实现。</p>
+<p>为了让NSDistributedLock可用，该锁必须是对于所有应用是可写的。这意外着将其放在一个所有运行该应用的计算机都可以访问的文件系统上。NSDistributedLock没有lock方法，而提供了tryLock方法，因为lock方法将会block当前线程。</p>
+<p>正常情况下，调用unLock方法来释放锁。在某种情况下，如果一个应用在获取到NSDistributedLock时，突然crash，该应用仍然持有该锁，其他应用将无法获取，此时需要用breakLock方法来强制获取。</p>
+<p>举例说明：</p>
+<pre><code>- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    _distLock = [[NSDistributedLock alloc] initWithPath:@&quot;/Users/YI/Desktop/test.html&quot;];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(A) object:nil] start];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(B) object:nil] start];
+}
+
+- (void)A
+{
+    while(true){
+        if([_distLock tryLock]){
+            NSLog(@&quot;A Get Lock&quot;);
+            [_distLock unlock];
+        }
+        [NSThread sleepForTimeInterval:1.0];
+    }
+}
+
+- (void)B
+{
+    while(true){
+        if([_distLock tryLock]){
+            NSLog(@&quot;B Get Lock&quot;);
+            [_distLock unlock];
+        }
+        [NSThread sleepForTimeInterval:2.0];
+    }
+}
+</code></pre><p>用浏览器打开test.html，再运行上述代码，则没有任何输出。因为此时锁被其他进程占据。<br>加上breakLock方法：</p>
+<pre><code>_distLock = [[NSDistributedLock alloc] initWithPath:@&quot;/Users/YI/Desktop/test.html&quot;];
+  [_distLock breakLock];
+</code></pre><p> 运行结果为：</p>
+<pre><code>A Get Lock
+A Get Lock
+B Get Lock
+</code></pre><h2 id="Recursive-Lock"><a href="#Recursive-Lock" class="headerlink" title="Recursive Lock"></a>Recursive Lock</h2><p>Recursive Lock是可以让同一个线程多次获取而不会导致死锁的锁，Recursive Lock记录了被获取的次数，每一次lock调用都必须有一次对应的unlock调用，否则锁将不会被释放，其他线程无法获取。</p>
+<p>Recursive Lock一般用于递归函数中，参考以下例子：</p>
+<pre><code>NSRecursiveLock *theLock = [[NSRecursiveLock alloc] init];
+ void MyRecursiveFunction(int value)
+{
+    [theLock lock];
+    if (value != 0)
+    {
+        --value;
+        MyRecursiveFunction(value);
+    }
+    [theLock unlock];    
+}
+
+MyRecursiveFunction(5);
+</code></pre><p>如果没有使用NSRecursiveLock，该线程将死锁。</p>
+<h3 id="Double-checked-Lock"><a href="#Double-checked-Lock" class="headerlink" title="Double-checked Lock"></a>Double-checked Lock</h3><pre><code>volatile T* singleton = NULL;
+T* GetInstance()
+{
+    if(NULL == p)
+    {
+        lock();
+        if(NULL == singleton) 
+            singleton = new T;
+        unlock();
+    }
+    return singleton;
+}
+</code></pre><p>如果没有第二个if,有可能线程A执行到lock()前，被block,此时线程B获得锁执行完成，线程A被唤醒，又执行了一次new语句。</p>
+<h2 id="Conditions-条件"><a href="#Conditions-条件" class="headerlink" title="Conditions(条件)"></a>Conditions(条件)</h2><p>Conditions是一种特殊的lock,用于同步操作的顺序。与Mutex Lock不同的是，一个等待Condition的线程保持block,直到另一个线程显示对该Condition调用signal。</p>
+<p>由于操作系统的原因，Conditions可能会得到一些不正确的信号，为了避免这类问题，可以在使用Conditions时，加入Predicate(断言)。Predicate是一种有效地判断是否让一个线程处理信号的方式。Conditions保持线程休眠，直到另一个线程调用signal，并设置了Predicate。</p>
+<p>Cocoa Condition:</p>
+<pre><code>- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    _cond = [NSCondition new];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(A) object:nil] start];
+    [[[NSThread alloc] initWithTarget:self  selector:@selector(B) object:nil] start];
+}
+
+
+static int timeToDoWork = 0;
+- (void)A
+{
+    [_cond lock];
+    while (timeToDoWork &lt;= 0)
+        [_cond wait];
+    timeToDoWork--;
+    NSLog(@&quot;Do work..&quot;);
+    [_cond unlock];
+}
+
+- (void)B
+{
+    [_cond lock];
+    timeToDoWork++;
+    NSLog(@&quot;Do work..&quot;);
+    [_cond signal];
+    [_cond unlock];
+}
+</code></pre><p>运行结果为：</p>
+<pre><code>Add work..
+Do work..
+</code></pre><p>POSIX Condition:</p>
+<pre><code>pthread_mutex_t mutex;
+pthread_cond_t condition;
+Boolean ready_to_go = true;
+
+void MyCondInitFunction()
+{
+    pthread_mutex_init(&amp;mutex, NULL);
+    pthread_cond_init(&amp;condition, NULL);
+}
+
+void MyWaitOnConditionFunction()
+{
+    pthread_mutex_lock(&amp;mutex);
+    while(ready_to_go == false)
+    {
+        pthread_cond_wait(&amp;condition, &amp;mutex);
+    }
+
+    std::cout &lt;&lt; &quot;Do work..&quot; &lt;&lt; std::endl;
+
+    ready_to_go = false;
+    pthread_mutex_unlock(&amp;mutex);
+}
+
+void SignalThreadUsingCondition()
+{
+    pthread_mutex_lock(&amp;mutex);
+    ready_to_go = true;
+
+    std::cout &lt;&lt; &quot;Add work..&quot; &lt;&lt; std::endl;
+    pthread_cond_signal(&amp;condition);
+    pthread_mutex_unlock(&amp;mutex);
+}
+</code></pre><p>POSIX Condition由Mutex和Condition结构体两部分组成，虽然两者是独立的，但是在使用的时候，必须一一对应，否则将引发异常。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Multithread/" rel="tag"># Multithread</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/17/ios-MultiThread/" rel="next" title="iOS-多线程详解">
+                <i class="fa fa-chevron-left"></i> iOS-多线程详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/01/ios-Concurrency/" rel="prev" title="iOS-异步编程详解">
+                iOS-异步编程详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/04/18/ios-Thread-Sync/"
+           data-title="iOS-线程同步详解" data-url="http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同步工具"><span class="nav-number">1.</span> <span class="nav-text">同步工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Atomic-Operations-原子操作"><span class="nav-number">1.1.</span> <span class="nav-text">Atomic Operations(原子操作)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Barriers-内存屏障"><span class="nav-number">1.2.</span> <span class="nav-text">Memory Barriers(内存屏障)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Volatile-Variables-挥发变量"><span class="nav-number">1.3.</span> <span class="nav-text">Volatile Variables(挥发变量)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locks-锁"><span class="nav-number">1.4.</span> <span class="nav-text">Locks(锁)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mutex-Lock"><span class="nav-number">1.4.1.</span> <span class="nav-text">Mutex Lock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distributed-Lock"><span class="nav-number">1.5.</span> <span class="nav-text">Distributed Lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recursive-Lock"><span class="nav-number">1.6.</span> <span class="nav-text">Recursive Lock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Double-checked-Lock"><span class="nav-number">1.6.1.</span> <span class="nav-text">Double-checked Lock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditions-条件"><span class="nav-number">1.7.</span> <span class="nav-text">Conditions(条件)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

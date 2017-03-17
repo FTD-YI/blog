@@ -1,0 +1,994 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Auto Layout[1]-Constraints">
+<meta property="og:url" content="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/constraint_examples_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Portrait_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-IntrinsicSize.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Auto Layout[1]-Constraints">
+<meta name="twitter:description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
+<meta name="twitter:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/"/>
+
+
+
+
+
+  <title> iOS-Auto Layout[1]-Constraints | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Auto Layout[1]-Constraints
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-02T00:00:00+08:00">
+                2015-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/02/ios-AutoLayout-Constraints/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/02/ios-AutoLayout-Constraints/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。</p>
+<a id="more"></a>
+<h2 id="Auto-Layout"><a href="#Auto-Layout" class="headerlink" title="Auto Layout"></a>Auto Layout</h2><h3 id="外部变化"><a href="#外部变化" class="headerlink" title="外部变化"></a>外部变化</h3><p>外部变化发生于SuperView的大小或者形状发生变化时，此时，必须更新View的Layout来尽可能好地利用空间。外部变化一般发生于运行时。下面是一些常见的外部变化：</p>
+<ul>
+<li>用户改变窗口的大小(OS X)</li>
+<li>用户进入或者离开iPad上的Split View(iOS)</li>
+<li>设备旋转(iOS)</li>
+<li>电话或者录音的Bar出现和消失(iOS)</li>
+<li>需要支持不同的大小Class</li>
+<li>需要支持不同的屏幕大小</li>
+</ul>
+<h3 id="内部变化"><a href="#内部变化" class="headerlink" title="内部变化"></a>内部变化</h3><p>内部变化发生于View或者Control自身大小变化时。下面是一些常见的内部变化：</p>
+<ul>
+<li>App变化时展示的内容(例如刷新)</li>
+<li>App支持国际化(例如语言变化、日期数字变化、布局方向(英国从左到右,阿拉伯从右到左))</li>
+<li>App支持动态类型(例如按钮按下时，文字变化等)</li>
+</ul>
+<h3 id="Auto-Layout对比Frame-Based-Layout"><a href="#Auto-Layout对比Frame-Based-Layout" class="headerlink" title="Auto Layout对比Frame-Based Layout"></a>Auto Layout对比Frame-Based Layout</h3><p>布局的方式有三种，分别是代码布局、使用AutoResizing Masks以及AutoLayout。</p>
+<ul>
+<li>传统的代码布局，使用Frame进行布局，当其中一个View发生变化时，需要重新计算相关的View的Frame。</li>
+<li><strong>AutoResizing Masks只支持外部变化</strong>，支持少数的变化布局，例如设备旋转。</li>
+<li>Auto Layout考虑View之间的关系，而不是考虑单个View的Frame，Auto Layout使用一系列的Constraints，计算在这些Constraints下每个View的大小和位置。</li>
+</ul>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png" alt="AutoLayout-Constraints"></p>
+<h3 id="Auto-Layout属性"><a href="#Auto-Layout属性" class="headerlink" title="Auto Layout属性"></a>Auto Layout属性</h3><p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png" alt="AutoLayout-Attributes"></p>
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th style="text-align:center">Value</th>
+<th style="text-align:center">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height, Width</td>
+<td style="text-align:center">大小</td>
+<td style="text-align:center">可以为常量或者跟其他Height和Width组合</td>
+</tr>
+<tr>
+<td>Top, Bottom, Baseline</td>
+<td style="text-align:center">沿着屏幕往下递增</td>
+<td style="text-align:center">可以跟Center Y组合</td>
+</tr>
+<tr>
+<td>Leading, Trailing</td>
+<td style="text-align:center">往Trailing方向递增</td>
+<td style="text-align:center">可以跟Center X组合</td>
+</tr>
+<tr>
+<td>Left, Right</td>
+<td style="text-align:center">往右递增</td>
+<td style="text-align:center">可以跟Center X组合</td>
+</tr>
+<tr>
+<td>Center X, Center Y</td>
+<td style="text-align:center">取决于其他属性</td>
+<td style="text-align:center">Center X可以跟Leading, Trailing, Left, Right组合, Center Y可以跟Top, Bottom, BaseLine组合</td>
+</tr>
+</tbody>
+</table>
+<p><strong>尽量避免使用Left和Right，用Leading和Trailing代替，因为Left和Right是单方向地从左往右递增，而Leading和Trailing是区分反向的，这一点在切换方向时尤其关键，上面有提到，阿拉伯的习惯是从右到左布局的。iOS中可以设置SuperView的semanticContentAttribute属性来切换语言方向。</strong></p>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h2><p>Auto Layout可以不直接通过Constraints，使用<a href="http://" target="_blank" rel="external">UIStackView</a>控件。而其他方式，需要通过Constraints。</p>
+<h3 id="Equation"><a href="#Equation" class="headerlink" title="Equation"></a>Equation</h3><h4 id="Equation介绍"><a href="#Equation介绍" class="headerlink" title="Equation介绍"></a>Equation介绍</h4><p>Views的Layout是通过一组线性的Equation来定义的，每一个Constraint代表一个方程式。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png" alt="AutoLayout-Constraints-Formula"></p>
+<p>大多数Constraint都是定义了两个Item之间的关系，但同时也能表示一个Item之间两个Attribute之间的关系，例如长是高的两倍。如果设置了Item的宽或高是常量，则此时Multiplier为0，Second Item为空，Second Attribute设置为<strong>NotAnAttribute</strong>。</p>
+<p>里面是一些Equation例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// Setting a constant height</div><div class="line">View.height = 0.0 * NotAnAttribute + 40.0</div><div class="line"> </div><div class="line">// Setting a fixed distance between two buttons</div><div class="line">Button_2.leading = 1.0 * Button_1.trailing + 8.0</div><div class="line"> </div><div class="line">// Aligning the leading edge of two buttons</div><div class="line">Button_1.leading = 1.0 * Button_2.leading + 0.0</div><div class="line"> </div><div class="line">// Give two buttons the same width</div><div class="line">Button_1.width = 1.0 * Button_2.width + 0.0</div><div class="line"> </div><div class="line">// Center a view in its superview</div><div class="line">View.centerX = 1.0 * Superview.centerX + 0.0</div><div class="line">View.centerY = 1.0 * Superview.centerY + 0.0</div><div class="line"> </div><div class="line">// Give a view a constant aspect ratio</div><div class="line">View.height = 2.0 * View.width + 0.0</div></pre></td></tr></table></figure>
+<p><strong>需要注意的是，Auto Layout并不是简单地对其进行从右往左赋值，而是解所有方程式得出最终值，例如下例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// Setting a fixed distance between two buttons</div><div class="line">Button_1.trailing = 1.0 * Button_2.leading - 8.0</div><div class="line"> </div><div class="line">// Aligning the leading edge of two buttons</div><div class="line">Button_2.leading = 1.0 * Button_1.leading + 0.0</div><div class="line"> </div><div class="line">// Give two buttons the same width</div><div class="line">Button_2.width = 1.0 * Button.width + 0.0</div><div class="line"> </div><div class="line">// Center a view in its superview</div><div class="line">Superview.centerX = 1.0 * View.centerX + 0.0</div><div class="line">Superview.centerY = 1.0 * View.centerY + 0.0</div><div class="line"> </div><div class="line">// Give a view a constant aspect ratio</div><div class="line">View.width = 0.5 * View.height + 0.0</div></pre></td></tr></table></figure>
+<h4 id="创建无歧义，可解的Equations"><a href="#创建无歧义，可解的Equations" class="headerlink" title="创建无歧义，可解的Equations"></a>创建无歧义，可解的Equations</h4><p>Auto Layout要求系列Equations必须是有且只有唯一解，要求每个View都定义好了大小和位置。例如下图：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/constraint_examples_2x.png" alt="AutoLayout-Constraints-Equations"></p>
+<p>只看水平方向:</p>
+<ul>
+<li>图1定义了View的Leading与SuperView的Leading的关系，且给出了固定的长度，可以自动算出其大小和位置;</li>
+<li>图2定义了View的Leading与Trailing与SuperView的关系，可以自动算出其大小和位置;</li>
+<li>图3定义了View的Leading与SuperView的Leading的关系，且定义了其中心与SuperView中心对齐，可以自动算出其大小和位置;</li>
+</ul>
+<p>但是，如果SuperView大小发生变化，此时，<strong>图1的长度不会自动变化</strong>，因此不符合要求，图2和图3都可以，但是图3可用性更强，特别是当需要操作多个Item时。</p>
+<p>只要保证有解且唯一性，Equations的定义可以是多样性的，例如下图：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Portrait_2x.png" alt="AutoLayout-Constraints-Equations-Vertical"></p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png" alt="AutoLayout-Constraints-Equations-Horizontal"></p>
+<p>在设备旋转是，两个View的位置保持布局不变，Equations可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Vertical Constraints</div><div class="line">Red.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</div><div class="line">Blue.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Blue.bottom + 20.0</div><div class="line"> </div><div class="line">// Horizontal Constraints</div><div class="line">Red.leading = 1.0 * Superview.leading + 20.0</div><div class="line">Blue.leading = 1.0 * Red.trailing + 8.0</div><div class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</div><div class="line">Red.width = 1.0 * Blue.width + 0.0</div></pre></td></tr></table></figure>
+<p>也可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Vertical Constraints</div><div class="line">Red.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</div><div class="line">Red.top = 1.0 * Blue.top + 0.0</div><div class="line">Red.bottom = 1.0 * Blue.bottom + 0.0</div><div class="line"> </div><div class="line">//Horizontal Constraints</div><div class="line">Red.leading = 1.0 * Superview.leading + 20.0</div><div class="line">Blue.leading = 1.0 * Red.trailing + 8.0</div><div class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</div><div class="line">Red.width = 1.0 * Blue.width + 0.0</div></pre></td></tr></table></figure>
+<p>两种写法各有优劣，第一种写法即使Red View被移除了，Blue View依然布局不变，但是需要注意Red View和Blue View的top和bottom的常量保持一致;第二种写法，无需注意Red View的top的常量，但是一旦Red View被移除，Blue View将只有一个Constraint。</p>
+<h3 id="Inequalites"><a href="#Inequalites" class="headerlink" title="Inequalites"></a>Inequalites</h3><p>除了Equations，Auto Layout也支持Inequalites，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Setting the minimum width</div><div class="line">View.width &gt;= 0.0 * NotAnAttribute + 40.0</div><div class="line"> </div><div class="line">// Setting the maximum width</div><div class="line">View.width &lt;= 0.0 * NotAnAttribute + 280.0</div></pre></td></tr></table></figure>
+<p>这种情况下，需要其他的属性来决定其最终的大小。</p>
+<h3 id="Priorities"><a href="#Priorities" class="headerlink" title="Priorities"></a>Priorities</h3><p>一般情况下，每一个Constraint都必须满足，如果没有解满足所有Constraint，则其中一条将被抛弃，Auto Layout会将不满足的Constraint打印到控制台。</p>
+<p>每一个Constraint都有一个Priority，优先级为1000的必须满足，其他的属于可选的，可能被抛弃。Auto Layout会从优先级高到低进行计算，如果一个Constraint不满足，则跳过它，继续运算。但是即使被跳过，该Constraint也可以影响结果，Auto Layout会选择结果集合中靠近它的来作为解。</p>
+<p>例如上面的不等式，第一条可以设置为1000，第二条为250，则View的长度一定大于40，且尽可能小于280。</p>
+<h3 id="Intrinsic-Content-Size"><a href="#Intrinsic-Content-Size" class="headerlink" title="Intrinsic Content Size"></a>Intrinsic Content Size</h3><p>一些Views包含着一些Intrinsic Content(内部内容)，例如Button有文字。</p>
+<table>
+<thead>
+<tr>
+<th>View</th>
+<th style="text-align:center">Intrinsic Content Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIView</td>
+<td style="text-align:center">NO</td>
+</tr>
+<tr>
+<td>Sliders</td>
+<td style="text-align:center">Width</td>
+</tr>
+<tr>
+<td>Labels,Buttons,Switches,and Text Fields</td>
+<td style="text-align:center">Width and Height</td>
+</tr>
+<tr>
+<td>Text Views and Image Views</td>
+<td style="text-align:center">Can Vary</td>
+</tr>
+</tbody>
+</table>
+<p>Intrinsic Content Size取决于内容，Label和Button的内部内容大小取决于文字的长度和字体，ImageView取决于图片大小，TextView内部内容大小取决于文字、是否可以滑动以及与其他约束。</p>
+<p>Auto Layout在水平和垂直维度上都通过一组Constraint来展示内部内容，其中，Content Hugging尝试压缩，而Compression Resistance尝试扩张。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png" alt="AutoLayout-Constraints-IntrinsicContent"></p>
+<p>这些Constraints是通过Inequalites方式定义的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// Compression Resistance</div><div class="line">View.height &gt;= 0.0 * NotAnAttribute + IntrinsicHeight</div><div class="line">View.width &gt;= 0.0 * NotAnAttribute + IntrinsicWidth</div><div class="line"> </div><div class="line">// Content Hugging</div><div class="line">View.height &lt;= 0.0 * NotAnAttribute + IntrinsicHeight</div><div class="line">View.width &lt;= 0.0 * NotAnAttribute + IntrinsicWidth</div></pre></td></tr></table></figure>
+<p>每一个Constraint都有Priority，一般为Content Hugging为250，Compression Resistance为750。因此，伸展比压缩更容易满足要求，例如，如果过度压缩，会裁剪按钮上的文字。</p>
+<p>尽可能使用View的Intrinsic Content Size，可以不必自己维护Constraints，但是需要设置CHCR(Content-Hugging &amp; Compression-Resistance)的Priority。</p>
+<p>下面是一些需要注意的点:</p>
+<ul>
+<li>当需要一组View填充一个空间时，不要设置相同的Priority，不然Auto Layout不知道该拉伸哪个，最常见的例子是，一个Label和一个TextField并排时，需要尽可能拉伸TextField的长度，又不压缩到Label的文本，这种情况下，需要设置Label的Content-Hugging的Priority较高;</li>
+<li>一些奇怪的Layout经常发生于当View有隐藏的Background时，比如Button，经常被拉伸到比Intrinsic Content Size大，可以通过增大Content-Hugging Priority来阻止不想要的拉伸;</li>
+<li>BaseLine Constraints只作用于高度，对于水平线的属性，没有影响;</li>
+<li>一些Views，像UISwitch，需要在Intrinsic Content Size范围内显示，可以修改CHCR Priority来控制其拉伸和压缩;</li>
+<li>避免给Views设置Required CHCR Priority(1000)，因为1000是必须满足的，这样可能导致冲突，如果确实需要Views保持在Intrinsic Content Size，可以设置为999.</li>
+</ul>
+<p>Intrinsic Content Size与Fitting Size是不同的，Intrinsic Content Size只存在于特定的Views中，而Fitting Size是通过Constraints计算出的最终布局结果。举例说明，StackView，并没有Intrisic Content Size，所以设置CHCR不起作用，而设置Constraints可以得到Fitting Size。</p>
+<p>Intrinsic Size修改位置：</p>
+<p><img src="/images/iOS-AutoLayout-IntrinsicSize.png" alt="AutoLayout-IntrinsicSize"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/22/ios-AdaptionWith9/" rel="next" title="iOS-XCode7 & iOS9 适配">
+                <i class="fa fa-chevron-left"></i> iOS-XCode7 & iOS9 适配
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/04/ios-AutoLayout-InterfaceBuilder/" rel="prev" title="iOS-Auto Layout[2]-Interface Builder">
+                iOS-Auto Layout[2]-Interface Builder <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/02/ios-AutoLayout-Constraints/"
+           data-title="iOS-Auto Layout[1]-Constraints" data-url="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-Layout"><span class="nav-number">1.</span> <span class="nav-text">Auto Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部变化"><span class="nav-number">1.1.</span> <span class="nav-text">外部变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部变化"><span class="nav-number">1.2.</span> <span class="nav-text">内部变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auto-Layout对比Frame-Based-Layout"><span class="nav-number">1.3.</span> <span class="nav-text">Auto Layout对比Frame-Based Layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auto-Layout属性"><span class="nav-number">1.4.</span> <span class="nav-text">Auto Layout属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constraints"><span class="nav-number">2.</span> <span class="nav-text">Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Equation"><span class="nav-number">2.1.</span> <span class="nav-text">Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Equation介绍"><span class="nav-number">2.1.1.</span> <span class="nav-text">Equation介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建无歧义，可解的Equations"><span class="nav-number">2.1.2.</span> <span class="nav-text">创建无歧义，可解的Equations</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inequalites"><span class="nav-number">2.2.</span> <span class="nav-text">Inequalites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Priorities"><span class="nav-number">2.3.</span> <span class="nav-text">Priorities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intrinsic-Content-Size"><span class="nav-number">2.4.</span> <span class="nav-text">Intrinsic Content Size</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

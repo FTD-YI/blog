@@ -1,0 +1,942 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Multithread," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对iOS系统上的多线程进行了深入的讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-多线程详解">
+<meta property="og:url" content="http://www.linyibin.cn/2015/04/17/ios-MultiThread/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对iOS系统上的多线程进行了深入的讲解。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-多线程详解">
+<meta name="twitter:description" content="本文对iOS系统上的多线程进行了深入的讲解。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/04/17/ios-MultiThread/"/>
+
+
+
+
+
+  <title> iOS-多线程详解 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/04/17/ios-MultiThread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-多线程详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-17T00:00:00+08:00">
+                2015-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/17/ios-MultiThread/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/17/ios-MultiThread/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对iOS系统上的多线程进行了深入的讲解。</p>
+<a id="more"></a>
+<h1 id="多任务的线程处理方式"><a href="#多任务的线程处理方式" class="headerlink" title="多任务的线程处理方式"></a>多任务的线程处理方式</h1><p>对于不同的task任务，处理的方式和策略可以参考以下表格。</p>
+<table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Operation objects</td><br>    <td>用队列管理一组task任务，内部使用一或者多个线程</td><br>  </tr><br>  <tr><br>    <td>GCD(Grand Central Dispatch)</td><br>    <td>用队列管理一组task任务，内部使用一个线程</td><br>  </tr><br>  <tr><br>    <td>Idle-time notifications</td><br>    <td>对于短且低优先级的task，可以通过向NSNotificationQueue发送一个包含NSPostWhenIdle选项的通知，当RunLoop处于Idle状态时，系统会处理该task</td><br>  </tr><br>  <tr><br>    <td>Asynchronous functions</td><br>    <td>一些带有异步功能的方法</td><br>  </tr><br>  <tr><br>    <td>Timer</td><br>    <td>在一个线程中利用RunLoop的TimerSources进行执行，一般在主线程中使用</td><br>  </tr><br>  <tr><br>    <td>Separate processes</td><br>    <td>用多进程来处理事务</td><br>  </tr><br></table>
+
+<h1 id="线程库"><a href="#线程库" class="headerlink" title="线程库"></a>线程库</h1><p>iOS和OS X系统提供了以下的线程库：</p>
+<table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Cocoa threads</td><br>    <td>OC编写的库，包含NSThread类</td><br>  </tr><br>  <tr><br>    <td>POSIX threads</td><br>    <td>C编写的库，包含POSIX Threads</td><br>  </tr><br>  <tr><br>    <td>Multiprocessing Services</td><br>    <td>遗留的库，尽量避免使用</td><br>  </tr><br></table>
+
+<h1 id="线程的成本"><a href="#线程的成本" class="headerlink" title="线程的成本"></a>线程的成本</h1><h2 id="空间成本"><a href="#空间成本" class="headerlink" title="空间成本"></a>空间成本</h2><p>每个线程需要占用内核和应用两边的内存空间。当线程被创建时，这两部分的内存空间即被占用。</p>
+<table><br>  <tr><br>    <th>Item</th><br>    <th>Approximate cost</th><br>    <th>Notes</th><br>  </tr><br>  <tr><br>    <td>Kernel data structures</td><br>    <td>约1KB</td><br>    <td>用于存储线程本身的结构和属性，不能被分页到硬盘</td><br>  </tr><br>  <tr><br>    <td>Stack space</td><br>    <td>1MB (iOS主线程) 8MB（OSX 主线程）512KB（创建的线程）</td><br>    <td>最小的创建线程的栈空间大小是16KB，且必须是4KB的倍数，内存空间在创建时即被分配，但是只有需要用时，真实的内存分页才会被创建）</td><br>  </tr><br>  <tr><br>    <td>Creation time</td><br>    <td>约90ms</td><br>    <td>从开始创建线程到线程入口开始执行的时间</td><br>  </tr><br></table>
+
+<h2 id="时间成本"><a href="#时间成本" class="headerlink" title="时间成本"></a>时间成本</h2><p>而线程创建的时间，取决于处理器的负载、计算机的速度以及程序的内存等，只能进行粗略的估算，参考上表。</p>
+<h2 id="产品成本"><a href="#产品成本" class="headerlink" title="产品成本"></a>产品成本</h2><p>多线程可能增加产品的不稳定性、开发的复杂性，应谨慎考虑。</p>
+<h1 id="线程创建"><a href="#线程创建" class="headerlink" title="线程创建"></a>线程创建</h1><h2 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h2><p>NSThread有两种创建方式。</p>
+<pre><code>//第一种
+[NSThread detachNewThreadSelector:@selector(myThreadMainMethod:) toTarget:self withObject:nil];
+//第二种
+NSThread* myThread = [[NSThread alloc] initWithTarget:self
+                                    selector:@selector(myThreadMainMethod:)
+                                    object:nil];
+[myThread start];  // Actually create the thread
+</code></pre><h2 id="POSIX-Threads"><a href="#POSIX-Threads" class="headerlink" title="POSIX Threads"></a>POSIX Threads</h2><pre><code>#include &lt;assert.h&gt;
+#include &lt;pthread.h&gt;
+
+void* PosixThreadMainRoutine(void* data)
+{
+    // Do some work here.
+    return NULL;
+}
+
+void LaunchThread()
+{
+    // Create the thread using POSIX routines.
+    pthread_attr_t  attr;
+    pthread_t       posixThreadID;
+    int             returnVal;
+
+    returnVal = pthread_attr_init(&amp;attr);
+    assert(!returnVal);
+    returnVal = pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);
+    assert(!returnVal);
+
+    int     threadError = pthread_create(&amp;posixThreadID, &amp;attr, &amp;PosixThreadMainRoutine, NULL);
+     returnVal = pthread_attr_destroy(&amp;attr);
+    assert(!returnVal);
+    if (threadError != 0)
+    {
+     // Report an error.
+    }
+}
+</code></pre><h2 id="通过NSObject派生线程"><a href="#通过NSObject派生线程" class="headerlink" title="通过NSObject派生线程"></a>通过NSObject派生线程</h2><p>NSObject可以直接创建一个线程，并将对应的方法作为线程的执行入口。</p>
+<pre><code>[myObj performSelectorInBackground:@selector(doSomething) withObject:nil];
+</code></pre><h1 id="线程属性配置"><a href="#线程属性配置" class="headerlink" title="线程属性配置"></a>线程属性配置</h1><h2 id="设置线程的栈空间"><a href="#设置线程的栈空间" class="headerlink" title="设置线程的栈空间"></a>设置线程的栈空间</h2><table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Cocoa</td><br>    <td>在start前用setStackSize:方法设置</td><br>  </tr><br>  <tr><br>    <td>POSIX</td><br>    <td>创建pthread_attr_t结构体和使用pthread_attr_setstacksize方法设置栈空间大小，在创建时传递给pthread_create方法</td><br>  </tr><br>  <tr><br>    <td>Multiprocessing Services</td><br>    <td>MPCreateTask参数设置</td><br>  </tr><br></table>
+
+<h2 id="设置线程属性"><a href="#设置线程属性" class="headerlink" title="设置线程属性"></a>设置线程属性</h2><pre><code>NSThread:threadDictionary
+POSIX:pthread_setspecific pthread_getspecific
+</code></pre><h2 id="设置线程独立状态"><a href="#设置线程独立状态" class="headerlink" title="设置线程独立状态"></a>设置线程独立状态</h2><p>一般情况下，线程都是detached(独立)的，当task完成时可立即被释放。必要时，也可以使用joinable线程，joinable意味着该线程只有被另一个线程join的时候，才会被释放。</p>
+<pre><code>joinable线程可以通过pthread_exit传递数据给调用pthread_join的线程。
+POSIX提供了设置线程独立状态的方法：pthread_attr_setdetachstate
+</code></pre><h2 id="设置线程的优先级"><a href="#设置线程的优先级" class="headerlink" title="设置线程的优先级"></a>设置线程的优先级</h2><p>可以通过以下函数来设置线程优先级。</p>
+<pre><code>NSThread:setThreadPriority
+POSIX:pthread_setschedparam
+</code></pre><p>注意：即使设置了线程的优先级，也不能保证该线程一定会先被执行，只是有更大的可能性。</p>
+<h1 id="编写线程入口方法"><a href="#编写线程入口方法" class="headerlink" title="编写线程入口方法"></a>编写线程入口方法</h1><h2 id="使用ARC"><a href="#使用ARC" class="headerlink" title="使用ARC"></a>使用ARC</h2><p>ARC可以自动对线程的资源进行释放。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>线程的异常如果没有通过try/catch进行捕获，将会导致程序crash。</p>
+<h2 id="建立一个RunLoop"><a href="#建立一个RunLoop" class="headerlink" title="建立一个RunLoop"></a>建立一个RunLoop</h2><p>RunLoop可以帮你处理多任务，参考<a href="http://ftd-yi.github.io/blog/objective-c/2015/12/10/iOS-RunLoop.html" target="_blank" rel="external">iOS-RunLoop详解</a>;</p>
+<h1 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h1><p>尽管每种线程库都提供了终止线程的方法，但是最好让线程自己执行到结束，自然终止，有利于线程自己管理空间释放。</p>
+<p>NSThread可以使用RunLoop来检测自身是否可以终止。</p>
+<pre><code>- (void)threadMainRoutine
+{
+       BOOL moreWorkToDo = YES;
+    BOOL exitNow = NO;
+    NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
+
+    // Add the exitNow BOOL to the thread dictionary.
+    NSMutableDictionary* threadDict = [[NSThread currentThread] threadDictionary];
+    [threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@&quot;ThreadShouldExitNow&quot;];
+
+    // Install an input source.
+    [self myInstallCustomInputSource];
+
+    while (moreWorkToDo &amp;&amp; !exitNow)
+    {
+        // Do one chunk of a larger body of work here.
+        // Change the value of the moreWorkToDo Boolean when done.
+
+        // Run the run loop but timeout immediately if the input source isn&apos;t waiting to fire.
+        [runLoop runUntilDate:[NSDate date]];
+
+        // Check to see if an input source handler changed the exitNow value.
+        exitNow = [[threadDict valueForKey:@&quot;ThreadShouldExitNow&quot;] boolValue];
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Multithread/" rel="tag"># Multithread</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/14/ios-Instruments/" rel="next" title="iOS-Instruments">
+                <i class="fa fa-chevron-left"></i> iOS-Instruments
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/18/ios-Thread-Sync/" rel="prev" title="iOS-线程同步详解">
+                iOS-线程同步详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/04/17/ios-MultiThread/"
+           data-title="iOS-多线程详解" data-url="http://www.linyibin.cn/2015/04/17/ios-MultiThread/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多任务的线程处理方式"><span class="nav-number">1.</span> <span class="nav-text">多任务的线程处理方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程库"><span class="nav-number">2.</span> <span class="nav-text">线程库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的成本"><span class="nav-number">3.</span> <span class="nav-text">线程的成本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#空间成本"><span class="nav-number">3.1.</span> <span class="nav-text">空间成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间成本"><span class="nav-number">3.2.</span> <span class="nav-text">时间成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品成本"><span class="nav-number">3.3.</span> <span class="nav-text">产品成本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程创建"><span class="nav-number">4.</span> <span class="nav-text">线程创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread"><span class="nav-number">4.1.</span> <span class="nav-text">NSThread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POSIX-Threads"><span class="nav-number">4.2.</span> <span class="nav-text">POSIX Threads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过NSObject派生线程"><span class="nav-number">4.3.</span> <span class="nav-text">通过NSObject派生线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程属性配置"><span class="nav-number">5.</span> <span class="nav-text">线程属性配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置线程的栈空间"><span class="nav-number">5.1.</span> <span class="nav-text">设置线程的栈空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置线程属性"><span class="nav-number">5.2.</span> <span class="nav-text">设置线程属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置线程独立状态"><span class="nav-number">5.3.</span> <span class="nav-text">设置线程独立状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置线程的优先级"><span class="nav-number">5.4.</span> <span class="nav-text">设置线程的优先级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写线程入口方法"><span class="nav-number">6.</span> <span class="nav-text">编写线程入口方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ARC"><span class="nav-number">6.1.</span> <span class="nav-text">使用ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">6.2.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立一个RunLoop"><span class="nav-number">6.3.</span> <span class="nav-text">建立一个RunLoop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#终止线程"><span class="nav-number">7.</span> <span class="nav-text">终止线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

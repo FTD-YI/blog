@@ -1,0 +1,973 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="当拖一个View或者Control到画布上时，Interface Builder会自动给其建立一组与画布左上角相关的Prototyping Constraints。当创建一个Constraint后，Prototyping Constraints将被自动移除。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Auto Layout[2]-Interface Builder">
+<meta property="og:url" content="http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="当拖一个View或者Control到画布上时，Interface Builder会自动给其建立一组与画布左上角相关的Prototyping Constraints。当创建一个Constraint后，Prototyping Constraints将被自动移除。">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/ControlDrag_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Popup_Menu_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Auto_Layout_Tools_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Align_Tool_Popup_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Pin_Popover_View_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Pin_Settings_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Resolve_Auto_Layout_Popup_2x.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-IBars.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-PlainLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-BlueLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-DashedLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-RedLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-OrangeLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-BlueLines.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-EqualBadges.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_In_The_Canvas_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_In_Document_Outline_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_in_Size_Inspector_2x.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Margin-Edit.png">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Setting_the_Compact_Regular_Layout_2x.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Margin-ControlDrag.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Margin-PinTool.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Margin-Edit.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-ReadableContentGuide.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Semantic.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Auto Layout[2]-Interface Builder">
+<meta name="twitter:description" content="当拖一个View或者Control到画布上时，Interface Builder会自动给其建立一组与画布左上角相关的Prototyping Constraints。当创建一个Constraint后，Prototyping Constraints将被自动移除。">
+<meta name="twitter:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/ControlDrag_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/"/>
+
+
+
+
+
+  <title> iOS-Auto Layout[2]-Interface Builder | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Auto Layout[2]-Interface Builder
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-04T00:00:00+08:00">
+                2015-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/04/ios-AutoLayout-InterfaceBuilder/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/04/ios-AutoLayout-InterfaceBuilder/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当拖一个View或者Control到画布上时，Interface Builder会自动给其建立一组与画布左上角相关的Prototyping Constraints。当创建一个Constraint后，Prototyping Constraints将被自动移除。</p>
+<a id="more"></a>
+<p>Auto Layout和Constraints的原理参考<a href="/2015/11/02/ios-AutoLayout-Constraints">Auto Layout[1]-Constraints</a>。 </p>
+<p><strong>Interface Builder提供了三种配置Auto Layout Constraints的方式，分别是Control-Dragging、Pin &amp; Align Tools和通过Interface Builder自动建立Constraints后进行编辑三种方式。</strong></p>
+<h2 id="Control-Dragging"><a href="#Control-Dragging" class="headerlink" title="Control-Dragging"></a>Control-Dragging</h2><p>按住Control键，并按住某个View并拖动到另一个View上：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/ControlDrag_2x.png" alt="Auto Layout-ControlDragging-Begin"></p>
+<p>出现一个选择项：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Popup_Menu_2x.png" alt="Auto Layout-ControlDragging-Option"></p>
+<p>如果拖动的方向偏水平，则会出现水平的Constraints选项，反之，则会出现垂直的。</p>
+<p>尽管Control-Dragging的方式很快，但是其是基于当前的Scene的Layout进行的，如果需要更精细的控制，使用下述的方法。</p>
+<h2 id="Stack-Align-Pin-and-Resolve-Tools"><a href="#Stack-Align-Pin-and-Resolve-Tools" class="headerlink" title="Stack,Align,Pin and Resolve Tools"></a>Stack,Align,Pin and Resolve Tools</h2><p>Interface Builder在右下角提供了四类工具：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Auto_Layout_Tools_2x.png" alt="Auto Layout-Tools"></p>
+<h3 id="Stack-Tool"><a href="#Stack-Tool" class="headerlink" title="Stack Tool"></a>Stack Tool</h3><p>选择一个View,并点击Stack Tool，会自动创建一个<a href="/2015/11/07/ios-AutoLayout-StackView">StackView</a>，并将其原先的View嵌入到StackView中。</p>
+<h3 id="Align-Tool"><a href="#Align-Tool" class="headerlink" title="Align Tool"></a>Align Tool</h3><p>Align Tool一般用于快速地排列一组元素，选择多个需要水平或者垂直排列的View,并点击Align Tool，会弹出一个选择项：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Align_Tool_Popup_2x.png" alt="Auto Layout-Align Tool"></p>
+<p>在Leading Edges输入100，则第二个到最后一个View都会以第一个View的Leading为基准，向右偏移100，即除了第一个View，其他View.x的位置都比第一个View.x大100。</p>
+<h3 id="Pin-Tool"><a href="#Pin-Tool" class="headerlink" title="Pin Tool"></a>Pin Tool</h3><p>Pin Tool一般用于快速地定义一个View相对于旁边View的位置，或者快速地定义大小。选择一个View,并点击Pin Tool，会弹出一个选择项：</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Pin_Popover_View_2x.png" alt="Auto Layout-Pin Tool"></p>
+<p>在Top Edges输入100，则将其位置调整到离它上面最近的View距离100的位置，点击下拉框，可以选择其他View为标准，不一定是最近的。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Pin_Settings_2x.png" alt="Auto Layout-Pin Tool-Top"></p>
+<h3 id="Resolve-Auto-Layout-Issues-Tool"><a href="#Resolve-Auto-Layout-Issues-Tool" class="headerlink" title="Resolve Auto Layout Issues Tool"></a>Resolve Auto Layout Issues Tool</h3><p>Resolve Auto Layout Issues Tool提供了一些对整体Views操作的选项，上方是对选中的Views进行操作，下方是对所有Views进行操作。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Resolve_Auto_Layout_Popup_2x.png" alt="Auto Layout-Resolve Auto Layout Issues Tool"></p>
+<h2 id="使用IB自动创建Constraints"><a href="#使用IB自动创建Constraints" class="headerlink" title="使用IB自动创建Constraints"></a>使用IB自动创建Constraints</h2><p>IB可以自动创建Constraints，首先在画布上布局好Views的大小和位置，并选择需要自动创建Constraints的Views，然后点击:</p>
+<pre><code>Resolve Auto Layout Issues tool &gt; Reset to Suggested Constraints
+</code></pre><p>IB会自动创建这些Views在当前布局中的Constraints。</p>
+<p>也可以预先在Views上添加了Constraints，然后点击:</p>
+<pre><code>Resolve Auto Layout Issues tool &gt; Add Missing Constraints
+</code></pre><p>IB会自动补齐Constraints。</p>
+<h2 id="查找和编辑Constraints"><a href="#查找和编辑Constraints" class="headerlink" title="查找和编辑Constraints"></a>查找和编辑Constraints</h2><h3 id="Constraints-in-Canvas"><a href="#Constraints-in-Canvas" class="headerlink" title="Constraints in Canvas"></a>Constraints in Canvas</h3><h4 id="I-bars"><a href="#I-bars" class="headerlink" title="I-bars"></a>I-bars</h4><p>显示两个Item之间空间的大小，或者Item的高宽度。</p>
+<p><img src="/images/iOS-AutoLayout-IBars.png" alt="AutoLayout-IBars"></p>
+<h4 id="Plain-Lines"><a href="#Plain-Lines" class="headerlink" title="Plain Lines"></a>Plain Lines</h4><p>显示View的Edges。</p>
+<p><img src="/images/iOS-AutoLayout-PlainLines.png" alt="AutoLayout-PlainLines"></p>
+<h4 id="Solid-Lines"><a href="#Solid-Lines" class="headerlink" title="Solid Lines"></a>Solid Lines</h4><p>表示Priority=1000。</p>
+<p><img src="/images/iOS-AutoLayout-BlueLines.png" alt="AutoLayout-BlueLines"></p>
+<h4 id="Dashed-Lines"><a href="#Dashed-Lines" class="headerlink" title="Dashed Lines"></a>Dashed Lines</h4><p>表示Priority&lt;1000。</p>
+<p><img src="/images/iOS-AutoLayout-DashedLines.png" alt="AutoLayout-DashedLines"></p>
+<h4 id="Red-Lines"><a href="#Red-Lines" class="headerlink" title="Red Lines"></a>Red Lines</h4><p>表示有错误，可能是Constraint存在歧义，或者无解。</p>
+<p><img src="/images/iOS-AutoLayout-RedLines.png" alt="AutoLayout-RedLines"></p>
+<h4 id="Orange-Lines"><a href="#Orange-Lines" class="headerlink" title="Orange Lines"></a>Orange Lines</h4><p>表示View当前的位置与Constraint不符，可能是刚被拖动导致。</p>
+<p><img src="/images/iOS-AutoLayout-OrangeLines.png" alt="AutoLayout-OrangeLines"></p>
+<h4 id="Blue-Lines"><a href="#Blue-Lines" class="headerlink" title="Blue Lines"></a>Blue Lines</h4><p>表示Constraint没有问题。</p>
+<p><img src="/images/iOS-AutoLayout-BlueLines.png" alt="AutoLayout-BlueLines"></p>
+<h4 id="Equal-Badges"><a href="#Equal-Badges" class="headerlink" title="Equal Badges"></a>Equal Badges</h4><p>表示长度或宽度相等。</p>
+<p><img src="/images/iOS-AutoLayout-EqualBadges.png" alt="AutoLayout-EqualBadges"></p>
+<h4 id="Greater-than-or-equal-and-less-than-or-equal-badges"><a href="#Greater-than-or-equal-and-less-than-or-equal-badges" class="headerlink" title="Greater-than-or-equal and less-than-or-equal badges"></a>Greater-than-or-equal and less-than-or-equal badges</h4><p>表示不等式。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_In_The_Canvas_2x.png" alt="AutoLayout-InequalBadges"></p>
+<h3 id="Constraints-in-Doucument-Outline"><a href="#Constraints-in-Doucument-Outline" class="headerlink" title="Constraints in Doucument Outline"></a>Constraints in Doucument Outline</h3><p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_In_Document_Outline_2x.png" alt="AutoLayout-Document Outline"></p>
+<h3 id="Constraints-in-Inspector"><a href="#Constraints-in-Inspector" class="headerlink" title="Constraints in Inspector"></a>Constraints in Inspector</h3><p>Size Inspector中可以看到选中View的Constraints。</p>
+<p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Constraints_in_Size_Inspector_2x.png" alt="AutoLayout-Inspector"></p>
+<h3 id="Examing-amp-Editing"><a href="#Examing-amp-Editing" class="headerlink" title="Examing &amp; Editing"></a>Examing &amp; Editing</h3><p>当点击一个Constraints进行编辑时，可以看到Inspector:</p>
+<p><img src="/images/iOS-AutoLayout-Margin-Edit.png" alt="AutoLayout-Margin-Edit"></p>
+<p>其中的<strong>identifier</strong>是用于Constraint在控制台或者其他Debug任务的识别名称，<strong>Placeholder</strong>表示该Constraint只在设计阶段存在，在运行时会被移除。</p>
+<h2 id="Size-Class-Based-Layouts"><a href="#Size-Class-Based-Layouts" class="headerlink" title="Size Class-Based Layouts"></a>Size Class-Based Layouts</h2><p>IB下方有一个图标，如下：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Setting_the_Compact_Regular_Layout_2x.png" alt="AutoLayout-ClassBased"></p>
+<p><strong>可以用于选择不同尺寸，用于适配不同屏幕，例如，可以直接在IB中通过选择不同的矩形，查看横屏和竖屏的布局。</strong></p>
+<p>需要注意的点：</p>
+<ul>
+<li>从Canvas或者Document Outline中删除某个项，将会直接从项目中移除，包括所有的Size Class;</li>
+<li>从其他地方删除某个项，只会从当前Size Class中移除；</li>
+<li>Command-Deleting某个项，只会从当前Size Class中移除；</li>
+<li>如果选择的是Any-Any模式，删除某个项将会直接从项目中移除。</li>
+</ul>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>iOS系统上有一些与Auto Layout交互的Features(特性)。</p>
+<h3 id="Top-amp-Bottom-Layout-Guides"><a href="#Top-amp-Bottom-Layout-Guides" class="headerlink" title="Top &amp; Bottom Layout Guides"></a>Top &amp; Bottom Layout Guides</h3><p>Top &amp; Bottom Layout Guides表示当前View Controller的可见内容区域的上下边界，不包含Bars(Status Bar、Navigation Bar、Tab Bar)。</p>
+<p>Layout Guides适配了UILayoutSupport协议，提供length属性，该属性表示ViewController的View的边界与Guide的边界之间的距离，例如，上方的就是View的Top与Bars的Bottom之间的距离。</p>
+<h3 id="Layout-Margins"><a href="#Layout-Margins" class="headerlink" title="Layout Margins"></a>Layout Margins</h3><p>Auto Layout默认给每个View定义好了Margins(内间距)，便是View与SubViews的边缘的距离，通过<strong>layoutMargins</strong>或者<strong>layoutMarginsGuide</strong>属性可以设置。</p>
+<p>Margins的默认值为8，而ViewController的Root View的Margins是由系统维护的，上下Margins为0，而左右Margins取决于Controllers呈现的方式，只能是16或者20，无法修改。</p>
+<p>当放置一个View到它的SuperView中时，一般使用Layout Margins而不是Edges，<strong>NSLayoutAttribute</strong>中定义了所有的Margins属性。</p>
+<p>IB中，当使用Control-Dragging方式时，默认使用Margins来创建Constraints，如下图:</p>
+<p><img src="/images/iOS-AutoLayout-Margin-ControlDrag.png" alt="AutoLayout-Margin-ControlDrag"></p>
+<p>当使用Pin Tool方式时，可以勾选”Constrain to margins”的选项框，如果没被勾选，则使用Edges，如下图:</p>
+<p><img src="/images/iOS-AutoLayout-Margin-PinTool.png" alt="AutoLayout-Margin-PinTool"></p>
+<p>当点击一个Constraints进行编辑时，可以看到在First Item和Second Item中可以选择“Relative to Margin”，如果不选择，则是Edges，如下图:</p>
+<p><img src="/images/iOS-AutoLayout-Margin-Edit.png" alt="AutoLayout-Margin-Edit"></p>
+<p>当在代码中创建与SuperView的Margins相关的Constraints时，使用<strong>layoutMarginsGuide</strong>属性。</p>
+<h3 id="Readable-Content-Guides"><a href="#Readable-Content-Guides" class="headerlink" title="Readable Content Guides"></a>Readable Content Guides</h3><p>View的Readable Content Guides属性表示该View中文本对象的可选最大长度，理想状态下，文本足够短以便用户可以直接阅读他，而不需要转动脑袋。</p>
+<p>Readable Content Guides一般是在View的Layout Margins中且居中，其Size随着系统的动态Size变化而变化。当用户选择更大的字体时，系统创建更宽的Guides以便阅读。</p>
+<p>在IB中，你可以设置Views的Margins表示Layout Margins还是Readable Content Guides，选择一个View,在Size Inspector中可以勾选”Follow Readable Width”进行选择。</p>
+<p><img src="/images/iOS-AutoLayout-ReadableContentGuide.png" alt="AutoLayout-Margin-ReadableContentGuide"></p>
+<h3 id="Semantic-Content"><a href="#Semantic-Content" class="headerlink" title="Semantic Content"></a>Semantic Content</h3><p>如果设置了Leading &amp; Trailing Constraints，则当转换语言方向时(有些国家习惯从右到左),此时Views会自动被翻转，然而，一些Views由于特殊的原因，是不能被翻转的，例如游戏里面控制上下左右的旋杆。</p>
+<p><strong>semanticContentAttribute</strong>属性可以设置View是否会被翻转，在IB中，View Insepctor中可以设置该属性，如下图:</p>
+<p><img src="/images/iOS-AutoLayout-Semantic.png" alt="AutoLayout-Semantic"></p>
+<p>默认是<strong>Unsecified</strong>，此时View会随着阅读方向的变化而翻转，如果设置成<strong>Spatial，Playback，Force Left-to-Right</strong>，则一直从左到有，设置成<strong>Force Right-to-Left</strong>，则一直从右到左。</p>
+<h2 id="Rules-of-Thumb"><a href="#Rules-of-Thumb" class="headerlink" title="Rules of Thumb"></a>Rules of Thumb</h2><p>下面是一些注意点和使用技巧：</p>
+<ul>
+<li>不用使用Frame,Bounds和Center属性来声明View的几何信息;</li>
+<li>尽可能使用Stack View，Stack View可以自动管理内容的Layout;</li>
+<li>在两个相邻的Views之间创建Constraints，而不要越过其中一个去连其他较远的View;</li>
+<li>避免给Views赋值固定的宽高度，可以通过设置Size最大最小区间;</li>
+<li>尝试使用Pin &amp; Align Tools，常常可以解决一些麻烦问题;</li>
+<li>小心使用自动更新Frame,如果Constraints没有定义好大小和位置，Frame经常数值为0，然后被放置到左上角;</li>
+<li>确保所有Views有着有意义的名称，以便更容易地被识别;</li>
+<li>使用Leading &amp; Trailing替代Left &amp; Right,原因参考<a href="/2015/11/02/ios-AutoLayout-Constraints">Auto Layout[1]-Constraints</a>;</li>
+<li>当在代码中初始化Views时，注意设置<strong>translatesAutoresizingMaskIntoConstraints</strong>属性为<strong>NO</strong>，否则，系统会自动根据Frame和AutoResizing Mask创建一组Constraints，很可能与你自己创建的Constraints冲突;</li>
+</ul>
+<p><strong>特别注意，如果Item与View Controller的Root View的边之间要创建Constraints时:</strong></p>
+<ul>
+<li>如果是水平方向:(1)对于大多数Controls，使用跟Layout Margins的Zero-Point Constraint;(2)对于MarginToMargin填充满RootView的Text Object，使用Readable Content Guides;(3)对于EdgeToEdge填充满RootView的其他Item，使用Leading &amp; Trailing Edges;</li>
+<li>如果是垂直方向:(1)如果View延伸到Bars下面，使用Top &amp; Bottom Margins，特别是ScrollView，允许在Bars下滑动内容;(2)如果没有延伸到Bars下面，使用Top &amp; Bottom Layout Guides。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/02/ios-AutoLayout-Constraints/" rel="next" title="iOS-Auto Layout[1]-Constraints">
+                <i class="fa fa-chevron-left"></i> iOS-Auto Layout[1]-Constraints
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/07/ios-AutoLayout-StackView/" rel="prev" title="iOS-Auto Layout[3]-Stack Views">
+                iOS-Auto Layout[3]-Stack Views <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/04/ios-AutoLayout-InterfaceBuilder/"
+           data-title="iOS-Auto Layout[2]-Interface Builder" data-url="http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Dragging"><span class="nav-number">1.</span> <span class="nav-text">Control-Dragging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-Align-Pin-and-Resolve-Tools"><span class="nav-number">2.</span> <span class="nav-text">Stack,Align,Pin and Resolve Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack-Tool"><span class="nav-number">2.1.</span> <span class="nav-text">Stack Tool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Align-Tool"><span class="nav-number">2.2.</span> <span class="nav-text">Align Tool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pin-Tool"><span class="nav-number">2.3.</span> <span class="nav-text">Pin Tool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolve-Auto-Layout-Issues-Tool"><span class="nav-number">2.4.</span> <span class="nav-text">Resolve Auto Layout Issues Tool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用IB自动创建Constraints"><span class="nav-number">3.</span> <span class="nav-text">使用IB自动创建Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找和编辑Constraints"><span class="nav-number">4.</span> <span class="nav-text">查找和编辑Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraints-in-Canvas"><span class="nav-number">4.1.</span> <span class="nav-text">Constraints in Canvas</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#I-bars"><span class="nav-number">4.1.1.</span> <span class="nav-text">I-bars</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Plain-Lines"><span class="nav-number">4.1.2.</span> <span class="nav-text">Plain Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solid-Lines"><span class="nav-number">4.1.3.</span> <span class="nav-text">Solid Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dashed-Lines"><span class="nav-number">4.1.4.</span> <span class="nav-text">Dashed Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Red-Lines"><span class="nav-number">4.1.5.</span> <span class="nav-text">Red Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Orange-Lines"><span class="nav-number">4.1.6.</span> <span class="nav-text">Orange Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blue-Lines"><span class="nav-number">4.1.7.</span> <span class="nav-text">Blue Lines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Equal-Badges"><span class="nav-number">4.1.8.</span> <span class="nav-text">Equal Badges</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Greater-than-or-equal-and-less-than-or-equal-badges"><span class="nav-number">4.1.9.</span> <span class="nav-text">Greater-than-or-equal and less-than-or-equal badges</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraints-in-Doucument-Outline"><span class="nav-number">4.2.</span> <span class="nav-text">Constraints in Doucument Outline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraints-in-Inspector"><span class="nav-number">4.3.</span> <span class="nav-text">Constraints in Inspector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examing-amp-Editing"><span class="nav-number">4.4.</span> <span class="nav-text">Examing & Editing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Size-Class-Based-Layouts"><span class="nav-number">5.</span> <span class="nav-text">Size Class-Based Layouts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">6.</span> <span class="nav-text">Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-amp-Bottom-Layout-Guides"><span class="nav-number">6.1.</span> <span class="nav-text">Top & Bottom Layout Guides</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout-Margins"><span class="nav-number">6.2.</span> <span class="nav-text">Layout Margins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Readable-Content-Guides"><span class="nav-number">6.3.</span> <span class="nav-text">Readable Content Guides</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-Content"><span class="nav-number">6.4.</span> <span class="nav-text">Semantic Content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rules-of-Thumb"><span class="nav-number">7.</span> <span class="nav-text">Rules of Thumb</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

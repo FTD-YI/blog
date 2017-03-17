@@ -1,0 +1,1028 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Technology,Network,Computer," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-Computer Networking[3]-Transport Layer">
+<meta property="og:url" content="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TransportLayer.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Multiplexing&Demultiplexing.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Segment.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Inversion.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TCP.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-PopularApplications-UDP.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-UDP-Segment.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Checksum.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-UDP-SegementStructure.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ReliableDataTransfer.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT1.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.1-Sender.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.1-Receiver.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.2-Sender.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.2-Receiver.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT2.2-Sender.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT3.0-Receiver.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Pipelined.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Pipelined-Compare.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-GBN-Window.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-GBN-Render&Receiver.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-GBN-Operation.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-SR-Window.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-SR-NewOrRetransmit.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RDT-Summary.png">
+<meta property="og:updated_time" content="2017-03-17T10:50:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-Computer Networking[3]-Transport Layer">
+<meta name="twitter:description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TransportLayer.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/"/>
+
+
+
+
+
+  <title> Technology-Computer Networking[3]-Transport Layer | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-Computer Networking[3]-Transport Layer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T00:00:00+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/17/technology-ComputerNetworking-TransportLayer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/technology-ComputerNetworking-TransportLayer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts. </p>
+<a id="more"></a> 
+<p>Residing between the application and network layers, the transport layer is a central piece of the layered network architecture.</p>
+<h2 id="Introduction-and-Transport-Layer-Services"><a href="#Introduction-and-Transport-Layer-Services" class="headerlink" title="Introduction and Transport-Layer Services"></a>Introduction and Transport-Layer Services</h2><blockquote>
+<p>A transport-layer protocol provides for logical communication between appli-cation processes running on different hosts. By logical communication, we mean that from an application’s perspective, it is as if the hosts running the processes were directly connected; in reality, the hosts may be on opposite sides of the planet, connected via numerous routers and a wide range of link types.</p>
+</blockquote>
+<p>The transport layer breaking the application messages into smaller chunks and adding a transport-layer header to each chunk to create the transport-layer segment.</p>
+<h3 id="Relationship-Between-Transport-and-Network-Layers"><a href="#Relationship-Between-Transport-and-Network-Layers" class="headerlink" title="Relationship Between Transport and Network Layers"></a>Relationship Between Transport and Network Layers</h3><p>Whereas a <strong>transport-layer protocol</strong> provides logical communication <strong>between processes</strong> running on different hosts, a <strong>network-layer protocol</strong> provides logical communication <strong>between hosts</strong>. </p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-TransportLayer.png" alt="TransportLayer"></p>
+<h3 id="Overview-of-the-Transport-Layer-in-the-Internet"><a href="#Overview-of-the-Transport-Layer-in-the-Internet" class="headerlink" title="Overview of the Transport Layer in the Internet"></a>Overview of the Transport Layer in the Internet</h3><p>Two distinct transport-layer protocols available to the application layer. One of these protocols is UDP (User Datagram Protocol), which provides an unreliable, connectionless service to the invoking application. The second of these protocols is TCP (Transmission Con- trol Protocol), which provides a reliable, connection-oriented service to the invoking application. </p>
+<blockquote>
+<p>The IP service model is a best-effort delivery service. It makes no guarantees. IP is said to be an unreliable service.</p>
+</blockquote>
+<p>Extending host-to-host delivery to process-to-process delivery is called <strong>transport-layer multiplexing</strong> and <strong>demultiplexing</strong>. UDP and TCP also provide integrity checking by including <strong>error-detection</strong> fields in their segments’headers. </p>
+<p>These two minimal transport-layer services process-to-process data delivery and error checking are the only two services that UDP provides.</p>
+<blockquote>
+<p>UDP:process-to-process data delivery, error checking</p>
+<p>TCP:process-to-process data delivery, error checking, reliable data transfer, congestion control</p>
+</blockquote>
+<h2 id="Multiplexing-and-Demultiplexing"><a href="#Multiplexing-and-Demultiplexing" class="headerlink" title="Multiplexing and Demultiplexing"></a>Multiplexing and Demultiplexing</h2><p>Transport-layer Multiplexing and Demultiplexing:extending the host-to-host delivery service provided by the network layer to a process-to-process delivery service for applications running on the hosts.</p>
+<p>The transport layer in the receiving host does not actually deliver data directly to a process, but instead to an intermediary socket.</p>
+<blockquote>
+<p>Demultiplexing:This job of delivering the data in a transport-layer segment to the correct socket.</p>
+<p>Multiplexing:The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information (that will later be used in demultiplexing) to create segments, and passing the segments to the network layer.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Multiplexing&amp;Demultiplexing.png" alt="Multiplexing&amp;Demultiplexing"></p>
+<p>Source port number field &amp; Destination port number field:<strong>Each port number is a 16-bit number, ranging from 0 to 65535. The port numbers ranging from 0 to 1023 are called well-known port numbers and are restricted, which means that they are reserved for use by well-known application protocols.</strong></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Segment.png" alt="Segment"></p>
+<h3 id="Connectionless-Multiplexing-and-Demultiplexing"><a href="#Connectionless-Multiplexing-and-Demultiplexing" class="headerlink" title="Connectionless Multiplexing and Demultiplexing"></a>Connectionless Multiplexing and Demultiplexing</h3><p>UDP:same destination IP address &amp; destination port number -&gt; the same destination socket.</p>
+<h3 id="Connection-Oriented-Multiplexing-and-Demultiplexing"><a href="#Connection-Oriented-Multiplexing-and-Demultiplexing" class="headerlink" title="Connection-Oriented Multiplexing and Demultiplexing"></a>Connection-Oriented Multiplexing and Demultiplexing</h3><p>A TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port number).</p>
+<p>TCP:same destination IP address &amp; destination port number -&gt; different destination socket.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Inversion.png" alt="Inversion"></p>
+<p>The server host may support many simultaneous TCPconnection sockets, with each socket attached to a process, and with each socket identified by its own four-tuple. <strong>When a TCP segment arrives at the host, all four fields (source IPaddress,source port, destination IPaddress, destination port) are used to direct (demultiplex)the segment to the appropriate socket.</strong></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-TCP.png" alt="TCP"></p>
+<h3 id="Web-Servers-and-TCP"><a href="#Web-Servers-and-TCP" class="headerlink" title="Web Servers and TCP"></a>Web Servers and TCP</h3><p>Today’s high-performing Web servers often use <strong>only one process</strong>, and <strong>create a new thread</strong> with a new connection socket for each new client connection.</p>
+<h2 id="Connectionless-Transport-UDP"><a href="#Connectionless-Transport-UDP" class="headerlink" title="Connectionless Transport: UDP"></a>Connectionless Transport: UDP</h2><blockquote>
+<p>UDP:does just about as little as a transport protocol can do. Aside from the multiplexing/demultiplexing function and some light error checking, it adds nothing to IP.UDP is said to be <strong>connectionless</strong>.</p>
+</blockquote>
+<p><strong>DNS</strong>:an example of an application-layer protocol that typically uses UDP.If it doesn’t receive a reply, either it tries sending the query to another name server, or it informs the invoking application that it can’t get a reply.</p>
+<p>Many applications are better suited for UDP for the following reasons:</p>
+<ul>
+<li>Finer application-level control over what data is sent, and when:real-time applications;</li>
+<li>No connection establishment:DNS would be much slower if it ran over TCP;</li>
+<li>No connection state;</li>
+<li>Small packet header overhead.</li>
+</ul>
+<p>When packet loss rates are low, and with some organizations blocking UDP traffic for security reasons , TCP becomes an increasingly attractive protocol for streaming media transport.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-PopularApplications-UDP.png" alt="PopularApplications-UDP"></p>
+<p>The lack of congestion control in UDP can result in high loss rates between a UDP sender and receiver, and the crowding out of TCP sessions—a potentially serious problem.</p>
+<h3 id="UDP-Segment-Structure"><a href="#UDP-Segment-Structure" class="headerlink" title="UDP Segment Structure"></a>UDP Segment Structure</h3><p>The UDP header has only four fields, each consisting of two bytes:</p>
+<ul>
+<li>Source port;</li>
+<li>Dest port;</li>
+<li>The length field:specifies the number of bytes in the UDP segment (header plus data);</li>
+<li>The checksum field:used by the receiving host to check whether errors have been introduced into the segment.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-UDP-Segment.png" alt="PopularApplications-UDP"></p>
+<h3 id="UDP-Checksum"><a href="#UDP-Checksum" class="headerlink" title="UDP Checksum"></a>UDP Checksum</h3><blockquote>
+<p>Checksum:used to determine whether bits within the UDP segment have been altered (for example, bynoise in the links or while stored in a router) as it moved from source to destination.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Checksum.png" alt="Checksum"></p>
+<p><strong>The checksum calculation:add all the datas(Pseudo UDP header, UDP header, data) bits by 16-bit, and filp the result(0-&gt;1, 1-&gt;0).</strong></p>
+<p>The Pseudo UDP header also consists of 5 fields:</p>
+<ul>
+<li>source address: 32 bits/4 bytes, taken from IP header</li>
+<li>destination address: 32 bits/4 bytes, taken from IP header</li>
+<li>reserved: 8 bits/1 byte, set to all 0s.</li>
+<li>protocol: 8 bits/1 byte, taken from IP header</li>
+<li>length: Because UDP header has a length field that indicates the length of the entire datagram, including UDP header and data, the value from UDP header is used. Note that this is different from TCP pseudo header, which is computed on the fly. But they both indicates the header+payload length.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-UDP-SegementStructure.jpg" alt="SegementStructure"></p>
+<p>why UDP provides a checksum in the first place(end-end principle), as many link- layer protocols (including the popular Ethernet protocol) also provide error checking:</p>
+<ul>
+<li>no guarantee that all the links between source and destinationprovide error checking;</li>
+<li>it’s possible that bit errors could be introduced when a segment is stored in a router’s memory.</li>
+</ul>
+<p><strong>But UDP does not do anything to recover from an error.</strong></p>
+<h2 id="Principles-of-Reliable-Data-Transfer"><a href="#Principles-of-Reliable-Data-Transfer" class="headerlink" title="Principles of Reliable Data Transfer"></a>Principles of Reliable Data Transfer</h2><blockquote>
+<p>A Reliable Data Transfer Protocol:With a reliable channel, no transferred data bits are corrupted (flipped from 0 to 1, or vice versa) or lost, and all are delivered in the order in which they were sent.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-ReliableDataTransfer.png" alt="ReliableDataTransfer"></p>
+<h3 id="Building-a-Reliable-Data-Transfer-Protocol"><a href="#Building-a-Reliable-Data-Transfer-Protocol" class="headerlink" title="Building a Reliable Data Transfer Protocol"></a>Building a Reliable Data Transfer Protocol</h3><h4 id="Reliable-Data-Transfer-over-a-Perfectly-Reliable-Channel-rdt1-0"><a href="#Reliable-Data-Transfer-over-a-Perfectly-Reliable-Channel-rdt1-0" class="headerlink" title="Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0"></a>Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0</h4><p><img src="/images/Technology-ComputerNetworking-Internet-RDT1.png" alt="RDT1.0"></p>
+<blockquote>
+<p>^:means no action</p>
+</blockquote>
+<p>with a perfectly reliablechannel there is no need for the receiver side to provide any feedback to the sendersince nothing can go wrong. No need forthe receiver to ask the sender to slow down.</p>
+<h4 id="Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-0"><a href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-0" class="headerlink" title="Reliable Data Transfer over a Channel with Bit Errors: rdt2.0"></a>Reliable Data Transfer over a Channel with Bit Errors: rdt2.0</h4><blockquote>
+<p>ACK:positive acknowledgments(“OK”)</p>
+<p>NDK:negative acknowledgments (“Please repeat that.”)</p>
+</blockquote>
+<p>In a computer network setting, reliable data transfer protocols based on such retransmission are known as <strong>ARQ (Automatic Repeat reQuest)</strong> protocols.</p>
+<p>Three additional protocol capabilities to handle the presence of bit errors:</p>
+<ul>
+<li><strong>Error detection</strong>:A mechanism is needed to allow the receiver to detect when bit errors have occurred. These techniques require that extra bits be sent from the sender to the receiver; these bits will be gathered into the packet <strong>checksum</strong> field of the rdt2.0 data packet;</li>
+<li><strong>Receiver feedback</strong>:The ACK and NAK acknowledgment replies in the message-dictation scenario are examples of such feedback. Our rdt2.0 protocol will similarly send ACK and NAK packets back from the receiver to the sender;</li>
+<li><strong>Retransmission</strong>:A packet that is received in error at the receiver will be retransmitted by the sender.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.png" alt="RDT2.0"></p>
+<blockquote>
+<p>stop-and-wait protocols</p>
+</blockquote>
+<h4 id="Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-1"><a href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-1" class="headerlink" title="Reliable Data Transfer over a Channel with Bit Errors: rdt2.1"></a>Reliable Data Transfer over a Channel with Bit Errors: rdt2.1</h4><p>But the <strong>ACK or NAK packet could be corrupted</strong> and how the protocol should recover from errors in ACK or NAK packets?</p>
+<p>A simple solution is to add a new field and putting a <strong>sequence number</strong> into this field. The receiver then need only check this sequence number to determine whether or not the received packet is a retransmission. For this simple case of a stop-and-wait protocol, a 1-bit sequence number will suffice, since it will allow the receiver to know whether the sender is resending the previously transmitted packet or a new packet.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.1-Sender.png" alt="RDT2.1-Sender"></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.1-Receiver.png" alt="RDT2.1-Receiver"></p>
+<h4 id="NAK-free-Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-2"><a href="#NAK-free-Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-2" class="headerlink" title="NAK-free Reliable Data Transfer over a Channel with Bit Errors: rdt2.2"></a>NAK-free Reliable Data Transfer over a Channel with Bit Errors: rdt2.2</h4><p>We can send an ACK for the last correctly received packet. A sender that receives two ACKs for the same packet (that is, receives duplicate ACKs) knows that the receiver did not correctly receive the packet following the packet that is being ACKed twice.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.2-Sender.png" alt="RDT2.2-Sender"></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.2-Receiver.png" alt="RDT2.2-Receiver"></p>
+<h4 id="Reliable-Data-Transfer-over-a-Lossy-Channel-with-Bit-Errors-rdt3-0"><a href="#Reliable-Data-Transfer-over-a-Lossy-Channel-with-Bit-Errors-rdt3-0" class="headerlink" title="Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0"></a>Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0</h4><p>Timeout to retransmit:Implementing a time-based retransmission mechanism requires a <strong>countdown timer</strong> that can interrupt the sender after a given amount of time has expired.</p>
+<p>Because packet sequence numbers alternate between 0 and 1, protocol rdt3.0 is sometimes known as the <strong>alternating bit</strong> protocol.</p>
+<p>At the heart of rdt3.0’s <strong>performance problem</strong> is the fact that it is a stop-and-wait protocol.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT2.2-Sender.png" alt="RDT3.0-Sender"></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RDT3.0-Receiver.png" alt="RDT3.0-Receiver"></p>
+<h3 id="Pipelined-Reliable-Data-Transfer-Protocols"><a href="#Pipelined-Reliable-Data-Transfer-Protocols" class="headerlink" title="Pipelined Reliable Data Transfer Protocols"></a>Pipelined Reliable Data Transfer Protocols</h3><p><img src="/images/Technology-ComputerNetworking-Internet-Pipelined.png" alt="Pipelined"></p>
+<p>Pipelining has the following consequences for reliable data transfer protocols:</p>
+<ul>
+<li>The range of sequence numbers must be increased, since each in transit packet must have a unique sequence number;</li>
+<li>The sender and receiver sides of the protocols may have to buffer more than one packet.</li>
+<li>The range of sequence numbers needed and the buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets.</li>
+</ul>
+<p>Two basic approaches toward pipelined error recovery can be identified: Go-Back-N and selective repeat.</p>
+<h4 id="Go-Back-N-GBN"><a href="#Go-Back-N-GBN" class="headerlink" title="Go-Back-N(GBN)"></a>Go-Back-N(GBN)</h4><blockquote>
+<p>GBN:the sender is allowed to transmit multiple packets without waiting for an ACK, but is constrained to have no more than some maximum allowable number, N, of unacknowledged packets in the pipeline.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Pipelined-Compare.png" alt="Pipelined-Compare"></p>
+<p>Sliding-Window Protocol:</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-GBN-Window.png" alt="GBN-Window"></p>
+<p>If k is the number of bits in the packet sequence number field, the range of sequence numbers is thus [0, $2^k$ – 1]. With a finite range of sequence numbers, all arithmetic involving sequence numbers must then be done using modulo $2^k$ arithmetic.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-GBN-Render&amp;Receiver.png" alt="GBN-Render&amp;Receiver"></p>
+<p>The GBN sender must respond to three types of events:</p>
+<ul>
+<li><strong>Invocation from above</strong>:When rdt_send() is called, the sender first checks to see if the window is not full, a packet is created and sent, and variables are appropriately updated;</li>
+<li><strong>Receipt of an ACK</strong>:An ACK for a packet with sequence number n will be taken to be a cumulative ACK, indicating that all packets with a sequence number up to and including n have been correctly received at the receiver;</li>
+<li><strong>A timeout event</strong>:The sender resends all packets that have been previously sent but that have not yet been acknowledged.If an ACK is received but there are still additional transmitted but not yet acknowledged packets, the timer is restarted. If there are no outstanding, unacknowledged packets, the timer is stopped.</li>
+</ul>
+<p>In bad cases, the receiver discards the packet and resends an ACK for the most recently received in order packet.The advantage of this approach is the simplicity of receiver buffering—<strong>the receiver need not buffer any out-of-order packets</strong>.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-GBN-Operation.png" alt="GBN-Operation"></p>
+<h4 id="Selective-Repeat-SR"><a href="#Selective-Repeat-SR" class="headerlink" title="Selective Repeat(SR)"></a>Selective Repeat(SR)</h4><blockquote>
+<p>SR:avoid unnecessary retransmissions by having the sender retransmit only those packets that it suspects were received in error at the receiver.</p>
+</blockquote>
+<p>The SR receiver will ACK a correctly received packet whether or not it is in order. <strong>Out-of-order packets are buffered</strong> until any missing packets are received.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-SR-Window.png" alt="SR-Window"></p>
+<p>The sender make <strong>each packet have its own logical timer</strong>.the receiver <strong>reACK already received packets with certain sequence numbers</strong> below the current window base.If there is no ACK for packet send_base propagating from the receiver to the sender, the sender will eventually retransmit packet send_base.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-SR-NewOrRetransmit.png" alt="SR-NewOrRetransmit"></p>
+<p>Because sequence numbers may be reused, some care must be taken to guard against such duplicate packets.This is done by assuming that a packet cannot “live” in the network for longer than some fixed maximum amount of time. A <strong>maximum packet lifetime</strong> of approximately three minutes is assumed in the TCP extensions for high-speed networks.</p>
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p><img src="/images/Technology-ComputerNetworking-Internet-RDT-Summary.png" alt="RDT-Summary"></p>
+<h2 id="Connection-Oriented-Transport-TCP"><a href="#Connection-Oriented-Transport-TCP" class="headerlink" title="Connection-Oriented Transport: TCP"></a>Connection-Oriented Transport: TCP</h2><h3 id="The-TCP-Connection"><a href="#The-TCP-Connection" class="headerlink" title="The TCP Connection"></a>The TCP Connection</h3><blockquote>
+<p>connection-oriented</p>
+</blockquote>
+<p>Note that the MSS is the maximum amount of application-layer data in the segment, not the maximum size of the TCP segment including headers.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/Computer/" rel="tag"># Computer</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/14/technology-ComputerNetworking-ApplicationLayer/" rel="next" title="Technology-Computer Networking[2]-Application Layer">
+                <i class="fa fa-chevron-left"></i> Technology-Computer Networking[2]-Application Layer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/27/humanity-superforecasting/" rel="prev" title="Humanity-《超预测》">
+                Humanity-《超预测》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/17/technology-ComputerNetworking-TransportLayer/"
+           data-title="Technology-Computer Networking[3]-Transport Layer" data-url="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-and-Transport-Layer-Services"><span class="nav-number">1.</span> <span class="nav-text">Introduction and Transport-Layer Services</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Relationship-Between-Transport-and-Network-Layers"><span class="nav-number">1.1.</span> <span class="nav-text">Relationship Between Transport and Network Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-of-the-Transport-Layer-in-the-Internet"><span class="nav-number">1.2.</span> <span class="nav-text">Overview of the Transport Layer in the Internet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiplexing-and-Demultiplexing"><span class="nav-number">2.</span> <span class="nav-text">Multiplexing and Demultiplexing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connectionless-Multiplexing-and-Demultiplexing"><span class="nav-number">2.1.</span> <span class="nav-text">Connectionless Multiplexing and Demultiplexing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection-Oriented-Multiplexing-and-Demultiplexing"><span class="nav-number">2.2.</span> <span class="nav-text">Connection-Oriented Multiplexing and Demultiplexing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Servers-and-TCP"><span class="nav-number">2.3.</span> <span class="nav-text">Web Servers and TCP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connectionless-Transport-UDP"><span class="nav-number">3.</span> <span class="nav-text">Connectionless Transport: UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP-Segment-Structure"><span class="nav-number">3.1.</span> <span class="nav-text">UDP Segment Structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP-Checksum"><span class="nav-number">3.2.</span> <span class="nav-text">UDP Checksum</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Principles-of-Reliable-Data-Transfer"><span class="nav-number">4.</span> <span class="nav-text">Principles of Reliable Data Transfer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-a-Reliable-Data-Transfer-Protocol"><span class="nav-number">4.1.</span> <span class="nav-text">Building a Reliable Data Transfer Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reliable-Data-Transfer-over-a-Perfectly-Reliable-Channel-rdt1-0"><span class="nav-number">4.1.1.</span> <span class="nav-text">Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-0"><span class="nav-number">4.1.2.</span> <span class="nav-text">Reliable Data Transfer over a Channel with Bit Errors: rdt2.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-1"><span class="nav-number">4.1.3.</span> <span class="nav-text">Reliable Data Transfer over a Channel with Bit Errors: rdt2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NAK-free-Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-2"><span class="nav-number">4.1.4.</span> <span class="nav-text">NAK-free Reliable Data Transfer over a Channel with Bit Errors: rdt2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reliable-Data-Transfer-over-a-Lossy-Channel-with-Bit-Errors-rdt3-0"><span class="nav-number">4.1.5.</span> <span class="nav-text">Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipelined-Reliable-Data-Transfer-Protocols"><span class="nav-number">4.2.</span> <span class="nav-text">Pipelined Reliable Data Transfer Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Go-Back-N-GBN"><span class="nav-number">4.2.1.</span> <span class="nav-text">Go-Back-N(GBN)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selective-Repeat-SR"><span class="nav-number">4.2.2.</span> <span class="nav-text">Selective Repeat(SR)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Summary"><span class="nav-number">4.2.3.</span> <span class="nav-text">Summary</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-Oriented-Transport-TCP"><span class="nav-number">5.</span> <span class="nav-text">Connection-Oriented Transport: TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-TCP-Connection"><span class="nav-number">5.1.</span> <span class="nav-text">The TCP Connection</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

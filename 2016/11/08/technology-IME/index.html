@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Technology," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文讲解了如何从零开始，一步步做一个拼音输入法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-从零开始做一款拼音输入法">
+<meta property="og:url" content="http://www.linyibin.cn/2016/11/08/technology-IME/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文讲解了如何从零开始，一步步做一个拼音输入法。">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Lib-Word.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Lib-Word-NotUsed.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Lib-Citys.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Sort-kobe.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Sort-kebi.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Sort-Count.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Address-Shenzhen.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Address-Nanshan.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Address-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Address-Click.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-UI.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-从零开始做一款拼音输入法">
+<meta name="twitter:description" content="本文讲解了如何从零开始，一步步做一个拼音输入法。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/Technology-IME-Lib-Word.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/11/08/technology-IME/"/>
+
+
+
+
+
+  <title> Technology-从零开始做一款拼音输入法 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/11/08/technology-IME/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-从零开始做一款拼音输入法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-08T00:00:00+08:00">
+                2016-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/08/technology-IME/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/technology-IME/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文讲解了如何从零开始，一步步做一个拼音输入法。</p>
+<a id="more"></a>
+<p>思路是这样的，首先，需要一个词库，这个词库包含单字的和词组的，其次，需要进行一场串字母的切割算法(bdu切分为b、du)，最后需要一个检索和排序算法，来应对类似首字母检索(sz对应深圳)和部分字母检索(shenz对应深圳)等各种情况。下面介绍我是怎么从零开始做一款拼音输入法的。</p>
+<h3 id="词库"><a href="#词库" class="headerlink" title="词库"></a>词库</h3><h4 id="单字"><a href="#单字" class="headerlink" title="单字"></a>单字</h4><p>单字的词库，由于有汉字词典，所以比较简单，这里用的是网上一个开源的词库文件：</p>
+<p><img src="/images/Technology-IME-Lib-Word.png" alt="Technology-IME-Lib-Word"></p>
+<p>数目为3万多，但是里面包含了许多基本不会用到的偏僻字：</p>
+<p><img src="/images/Technology-IME-Lib-Word-NotUsed.png" alt="Technology-IME-Lib-Word-NotUsed"></p>
+<p>具体的排除偏僻字的方法后面会介绍。</p>
+<h4 id="词组"><a href="#词组" class="headerlink" title="词组"></a>词组</h4><p>词组的词库，由于做输入法的出发点，是为了搜索地图里面的POI点服务的，所以优先考虑地理词，一开始想到的是用<a href="http://pinyin.sogou.com/dict/" target="_blank" rel="external">搜狗细胞词库</a>上面的所有城市的精选地理信息：</p>
+<p><img src="/images/Technology-IME-Lib-Citys.png" alt="Technology-IME-Lib-Citys"></p>
+<p>解析方法参考：<a href="/2015/09/04/java-SougouScel/">Java-解析搜狗输入法分类词库scel文件</a></p>
+<p>但是这样的方式，后来在使用中，发现其虽然包含了非常多的地理信息，但是对于输入法来说，并不好用，原因在于，用户其实是更习惯于用常用字来检索的，例如：用户输入“baidu”，是想要打出“百度”这样的常用字，而不是像“柏渡”这样类似的地理词。</p>
+<p>基于此，后面的词组词库是用的搜狗以前版本的核心词库，解析方法参考：<br><a href="/2015/09/06/java-SougouCorebin">Java-解析搜狗输入法核心词库sgim_core.bin文件</a>。</p>
+<p>有点麻烦的是，搜狗的词库只有汉字，并没有对应的拼音，所以这里用pinyin4j来做转换，转换方法参考：<a href="/2015/04/03/java-WordToPinyin">Java-汉字转拼音</a>。</p>
+<p>数目为42万多，但是里面同样也包含了很多的偏僻词组，排除方法后面会介绍。</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>由于是输入法，排序规则显然是越常用的排越前面，但是由于用到的词库并没有词频，所以必须想办法通过机器去自动生成词频，以便进行常用性排序。</p>
+<p>对于这一点，在经过思考以后，决定采用百度搜索引擎来进行数据搜集。在百度搜索引擎搜索每个词组时，可以看到有多少个相关的结果，我们有理由相信，越多的相关结果，意味着被检索的次数也多，也就越常用。</p>
+<p>下面是对于”kebi”对应的“科比”和“可鄙”在百度搜索引擎的结果数对比：</p>
+<p><img src="/images/Technology-IME-Sort-kobe.png" alt="Technology-IME-Sort-kobe"></p>
+<p><img src="/images/Technology-IME-Sort-kebi.png" alt="Technology-IME-Sort-kebi"></p>
+<p>可以看到，”科比”的搜索相关结果更多，显然也更常用。</p>
+<p>基于这一策略，通过对词库中的单字和词组进行百度指数(结果数/万)的爬虫搜集，这里涉及到跟百度反爬虫部门的斗智斗勇，包括不定时切IP等，不过最终还是成功把45万词条的数据爬取下来了，部分结果如下：</p>
+<p><img src="/images/Technology-IME-Sort-Count.png" alt="Technology-IME-Sort-Count"></p>
+<p>完成以后，根据百度指数，设置一个阈值(这里是100)，小于100的就判断为生僻字和词组，将其从词库中删除，最终只保留了33万条词条。</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h4 id="地理词"><a href="#地理词" class="headerlink" title="地理词"></a>地理词</h4><p>由于我们的输入法的使用场景主要在于地图的搜索POI点，所以，我们如果能判断一个词组是否是地理词，将其排在更前面，则体验上会更好。基于我们在排序中的思路，考虑从百度检索结果中看能不能进一步挖掘价值。</p>
+<p>下面是搜索两个地理词，“深圳”和”南山”在百度搜索引擎的结果：</p>
+<p><img src="/images/Technology-IME-Address-Shenzhen.png" alt="Technology-IME-Address-Shenzhen"></p>
+<p><img src="/images/Technology-IME-Address-Nanshan.png" alt="Technology-IME-Address-Nanshan"></p>
+<p>可以看出，地理词在检索结果中，很可能会出现“地图”和“旅游攻略”字眼，我们可以以此为依据，来判断一个词为地理词。依旧通过爬虫，新一轮的斗智斗勇后，成功地识别出来了地理词。</p>
+<p>下面是识别出来的首字母为”ns“的地理词列表：</p>
+<p><img src="/images/Technology-IME-Address-Result.png" alt="Technology-IME-Address-Result"></p>
+<p>从结果来看，显然这策略也并不是完美的，会出现一些词的误判，例如“那啥”，但是从最终效果来看，还是非常好的。</p>
+<h4 id="选择词"><a href="#选择词" class="headerlink" title="选择词"></a>选择词</h4><p>对于用户已经选择过的词，我们应该在用户再次输入的时候出现在最前面。因此，我们在词库中加入一个“click”字段，用于记录该词的被选择次数，次数越多的，更高优先级展示给用户。</p>
+<p><img src="/images/Technology-IME-Address-Click.png" alt="Technology-IME-Address-Click"></p>
+<h3 id="切割"><a href="#切割" class="headerlink" title="切割"></a>切割</h3><p>通过上述步骤解决了，词库的建立，词组的常用性排序，地理词的识别以及记录用户选择次数后，我们就搭建起了一个完整可用的词库。</p>
+<p>在此基础上，我们需要在用户输入一串字母的时候，对其进行切割，例如，baidu切割成bai和du，szhen切割成s和zhen。对于这一点，这里用到的是一个基于拼音语法规则的正则表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[^aoeiuv]?h?[iuv]?(ai|ei|ao|ou|er|ang?|eng?|ong|a|o|e|i|u|ng|n)?</div></pre></td></tr></table></figure>
+<p>这个正则表达式可以正确地分割出长串的字母为单个的拼音，例如分割：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tebieshuai</div><div class="line">te bie shuai</div></pre></td></tr></table></figure>
+<p>但是，在测试中，发现其分割有缺陷，例如，对于分割”hn”，直接分割成了“hn”，而正确的分割是”h n”，所以，针对这种情况，做了容错处理，后面会介绍。</p>
+<h3 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h3><p>切割完成后，我们需要将其从词库中检索出来对应的词语。</p>
+<p>以“szhen”举例，切割完成后，是”s”和“zhen”，首先，我们可以确认其首字母为”sz”，其次，我们可以确定，全拼音的匹配正则表达式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s%zhen%</div></pre></td></tr></table></figure>
+<p>其中，“%”表示零个或多个字母。</p>
+<p>利用Sqlite的LIKE来进行全拼音正则匹配，并对地理词和用户选择词进行优先排序，最后根据百度指数进行排序，查询语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct relate from relate where firstLetters =&apos;sz&apos; and pinyin like &apos;s%zhen%&apos; order by click desc, isAddress desc, count desc, length(pinyin) limit 100;</div></pre></td></tr></table></figure>
+<p>这里，由于交互上的需求，用户选择过的词排在最前面，后面固定出现三个地理词，再后面的词，根据百度指数进行排序。对于上文提到的“hn”分割错误导致的异常，这里需要将其当成是纯首字母检索处理。</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>为了查看最终的交互效果，我们随机取几个字符串，来看看匹配结果与搜狗输入法进行对比：</p>
+<p><img src="/images/Technology-IME-Result.png" alt="Technology-IME-Result"></p>
+<p>可以看到，在常用词上，两者出现的词基本重合，而本文的输入法，在地理词上，体验要更好。</p>
+<p>最后放上加上界面开发的成果图：</p>
+<p><img src="/images/Technology-IME-UI.png" alt="Technology-IME-UI"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/08/product-NewBussinessInBigCompany/" rel="next" title="Product-如何在大公司做新业务">
+                <i class="fa fa-chevron-left"></i> Product-如何在大公司做新业务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/10/technology-IME-HandWritingRecognization/" rel="prev" title="Technology-手写汉字识别">
+                Technology-手写汉字识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/08/technology-IME/"
+           data-title="Technology-从零开始做一款拼音输入法" data-url="http://www.linyibin.cn/2016/11/08/technology-IME/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#词库"><span class="nav-number">1.</span> <span class="nav-text">词库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单字"><span class="nav-number">1.1.</span> <span class="nav-text">单字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词组"><span class="nav-number">1.2.</span> <span class="nav-text">词组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地理词"><span class="nav-number">3.1.</span> <span class="nav-text">地理词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择词"><span class="nav-number">3.2.</span> <span class="nav-text">选择词</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切割"><span class="nav-number">4.</span> <span class="nav-text">切割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索"><span class="nav-number">5.</span> <span class="nav-text">检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">6.</span> <span class="nav-text">效果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文对Multitouch Events的机制进行讲解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Events[3]-Multitouch Events">
+<meta property="og:url" content="http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch Events/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文对Multitouch Events的机制进行讲解。">
+<meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/event_touch_contains_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/exclusive_touch_view_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Events[3]-Multitouch Events">
+<meta name="twitter:description" content="本文对Multitouch Events的机制进行讲解。">
+<meta name="twitter:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch Events/"/>
+
+
+
+
+
+  <title> iOS-Events[3]-Multitouch Events | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch Events/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Events[3]-Multitouch Events
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-09-20T00:00:00+08:00">
+                2015-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/20/ios-Event-Multitouch Events/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/20/ios-Event-Multitouch Events/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文对Multitouch Events的机制进行讲解。</p>
+<a id="more"></a>
+<p>iOS系统的Events类型分为以下几种：Multitouch events, Accelerometer events, Remote control events。</p>
+<p><img src="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png" alt="Events"></p>
+<h3 id="Multitouch-Events"><a href="#Multitouch-Events" class="headerlink" title="Multitouch Events"></a>Multitouch Events</h3><p>在需要时，可以实现Touch方法，来控制Event的处理和传递，流程如下：</p>
+<h4 id="Creating-a-Subclass-of-UIResponder"><a href="#Creating-a-Subclass-of-UIResponder" class="headerlink" title="Creating a Subclass of UIResponder"></a>Creating a Subclass of UIResponder</h4><p>要自定义Event的处理和传递，需要先继承这几个类：</p>
+<ul>
+<li>UIView</li>
+<li>UIViewController</li>
+<li>UIControl</li>
+<li>UIApplication/UIWindow</li>
+</ul>
+<p>注意，接收Touches的View必须设置<strong>userInteractionEnabled</strong>为<strong>YES</strong>，并且必须是可见的，不能是透明或者隐藏的。</p>
+<h4 id="Implementing-the-Touch-Event-Handling-Methods-in-Your-Subclass"><a href="#Implementing-the-Touch-Event-Handling-Methods-in-Your-Subclass" class="headerlink" title="Implementing the Touch-Event Handling Methods in Your Subclass"></a>Implementing the Touch-Event Handling Methods in Your Subclass</h4><p>继承后，需要实现的<strong>UIResponder</strong>的方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;</div></pre></td></tr></table></figure>
+<p>注意，Cancellation是由于外部事件导致的，例如来电。</p>
+<h4 id="Tracking-the-Phase-and-Location-of-a-Touch-Event"><a href="#Tracking-the-Phase-and-Location-of-a-Touch-Event" class="headerlink" title="Tracking the Phase and Location of a Touch Event"></a>Tracking the Phase and Location of a Touch Event</h4><p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/event_touch_contains_2x.png" alt="Events"></p>
+<p>可以通过UITouch获取到phase, tapCount, location, previous location以及timestamp。</p>
+<h4 id="Retrieving-and-Querying-Touch-Objects"><a href="#Retrieving-and-Querying-Touch-Objects" class="headerlink" title="Retrieving and Querying Touch Objects"></a>Retrieving and Querying Touch Objects</h4><p>UIView的<strong>multipleTouchEnabled</strong>属性默认为<strong>NO</strong>，这意外着无论同时有多少个Touch发生，当前View只接收第一个，因此可以通过anyObject来获取当前Touch：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UITouch *touch = [touches anyObject];</div></pre></td></tr></table></figure>
+<p>如果需要获取不同对象上的Touch，可以通过以下方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[event allTouches];</div><div class="line">[event touchesForWindow:self.window];</div><div class="line">[event touchesForView:self];</div></pre></td></tr></table></figure>
+<p>以绘制用户的手写轨迹为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic, assign) size_t handWriteID;</div><div class="line">@property(nonatomic, strong) NSMutableArray *points;</div><div class="line"></div><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    UITouch *touch = [touches anyObject];</div><div class="line">    CGPoint point = [touch locationInView:self];</div><div class="line">    [_points addObject:[[Path alloc] initWithID:_handWriteID x:(int)point.x y:(int)point.y]];</div><div class="line">    [self setNeedsDisplay];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    UITouch *touch = [touches anyObject];</div><div class="line">    CGPoint point = [touch locationInView:self];</div><div class="line">    [_points addObject:[[Path alloc] initWithID:_handWriteID x:(int)point.x y:(int)point.y]];</div><div class="line">    [self setNeedsDisplay];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    _handWriteID = 0;</div><div class="line">    [_points removeAllObjects];</div><div class="line">    [self setNeedsDisplay];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)drawRect:(CGRect)rect</div><div class="line">&#123;</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    CGContextSetLineWidth(context, 5.0);</div><div class="line">    CGContextSetLineCap(context, kCGLineCapRound);</div><div class="line">    for(int i = 0; i &lt; (int)(_points.count - 1); ++i)&#123;</div><div class="line">        Path *lastPoint = [_points objectAtIndex:i];</div><div class="line">        Path *nowPoint = [_points objectAtIndex:i + 1];</div><div class="line">        if(lastPoint.handWriteID == nowPoint.handWriteID)&#123;</div><div class="line">            CGContextMoveToPoint(context, lastPoint.x, lastPoint.y);</div><div class="line">            CGContextAddLineToPoint(context, nowPoint.x, nowPoint.y);</div><div class="line">            CGContextStrokePath(context);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Handling-One-Touch-Gestures"><a href="#Handling-One-Touch-Gestures" class="headerlink" title="Handling One Touch Gestures"></a>Handling One Touch Gestures</h4><p><strong>(1) Tap</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    for (UITouch *aTouch in touches) &#123;</div><div class="line">        if (aTouch.tapCount &gt;= 2) &#123;</div><div class="line">             // The view responds to the tap</div><div class="line">             [self respondToDoubleTapGesture:aTouch];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>(2) Swipe</strong></p>
+<p>这里省略了中间点的判断，只简单判断开始和结束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#define HORIZ_SWIPE_DRAG_MIN  12</div><div class="line">#define VERT_SWIPE_DRAG_MAX    4</div><div class="line"> </div><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    UITouch *aTouch = [touches anyObject];</div><div class="line">    // startTouchPosition is a property</div><div class="line">    self.startTouchPosition = [aTouch locationInView:self];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    UITouch *aTouch = [touches anyObject];</div><div class="line">    CGPoint currentTouchPosition = [aTouch locationInView:self];</div><div class="line"> </div><div class="line">    //  Check if direction of touch is horizontal and long enough</div><div class="line">    if (fabsf(self.startTouchPosition.x - currentTouchPosition.x) &gt;= HORIZ_SWIPE_DRAG_MIN &amp;&amp;</div><div class="line">        fabsf(self.startTouchPosition.y - currentTouchPosition.y) &lt;= VERT_SWIPE_DRAG_MAX)</div><div class="line">    &#123;</div><div class="line">        // If touch appears to be a swipe</div><div class="line">        if (self.startTouchPosition.x &lt; currentTouchPosition.x) &#123;</div><div class="line">            [self myProcessRightSwipe:touches withEvent:event];</div><div class="line">        &#125; else &#123;</div><div class="line">            [self myProcessLeftSwipe:touches withEvent:event];</div><div class="line">    &#125;</div><div class="line">    self.startTouchPosition = CGPointZero;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    self.startTouchPosition = CGPointZero;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>(3) Drag</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    UITouch *aTouch = [touches anyObject];</div><div class="line">    CGPoint loc = [aTouch locationInView:self];</div><div class="line">    CGPoint prevloc = [aTouch previousLocationInView:self];</div><div class="line"> </div><div class="line">    CGRect myFrame = self.frame;</div><div class="line">    float deltaX = loc.x - prevloc.x;</div><div class="line">    float deltaY = loc.y - prevloc.y;</div><div class="line">    myFrame.origin.x += deltaX;</div><div class="line">    myFrame.origin.y += deltaY;</div><div class="line">    [self setFrame:myFrame];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Handling-Multitouch-Gestures"><a href="#Handling-Multitouch-Gestures" class="headerlink" title="Handling Multitouch Gestures"></a>Handling Multitouch Gestures</h4><p>对于同时处理多个Touch事件，需要先设置UIView的<strong>multipleTouchEnabled</strong>属性默认为<strong>YES</strong>，然后通过<strong>CFDictionaryRef</strong>来跟踪每一个Touch的phases(状态)。</p>
+<p><strong>注意：用CFDictionaryRef，而不是NSDictionary来跟踪，原因是NSDictionary会复制它的keys，而UITouch并没有适配NSCopying协议。</strong></p>
+<p>下面以对比起始点和结束点的位置为例，先记录起始点位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">     [self cacheBeginPointForTouches:touches];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)cacheBeginPointForTouches:(NSSet *)touches &#123;</div><div class="line">    if ([touches count] &gt; 0) &#123;</div><div class="line">        for (UITouch *touch in touches) &#123;</div><div class="line">            CGPoint *point = (CGPoint *)CFDictionaryGetValue(touchBeginPoints, touch);</div><div class="line">            if (point == NULL) &#123;</div><div class="line">                point = (CGPoint *)malloc(sizeof(CGPoint));</div><div class="line">                CFDictionarySetValue(touchBeginPoints, touch, point);</div><div class="line">            &#125;</div><div class="line">            *point = [touch locationInView:view.superview];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对比结束点位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">     CGAffineTransform newTransform = [self incrementalTransformWithTouches:touches];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (CGAffineTransform)incrementalTransformWithTouches:(NSSet *)touches &#123;</div><div class="line">     NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(compareAddress:)];</div><div class="line"> </div><div class="line">     // Other code here</div><div class="line">     CGAffineTransform transform = CGAffineTransformIdentity;</div><div class="line"> </div><div class="line">     UITouch *touch1 = [sortedTouches objectAtIndex:0];</div><div class="line">     UITouch *touch2 = [sortedTouches objectAtIndex:1];</div><div class="line"> </div><div class="line">     CGPoint beginPoint1 = *(CGPoint *)CFDictionaryGetValue(touchBeginPoints, touch1);</div><div class="line">     CGPoint currentPoint1 = [touch1 locationInView:view.superview];</div><div class="line">     CGPoint beginPoint2 = *(CGPoint *)CFDictionaryGetValue(touchBeginPoints, touch2);</div><div class="line">     CGPoint currentPoint2 = [touch2 locationInView:view.superview];</div><div class="line"> </div><div class="line"> </div><div class="line">     // Compute the affine transform</div><div class="line">     return transform;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断最后一根手势离开屏幕：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event &#123;</div><div class="line">    if ([touches count] == [[event touchesForView:self] count]) &#123;</div><div class="line">        // Last finger has lifted</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Specifying-Custom-Touch-Event-Behavior"><a href="#Specifying-Custom-Touch-Event-Behavior" class="headerlink" title="Specifying Custom Touch Event Behavior"></a>Specifying Custom Touch Event Behavior</h4><p>自定义Touch Event行为，可以通过以下方式：</p>
+<ul>
+<li>支持多个MultiTouch的事件分发:设置View的multipleTouchEnabled为YES;</li>
+<li>限制单个View的事件分发:设置View的exclusiveTouch为NO，这意味着该View不能与其他View同时接受事件，如下图，如果先在B中触摸，再在A中触摸，则A不会收到事件，反之，则B不会收到事件，而B和C可以同时收到:</li>
+</ul>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/exclusive_touch_view_2x.png" alt="Events"></p>
+<ul>
+<li>限制对SubViews的事件分发:重写hitTest:withEvents:方法，使得SubViews直接接收不到事件：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    return self;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>停止单个View的事件分发:设置View的userInteractionEnabled为NO;</li>
+<li>停止App在一段时间内的事件分发:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[[UIApplication sharedApplication] beginIgnoringInteractionEvents];</div><div class="line">[[UIApplication sharedApplication] endIgnoringInteractionEvents];</div></pre></td></tr></table></figure>
+<h4 id="Forwarding-Touch-Events"><a href="#Forwarding-Touch-Events" class="headerlink" title="Forwarding Touch Events"></a>Forwarding Touch Events</h4><p>一般情况下，如果一个Response对象想要处理一个Touch，则该Touch的View对象必须指向该Response对象。如果想要转发Touch事件给其他View，则该Response对象必须是自定义的UIView子类。</p>
+<p>转发Touch事件，有两种方式，一种是UIView通过在hit-testing方法中转发给SubViews，一种是重写<strong>UIWindow的sendEvents</strong>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">- (void)sendEvent:(UIEvent *)event &#123;</div><div class="line">    for (TransformGesture *gesture in transformGestures) &#123;</div><div class="line">        // Collect all the touches you care about from the event</div><div class="line">        NSSet *touches = [gesture observedTouchesForEvent:event];</div><div class="line">        NSMutableSet *began = nil;</div><div class="line">        NSMutableSet *moved = nil;</div><div class="line">        NSMutableSet *ended = nil;</div><div class="line">        NSMutableSet *canceled = nil;</div><div class="line"> </div><div class="line">        // Sort touches by phase to handle—-similar to normal event dispatch</div><div class="line">        for (UITouch *touch in touches) &#123;</div><div class="line">            switch ([touch phase]) &#123;</div><div class="line">                case UITouchPhaseBegan:</div><div class="line">                    if (!began) began = [NSMutableSet set];</div><div class="line">                    [began addObject:touch];</div><div class="line">                    break;</div><div class="line">                case UITouchPhaseMoved:</div><div class="line">                    if (!moved) moved = [NSMutableSet set];</div><div class="line">                    [moved addObject:touch];</div><div class="line">                    break;</div><div class="line">                case UITouchPhaseEnded:</div><div class="line">                    if (!ended) ended = [NSMutableSet set];</div><div class="line">                    [ended addObject:touch];</div><div class="line">                    break;</div><div class="line">                case UITouchPhaseCancelled:</div><div class="line">                    if (!canceled) canceled = [NSMutableSet set];</div><div class="line">                    [canceled addObject:touch];</div><div class="line">                    break;</div><div class="line">                default:</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        // Call methods to handle the touches</div><div class="line">        if (began)     [gesture touchesBegan:began withEvent:event];</div><div class="line">        if (moved)     [gesture touchesMoved:moved withEvent:event];</div><div class="line">        if (ended)     [gesture touchesEnded:ended withEvent:event];</div><div class="line">        if (canceled) [gesture touchesCancelled:canceled withEvent:event];</div><div class="line">    &#125;</div><div class="line">    [super sendEvent:event];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Best-Practices-for-Handling-Multitouch-Events"><a href="#Best-Practices-for-Handling-Multitouch-Events" class="headerlink" title="Best Practices for Handling Multitouch Events"></a>Best Practices for Handling Multitouch Events</h4><p>一些注意事项：</p>
+<ul>
+<li>实现Cancelation方法，保存状态;</li>
+<li>如果继承UIView, UIViewController和UIResponder：实现所有的Touches方法，不要调用super方法;</li>
+<li>如果是继承其他的UIKit类：不需要实现所有的Touches方法，一定要调用super方法;</li>
+<li>不要转发事件给其他的UIKit类对象，转发给UIView或子类对象，并且确保其可以接收转发的;</li>
+<li>不要显示地通过nextResponder方法发送事件到Responder Chain中;</li>
+<li>不要对Touch的坐标取整，因为这会导致精度丢失，在一般设备上，坐标系为320×480，而在高分辨率设备上，为640×960，这意味着可能边界存在着0.5个点的情况。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/18/ios-Event-TheResponseChain/" rel="next" title="iOS-Events[2]-The Responder Chain">
+                <i class="fa fa-chevron-left"></i> iOS-Events[2]-The Responder Chain
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/22/ios-Event-MotionEvents/" rel="prev" title="iOS-Events[4]-Motion Events">
+                iOS-Events[4]-Motion Events <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/20/ios-Event-Multitouch Events/"
+           data-title="iOS-Events[3]-Multitouch Events" data-url="http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch Events/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multitouch-Events"><span class="nav-number">1.</span> <span class="nav-text">Multitouch Events</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Creating-a-Subclass-of-UIResponder"><span class="nav-number">1.1.</span> <span class="nav-text">Creating a Subclass of UIResponder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-the-Touch-Event-Handling-Methods-in-Your-Subclass"><span class="nav-number">1.2.</span> <span class="nav-text">Implementing the Touch-Event Handling Methods in Your Subclass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tracking-the-Phase-and-Location-of-a-Touch-Event"><span class="nav-number">1.3.</span> <span class="nav-text">Tracking the Phase and Location of a Touch Event</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Retrieving-and-Querying-Touch-Objects"><span class="nav-number">1.4.</span> <span class="nav-text">Retrieving and Querying Touch Objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handling-One-Touch-Gestures"><span class="nav-number">1.5.</span> <span class="nav-text">Handling One Touch Gestures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handling-Multitouch-Gestures"><span class="nav-number">1.6.</span> <span class="nav-text">Handling Multitouch Gestures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Specifying-Custom-Touch-Event-Behavior"><span class="nav-number">1.7.</span> <span class="nav-text">Specifying Custom Touch Event Behavior</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Forwarding-Touch-Events"><span class="nav-number">1.8.</span> <span class="nav-text">Forwarding Touch Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Best-Practices-for-Handling-Multitouch-Events"><span class="nav-number">1.9.</span> <span class="nav-text">Best Practices for Handling Multitouch Events</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,927 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在研发过程中，处于性能考虑，需要考虑耗电、内存、网络和存储等因素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Performance Tips">
+<meta property="og:url" content="http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="在研发过程中，处于性能考虑，需要考虑耗电、内存、网络和存储等因素。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Performance Tips">
+<meta name="twitter:description" content="在研发过程中，处于性能考虑，需要考虑耗电、内存、网络和存储等因素。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/"/>
+
+
+
+
+
+  <title> iOS-Performance Tips | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Performance Tips
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T00:00:00+08:00">
+                2016-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/18/ios-PerformanceTips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/ios-PerformanceTips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在研发过程中，处于性能考虑，需要考虑耗电、内存、网络和存储等因素。</p>
+<a id="more"></a>
+<h3 id="Reduce-Your-App’s-Power-Consumption"><a href="#Reduce-Your-App’s-Power-Consumption" class="headerlink" title="Reduce Your App’s Power Consumption"></a>Reduce Your App’s Power Consumption</h3><p>iOS的电量管理系统，通过关闭没被使用的硬件来节省电量，在开发时，可以通过考虑下面罗列的硬件使用来省电。</p>
+<ul>
+<li>CPU</li>
+<li>Wi-Fi, Bluetooth, baseband(EDGE,3G) radios(基带无线电)</li>
+<li>Core Location framework</li>
+<li>Accelerometers</li>
+<li>Disk</li>
+</ul>
+<p>优化的目标应该是最高效率地在最短时间内完成需要的任务，你可以通过优化算法来达到目标，但是即使最优的算法，仍然会对设备的电量造成影响，因此，需要遵循以下的准则：</p>
+<ul>
+<li>避免使用轮询。轮询会阻止CPU进入休眠，用<strong>NSRunLoop</strong>和<strong>NSTimer</strong>替代;</li>
+<li>不要修改<strong>UIApplication</strong>的<strong>idleTimerDisabled</strong>属性为<strong>NO</strong>,这一计时器会在一段时间没有任何活动时，让设备自动熄灭屏幕。如果App在熄屏后，会出现副作用，最好是通过代码去排除副作用，而不是通过改变这一属性;</li>
+<li>尽可能将计算集中在一起，避免多次唤醒CPU;</li>
+<li>避免过于频繁地访问硬盘，如果需要保存状态信息，在状态发生变化时，再保存;</li>
+<li>只在需要的时候绘制到屏幕，绘制是一个非常昂贵的操作，不要依赖硬件来控制帧率，帧率只保持在需要的水平;</li>
+<li>如果通过<strong>UIAccelerometer</strong>来获取加速事件，在不需要的时候，设置事件的分发为<strong>NO</strong>，其他事件同理。</li>
+</ul>
+<p>对于网络，越多数据通过网络传输，则越多的电量将被用于维持无线电。事实上，网络是一个电量非常敏感，并且你可以控制的操作，因此，需要遵循以下的准则：</p>
+<ul>
+<li>只在必要时，连接远程服务器，并且不要轮询;</li>
+<li>当需要连接网络时，尽可能只传输最小数量的数据，使用轻量级数据协议，并且不要包含一些额外的内容;</li>
+<li>集中传输数据，会比通过长时间分包传输更省电，系统会在检测到没有活动时，将Wi-Fi以及无线电关闭，尽量使用<strong>NSURLSession</strong>来创建上传和下载任务，系统会自动对其进行管理;</li>
+<li>尽可能使用Wi-Fi，比蜂窝网络更省电;</li>
+<li>如果使用<strong>Core Location framework</strong>来获取定位，要设置好距离和精度，以保证更新不要太频繁，并且在不需要时，要立即关闭定位更新。</li>
+</ul>
+<h3 id="Use-Memory-Efficiently"><a href="#Use-Memory-Efficiently" class="headerlink" title="Use Memory Efficiently"></a>Use Memory Efficiently</h3><p>Apps应该尽可能减小占用的内存，当内存过少时，可能会导致系统在处理请求时出现异常。</p>
+<h4 id="Observe-Low-Memory-Warnings"><a href="#Observe-Low-Memory-Warnings" class="headerlink" title="Observe Low-Memory Warnings"></a>Observe Low-Memory Warnings</h4><p>当接受到系统的低内存警告呢，需要立即响应。低内存警告是一个释放不需要对象的引用的时机，如果App没有做出处理，将非常有可能被系统直接终止。系统通过以下API释放低内存警告：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">applicationDidReceiveMemoryWarning:(AppDelegate)</div><div class="line">didReceiveMemoryWarning(UIViewController)</div><div class="line">UIApplicationDidReceiveMemoryWarningNotification notification</div><div class="line">DISPATCH_SOURCE_TYPE_MEMORYPRESSURE(唯一一个指标可以查看内存压力的严重性)</div></pre></td></tr></table></figure>
+<p>监测内存的情况的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_NORMAL|DISPATCH_MEMORYPRESSURE_WARN|DISPATCH_MEMORYPRESSURE_CRITICAL, dispatch_get_main_queue());</div><div class="line">    dispatch_source_set_event_handler(source, ^&#123;</div><div class="line">        dispatch_source_memorypressure_flags_t pressureLevel = dispatch_source_get_data(source);</div><div class="line">        NSLog(@&quot;%lu&quot;, pressureLevel);</div><div class="line">    &#125;);</div><div class="line">    dispatch_resume(source);</div></pre></td></tr></table></figure>
+<p>在接收到低内存警告时，应该立即释放不必要的内存，清空缓存，以及释放图片。如果需要保存，写入到硬盘。</p>
+<h4 id="Reduce-Your-App’s-Memory-Footprint"><a href="#Reduce-Your-App’s-Memory-Footprint" class="headerlink" title="Reduce Your App’s Memory Footprint"></a>Reduce Your App’s Memory Footprint</h4><p>下面是一些可以降低内存占用的技巧：</p>
+<ul>
+<li>排除内存泄漏:内存是非常敏感的资源，对于内存泄漏，应该立即排除;</li>
+<li>保持资源文件尽可能小:对于PNG图片，用<strong>pngcrush</strong>工具进行压缩，对于plist文件，可以通过<strong>NSPropertyListSerialization</strong>将其写成二进制文件;通过区分设备来加载不同分辨率的图片，避免加载大的资源文件，一定要加载的时候，可以只加载文件使用到的那一部分，使用<strong>mmap</strong>和<strong>munmap</strong>函数;</li>
+<li>使用CoreData或者Sqlite来处理大数据集:CoreData或者Sqlite都对大数据集进行更有效地处理，而不需要一次性加载进内存;</li>
+<li>懒加载:在需要时，再加载资源;</li>
+<li>避免无限的问题集:无限的问题集可能需要非常大的内存来支持计算，当内存不足时，app可能将无法完成计算。</li>
+</ul>
+<h3 id="Tune-Your-Networking-Code"><a href="#Tune-Your-Networking-Code" class="headerlink" title="Tune Your Networking Code"></a>Tune Your Networking Code</h3><p>iOS的网络栈包含了一些通过无线电硬件通信的接口，主要的程序接口是<strong>CFNetwork</strong>。<strong>CFNetwork</strong>是基于BSD Sockets(伯克利套接字)以及Core Foundation中的一些数据类型，来与网络进行交互的库。你也可以选择使用Core Foundation中的<strong>NSStream</strong>和更底层的<strong>BSD Sockets</strong>。</p>
+<p>Wi-Fi和蜂窝无线电在没有活动时，将会被休眠，但是基于无线电本身的性质，进入休眠需要几秒钟。如果App每几秒钟传输一点数据，无线电可能一直处于工作状态，并持续耗电，即使他们可能并没有真正的工作。因此，一次性集中地传输数据会更省电。</p>
+<p>当通过网络通信时，包可能随时会丢失。因此，当编写程序时，需要确保其对于异常进行处理。最好是能对网络状态的变化进行监听，并进行相应的处理，但是这些处理不一定都会被正确的调用。例如，在网络丢失时，<strong>Bonjour</strong>服务的网络回调不一定会被调用。<strong>Bonjour</strong>服务会在接收到一个服务断开的通知时，立刻调用回调，但是网络服务可能会在丢失时，没有发出通知。这种情况可能是，当设备提供的网络服务意外地断开连接或者通知丢失。</p>
+<p>当App使用Wi-Fi时，应该在App的Info.plist中加入<strong>UIRequiresPersistentWiFi</strong>字段。该字段会通知系统，在检测到任何活跃的Wi-Fi热点时，显示网络选择的弹窗，同时，系统也不会在App运行期间，关闭Wi-Fi硬件。iOS系统会启动一个计时器，如果30分钟完全没有运行中的App使用网络，Wi-Fi硬件将会被关闭以省电，而<strong>UIRequiresPersistentWiFi</strong>字段会让iOS系统关闭该计时器，当App退出或者被挂起时，才会重新启动该计时器。注意，在锁屏状态下，<strong>UIRequiresPersistentWiFi</strong>字段不起作用。</p>
+<p>如果App在飞行模式下启动，系统在满足以下条件时，会弹出一个提示弹窗：</p>
+<ul>
+<li>App的Info.plist中包含<strong>UIRequiresPersistentWiFi</strong>字段，且值为<strong>true</strong>;</li>
+<li>App在飞行模式下启动;</li>
+<li>设备的Wi-Fi开关没有在飞行模式下被手动打开。</li>
+</ul>
+<p>下面是一些更有效使用网络的技巧：</p>
+<ul>
+<li>对于自定义的协议，尽可能地更精简地定义好数据格式(例如直接使用二进制);</li>
+<li>避免使用聊天协议;</li>
+<li>尽可能集中地传输数据，不要分开传输。</li>
+</ul>
+<h3 id="Improve-Your-File-Management"><a href="#Improve-Your-File-Management" class="headerlink" title="Improve Your File Management"></a>Improve Your File Management</h3><p>对于硬盘写入，最小化需要写入的数量。文件操作是比较慢，并且涉及到写入闪存，闪存寿命是有限的。下面是一些最小化文件操作的技巧：</p>
+<ul>
+<li>只写入文件变化的部分，不要对整个文件进行重写，只为了修改一小部分;</li>
+<li>在定义文件格式的时候，把会经常变化的部分集中在一起，从而最小化每次需要写入硬盘的块数量;</li>
+<li>如果数据包含随机访问的结构化内容，将其存储在Core Data或者SQLite中，特别是需要操作的数据的大小超过MB的。</li>
+</ul>
+<p>如果在App退出时，这时就需要把需要存储的信息都写入到硬盘中，以保证下次启动的用户体验。</p>
+<h3 id="Make-App-Backups-More-Efficient"><a href="#Make-App-Backups-More-Efficient" class="headerlink" title="Make App Backups More Efficient"></a>Make App Backups More Efficient</h3><p>在用户通过iCloud或者iTunes进行数据备份时，设备上的文件将会被传输到用户的计算机或者iCloud账户中，文件保存在App沙盒中的路径，决定了该文件是否会被备份。如果App创建了多个非常大的文件，并且将其放置在会被备份的路径下，将导致备份的时候，非常慢。因此，在编写文件管理的代码时，需要注意这一点。</p>
+<p>对于文件的备份，App并不需要进行额外的备份或者储存操作。iCloud和iTunes会在必要的时候，进行备份，除了以下的目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Application_Home&gt;/AppName.app</div><div class="line">&lt;Application_Data&gt;/Library/Caches</div><div class="line">&lt;Application_Data&gt;/tmp</div></pre></td></tr></table></figure>
+<p>注意：iTunes会备份app文件，但是并不是每次同步的时候，都会备份，只有在设备上购买了App，然后下一次连接上电脑的iTunes时，才会进行备份，除非App文件本身发生了变化，例如更新了。</p>
+<p>当用户更新一个App时，iTunes会在一个新的App目录下安装更新，然后将旧目录下的用户数据文件移到新的目录下，然后删除旧版本文件。文件在以下目录下会在更新过程中会被保留下来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;Application_Data&gt;/Documents</div><div class="line">&lt;Application_Data&gt;/Library</div></pre></td></tr></table></figure>
+<p>注意，尽管其他的目录下的文件也可能会被移动过去，但是在更新过程中无法得到确保。</p>
+<p>下面是数据文件存储的一些技巧：</p>
+<ul>
+<li>用户敏感数据应该保存在<strong><application_data>/Documents</application_data></strong>目录下，用户敏感数据指的是一些无法被App重建的数据，例如用户的文件，以及用户生成的内容;</li>
+<li>对于App可以重复下载的文件，存放路径取决于系统版本，<strong>iOS 5.1</strong>及以上，应该存放在<strong><application_data>/Library/Application Support</application_data></strong>目录下，并且对该<strong>NSURL</strong>对象添加<strong>NSURLIsExcludedFromBackupKey</strong>属性，使用<strong>setResourceValue:forKey:error:</strong>方法，确保文件不会被备份，如果有非常多的该类型文件，也可以自定义一个目录存放，并设置其<strong>NSURLIsExcludedFromBackupKey</strong>属性;<strong>iOS 5.0</strong>及以下，应该存放在<strong><application_data>/Library/Caches</application_data></strong>目录下，文件将不会被备份;</li>
+<li>缓存数据应该存放在<strong><application_data>/Library/Caches</application_data></strong>目录下，例如数据库缓存文件，下载的内容文件(杂志，新闻以及地图数据等)。缓存数据可能被删除，App已经对这种情况有处理策略;</li>
+<li>临时数据应该存放在<strong><application_data>/tmp</application_data></strong>目录下，临时数据如果不需要了，需要将其删除以释放硬盘空间。</li>
+</ul>
+<h3 id="Move-Work-off-the-Main-Thread"><a href="#Move-Work-off-the-Main-Thread" class="headerlink" title="Move Work off the Main Thread"></a>Move Work off the Main Thread</h3><p>App的主线程是用于处理触摸事件以及其他用户输入的，需要限制主线程中的工作类型，保证App可以响应用户的输入，不要在主线程中执行耗时或者无边界的任务，例如网络访问。将这些任务放到后台线程中，使用<strong>GCD</strong>或者<strong>NSOperation</strong>对象来管理。</p>
+<p>将任务切换到后台线程，将会让主线程有更多的时间来持续处理用户的输入，这在App启动或者退出时，非常关键。如果主线程在启动时被挂起，系统可能会在完成启动前就直接终止App。如果主线程在退出时被挂起，系统也同样可能会直接终止App，不会给机会保存一些用户敏感的数据。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/13/ios-BackgroundExecution/" rel="next" title="iOS-Background Execution">
+                <i class="fa fa-chevron-left"></i> iOS-Background Execution
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/23/ios-DumplicateSymbol/" rel="prev" title="iOS-解决Duplicate Symbol编译错误">
+                iOS-解决Duplicate Symbol编译错误 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/18/ios-PerformanceTips/"
+           data-title="iOS-Performance Tips" data-url="http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reduce-Your-App’s-Power-Consumption"><span class="nav-number">1.</span> <span class="nav-text">Reduce Your App’s Power Consumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Memory-Efficiently"><span class="nav-number">2.</span> <span class="nav-text">Use Memory Efficiently</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observe-Low-Memory-Warnings"><span class="nav-number">2.1.</span> <span class="nav-text">Observe Low-Memory Warnings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce-Your-App’s-Memory-Footprint"><span class="nav-number">2.2.</span> <span class="nav-text">Reduce Your App’s Memory Footprint</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tune-Your-Networking-Code"><span class="nav-number">3.</span> <span class="nav-text">Tune Your Networking Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improve-Your-File-Management"><span class="nav-number">4.</span> <span class="nav-text">Improve Your File Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-App-Backups-More-Efficient"><span class="nav-number">5.</span> <span class="nav-text">Make App Backups More Efficient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Move-Work-off-the-Main-Thread"><span class="nav-number">6.</span> <span class="nav-text">Move Work off the Main Thread</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

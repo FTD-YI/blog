@@ -1,0 +1,981 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Strategies for Handling App State Transitions">
+<meta property="og:url" content="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_bg_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_enter_foreground_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_life_cycle_2x.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Strategies for Handling App State Transitions">
+<meta name="twitter:description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/"/>
+
+
+
+
+
+  <title> iOS-Strategies for Handling App State Transitions | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Strategies for Handling App State Transitions
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-12T00:00:00+08:00">
+                2016-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/ios-StrategiedForHandlingAppStateTransitions/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS App的生命周期参考<a href="/2016/06/10/ios-AppLifeCycle">iOS-App Life Cycle</a>。本文介绍了，App的生命周期的各种状态下的处理策略。</p>
+<a id="more"></a>
+<h3 id="Launch-Time"><a href="#Launch-Time" class="headerlink" title="Launch Time"></a>Launch Time</h3><h4 id="状态变化"><a href="#状态变化" class="headerlink" title="状态变化"></a>状态变化</h4><p>当App开始运行时(无论是进入Foreground或者background状态)，都需要通过以下两个回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div><div class="line">-application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div></pre></td></tr></table></figure>
+<p>来完成以下工作：</p>
+<ul>
+<li>通过application.applicationState来判断是进入什么状态，如果是Foregound，则为UIApplicationStateInactive，如果是Background，则为UIApplicationStateBackground;</li>
+<li>通过launchOptions获取App开始运行的原因以及做出相应的对策;</li>
+<li>初始化App一些关键的数据结构;</li>
+<li>不要在此处进行OpenGL ES渲染，在applicationDidBecomeActive:中进行;</li>
+<li>设置keyWindow。</li>
+</ul>
+<p>在开始运行时，系统会自动加载storyboard文件，以及对应的初始化ViewController，对于一些支持状态还原的APP,应该在<strong>willFinishLaunchingWithOptions</strong>和<strong>didFinishLaunchingWithOptions</strong>两个方法之间进行状态还原。在<strong>willFinishLaunchingWithOptions</strong>方法中展示keyWindow，并判断是否进行状态还原。在<strong>didFinishLaunchingWithOptions</strong>方法中，对用户界面进行最终的修改。</p>
+<p>下面是Not Running状态进入到Foreground状态的流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png" alt="App-Launch"></p>
+<p>下面是Not Running状态进入到Background状态的流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_bg_2x.png" alt="App-Launch"></p>
+<h4 id="横屏模式"><a href="#横屏模式" class="headerlink" title="横屏模式"></a>横屏模式</h4><p>App默认是竖屏启动的。只需要横屏显示的模式时，可以显示通知系统，以保证App横屏地启动。设置方式如下：</p>
+<ul>
+<li>在Info.plist文件中把UIInterfaceOrientation设置为UIInterfaceOrientationLandscapeLeft或者UIInterfaceOrientationLandscapeRight;</li>
+<li>布局好横屏模式下的Views;</li>
+<li>重写ViewController的shouldAutorotateToInterfaceOrientation方法，在横屏下返回YES，竖屏返回NO;</li>
+<li>对于StatusBar，系统也会根据UIInterfaceOrientation进行自动设置，效果等同于在applicationDidFinishLaunching:方法中调用[application setStatusBarOrientation:animated:]方法。</li>
+</ul>
+<h4 id="初次启动时创建数据文件"><a href="#初次启动时创建数据文件" class="headerlink" title="初次启动时创建数据文件"></a>初次启动时创建数据文件</h4><p>在初次启动时，可能需要进行创建一些App需要的数据和配置文件，应该在以下目录中创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Library/Application Support/&lt;bundleID&gt;/</div><div class="line">/Documents/</div><div class="line">iCloud的包含目录</div></pre></td></tr></table></figure>
+<p>如果App的Bundle中包含了需要进行修改的文件，需要复制这些文件到上述目录下，再进行修改。不能直接修改Bundle中的文件，否则会造成签名不匹配，可能导致启动失败。</p>
+<h3 id="Interrupted-Temporarily"><a href="#Interrupted-Temporarily" class="headerlink" title="Interrupted Temporarily"></a>Interrupted Temporarily</h3><p>App在运行时，可能遇到一些中断(Alert-based Interruptions)，这种情况下，App依然在前台，但是收不到任何触摸事件(依然可以收到推送以及其他一些事件，例如加速计事件)。</p>
+<h4 id="中断处理"><a href="#中断处理" class="headerlink" title="中断处理"></a>中断处理</h4><p>当中断发生时，例如来电时，App会切换到Inactive状态，直到用户取消这一中断，此时，App切换回Active状态或者Background状态。</p>
+<p>流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png" alt="App-Interruptions"></p>
+<p>如果是推送的Banner，不会造成中断。但是，如果用户往下拉Banner,出现通知中心时，App将会切换到Inactive状态，与中断一样，直到用户关闭通知中心或者启动其他App。</p>
+<p>在处理这种情况时，App应该在以下回调中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">applicationWillResignActive:</div></pre></td></tr></table></figure>
+<p>处理：</p>
+<ul>
+<li>保存数据和任何相关的状态信息;</li>
+<li>停止Timer和其他的定时任务;</li>
+<li>停止任何在运行的数据库查询;</li>
+<li>不要新建新的任务;</li>
+<li>暂停电影的播放(特别是通过AirPlay的播放);</li>
+<li>如果是游戏App，进入暂停状态;</li>
+<li>降低OpenGL ES的帧率;</li>
+<li>挂起dispatch queues或者operation queues的运行代码(可以在inactive状态下在background tasks中继续处理一些网络请求或者其他时间敏感的后台任务)。</li>
+</ul>
+<p>当App重新变成Active状态时，App应该在以下回调中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">applicationDidBecomeActive:</div></pre></td></tr></table></figure>
+<p>反向处理上面的操作，游戏除外，游戏应该依然处于暂停状态，让用户自己选择。</p>
+<h4 id="电源键-Sleep-Wake-Button"><a href="#电源键-Sleep-Wake-Button" class="headerlink" title="电源键(Sleep/Wake Button)"></a>电源键(Sleep/Wake Button)</h4><p>如果用户按下电源键，系统会disables触摸事件，将App切换到后台，并将<strong>application.applicationState</strong>设置为<strong>UIApplicationStateBackground</strong>，并且锁屏。</p>
+<p>如果用户按下电源键，app必须关闭与<strong>NSFileProtectionComplete</strong>保护选项下的文件的引用。当电源键被按下时，系统将锁屏，并丢弃这些保护文件的引用，任何与这些文件相关的访问将会失败。所以，应该在<strong>applicationWillResignActive:</strong>方法中关闭，而在<strong>applicationDidBecomeActive:</strong>方法中重新打开。</p>
+<h3 id="Enter-the-Foreground"><a href="#Enter-the-Foreground" class="headerlink" title="Enter the Foreground"></a>Enter the Foreground</h3><h4 id="前台任务"><a href="#前台任务" class="headerlink" title="前台任务"></a>前台任务</h4><p>App切换回前台时，需要恢复那些切换到后台时，停止的任务。即<strong>applicationWillEnterForeground:</strong>回调应该与<strong>applicationDidEnterBackground:</strong>回调的任务相反。而<strong>applicationDidBecomeActive:</strong>回调应该执行一些与App启动时一致的任务。</p>
+<p>流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_enter_foreground_2x.png" alt="App-Enter-Foreground"></p>
+<p>注意，App切换回前台时，会收到<strong>UIApplicationWillEnterForegroundNotification</strong>广播，可以注册监听这一广播事件。</p>
+<h4 id="处理队列通知-Queued-Notifications"><a href="#处理队列通知-Queued-Notifications" class="headerlink" title="处理队列通知(Queued Notifications)"></a>处理队列通知(Queued Notifications)</h4><p>处于Suspended状态的App，必须在切回Foreground或者Background状态时，准备好处理队列通知。因为处于Suspended状态的App无法执行代码，也就无法处理与横竖屏装换、时间变化、语言变化和其他一些影响App界面和状态的通知。为了确保这些通知不会丢失，系统将这些相关的通知队列化，当App切回Foreground或者Background状态时，系统进行分发这些通知。为了确保App不会被通知淹没，系统将这些事件合并，对于相关的类型，只分发一条通知。</p>
+<p>下面是通知的类型：</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th style="text-align:center">通知</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当一个外部设备连接或者断开时</td>
+<td style="text-align:center">EAAccessoryDidConnectNotification EAAccessoryDidDisconnectNotification</td>
+</tr>
+<tr>
+<td>设备朝向切换时</td>
+<td style="text-align:center">UIDeviceOrientationDidChangeNotification</td>
+</tr>
+<tr>
+<td>时间变化时(进入新的一天、运营商时间更新等)</td>
+<td style="text-align:center">UIApplicationSignificantTimeChangeNotification</td>
+</tr>
+<tr>
+<td>电池变化时</td>
+<td style="text-align:center">UIDeviceBatteryLevelDidChangeNotification UIDeviceBatteryStateDidChangeNotification</td>
+</tr>
+<tr>
+<td>距离(Proximity)传感器状态变化时</td>
+<td style="text-align:center">UIDeviceProximityStateDidChangeNotification</td>
+</tr>
+<tr>
+<td>被保护的文件状态变化时</td>
+<td style="text-align:center">UIApplicationProtectedDataWillBecomeUnavailable UIApplicationProtectedDataDidBecomeAvailable</td>
+</tr>
+<tr>
+<td>外部显示器连接或者断开时</td>
+<td style="text-align:center">UIScreenDidConnectNotification UIScreenDidDisconnectNotification</td>
+</tr>
+<tr>
+<td>显示器的屏幕模式切换时</td>
+<td style="text-align:center">UIScreenModeDidChangeNotification</td>
+</tr>
+<tr>
+<td>App的设置项变化时(在设置App中被用户手动变化，例如关闭推送通知)</td>
+<td style="text-align:center">NSUserDefaultsDidChangeNotification</td>
+</tr>
+<tr>
+<td>语言或者地区变化时</td>
+<td style="text-align:center">NSCurrentLocaleDidChangeNotification</td>
+</tr>
+<tr>
+<td>用户的iCloud账号状态变化时</td>
+<td style="text-align:center">NSUbiquityIdentityDidChangeNotification</td>
+</tr>
+</tbody>
+</table>
+<p>队列化通知将会被分发到App主线程的RunLoop中，一般会在触摸事件以及其他用户输入之前被分发。大多数App都足够快能够处理这些事件，如果App的交互和界面出现延迟，那么可能需要检查处理事件的代码逻辑。</p>
+<p>App在后台时，依然可以调用<strong>setNeedsDisplay</strong>和<strong>setNeedsDisplayInRect:</strong>方法，当时此时系统会先搁置这些请求，并在App切换回Foreground状态时，分发这些尚未完成的View-Update通知。</p>
+<h4 id="处理iCloud账号状态变化"><a href="#处理iCloud账号状态变化" class="headerlink" title="处理iCloud账号状态变化"></a>处理iCloud账号状态变化</h4><p>当iCloud账号状态变化时，例如，用户登录或退出，或者用户开启或者关闭iCloud的文件和数据同步，系统会分发<strong>NSUbiquityIdentityDidChangeNotification</strong>通知，App应该做出相应的变化。例如，当用户退出iCloud时，App对iCloud的文件应用应该关闭。</p>
+<h4 id="处理地区变化"><a href="#处理地区变化" class="headerlink" title="处理地区变化"></a>处理地区变化</h4><p>当用户切换地区时，App会收到<strong>NSCurrentLocaleDidChangeNotification</strong>通知，此时，应该对一些地区敏感的信息进行处理，例如日期，时间和一些数字。可以利用以下方法来获取一个自动切换的NSLocale对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[NSLocale autoupdatingCurrentLocale]</div></pre></td></tr></table></figure>
+<h4 id="处理App的设置变化"><a href="#处理App的设置变化" class="headerlink" title="处理App的设置变化"></a>处理App的设置变化</h4><p>当App的设置项变化时(在设置App中被用户手动变化，例如关闭推送通知)，App会收到<strong>NSUserDefaultsDidChangeNotification</strong>通知，App应该做出相应的变化。例如，邮件App应该对用户的账户信息敏感，当用户在设置App中关闭这一权限时，邮件App应该不能再操作用户的邮件，否则可能会造成安全问题。</p>
+<h3 id="Enter-the-Background"><a href="#Enter-the-Background" class="headerlink" title="Enter the Background"></a>Enter the Background</h3><h4 id="后台任务"><a href="#后台任务" class="headerlink" title="后台任务"></a>后台任务</h4><p>当App切换到后台时，应该在<strong>applicationDidEnterBackground:</strong>回调中，处理：</p>
+<ul>
+<li>保存相关的状态信息;</li>
+<li>尽可能释放内存：占用内存过大的后台App，将会被系统直接终止，所以，尽可能释放图片，数据，多媒体等资源的强引用，系统本身会移除所有系统对缓存图片的引用，系统管理的数据存储，以及所有Core Animation Layers的储备(Backing Store)，这并不会移除layers对象，也不会改变其属性，只是不让其显示在屏幕上;</li>
+<li>预备好App即将被截图：系统会在applicationDidEnterBackground回调后进行App的截图，用于多任务处理，如果有敏感信息，应该在applicationWillResignActive回调中进行隐藏或者修改，因为applicationDidEnterBackground在双击Home键的时候不会触发。</li>
+</ul>
+<p>回调applicationDidEnterBackground，大概有<strong>5秒</strong>左右的处理时间，如果超出，App将会被系统直接终止并从内存移除，如果需要进行更多的时间，调用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">beginBackgroundTaskWithExpirationHandler:</div></pre></td></tr></table></figure>
+<p>并在子线程中进行耗时任务。</p>
+<p>流程图：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_life_cycle_2x.png" alt="App-Bg-Life-Cycle"></p>
+<p>注意，App切换到后台时，会收到<strong>UIApplicationDidEnterBackgroundNotification</strong>广播，可以注册监听这一广播事件。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/10/ios-AppLifeCycle/" rel="next" title="iOS-App Life Cycle">
+                <i class="fa fa-chevron-left"></i> iOS-App Life Cycle
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/13/ios-Preservation&Restoration/" rel="prev" title="iOS-Preservation & Restoration">
+                iOS-Preservation & Restoration <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/12/ios-StrategiedForHandlingAppStateTransitions/"
+           data-title="iOS-Strategies for Handling App State Transitions" data-url="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Launch-Time"><span class="nav-number">1.</span> <span class="nav-text">Launch Time</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态变化"><span class="nav-number">1.1.</span> <span class="nav-text">状态变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#横屏模式"><span class="nav-number">1.2.</span> <span class="nav-text">横屏模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初次启动时创建数据文件"><span class="nav-number">1.3.</span> <span class="nav-text">初次启动时创建数据文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interrupted-Temporarily"><span class="nav-number">2.</span> <span class="nav-text">Interrupted Temporarily</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断处理"><span class="nav-number">2.1.</span> <span class="nav-text">中断处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#电源键-Sleep-Wake-Button"><span class="nav-number">2.2.</span> <span class="nav-text">电源键(Sleep/Wake Button)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enter-the-Foreground"><span class="nav-number">3.</span> <span class="nav-text">Enter the Foreground</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前台任务"><span class="nav-number">3.1.</span> <span class="nav-text">前台任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理队列通知-Queued-Notifications"><span class="nav-number">3.2.</span> <span class="nav-text">处理队列通知(Queued Notifications)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理iCloud账号状态变化"><span class="nav-number">3.3.</span> <span class="nav-text">处理iCloud账号状态变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理地区变化"><span class="nav-number">3.4.</span> <span class="nav-text">处理地区变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理App的设置变化"><span class="nav-number">3.5.</span> <span class="nav-text">处理App的设置变化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enter-the-Background"><span class="nav-number">4.</span> <span class="nav-text">Enter the Background</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#后台任务"><span class="nav-number">4.1.</span> <span class="nav-text">后台任务</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

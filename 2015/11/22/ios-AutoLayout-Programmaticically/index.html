@@ -1,0 +1,889 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Auto Layout[8]-Programmatically Creating Constraints">
+<meta property="og:url" content="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Auto Layout[8]-Programmatically Creating Constraints">
+<meta name="twitter:description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/"/>
+
+
+
+
+
+  <title> iOS-Auto Layout[8]-Programmatically Creating Constraints | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Auto Layout[8]-Programmatically Creating Constraints
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-22T00:00:00+08:00">
+                2015-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/22/ios-AutoLayout-Programmaticically/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/22/ios-AutoLayout-Programmaticically/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用<strong>NSLayoutConstraint</strong>、<strong>Layout Anchors</strong>、<strong>Visual Format Language</strong>三种方式来创造Constraints。</p>
+<a id="more"></a>
+<h2 id="NSLayoutConstraint-Class"><a href="#NSLayoutConstraint-Class" class="headerlink" title="NSLayoutConstraint Class"></a>NSLayoutConstraint Class</h2><p>直接通过<strong>NSLayoutConstraint Class</strong>的函数可以在相应的View上添加Constraints:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.5f constant:0.0f].active = YES;</div></pre></td></tr></table></figure>
+<p><strong>这里，要注意的是，在创建Constraints之前，需要将对应的View添加到View结构树中去</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.view addSubview:testView];</div></pre></td></tr></table></figure>
+<p>否则，会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**Terminating app due to uncaught exception &apos;NSGenericException&apos;, reason: &apos;Unable to activate constraint with items &lt;UIView: 0x7fe56a421c20; frame = (0 0; 0 0); layer = &lt;CALayer: 0x7fe56a41c6e0&gt;&gt; and &lt;UIView: 0x7fe56a426e80; frame = (0 0; 667 375); autoresize = W+H; layer = &lt;CALayer: 0x7fe56a424fa0&gt;&gt; because they have no common ancestor.  Does the constraint reference items in different view hierarchies?  That&apos;s illegal.&apos;</div></pre></td></tr></table></figure>
+<p>另外，需要设置<strong>translatesAutoresizingMaskIntoConstraints</strong>属性为<strong>NO</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div></pre></td></tr></table></figure>
+<p>否则，会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Unable to simultaneously satisfy constraints.</div><div class="line">	Probably at least one of the constraints in the following list is one you don&apos;t want. </div><div class="line">	Try this: </div><div class="line">		(1) look at each constraint and try to figure out which you don&apos;t expect; </div><div class="line">		(2) find the code that added the unwanted constraint or constraints and fix it.</div></pre></td></tr></table></figure>
+<p>当出现约束错误时，<strong>NSLayoutConstraint Class</strong>不会在编译时报错，只会在运行时报错。</p>
+<h2 id="Layout-Anchors"><a href="#Layout-Anchors" class="headerlink" title="Layout Anchors"></a>Layout Anchors</h2><p>由于NSLayoutConstraint Class比较复杂，易读性较差，所以，<strong>iOS 9以上</strong>系统又提供了更便捷地创建Constraints方式，使用<strong>Layout Anchors</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">UILayoutGuide *margins = self.view.layoutMarginsGuide;</div><div class="line">[testView.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;</div><div class="line">[testView.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;</div><div class="line">[testView.topAnchor constraintEqualToAnchor:margins.topAnchor].active = YES;</div><div class="line">[testView.heightAnchor constraintEqualToAnchor:testView.widthAnchor multiplier:0.5f].active = YES;</div></pre></td></tr></table></figure>
+<p><strong>相比于NSLayoutConstraint Class，Layout Anchors不仅提供了更易读的方法，而且，还加入了类型信息，可以在编译时可以报错，而不是等到运行时。</strong>例如：在leadingAnchor和widthAnchor之间创建Constraints时，会报错。</p>
+<h2 id="Visual-Format-Language"><a href="#Visual-Format-Language" class="headerlink" title="Visual Format Language"></a>Visual Format Language</h2><p><strong>Visual Format Language</strong>使用一个类似<strong>ASCII-art</strong>类型的字符串来定义Constratints，其有以下的优缺点：</p>
+<ul>
+<li>Auto Layout打印在控制台中是Visual Format Language，因为编码如果使用Visual Format Language，将会更直观；</li>
+<li>Visual Format Language可以使用很简短的表达式，一次性创建多个Constraitns；</li>
+<li>Visual Format Language只能创建有效的Constraints；</li>
+<li>一些特殊的Constraints无法通过Visual Format Language创建，例如Aspect Ratios；</li>
+<li>编译器不会校验Visual Format Language的表达式，只能在运行时发现错误。</li>
+</ul>
+<p>Visual Format Language的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line"> </div><div class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;H:|-[TestView(&gt;=100)]-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div><div class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:|-Height-[TestView]-Height-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:@&#123;@&quot;Height&quot;:@40&#125; views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div></pre></td></tr></table></figure>
+<p>注意views要用NSDictionary定义好，在表达式中使用到的view：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">views:@&#123;@&quot;TestView&quot;:testView&#125;</div></pre></td></tr></table></figure>
+<p>matrics也是用NSDictionary定义好，在表达式中使用到的变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">metrics:@&#123;@&quot;Height&quot;:@40&#125;</div></pre></td></tr></table></figure>
+<p><strong>表达式语法如下：</strong></p>
+<h4 id="View用-括起来表示，例如"><a href="#View用-括起来表示，例如" class="headerlink" title="View用[]括起来表示，例如:"></a>View用[]括起来表示，例如:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView]</div></pre></td></tr></table></figure>
+<h4 id="SuperVie用’-’表示，例如："><a href="#SuperVie用’-’表示，例如：" class="headerlink" title="SuperVie用’|’表示，例如："></a>SuperVie用’|’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div></pre></td></tr></table></figure>
+<h4 id="表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><a href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如：" class="headerlink" title="表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如："></a>表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div><div class="line">V:|-[TestView]-|</div></pre></td></tr></table></figure>
+<h4 id="标准间距-8px-用’-‘表示，例如："><a href="#标准间距-8px-用’-‘表示，例如：" class="headerlink" title="标准间距(8px)用’-‘表示，例如："></a>标准间距(8px)用’-‘表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div></pre></td></tr></table></figure>
+<p>表示TestView距离左右两边都是8px。</p>
+<h4 id="长度约束用’-gt-’、’-’、’-lt-’表示，例如："><a href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如：" class="headerlink" title="长度约束用’&gt;=’、’==’、’&lt;=’表示，例如："></a>长度约束用’&gt;=’、’==’、’&lt;=’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-40-[TestView(&gt;=50)]-40-|</div><div class="line">[TestView(==TestView2)]</div><div class="line">[TestView(&gt;=70, &lt;=100)]</div></pre></td></tr></table></figure>
+<p>第一句表示TestView的Width至少为50，第二句表示TestView的Width等于TestView2的Width，第三句表示TestView的Width在70和100之间。</p>
+<h4 id="没有间距，可以直接并列，例如："><a href="#没有间距，可以直接并列，例如：" class="headerlink" title="没有间距，可以直接并列，例如："></a>没有间距，可以直接并列，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView][TestView2]</div></pre></td></tr></table></figure>
+<h4 id="优先级用’-’加数字表示，例如："><a href="#优先级用’-’加数字表示，例如：" class="headerlink" title="优先级用’@’加数字表示，例如："></a>优先级用’@’加数字表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView(100@20)]</div></pre></td></tr></table></figure>
+<p>表示TestView的Width为100，优先级为20。</p>
+<h4 id="多个View的Constraints可以写在一条表达式中："><a href="#多个View的Constraints可以写在一条表达式中：" class="headerlink" title="多个View的Constraints可以写在一条表达式中："></a>多个View的Constraints可以写在一条表达式中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-[TestView2]-[TestView3(&gt;=20)]-|</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/19/ios-AutoLayout-ChangingConstraints/" rel="next" title="iOS-Auto Layout[7]-Changing Constraints">
+                <i class="fa fa-chevron-left"></i> iOS-Auto Layout[7]-Changing Constraints
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/28/ios-AutoLayout-Debugging/" rel="prev" title="iOS-Auto Layout[9]-Debugging">
+                iOS-Auto Layout[9]-Debugging <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/22/ios-AutoLayout-Programmaticically/"
+           data-title="iOS-Auto Layout[8]-Programmatically Creating Constraints" data-url="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSLayoutConstraint-Class"><span class="nav-number">1.</span> <span class="nav-text">NSLayoutConstraint Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-Anchors"><span class="nav-number">2.</span> <span class="nav-text">Layout Anchors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Format-Language"><span class="nav-number">3.</span> <span class="nav-text">Visual Format Language</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View用-括起来表示，例如"><span class="nav-number">3.0.1.</span> <span class="nav-text">View用[]括起来表示，例如:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SuperVie用’-’表示，例如："><span class="nav-number">3.0.2.</span> <span class="nav-text">SuperVie用’|’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><span class="nav-number">3.0.3.</span> <span class="nav-text">表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准间距-8px-用’-‘表示，例如："><span class="nav-number">3.0.4.</span> <span class="nav-text">标准间距(8px)用’-‘表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如："><span class="nav-number">3.0.5.</span> <span class="nav-text">长度约束用’>=’、’==’、’<=’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#没有间距，可以直接并列，例如："><span class="nav-number">3.0.6.</span> <span class="nav-text">没有间距，可以直接并列，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级用’-’加数字表示，例如："><span class="nav-number">3.0.7.</span> <span class="nav-text">优先级用’@’加数字表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个View的Constraints可以写在一条表达式中："><span class="nav-number">3.0.8.</span> <span class="nav-text">多个View的Constraints可以写在一条表达式中：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

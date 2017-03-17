@@ -1,0 +1,1224 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Technology,Network,Computer," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="This chapter we study the conceptual and implementation aspects of network applications.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-Computer Networking[2]-Application Layer">
+<meta property="og:url" content="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="This chapter we study the conceptual and implementation aspects of network applications.">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ApplicationArchitecture.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RequirementsOfApplications.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-PopularApplications.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RTT.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-HTTP-Request.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-HTTP-Response.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Cookie.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Proxy.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Bottleneck.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-FTP.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-FTP-Port.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Email.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Email-Protocol.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DNS.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DNS-Root.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DNS-Interaction.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DNS-Message.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-P2P.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Time-CS.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Time-P2P.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Time-P2P-CS.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-BitTorrent.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DHT.png">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-Computer Networking[2]-Application Layer">
+<meta name="twitter:description" content="This chapter we study the conceptual and implementation aspects of network applications.">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ApplicationArchitecture.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/"/>
+
+
+
+
+
+  <title> Technology-Computer Networking[2]-Application Layer | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-Computer Networking[2]-Application Layer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T00:00:00+08:00">
+                2017-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/14/technology-ComputerNetworking-ApplicationLayer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/technology-ComputerNetworking-ApplicationLayer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This chapter we study the conceptual and implementation aspects of network applications. </p>
+<a id="more"></a> 
+<h2 id="Principles-of-Network-Applications"><a href="#Principles-of-Network-Applications" class="headerlink" title="Principles of Network Applications"></a>Principles of Network Applications</h2><h3 id="Network-Application-Architectures"><a href="#Network-Application-Architectures" class="headerlink" title="Network Application Architectures"></a>Network Application Architectures</h3><p>The application architecture is designed by the application developer and dictates how the application is structured over the various end systems.</p>
+<blockquote>
+<p>client-server architecture, P2P(peer-to-peer) architecture</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-ApplicationArchitecture.png" alt="ApplicationArchitecture"></p>
+<p>P2P：<strong>self-scalability</strong>(compelling features), but three major chanllenges:</p>
+<ul>
+<li><strong>ISP Friendly</strong>:P2P video streaming and file distribu-tion applications shift upstream traffic from servers to residential ISPs, thereby putting significant stress on the ISPs;</li>
+<li><strong>Security</strong>:distributed and open nature;</li>
+<li><strong>Incentives</strong>:convincing users to volunteer bandwidth, storage, and computation resources.</li>
+</ul>
+<h3 id="Processes-Communicating"><a href="#Processes-Communicating" class="headerlink" title="Processes Communicating"></a>Processes Communicating</h3><p>In the context of a communication session between a pair of processes, the process that initiates the communication is labeled as <strong>the client</strong>. The process that waits to be contacted to begin the session is <strong>the server</strong>.</p>
+<blockquote>
+<p>Port Number:identify the receiving process (more specifically, the receiving socket) running in the host.</p>
+</blockquote>
+<h3 id="Transport-Services-Available-to-Applications"><a href="#Transport-Services-Available-to-Applications" class="headerlink" title="Transport Services Available to Applications"></a>Transport Services Available to Applications</h3><h4 id="Reliable-Data-Transfer"><a href="#Reliable-Data-Transfer" class="headerlink" title="Reliable Data Transfer"></a>Reliable Data Transfer</h4><blockquote>
+<p>Reliable Data Transfer:a protocol provides such a guaranteed data delivery service.</p>
+</blockquote>
+<p><strong>loss-tolerant applications</strong></p>
+<h4 id="Throughput"><a href="#Throughput" class="headerlink" title="Throughput"></a>Throughput</h4><blockquote>
+<p>Throughput:the rate at which the sending process can deliver bits to the receiving process.</p>
+</blockquote>
+<ul>
+<li><p><strong>bandwidth-sensitive applications</strong>:Multimedia applications.</p>
+</li>
+<li><p><strong>elastic applications</strong>:electronic mail, file transfer, and Web transfers.</p>
+</li>
+</ul>
+<h4 id="Timing"><a href="#Timing" class="headerlink" title="Timing"></a>Timing</h4><p><strong>timing guarantees</strong>.</p>
+<h4 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h4><ul>
+<li>encrypt</li>
+<li>decrypt</li>
+<li>data integrity</li>
+<li>end-point authentication**</li>
+</ul>
+<h3 id="Transport-Services-Provided-by-the-Internet"><a href="#Transport-Services-Provided-by-the-Internet" class="headerlink" title="Transport Services Provided by the Internet"></a>Transport Services Provided by the Internet</h3><p><img src="/images/Technology-ComputerNetworking-Internet-RequirementsOfApplications.png" alt="RequirementsOfApplications"></p>
+<h3 id="TCP-Services"><a href="#TCP-Services" class="headerlink" title="TCP Services"></a>TCP Services</h3><ul>
+<li>Connection-oriented service:Handshaking;</li>
+<li>Reliable data transfer service:all data sent without error and in the proper order;</li>
+<li>Secure Sockets Layer (SSL):TCP-enhanced-with-SSL not only does everything that traditional TCP does but also provides critical process-to-process security services, including<br>encryption, data integrity, and end-point authentication;</li>
+<li>congestion-control mechanism.</li>
+</ul>
+<h3 id="UDP-Services"><a href="#UDP-Services" class="headerlink" title="UDP Services"></a>UDP Services</h3><ul>
+<li>connectionless</li>
+<li>unreliable data transfer service</li>
+</ul>
+<h3 id="Services-Not-Provided-by-Internet-Transport-Protocols"><a href="#Services-Not-Provided-by-Internet-Transport-Protocols" class="headerlink" title="Services Not Provided by Internet Transport Protocols"></a>Services Not Provided by Internet Transport Protocols</h3><p>Today’s Internet can often provide satisfactory service to time-sensitive applications, but it cannot provide any timing or throughput guarantees.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-PopularApplications.png" alt="PopularApplications"></p>
+<p>Many firewalls are configured to block (most types of) UDP traffic, Internet telephony applications often are designed to use TCP as a backup if UDP communication fails.</p>
+<h2 id="The-Web-and-HTTP"><a href="#The-Web-and-HTTP" class="headerlink" title="The Web and HTTP"></a>The Web and HTTP</h2><h3 id="Overview-of-HTTP"><a href="#Overview-of-HTTP" class="headerlink" title="Overview of HTTP"></a>Overview of HTTP</h3><blockquote>
+<p>HyperText Transfer Protocol (HTTP):defines how Web clients request Web pages from Web servers and how servers transfer Web pages to clients.</p>
+</blockquote>
+<p>HTTP:</p>
+<ul>
+<li><strong>uses TCP</strong>:as its underlying transport protocol;</li>
+<li><strong>stateless</strong>:an HTTP server maintains no informa- tion about the clients.</li>
+</ul>
+<h3 id="Non-Persistent-and-Persistent-Connections"><a href="#Non-Persistent-and-Persistent-Connections" class="headerlink" title="Non-Persistent and Persistent Connections"></a>Non-Persistent and Persistent Connections</h3><blockquote>
+<p>Non-persistent Connections:each request/response pair be sent over a separate TCP connection.</p>
+<p>Persistent Connections:all of the requests and their cor-responding responses be sent over the same TCP connection.</p>
+</blockquote>
+<p>Although <strong>HTTP uses persistent connections in its default mode</strong>, HTTP clients and servers can be configured to use non-persistent connections instead.</p>
+<h4 id="HTTP-with-Non-Persistent-Connections"><a href="#HTTP-with-Non-Persistent-Connections" class="headerlink" title="HTTP with Non-Persistent Connections"></a>HTTP with Non-Persistent Connections</h4><blockquote>
+<p>Round-trip Time(RTT):the time it takes for a small packet to travel from client to server and then back to the client.</p>
+</blockquote>
+<p>Note that each TCP connection transports exactly one request mes-sage and one response message.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-RTT.png" alt="RTT"></p>
+<h4 id="HTTP-with-Persistent-Connections"><a href="#HTTP-with-Persistent-Connections" class="headerlink" title="HTTP with Persistent Connections"></a>HTTP with Persistent Connections</h4><p>HTTP server closes a con-nection when it isn’t used for a certain time.</p>
+<h3 id="HTTP-Message-Format"><a href="#HTTP-Message-Format" class="headerlink" title="HTTP Message Format"></a>HTTP Message Format</h3><h4 id="HTTP-Request-Message"><a href="#HTTP-Request-Message" class="headerlink" title="HTTP Request Message"></a>HTTP Request Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /somedir/page.html HTTP/1.1  //request line:three fields(the method field, the URL field, and the HTTP version field)</div><div class="line">Host: www.someschool.edu //header line:required by Web proxy cachesConnection: close //header line:it wants the server to close the connection after sending the requested object</div><div class="line">User-agent: Mozilla/5.0 //header line:specifies the user agent, that is, the browser type</div><div class="line">Accept-language: fr //header line:indicates that the user prefers to receive a French version of the object</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>GET</strong>:used when the browser requests an object, with the requested object iden-tified in the URL field;</li>
+<li><strong>HEAD</strong>:it responds with an HTTP message but it leaves out the requested object;Application developers often use the HEAD method for debug-ging;</li>
+<li><strong>POST</strong>:when a user fills out a form;</li>
+<li><strong>PUT</strong>:often used in conjunction with Web publishing tools. It allows a user to upload an object to a specific path (directory) on a specific Web server;The PUT method is also used by applications that need to upload objects to Web servers;</li>
+<li><strong>DELETE</strong>:allows a user, or an application, to delete an object on a Web server.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-HTTP-Request.png" alt="Request"></p>
+<h4 id="HTTP-Response-Message"><a href="#HTTP-Response-Message" class="headerlink" title="HTTP Response Message"></a>HTTP Response Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK //status line:three fields(the protocol ver-sion field, a status code, and a corresponding status message)</div><div class="line">Connection: close //header lineDate: Tue, 09 Aug 2011 15:44:04 GMT //header line:indicates the time and date when the HTTP response was created and sent by the server;Server: Apache/2.2.3 (CentOS) //header lineLast-Modified: Tue, 09 Aug 2011 15:11:03 GMT Content-Length: 6821 //header line:indicates the time and date when the object was created or last modified;Content-Type: text/html //header line:(data data data data data ...) //entity body</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>200 OK</strong>: Request succeeded and the information is returned in the response.</li>
+<li><strong>301 Moved Permanently</strong>: Requested object has been permanently moved;the new URL is specified in Location: header of the response message. Theclient software will automatically retrieve the new URL.</li>
+<li><strong>400 Bad Request</strong>: This is a generic error code indicating that the requestcould not be understood by the server.</li>
+<li><strong>404 Not Found</strong>: The requested document does not exist on this server.</li>
+<li><strong>505 HTTP Version Not Supported</strong>: The requested HTTP protocolversion is not supported by the server.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-HTTP-Response.png" alt="Response"></p>
+<h3 id="User-Server-Interaction-Cookies"><a href="#User-Server-Interaction-Cookies" class="headerlink" title="User-Server Interaction: Cookies"></a>User-Server Interaction: Cookies</h3><blockquote>
+<p>HTTP uses cookies, defined in [RFC 6265], allow sites to keep track of users, but also be considered as an invasion of privacy.</p>
+</blockquote>
+<p>cookie technology has four components: </p>
+<ul>
+<li>a cookie header line in the HTTP response message; </li>
+<li>a cookie header line in the HTTP request message; </li>
+<li>a cookie file kept on the user’s end system and managed by the user’s browser; </li>
+<li>a back-end database at the Web site.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Cookie.png" alt="Cookie"></p>
+<h3 id="Web-Caching"><a href="#Web-Caching" class="headerlink" title="Web Caching"></a>Web Caching</h3><blockquote>
+<p>A Web cache also called a proxy server-is a network entity that satisfies HTTP requests on the behalf of an origin Web server. </p>
+</blockquote>
+<p>Typically a Web cache is purchased and installed by an ISP.</p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Proxy.png" alt="Proxy"></p>
+<ul>
+<li>a Web cache can substantially reduce the response time for a client request;</li>
+<li>Web caches can substantially reduce traffic on an institution’s access link to the Internet. By reducing traffic, the institution does not have to upgrade bandwidth as quickly, therebyreducing costs.</li>
+</ul>
+<blockquote>
+<p>Content Distribution Networks (CDNs):A CDN company installs many geographically distributed caches throughout the Internet, thereby localizing much of the traffic. </p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Bottleneck.png" alt="Bottleneck"></p>
+<blockquote>
+<p>Internet delay:the amount of time it takes from when the router on the Internet side of the access link forwards an HTTP request (within an IP datagram) until it receives the response (typically within many IP datagrams) is two seconds on average.</p>
+</blockquote>
+<h3 id="The-Conditional-GET"><a href="#The-Conditional-GET" class="headerlink" title="The Conditional GET"></a>The Conditional GET</h3><blockquote>
+<p>Conditional GET:a mechanism that allows a cache to verify that its objects are up to date.</p>
+</blockquote>
+<ul>
+<li>the request message uses the GET method;</li>
+<li>the request message includes an If-Modified-Since: header line.</li>
+</ul>
+<p>Request:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /fruit/kiwi.gif HTTP/1.1</div><div class="line">Host: www.exotiquecuisine.com</div><div class="line">If-modified-since: Wed, 7 Sep 2011 09:23:24</div></pre></td></tr></table></figure>
+<p>Response:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 304 Not Modified</div><div class="line">Date: Sat, 15 Oct 2011 15:39:29</div><div class="line">Server: Apache/1.3.0 (Unix)</div><div class="line">(empty entity body)</div></pre></td></tr></table></figure>
+<h2 id="File-Transfer-FTP"><a href="#File-Transfer-FTP" class="headerlink" title="File Transfer: FTP"></a>File Transfer: FTP</h2><p><img src="/images/Technology-ComputerNetworking-Internet-FTP.png" alt="FTP"></p>
+<blockquote>
+<p>FTP is said to send its control information out-of-band. HTTP, as you recall, sends requestand response header lines into the same TCPconnection that carries the transferredfile itself.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-FTP-Port.png" alt="FTP"></p>
+<ul>
+<li>The client side of FTP(user) first initiates a control TCP connection with the server side (remote host) on server port number 21. </li>
+<li>The client side of FTP sends the user identification and password over this control connection.</li>
+<li>The client side of FTP also sends, over the control connection, commands to change the remote directory. </li>
+<li>When the server side receives a command for a file transfer over the control connection (either to, or from, the remote host), the server side initiates a TCP data connection to the client side. </li>
+<li>FTP sends exactly one file over the data connection and then closes the data connection.</li>
+<li>If, during the same session, the user wants to transfer another file, FTP opens another data connection. Thus, with FTP, <strong>the control connection remains open throughout the duration of the user session, but a new data connec-tion is created for each file transferred within a session</strong> (that is, the data connec-tions are non-persistent).</li>
+</ul>
+<blockquote>
+<p>FTP maintain state about the user</p>
+</blockquote>
+<p>Keeping track of this state information for each ongoing user session significantly constrains the total number of sessions that FTP can maintain simultaneously.</p>
+<h3 id="FTP-Commands-and-Replies"><a href="#FTP-Commands-and-Replies" class="headerlink" title="FTP Commands and Replies"></a>FTP Commands and Replies</h3><p>Commands:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">USER username: Used to send the user identification to the server.PASS password: Used to send the user password to the server.LIST: Used to ask the server to send back a list of all the files in the current remote directory. The list of files is sent over a (new and non-persistent) data connection rather than the control TCP connection.</div><div class="line">RETR filename: Used to retrieve (that is, get) a file from the current direc- tory of the remote host. This command causes the remote host to initiate a data connection and to send the requested file over the data connection.STOR filename: Used to store (that is, put) a file into the current directory of the remote host.</div></pre></td></tr></table></figure>
+<p>Replies:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">331 Username OK, password required125 Data connection already open; transfer starting </div><div class="line">425 Can’t open data connection452 Error writing file</div></pre></td></tr></table></figure>
+<h2 id="Electronic-Mail-in-the-Internet"><a href="#Electronic-Mail-in-the-Internet" class="headerlink" title="Electronic Mail in the Internet"></a>Electronic Mail in the Internet</h2><blockquote>
+<p>Simple Mail Transfer Protocol (SMTP)</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Email.png" alt="Email"></p>
+<p>Mail server must also <strong>deal with failures</strong> in other mail server:</p>
+<ul>
+<li>If a server cannot deliver mail, it will hold the message in a message queue and attempts to transfer the message later;</li>
+<li>Reattempts are often done every 30 minutes or so; </li>
+<li>If there is no success after several days, the server removes the message and notifies the sender with an e-mail message.</li>
+</ul>
+<h3 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h3><p>It requires binary multimedia data to be <strong>encoded to ASCII</strong> before being sent over SMTP.</p>
+<blockquote>
+<p>SMTP has TCP establish a connection to port 25.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">S: 220 hamburger.eduC: HELO crepes.frS: 250 Hello crepes.fr, pleased to meet youC: MAIL FROM: &lt;alice@crepes.fr&gt;S: 250 alice@crepes.fr ... Sender okC: RCPT TO: &lt;bob@hamburger.edu&gt;S: 250 bob@hamburger.edu ... Recipient okC: DATAS: 354 Enter mail, end with “.” on a line by itself C: Do you like ketchup?C: How about pickles?C: .S: 250 Message accepted for deliveryC: QUITS: 221 hamburger.edu closing connection</div></pre></td></tr></table></figure>
+<p>SMTP commands:</p>
+<ul>
+<li>HELO</li>
+<li>MAIL FROM</li>
+<li>RCPT TO</li>
+<li>DATA</li>
+<li>CRLF.CRLF</li>
+<li>QUIT</li>
+</ul>
+<h3 id="Comparison-with-HTTP"><a href="#Comparison-with-HTTP" class="headerlink" title="Comparison with HTTP"></a>Comparison with HTTP</h3><blockquote>
+<p>SMTP is primarily a push protocol, HTTP is mainly a pull protocol;<br>SMTP requires each message, including the body of each message, to be in 7-bit ASCII format.<br>HTTP encapsulates each object in its own HTTP response message. Internet mail places all of the message’s objects into one message.</p>
+</blockquote>
+<h3 id="Mail-Message-Formats"><a href="#Mail-Message-Formats" class="headerlink" title="Mail Message Formats"></a>Mail Message Formats</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">From: alice@crepes.frTo: bob@hamburger.eduSubject: Searching for the meaning of life.</div></pre></td></tr></table></figure>
+<h3 id="Mail-Access-Protocols"><a href="#Mail-Access-Protocols" class="headerlink" title="Mail Access Protocols"></a>Mail Access Protocols</h3><blockquote>
+<p>popular mail access protocols, including Post Office Protocol—Version 3 (POP3), Internet Mail Access Protocol (IMAP), and HTTP.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Email-Protocol.png" alt="Email"></p>
+<h3 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h3><blockquote>
+<p>POP3 begins when the user agent opens a TCP connection to the mail server on <strong>port 110</strong>.</p>
+</blockquote>
+<p>POP3 progresses through three phases: </p>
+<ul>
+<li><strong>authorization</strong>:the user agent sends a username and a password (in the clear) to authenticate the user;</li>
+<li><strong>transaction</strong>:the user agent retrieves messages, and mark messages for deletion, remove deletion marks, and obtain mail statistics;</li>
+<li><strong>update</strong>:occurs after the client has issued the quit command, ending the POP3 session.</li>
+</ul>
+<p>responses:</p>
+<ul>
+<li><strong>+OK</strong>:used by the server to indicate that the previous command was fine;</li>
+<li><strong>-ERR</strong>:used by the server to indicate that something was wrong with the previous command.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">telnet mailServer 110 </div><div class="line">+OK POP3 server ready </div><div class="line">user bob+OK </div><div class="line">pass hungry+OK user successfully logged on</div></pre></td></tr></table></figure>
+<p>A user agent using POP3 can often be configured (by the user) to :</p>
+<ul>
+<li><strong>download and delete</strong>:The user agent retrieves and deletes each message from the server.Four commands:list, retr, dele, and quit.</li>
+<li><strong>download and keep</strong>:the user agent leaves the messages on the mail server after downloading them. In this case, He can reread messages from different machines.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C: list S: 1 498 S: 2 912 S: .C: retr 1S: (blah blah ...S: .................S: ..........blah)S: .C: dele 1C: retr 2S: (blah blah ...S: .................S: ..........blah)S: .C: dele 2C: quitS: +OK POP3 server signing off</div></pre></td></tr></table></figure>
+<blockquote>
+<p>The POP3server <strong>maintains some state information</strong>; in particular, it keeps track of which usermessages have been marked deleted. However, the POP3 server <strong>does not carry stateinformation across POP3 sessions</strong>.</p>
+</blockquote>
+<h3 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h3><blockquote>
+<p>The IMAP protocol provides commands to allow users to <strong>create folders and move messages from one folder to another</strong>. IMAP also provides commands that allow users to <strong>search remote folders for messages matching specific criteria</strong>.</p>
+<p>Unlike POP3, an IMAP server maintains user state information across IMAP sessions.Another important feature of IMAP is that it has commands that permit a user agent to obtain components of messages.</p>
+</blockquote>
+<h3 id="Web-Based-E-Mail"><a href="#Web-Based-E-Mail" class="headerlink" title="Web-Based E-Mail"></a>Web-Based E-Mail</h3><p>The e-mail message is sent from web browser to mail server over HTTP rather than over SMTP.</p>
+<h2 id="DNS—The-Internet’s-Directory-Service"><a href="#DNS—The-Internet’s-Directory-Service" class="headerlink" title="DNS—The Internet’s Directory Service"></a>DNS—The Internet’s Directory Service</h2><h3 id="Services-Provided-by-DNS"><a href="#Services-Provided-by-DNS" class="headerlink" title="Services Provided by DNS"></a>Services Provided by DNS</h3><blockquote>
+<p>domain name system (DNS):a directory service that translates hostnames to IPaddresses, and some other services.</p>
+</blockquote>
+<p>The DNS is:</p>
+<ul>
+<li>(1) a distributed database implemented in a hierarchy of DNS servers;</li>
+<li>(2) an application-layer protocol that allows hosts to query the distributed database.</li>
+<li>(3)The DNS servers are often UNIX machines running the Berkeley Internet NameDomain (BIND) software [BIND 2012]. </li>
+</ul>
+<blockquote>
+<p>The DNS protocol runs over UDP and usesport 53.</p>
+<p>A “nearby” DNS server:cache IP address, which helps to reduce DNS network traffic as well as the average DNS delay.</p>
+</blockquote>
+<p>DNS provides a few other services:</p>
+<ul>
+<li>Host aliasing:canonical hostname;</li>
+<li>Mail server aliasing:the MX record permits a company’s mail server and Web server to have identical(aliased) hostnames;for example, a company’s Web server and mail server can both be called enterprise.com;</li>
+<li>Load distribution:The DNS database contains a set of IPaddresses that associated with one canonical hostname. When clients make a DNS query for a namemapped to a set of addresses, the server responds with the entire set of IPaddresses, but rotates the ordering of the addresses within each reply.</li>
+</ul>
+<h3 id="Overview-of-How-DNS-Works"><a href="#Overview-of-How-DNS-Works" class="headerlink" title="Overview of How DNS Works"></a>Overview of How DNS Works</h3><p>A simple design for DNS would have one DNS server that contains all the map- pings:</p>
+<ul>
+<li>A single point of failure;</li>
+<li>Traffic volume;</li>
+<li>Distant centralized database;</li>
+<li>Maintenance.</li>
+</ul>
+<h4 id="A-Distributed-Hierarchical-Database"><a href="#A-Distributed-Hierarchical-Database" class="headerlink" title="A Distributed, Hierarchical Database"></a>A Distributed, Hierarchical Database</h4><p><img src="/images/Technology-ComputerNetworking-Internet-DNS.png" alt="DNS"></p>
+<ul>
+<li><strong>Root DNS server</strong>:Although we have referred to eachof the 13 root DNS servers as if it were a single server, each “server” is actuallya network of replicated servers, for both security and reliability purposes;</li>
+<li><strong>Top-level domain (TLD) servers</strong>:These servers are responsible for top-leveldomains such as com, org, net, edu, and gov, and all of the country top-level domainssuch as uk, fr, ca, and jp;</li>
+<li><strong>Authoritative DNS servers</strong>:An organiza-tion’s authoritative DNS server houses these DNS records.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-DNS-Root.png" alt="DNS-Root"></p>
+<blockquote>
+<p>Local DNS server:When ahost connects to an ISP, the ISP provides the host with the IP addresses of one ormore of its local DNS servers (typically through DHCP).When a host makes a DNS query, the query issent to the local DNS server, which acts a proxy, forwarding the query into the DNSserver hierarchy.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-DNS-Interaction.png" alt="DNS-Interaction"></p>
+<blockquote>
+<p>recursive queries and iterative queries:The query sent from cis.poly.edu to dns.poly.edu is a recursive query, Others are iterative.</p>
+</blockquote>
+<h4 id="DNS-Caching"><a href="#DNS-Caching" class="headerlink" title="DNS Caching"></a>DNS Caching</h4><p>In a query chain, when aDNS server receives a DNS reply, it can cache the mapping in its local memory.</p>
+<p><strong>DNS servers discard cachedinformation after a period of time (often set to two days).</strong></p>
+<h3 id="DNS-Records-and-Messages"><a href="#DNS-Records-and-Messages" class="headerlink" title="DNS Records and Messages"></a>DNS Records and Messages</h3><blockquote>
+<p>the DNS distributed database store <strong>resource records (RRs)</strong>, which provide hostname-to-IP address mappings.</p>
+</blockquote>
+<p>Aresource record is a four-tuple that contains the following fields:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(Name, Value, Type, TTL)</div></pre></td></tr></table></figure>
+<p>TTL is the time to live of the resource record; it determines when a resource shouldbe removed from a cache.</p>
+<ul>
+<li>If <strong>Type=A</strong>, then Name is a hostname and Value is the IP address for the host-name. Thus, a Type A record provides the standard hostname-to-IP address map-ping. As an example, <strong>(relay1.bar.foo.com, 145.37.93.126, A)</strong>is a Type Arecord;</li>
+<li>If <strong>Type=NS</strong>, then Name is a domain (such as foo.com) and Value is the host-name of an authoritative DNS server that knows how to obtain the IP addressesfor hosts in the domain. This record is used to route DNS queries further along in the query chain. As an example, <strong>(foo.com, dns.foo.com, NS) </strong>is a TypeNS record;</li>
+<li>If <strong>Type=CNAME</strong>, then Value is a canonical hostname for the alias hostnameName. This record can provide querying hosts the canonical name for a host-name. As an example, <strong>(foo.com, relay1.bar.foo.com, CNAME)</strong> is aCNAME record;</li>
+<li>If <strong>Type=MX</strong>, then Value is the canonical name of a mail server that has an aliashostname Name. As an example, <strong>(foo.com, mail.bar.foo.com, MX)</strong>is an MX record. MX records allow the hostnames of mail servers to have simple aliases. Note that by using the MX record, a company can have the samealiased name for its mail server and for one of its other servers (such as its Webserver). To obtain the canonical name for the mail server, a DNS client wouldquery for an MX record; to obtain the canonical name for the other server, the DNS client would query for the CNAME record.</li>
+</ul>
+<h4 id="DNS-Messages"><a href="#DNS-Messages" class="headerlink" title="DNS Messages"></a>DNS Messages</h4><p><img src="/images/Technology-ComputerNetworking-Internet-DNS-Message.png" alt="DNS-Message"></p>
+<ul>
+<li>The first 12 bytes is the header section.</li>
+<li>The first field is a 16-bit number that identifies the query. This identifier is copied into the reply message to a query, allowing the client to match received replies with sent queries. </li>
+<li>There are a number of flags in the flag field. A 1-bit query/reply flag indicates whether the message is a query (0) or a reply (1). A 1-bit authoritative flag is set in a reply message when a DNS server is an authoritative server for a queried name. A 1-bit recursion-desired flag is set when a client (host or DNS server) desires that the DNS server perform recursion when it doesn’t have the record. A 1-bit recursion- available field is set in a reply if the DNS server supports recursion. </li>
+<li>There are also four number-of fields. These fields indicate the number of occurrences of the four types of data sections that follow the header.</li>
+<li>The question section contains information about the query that is being made. This section includes (1) a name field that contains the name that is being queried, and (2) a type field that indicates the type of question being asked about the name—for example, a host address associated with a name (Type A) or the mail server for a name (Type MX);</li>
+<li>In a reply from a DNS server, the answer section contains the resource records for the name that was originally queried. Recall that in each resource record there is the Type (for example, A, NS, CNAME, and MX), the Value, and the TTL. A reply can return multiple RRs in the answer, since a hostname can have multiple IP addresses (for example, for replicated Web servers, as discussed earlier in this section);</li>
+<li>The authority section contains records of other authoritative servers;</li>
+<li>The additional section contains other helpful records. For example, the answer field in a reply to an MX query contains a resource record providing the canonical hostname of a mail server. The additional section contains a Type A record providing the IP address for the canonical hostname of the mail server.</li>
+</ul>
+<h4 id="Inserting-Records-into-the-DNS-Database"><a href="#Inserting-Records-into-the-DNS-Database" class="headerlink" title="Inserting Records into the DNS Database"></a>Inserting Records into the DNS Database</h4><p>A registrar is a commercial entity that verifies the uniqueness of the domain name,enters the domain name into the DNS database.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(networkutopia.com, dns1.networkutopia.com, NS)</div><div class="line">(dns1.networkutopia.com, 212.212.212.1, A)</div><div class="line">(networkutopia.com, mail.networkutopia.com, MX)</div></pre></td></tr></table></figure>
+<p>More recently, an <strong>UPDATE</strong> option has been added to the DNS protocol to allow data to be dynamically added or deleted from the database via DNS messages.</p>
+<h3 id="DNS-Vulnerabilities"><a href="#DNS-Vulnerabilities" class="headerlink" title="DNS Vulnerabilities"></a>DNS Vulnerabilities</h3><ul>
+<li>A DDoS bandwidth-flooding attack against DNS servers. For example, an attacker could attempt to send to each DNS root server a deluge of packets, so many that the majority of legitimate DNSqueries never get answered;</li>
+<li>In a man-in-the-middle attack,the attacker intercepts queries from hosts and returns bogus replies;</li>
+<li>Exploit the DNS infrastructure to launch a DDoS attack against a targeted host.</li>
+</ul>
+<h2 id="Peer-to-Peer-Applications"><a href="#Peer-to-Peer-Applications" class="headerlink" title="Peer-to-Peer Applications"></a>Peer-to-Peer Applications</h2><h3 id="P2P-File-Distribution"><a href="#P2P-File-Distribution" class="headerlink" title="P2P File Distribution"></a>P2P File Distribution</h3><blockquote>
+<p>In P2P file distribution, each peer can redistribute any portion of the file it has received to any other peers.</p>
+</blockquote>
+<h4 id="Scalability-of-P2P-Architectures"><a href="#Scalability-of-P2P-Architectures" class="headerlink" title="Scalability of P2P Architectures"></a>Scalability of P2P Architectures</h4><blockquote>
+<p>The distribution time is the time it takes to get a copy of the file to all N peers.</p>
+</blockquote>
+<p><img src="/images/Technology-ComputerNetworking-Internet-P2P.png" alt="P2P"></p>
+<p><strong>CS:</strong></p>
+<ul>
+<li>The server must transmit one copy of the file to each of the N peers. Thus the server must transmit NF bits;</li>
+<li>Since the server’s upload rate is us, the time to distribute the file must be at least NF/Us;</li>
+<li>The peer with the lowest download rate cannot obtain all F bits of the file in less than F/dmin seconds:</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Time-CS.png" alt="Distribution Time-CS"></p>
+<p><strong>P2P:</strong></p>
+<ul>
+<li>At the beginning of the distribution, only the server has the file,the minimum distribution time is at least F/Us;</li>
+<li>the peer with the lowest download rate cannot obtain all F bits of the file in less than F/dmin seconds;</li>
+<li>Observe that the total upload capacity of the system as a whole is equal to the upload rate of the server plus the upload rates of each of the individual peers, that is, utotal = us + u1 + … + uN. The system must deliver (upload) F bits to each of the N peers, thus delivering a total of NF bits. This cannot be done at a rate faster than utotal. Thus, the minimum distribution time is also at least<br>NF/(us + u1 + … + uN):</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Time-P2P.png" alt="Distribution Time-P2P"></p>
+<p><img src="/images/Technology-ComputerNetworking-Internet-Time-P2P-CS.png" alt="Distribution Time-P2P-CS"></p>
+<h4 id="BitTorrent"><a href="#BitTorrent" class="headerlink" title="BitTorrent"></a>BitTorrent</h4><blockquote>
+<p><strong>BitTorrent</strong> is a popular P2P protocol for file distribution.</p>
+</blockquote>
+<ul>
+<li>the collection of all peers participating in the distribution of a particular file is called a <strong>torrent</strong>;</li>
+<li><strong>Peers</strong> in a torrent download equal-size chunks of the file from one another, with a typical <strong>chunk</strong> size of 256 KBytes.</li>
+<li>While it downloads chunks it also uploads chunks to other peers.</li>
+<li>Each torrent has an infrastructure node called a <strong>tracker</strong>. When a peer joins a torrent, it registers itself with the tracker and periodically informs the tracker that it is still in the torrent.</li>
+</ul>
+<p><img src="/images/Technology-ComputerNetworking-Internet-BitTorrent.png" alt="BitTorrent"></p>
+<p><strong>Process:</strong></p>
+<ol>
+<li>When a new peer, A, joins the torrent, the tracker randomly selects a subset of peers from the set of participating peers, and sends the IP addresses of these peers to Alice;</li>
+<li>Possessing this list of peers, A attempts to establish concurrent TCP connections with all the peers on this list;</li>
+<li>As time evolves, some of these peers may leave and other peers may attempt to establish TCP connections with A. So a peer’s neighboring peers will fluctuate over time;</li>
+<li>At any given time, each peer will have a subset of chunks from the file, with different peers having different subsets. Periodically, A will ask each of her neighboring peers (over the TCP connections) for the list of the chunks they have. If A has L different neighbors, she will obtain L lists of chunks. With this knowledge, A will issue requests (again over the TCP connections) for chunks she currently does not have;</li>
+<li><strong>Rarest first</strong>:The idea is to determine, from among the chunks she does not have, the chunks that are the rarest among her neighbors (that is, the chunks that have thefewest repeated copies among her neighbors) and then request those rarest chunksfirst;</li>
+<li><strong>a clever trading algorithm</strong>:The basic idea is that A gives priority to the neighbors that are currently supplying her data at the highest rate. Specifically, for each of her neighbors,A continually measures the rate at which she receives bits and determines the four peers that are feeding her bits at the highest rate. She then reciprocates by sending chunks to these same four peers. Every 10 seconds, she recalculates the rates and pos- sibly modifies the set of four peers. In BitTorrent lingo, these four peers are said to be <strong>unchoked</strong>.Every 30 seconds, she also picks one additional neighbor at random and sends it chunks, which is said to be optimistically unchoked.The effect is that peers capable of uploading at compatible ratestend to find each other.</li>
+</ol>
+<p>Many of the P2P live streaming applications, such as <strong>PPLive and ppstream</strong>, have been inspired by BitTorrent.</p>
+<h3 id="Distributed-Hash-Tables-DHTs"><a href="#Distributed-Hash-Tables-DHTs" class="headerlink" title="Distributed Hash Tables (DHTs)"></a>Distributed Hash Tables (DHTs)</h3><blockquote>
+<p>In the P2P system, each peer will only hold a small subset of the totality of the (key, value) pairs. We’ll allow any peer to query the distributed database with a particular key. The distributed database will then locate the peers that have the corresponding (key, value) pairs and return the key-value pairs to the querying peer. Any peer will also be allowed to insert new key-value pairs into thedatabase. Such a distributed database is referred to as <strong>a distributed hash table(DHT)</strong>.</p>
+</blockquote>
+<ol>
+<li>assign an identifier to each peer, where each identifier is an integer in the range [0, 2n 1] for some fixed n;</li>
+<li>use a hash function that maps each key (e.g., social security number) to an integer in the range [0, 2^n-1];</li>
+<li>the closest peer as the closest successor of the key;</li>
+<li>if the key is exactly equal to one of the peer identifiers, we store the (key, value) pair in that matching peer; and if the key is larger than all the peer identifiers, we use a modulo-2n con- vention, storing the (key, value) pair in the peer with the smallest identifier;</li>
+</ol>
+<h4 id="Circular-DHT"><a href="#Circular-DHT" class="headerlink" title="Circular DHT"></a>Circular DHT</h4><p><img src="/images/Technology-ComputerNetworking-Internet-DHT.png" alt="DHT"></p>
+<blockquote>
+<p>This circular arrangement of the peers is a special case of an <strong>overlay network</strong>. In an overlay network, the peers form an abstract logical network which resides above the “underlay” computer network consisting of physical links, routers, and hosts.</p>
+</blockquote>
+<p>Using the circular overlay, the origin peer (peer 3) creates a message saying “Who is responsible for key 11?” and sends this message <strong>clockwise</strong> around the circle, this process continues until the message arrives at peer 12, it send a message back to the querying peer.</p>
+<p>In designing a DHT, there is tradeoff between the number of neighbors each peer has to track and the number of messages that the DHT needs to send to resolve a single query:</p>
+<ul>
+<li>use the circular overlay as a foundation, but add “shortcuts” so that each peer not only keeps track of its immediate successor and predecessor, but also of a relatively small number of shortcut peers scattered about the circle;</li>
+<li>so that both the number of neighbors per peer as well as the number of messages per query is O(log N), where N is the number of peers.</li>
+</ul>
+<h4 id="Peer-Churn"><a href="#Peer-Churn" class="headerlink" title="Peer Churn"></a>Peer Churn</h4><p>To handle peer churn:</p>
+<ul>
+<li>we will now require each peer to track (that is, know the IP address of) its first and second successors;</li>
+<li>we also require each peer to periodically verify that its two successors are alive;</li>
+<li>suppose peer 5 abruptly leaves, Peers 4 and 3 thus need to update their successor state information;</li>
+<li>a peer wants to join the DHT, it send peer 1 a message, this message gets forwarded through the DHT until it reaches the right one, and it sends this predecessor and successor information to peer.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/Computer/" rel="tag"># Computer</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/technology-ComputerNetworking-Internet/" rel="next" title="Technology-Computer Networking[1]-Computer Networks and the Internet">
+                <i class="fa fa-chevron-left"></i> Technology-Computer Networking[1]-Computer Networks and the Internet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/17/technology-ComputerNetworking-TransportLayer/" rel="prev" title="Technology-Computer Networking[3]-Transport Layer">
+                Technology-Computer Networking[3]-Transport Layer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/14/technology-ComputerNetworking-ApplicationLayer/"
+           data-title="Technology-Computer Networking[2]-Application Layer" data-url="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Principles-of-Network-Applications"><span class="nav-number">1.</span> <span class="nav-text">Principles of Network Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-Application-Architectures"><span class="nav-number">1.1.</span> <span class="nav-text">Network Application Architectures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Processes-Communicating"><span class="nav-number">1.2.</span> <span class="nav-text">Processes Communicating</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transport-Services-Available-to-Applications"><span class="nav-number">1.3.</span> <span class="nav-text">Transport Services Available to Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reliable-Data-Transfer"><span class="nav-number">1.3.1.</span> <span class="nav-text">Reliable Data Transfer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Throughput"><span class="nav-number">1.3.2.</span> <span class="nav-text">Throughput</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Timing"><span class="nav-number">1.3.3.</span> <span class="nav-text">Timing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Security"><span class="nav-number">1.3.4.</span> <span class="nav-text">Security</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transport-Services-Provided-by-the-Internet"><span class="nav-number">1.4.</span> <span class="nav-text">Transport Services Provided by the Internet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-Services"><span class="nav-number">1.5.</span> <span class="nav-text">TCP Services</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP-Services"><span class="nav-number">1.6.</span> <span class="nav-text">UDP Services</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Services-Not-Provided-by-Internet-Transport-Protocols"><span class="nav-number">1.7.</span> <span class="nav-text">Services Not Provided by Internet Transport Protocols</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Web-and-HTTP"><span class="nav-number">2.</span> <span class="nav-text">The Web and HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-of-HTTP"><span class="nav-number">2.1.</span> <span class="nav-text">Overview of HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Persistent-and-Persistent-Connections"><span class="nav-number">2.2.</span> <span class="nav-text">Non-Persistent and Persistent Connections</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-with-Non-Persistent-Connections"><span class="nav-number">2.2.1.</span> <span class="nav-text">HTTP with Non-Persistent Connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-with-Persistent-Connections"><span class="nav-number">2.2.2.</span> <span class="nav-text">HTTP with Persistent Connections</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Message-Format"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP Message Format</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-Request-Message"><span class="nav-number">2.3.1.</span> <span class="nav-text">HTTP Request Message</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-Response-Message"><span class="nav-number">2.3.2.</span> <span class="nav-text">HTTP Response Message</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Server-Interaction-Cookies"><span class="nav-number">2.4.</span> <span class="nav-text">User-Server Interaction: Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Caching"><span class="nav-number">2.5.</span> <span class="nav-text">Web Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Conditional-GET"><span class="nav-number">2.6.</span> <span class="nav-text">The Conditional GET</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Transfer-FTP"><span class="nav-number">3.</span> <span class="nav-text">File Transfer: FTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP-Commands-and-Replies"><span class="nav-number">3.1.</span> <span class="nav-text">FTP Commands and Replies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Electronic-Mail-in-the-Internet"><span class="nav-number">4.</span> <span class="nav-text">Electronic Mail in the Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SMTP"><span class="nav-number">4.1.</span> <span class="nav-text">SMTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-with-HTTP"><span class="nav-number">4.2.</span> <span class="nav-text">Comparison with HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mail-Message-Formats"><span class="nav-number">4.3.</span> <span class="nav-text">Mail Message Formats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mail-Access-Protocols"><span class="nav-number">4.4.</span> <span class="nav-text">Mail Access Protocols</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POP3"><span class="nav-number">4.5.</span> <span class="nav-text">POP3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IMAP"><span class="nav-number">4.6.</span> <span class="nav-text">IMAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Based-E-Mail"><span class="nav-number">4.7.</span> <span class="nav-text">Web-Based E-Mail</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS—The-Internet’s-Directory-Service"><span class="nav-number">5.</span> <span class="nav-text">DNS—The Internet’s Directory Service</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Services-Provided-by-DNS"><span class="nav-number">5.1.</span> <span class="nav-text">Services Provided by DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-of-How-DNS-Works"><span class="nav-number">5.2.</span> <span class="nav-text">Overview of How DNS Works</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Distributed-Hierarchical-Database"><span class="nav-number">5.2.1.</span> <span class="nav-text">A Distributed, Hierarchical Database</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-Caching"><span class="nav-number">5.2.2.</span> <span class="nav-text">DNS Caching</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Records-and-Messages"><span class="nav-number">5.3.</span> <span class="nav-text">DNS Records and Messages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-Messages"><span class="nav-number">5.3.1.</span> <span class="nav-text">DNS Messages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inserting-Records-into-the-DNS-Database"><span class="nav-number">5.3.2.</span> <span class="nav-text">Inserting Records into the DNS Database</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Vulnerabilities"><span class="nav-number">5.4.</span> <span class="nav-text">DNS Vulnerabilities</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Peer-to-Peer-Applications"><span class="nav-number">6.</span> <span class="nav-text">Peer-to-Peer Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P-File-Distribution"><span class="nav-number">6.1.</span> <span class="nav-text">P2P File Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scalability-of-P2P-Architectures"><span class="nav-number">6.1.1.</span> <span class="nav-text">Scalability of P2P Architectures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BitTorrent"><span class="nav-number">6.1.2.</span> <span class="nav-text">BitTorrent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Distributed-Hash-Tables-DHTs"><span class="nav-number">6.2.</span> <span class="nav-text">Distributed Hash Tables (DHTs)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Circular-DHT"><span class="nav-number">6.2.1.</span> <span class="nav-text">Circular DHT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Peer-Churn"><span class="nav-number">6.2.2.</span> <span class="nav-text">Peer Churn</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

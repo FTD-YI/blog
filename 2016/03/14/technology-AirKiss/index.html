@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Technology," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文介绍微信利用Airkiss技术对wifi装备进行智能配置上网的场景，并分析其实现的原理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-[转]微信AirKiss技术原理">
+<meta property="og:url" content="http://www.linyibin.cn/2016/03/14/technology-AirKiss/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="本文介绍微信利用Airkiss技术对wifi装备进行智能配置上网的场景，并分析其实现的原理。">
+<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-[转]微信AirKiss技术原理">
+<meta name="twitter:description" content="本文介绍微信利用Airkiss技术对wifi装备进行智能配置上网的场景，并分析其实现的原理。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6372393840480880000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/03/14/technology-AirKiss/"/>
+
+
+
+
+
+  <title> Technology-[转]微信AirKiss技术原理 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/03/14/technology-AirKiss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-[转]微信AirKiss技术原理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-14T00:00:00+08:00">
+                2016-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/14/technology-AirKiss/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/14/technology-AirKiss/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍微信利用Airkiss技术对wifi装备进行智能配置上网的场景，并分析其实现的原理。</p>
+<a id="more"></a>
+<p>这里再次说明，Airkiss只是用于配置上网，其跟微信硬件平台的通讯流程和接入协议规范完全没有关系。1个wifi装备其实不1定要通过Airkiss技术来配置上网，它也能够利用传统的方法来配置，也能够利用其它厂商的智能配置技术来完成配置。所有的wifi智能配置上网技术的原理基本上都是1致的，其开山鼻祖应当是TIsmartConfig。</p>
+<p>目前几近所有的主流wifi厂商都提供了Airkiss的接口库，但并没有说明其原理和实现进程。网上也只见1份Airkiss技术实现方案文档，但需要对无线通讯和socket编程有1定基础的人材能理解。本文尽量深入浅出地分析这项技术，帮助大家理解。</p>
+<h2 id="、传统配置上网进程"><a href="#、传统配置上网进程" class="headerlink" title="、传统配置上网进程"></a>、传统配置上网进程</h2><p>例如我们买了1个路由器，路由器是没有按键和屏显示的。而我们都知道，路由器要配置好运营商的账号和密码才能接入互联网的。1般的做法都是路由器作为热门AP，其提供1个WebServer来设置路由的各项参数，默许IP是192.168.1.1（或其他IP，路由器说明书上会说明）；我们通过电脑有线接入路由器，通过DHCP自动分配到1个192.168.1段的地址。然后通过阅读器来访问<a href="http://192.168.1.1，便可以进入路由器设置界面进行设置，包括运营商的账号和密码、本机的SSID和密码。然后我们的手机就能够开启wifi扫描到SSID，输入密码便可以访问互联网了。" target="_blank" rel="external">http://192.168.1.1，便可以进入路由器设置界面进行设置，包括运营商的账号和密码、本机的SSID和密码。然后我们的手机就能够开启wifi扫描到SSID，输入密码便可以访问互联网了。</a></p>
+<p>再比如，我们家里已有了1个可以上网的路由器（SSIDx和pwdx）。我们购买了1个无线摄像头装在家里。它自然也要连到家里的路由，才能访问这个摄像头的厂商，这样我们才可以用手机的APP接收到厂商服务器传过来的数据进行显示。摄像头也没有显示屏和按键（reset键不算啦）。</p>
+<p>传统的配置方法是：</p>
+<p><strong>1</strong>    摄像头恢复出厂设置后默许进入AP（热门）+Station（工作站）状态。AP热门的SSID和密码由摄像头的说明书说明，是厂商默许的。手机通过wifi连接到该AP，然后通过阅读器访问<a href="http://192.168.1.1(也是厂商默许的)，在该界面设置家里的路由器的SSID和密码，便于其作为Station连入家里的路由器。" target="_blank" rel="external">http://192.168.1.1(也是厂商默许的)，在该界面设置家里的路由器的SSID和密码，便于其作为Station连入家里的路由器。</a></p>
+<p><strong>2</strong> 当摄像头连接路由器成功后，其即单独以Station的模式运行（不用再做AP可以省功耗），其会立即访问厂商的服务器（其内部程序代码会hardcode厂商服务的域名或IP），告知其已上线，并且要在1段周期内发送Beacon心跳包保持长连接。</p>
+<p><strong>3</strong> 手机断开摄像头的AP热门，连接家里的路由器。打开摄像头的APP，便可以通过厂商服务器查看家里的摄像头的效果。<br>所以传统的配置上网方法是wifi装备必须以AP的模式运行，配置好以后再转回Station模式运行。是否是比较费事？</p>
+<h2 id="、智能配置上网流程"><a href="#、智能配置上网流程" class="headerlink" title="、智能配置上网流程"></a>、智能配置上网流程</h2><p>智能配置上网最新走进人们视野好像是庆科在大张旗鼓地宣扬其智能插座的1键配置功能，其实最早是Ti推出的技术。它是怎样操作呢？</p>
+<p><strong>1</strong> wifi装备以Station混杂模式运行。</p>
+<p><strong>2</strong> 手机灵能配置APP通过某种协议包发送家里路由器的SSID和密码。</p>
+<p><strong>3</strong> wifi装备通过抓包获得到SSID和密码，然后连接家里的路由器。</p>
+<p>全部进程是否是很简单？</p>
+<h2 id="、智能配置的基本原理"><a href="#、智能配置的基本原理" class="headerlink" title="、智能配置的基本原理"></a>、智能配置的基本原理</h2><p><strong>1</strong> 混杂模式</p>
+<p>这里有无注意到，wifi装备刚开始一样是以Station的模式运行，但是还有1个混杂模式。是甚么意思？它是指正常的wifi装备都有1个MAC地址，其硬件电路会自动过滤目标MAC地址跟其MAC不同的数据包。开启混杂模式就是我们平常时说的抓包，就是空中符合802.11格式的数据包都接收进来，不管MAC是不是1样。</p>
+<p>很明显，手机灵能配置APP其实不知道该wifi装备的MAC地址，所以手机wifi发送出的数据包，通过家里的路由器转发出去时，wifi装备必须要在混杂模式下才能接收到这些数据包。</p>
+<p><strong>2</strong> 信道切换</p>
+<p>802.11有多个信道，某个时刻wifi装备和路由器都是处于某个信道。路由器1般都是默许在第6个信道。所以如果想家里的wifi信号更好1点，可以尝试将路由器的信道改到1个其他值，这样就不会跟邻居家的wifi信道堆叠了。无线信号混在同1个频道就会干扰的。</p>
+<p>同理，我们也不能假定wifi装备是处于哪一个信道，但我们可以在APP中肯定手机wifi的发送信道，这样可以要求wifi装备在1定的时刻内切换信道，以便于接收数据包。当wifi装备检测到有效的数据包后，要锁定在该信道进行后续通讯。</p>
+<p><strong>3</strong> 利用数据帧的长度来承载有效信息</p>
+<p>我们先来看看802.2 SNAP（802.11物理层协议）的数据帧格式：</p>
+<p>我们不去深入研究各个字段的含义，只需要知道DAT是加密的，如路由器都会通过WAP2、WEP等方式加密数据等。而DA（目标MAC）、SA（源MAC）、LLC（逻辑控制）、SNA（厂商朝码和协议标识）、FCS（校验码），这5个字段虽然是没有加密的，但是APP层的利用编程难以改变这些字段，需要操作系统才有权限修改，所以终究能够利用的字段就是Length，其没有被加密，而且能够被利用层编程所控制。</p>
+<p>由于Length是两个字节，但是1帧最长是1492个有效数据，所以也不能完全利用16个比特。以最简单的方法来使用Length就是使用其中的1个字节，这样如果我们要发送数据0x12345678，那就连续发8个数据帧，第1次的长度是1，第2次的长度是2，以此类推。</p>
+<p><strong>4</strong> 微信Airkiss</p>
+<p>Airkiss顾名思义是飞吻的意思，即手机发送的SSID和密码经过路由转发出去，被目前wifi装备所检测并截获到。无线网络协议1般场景都规定station只能和AP通讯，而不能station和station通讯（这类场景叫做AD-Hoc点对点）。</p>
+<p>接下来我们分析SSID和pwd怎样利用Length进行编码的进程。</p>
+<p><strong>(1)</strong> 物理层</p>
+<p>发送4个字节的前导码序列，{1,2,3,4}。即发送4个数据帧，帧长度分别是1,2,3,4.其要解决两个问题：</p>
+<p><strong>(a)</strong> 空中充满无线信号，通过前导码来辨认出符合airkiss协议的数据包的开始。</p>
+<p><strong>(b)</strong> 数据包的数据是经过加密的，发送方的数据帧的有效数据的长度是1，经过编码后的长度会发送变化。假定加密后的长度为N，那接收方接收到的数据长度是N。以后所有的数据帧接收的长度是M时，那发送方真实的数据长度是M-N+1。<br>Airkiss规定数据的长度使用9个bit进行编码。</p>
+<p><strong>(2)</strong> 数据链路层</p>
+<p>数据链路层的包括控制字段和数据字段。</p>
+<p><strong>(a)</strong> Magic为4个数据帧，两个帧的两个9bit记录将要发送的数据（PWD+Ramdon+SSID）的长度；两个帧的两个9bit记录SSID的CRC校验值。路由器的SSID是会被路由器广播出来的，例如我们手机wifi扫描到路由器的名称就是SSID。因此wifi装备也能得到路由器的SSID，其只要计算目前所能获得到的SSID的CRC值跟MAGIC的SSID CRC值1样，那以后的SSID数据就不用接收了，这样能够提高配置上网速度。Magic很重要，因此发送5遍。</p>
+<p><strong>(b)</strong> PrefixCode为4个数据帧，两个帧的两个9bit记录PWD的数据长度，另外两个帧的两个9bit记录PWD长度的CRC校验值。Magic中发送的长度是所有数据的长度，包括密码PWD、随机数（wifi配置成功后要回复该随机数作为回复）和SSID。而这里是PWD的长度，用于对接收到的数据进行分段。</p>
+<p><strong>(c)</strong> 1个序列包括1个序列索引和1个序列数据。协议规定将有效数据以4个字节进行划分，不够补0。如我家路由的PWD是8313huang，那其会分为3个序列，分别是“8313”、“huan”“g000”进行发送。Sequence header包括索引值和CRC值，而Data field就是4个数据帧，包括要发送的数据，如“8313”等。</p>
+<p><strong>(d)</strong> 如何辨别Magic、Prefix、Sequence和Data，是由9bit的最高几个bit来辨别的。例如最高bit为1时表示是Data，其他是控制字段。</p>
+<p><strong>(3)</strong> 利用层</p>
+<p>利用层即是手机配置上网APP要发送的数据，包括3部份的数据。分别是：</p>
+<p><strong>(a)</strong> PWD。其先被发送是由于其是最重要的，而SSID已在MAGIC字段中所确认。</p>
+<p><strong>(b)</strong> 1个字节的随机数。wifi配置成功后要发送以该随机数为内容的UDP广播包作为回复，APP收到后即认为wifi装备已成功联网。</p>
+<p><strong>(c)</strong> SSID。</p>
+<p><strong>5</strong> ESP8266 Airkiss</p>
+<p>微信硬件开放文档《airkiss_developer_manual.pdf》介绍在ESP8266平台上利用Airkiss接口库进行开发实现Airkiss协议的进程。而ESP8266的厂商提供的DEMO则更加直接地用1个接口就实现了Airkiss。</p>
+<p><strong>6</strong> 微信Airkiss</p>
+<p>微信Airkiss在正式产品中是需要通过硬件JSAPI进行调用来调动身送SSID和PWD的界面，而硬件JSAPI需要经过验证的服务号才能申请取得权限。没有权限时可使用AirkissDebugger这个APP进行调试。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/12/ios-MusicProtocol-GCDAsyncSocket/" rel="next" title="iOS-解决GCDAsyncSocket使用中夹杂\r\n与字节流问题">
+                <i class="fa fa-chevron-left"></i> iOS-解决GCDAsyncSocket使用中夹杂\r\n与字节流问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/21/android-PullApk/" rel="prev" title="Android-导出手机上的APK">
+                Android-导出手机上的APK <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/14/technology-AirKiss/"
+           data-title="Technology-[转]微信AirKiss技术原理" data-url="http://www.linyibin.cn/2016/03/14/technology-AirKiss/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#、传统配置上网进程"><span class="nav-number">1.</span> <span class="nav-text">、传统配置上网进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、智能配置上网流程"><span class="nav-number">2.</span> <span class="nav-text">、智能配置上网流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、智能配置的基本原理"><span class="nav-number">3.</span> <span class="nav-text">、智能配置的基本原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linyibin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
