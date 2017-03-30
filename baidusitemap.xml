@@ -4,6 +4,92 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2016/02/03/ios-NSRegularExpression-Chinese/</loc>
+    <lastmod>2017-03-30T10:20:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-NSRegularExpression匹配中文</title>
+        <pubTime>2016-02-02T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/09/26/ios-Emoji/</loc>
+    <lastmod>2017-03-24T05:04:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-Emoji转换成NSString</title>
+        <pubTime>2015-09-25T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/11/17/technology-MachineLearning-NaiveBayesian/</loc>
+    <lastmod>2017-03-21T03:04:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Technology-机器学习-朴素贝叶斯算法</title>
+        <pubTime>2016-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Technology</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/</loc>
+    <lastmod>2017-03-20T10:41:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>Technology-Computer Networking[3]-Transport Layer</title>
+        <pubTime>2017-02-16T16:00:00.000Z</pubTime>
+        
+        <tag>Technology</tag>
+         
+        <tag>Network</tag>
+         
+        <tag>Computer</tag>
+         
+         
+           
+             
+              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2016/10/10/technology-Hexo-DomainBindGithubAndCoding/</loc>
     <lastmod>2017-03-20T07:15:22.000Z</lastmod>
     <data>
@@ -110,30 +196,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/</loc>
-    <lastmod>2017-03-20T02:21:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>Technology-Computer Networking[3]-Transport Layer</title>
-        <pubTime>2017-02-16T16:00:00.000Z</pubTime>
-        
-        <tag>Technology</tag>
-         
-        <tag>Network</tag>
-         
-        <tag>Computer</tag>
-         
-         
-           
-             
-              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/10/22/technology-Git/</loc>
     <lastmod>2017-03-17T10:05:29.000Z</lastmod>
     <data>
@@ -147,68 +209,6 @@
            
              
               <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-CoreAnimation[2]-设置Layer</title>
-        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-时间格式转换</title>
-        <pubTime>2014-06-16T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Django-时间格式</title>
-        <pubTime>2014-06-20T16:00:00.000Z</pubTime>
-        
-        <tag>Server</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
           
         </display>
     </data>
@@ -616,6 +616,28 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2014/08/22/java-Sqlite-Exception/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-Sqlite异常汇总</title>
+        <pubTime>2014-08-21T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Sqlite</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -648,28 +670,6 @@
         <tag>Java</tag>
          
         <tag>Server</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/22/java-Sqlite-Exception/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-Sqlite异常汇总</title>
-        <pubTime>2014-08-21T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Sqlite</tag>
          
          
            
@@ -894,26 +894,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/10/24/ios-SOAP/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-基于SOAP协议的WebService访问</title>
-        <pubTime>2014-10-23T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2014/11/05/android-AssetsPath/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -962,6 +942,26 @@
         <display>
         <title>iOS-NSAssert断言使用</title>
         <pubTime>2014-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/10/24/ios-SOAP/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-基于SOAP协议的WebService访问</title>
+        <pubTime>2014-10-23T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1930,12 +1930,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/09/26/ios-Emoji/</loc>
+    <loc>http://www.linyibin.cn/2014/04/24/ios-Block/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-Emoji转换</title>
-        <pubTime>2015-09-25T16:00:00.000Z</pubTime>
+        <title>iOS-Block</title>
+        <pubTime>2014-04-23T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1970,34 +1970,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
+    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Java-Servlet搭建简单服务端</title>
-        <pubTime>2014-05-08T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Server</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2014/04/24/ios-Block/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-Block</title>
-        <pubTime>2014-04-23T16:00:00.000Z</pubTime>
+        <title>iOS-CoreAnimation[2]-设置Layer</title>
+        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2018,6 +1996,28 @@
         <display>
         <title>Java-利用HttpClient进行https访问</title>
         <pubTime>2014-05-11T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Server</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-Servlet搭建简单服务端</title>
+        <pubTime>2014-05-08T16:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -2260,26 +2260,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/12/25/CPP-GppCompile/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>C++-g++编译选项</title>
-        <pubTime>2015-12-24T16:00:00.000Z</pubTime>
-        
-        <tag>C++</tag>
-         
-         
-           
-             
-              <breadCrumb title="C++" url="http://www.linyibin.cn/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/12/24/JNI-Process/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2295,6 +2275,26 @@
            
              
               <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/12/25/CPP-GppCompile/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>C++-g++编译选项</title>
+        <pubTime>2015-12-24T16:00:00.000Z</pubTime>
+        
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="C++" url="http://www.linyibin.cn/categories/C/"/>
           
         </display>
     </data>
@@ -2447,6 +2447,28 @@
            
              
               <breadCrumb title="Swift" url="http://www.linyibin.cn/categories/Swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/06/11/django-FormUpload/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Django-Form上传文件</title>
+        <pubTime>2014-06-10T16:00:00.000Z</pubTime>
+        
+        <tag>Server</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
           
         </display>
     </data>
@@ -2836,12 +2858,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/05/10/ios-IB-Designable/</loc>
+    <loc>http://www.linyibin.cn/2016/05/18/ios-CaptureScreenshotinBackground/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-Interface Builder-创建实时渲染的View</title>
-        <pubTime>2016-05-09T16:00:00.000Z</pubTime>
+        <title>iOS-Capture Screenshot in Background</title>
+        <pubTime>2016-05-17T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2856,12 +2878,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/05/18/ios-CaptureScreenshotinBackground/</loc>
+    <loc>http://www.linyibin.cn/2016/05/10/ios-IB-Designable/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-Capture Screenshot in Background</title>
-        <pubTime>2016-05-17T16:00:00.000Z</pubTime>
+        <title>iOS-Interface Builder-创建实时渲染的View</title>
+        <pubTime>2016-05-09T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2956,12 +2978,34 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
+    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-NSURL特殊字符</title>
+        <title>Java-Servlet重定向</title>
         <pubTime>2014-05-17T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Server</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-Strategies for Implementing Specific App Features</title>
+        <pubTime>2016-06-13T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2982,26 +3026,6 @@
         <display>
         <title>iOS-Inter-App Communication</title>
         <pubTime>2016-06-14T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-Strategies for Implementing Specific App Features</title>
-        <pubTime>2016-06-13T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -3666,21 +3690,19 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
+    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Java-Servlet重定向</title>
+        <title>iOS-NSURL特殊字符</title>
         <pubTime>2014-05-17T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
-        <tag>Server</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
           
         </display>
     </data>
@@ -3753,23 +3775,21 @@
     
     
   <url>
-    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
+    <loc>http://www.linyibin.cn/2014/06/14/django-TimeCompare/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Economics-《股票大作手回忆录》</title>
-        <pubTime>2017-02-06T16:00:00.000Z</pubTime>
+        <title>Django-时间比较</title>
+        <pubTime>2014-06-13T16:00:00.000Z</pubTime>
         
-        <tag>Economics</tag>
+        <tag>Server</tag>
          
-        <tag>Stock</tag>
-         
-        <tag>Memory</tag>
+        <tag>Python</tag>
          
          
            
              
-              <breadCrumb title="Economics" url="http://www.linyibin.cn/categories/Economics/"/>
+              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
           
         </display>
     </data>
@@ -3787,6 +3807,30 @@
         <tag>Economics</tag>
          
         <tag>IndexFund</tag>
+         
+         
+           
+             
+              <breadCrumb title="Economics" url="http://www.linyibin.cn/categories/Economics/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Economics-《股票大作手回忆录》</title>
+        <pubTime>2017-02-06T16:00:00.000Z</pubTime>
+        
+        <tag>Economics</tag>
+         
+        <tag>Stock</tag>
+         
+        <tag>Memory</tag>
          
          
            
@@ -3867,21 +3911,19 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/06/11/django-FormUpload/</loc>
+    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Django-Form上传文件</title>
-        <pubTime>2014-06-10T16:00:00.000Z</pubTime>
+        <title>Java-时间格式转换</title>
+        <pubTime>2014-06-16T16:00:00.000Z</pubTime>
         
-        <tag>Server</tag>
-         
-        <tag>Python</tag>
+        <tag>Java</tag>
          
          
            
              
-              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
           
         </display>
     </data>
@@ -3889,12 +3931,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/06/14/django-TimeCompare/</loc>
+    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Django-时间比较</title>
-        <pubTime>2014-06-13T16:00:00.000Z</pubTime>
+        <title>Django-时间格式</title>
+        <pubTime>2014-06-20T16:00:00.000Z</pubTime>
         
         <tag>Server</tag>
          

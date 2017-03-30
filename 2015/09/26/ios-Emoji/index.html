@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="iOS,Emoji,NSString" />
 
 
 
@@ -91,13 +91,13 @@
 
 <meta name="description" content="Wechat的Emoji消息在iOS系统上显示。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS-Emoji转换">
+<meta property="og:title" content="iOS-Emoji转换成NSString">
 <meta property="og:url" content="http://www.linyibin.cn/2015/09/26/ios-Emoji/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="Wechat的Emoji消息在iOS系统上显示。">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-03-24T05:04:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS-Emoji转换">
+<meta name="twitter:title" content="iOS-Emoji转换成NSString">
 <meta name="twitter:description" content="Wechat的Emoji消息在iOS系统上显示。">
 
 
@@ -111,7 +111,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '6372393840480880000',
+      userId: 'undefined',
       author: '博主'
     },
     algolia: {
@@ -132,7 +132,7 @@
 
 
 
-  <title> iOS-Emoji转换 | YI </title>
+  <title> iOS-Emoji转换成NSString | YI </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -310,7 +310,7 @@
             
             
               
-                iOS-Emoji转换
+                iOS-Emoji转换成NSString
               
             
           </h2>
@@ -366,8 +366,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/09/26/ios-Emoji/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/26/ios-Emoji/" itemprop="commentCount"></span>
+                <a class="cloud-tie-join-count" href="/2015/09/26/ios-Emoji/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,12 +401,12 @@
         <p>Wechat的Emoji消息在iOS系统上显示。</p>
 <a id="more"></a>
 <p>Wechat里面对Emoji的消息处理为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span class=\&quot;emoji emoji1f319\&quot;&gt;&lt;/span&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;span class=\&quot;emoji emoji1f319\&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=\&quot;emoji emoji2b50\&quot;&gt;&lt;/span&gt;</div></pre></td></tr></table></figure>
 <p>为了在iOS上显示，必须将其转换为字符串：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;\U0001f319&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&quot;\U0001f319&quot;</div><div class="line">&quot;\U00002b50&quot;</div></pre></td></tr></table></figure>
 <p>转换方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">+ (NSString*)replaceEmojiChars:(NSString*)string</div><div class="line">&#123;</div><div class="line">    if(string != nil)&#123;</div><div class="line">        NSString *base = @&quot;\U0001F000&quot;;</div><div class="line">        NSString *prefix = @&quot;&lt;span class=\&quot;emoji emoji1f&quot;, *postfix = @&quot;\&quot;&gt;&lt;/span&gt;&quot;;</div><div class="line">        NSRange preRange = [string rangeOfString:prefix], postRange = [string rangeOfString:postfix];</div><div class="line">        if(preRange.length != 0 &amp;&amp; postRange.length != 0)&#123;</div><div class="line">            NSString *hex = [string substringWithRange:NSMakeRange(preRange.location + preRange.length, 3)];</div><div class="line">            NSScanner *scanner = [NSScanner scannerWithString:[@&quot;0x&quot; stringByAppendingString:hex]];</div><div class="line">            unsigned int value;</div><div class="line">            [scanner scanHexInt:&amp;value];</div><div class="line">            unichar chars[2];</div><div class="line">            [base getCharacters:chars];</div><div class="line">            chars[1] = chars[1] + value;</div><div class="line">            string = [[NSString alloc] initWithCharacters:chars length:2];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    return string;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>核心思想为：一个Emoji表情是用两个unichar chars字符表示，因此，我们以@”\U0001F000”为基准，取出后三位的十六进制，转为十进制，再加到第二个字符上，最后组装成Emoji字符串。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">+ (NSString*)replaceEmojiChars:(NSString*)string</div><div class="line">&#123;</div><div class="line">    while(string != nil &amp;&amp; string.length &gt; 0)&#123;</div><div class="line">        NSString *base = @&quot;\U0001F000&quot;;</div><div class="line">        NSString *prefix = @&quot;&lt;span class=\&quot;emoji emoji&quot;, *postfix = @&quot;\&quot;&gt;&lt;/span&gt;&quot;;</div><div class="line">        NSRange preRange = [string rangeOfString:prefix], postRange = [string rangeOfString:postfix];</div><div class="line">        if(preRange.length != 0 &amp;&amp; postRange.length != 0)&#123;</div><div class="line">            unsigned int low = 0;</div><div class="line">            unichar chars[2];</div><div class="line">            [base getCharacters:chars];</div><div class="line">            NSString *replaceString = nil;</div><div class="line">            if(postRange.location - preRange.location - preRange.length &gt; 4)&#123;</div><div class="line">                NSString *lowString = [string substringWithRange:NSMakeRange(postRange.location - 3, 3)];</div><div class="line">                [[NSScanner scannerWithString:[@&quot;0x&quot; stringByAppendingString:lowString]] scanHexInt:&amp;low];</div><div class="line">                chars[0] += low / 1024;</div><div class="line">                chars[1] += low % 1024;</div><div class="line">                replaceString = [[NSString alloc] initWithCharacters:chars length:2];</div><div class="line">            &#125;else&#123;</div><div class="line">                NSString *lowString = [string substringWithRange:NSMakeRange(preRange.location + preRange.length, postRange.location - preRange.location - preRange.length)];</div><div class="line">                [[NSScanner scannerWithString:[@&quot;0x&quot; stringByAppendingString:lowString]] scanHexInt:&amp;low];</div><div class="line">                chars[0] = low;</div><div class="line">                replaceString = [[NSString alloc] initWithCharacters:chars length:1];</div><div class="line">            &#125;</div><div class="line">            string = [string stringByReplacingCharactersInRange:NSMakeRange(preRange.location, postRange.location - preRange.location + postRange.length) withString:replaceString];</div><div class="line">        &#125;else&#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return string;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>核心思想为：一个Emoji表情如果是5位的，例如”1F400”，则用两个unichar表示，如果是4位以下的，则用一个unichar表示。对于5位的，以@”\U0001F000”为基准，先转为十进制，上位加上1024的除数，下位加上1024的余数，对于4位的，直接加上数字即可。</strong></p>
 
       
     </div>
@@ -477,16 +477,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/09/26/ios-Emoji/"
-           data-title="iOS-Emoji转换" data-url="http://www.linyibin.cn/2015/09/26/ios-Emoji/">
-      </div>
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -525,7 +520,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">188</span>
+                <span class="site-state-item-count">190</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -723,39 +718,31 @@
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"linyibin"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
-    
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
+	
 
 
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
 
 
 

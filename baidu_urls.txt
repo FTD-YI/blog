@@ -5,6 +5,7 @@ http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer
 http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/
 http://www.linyibin.cn/2017/02/09/economics-IndexFund/
 http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/
+http://www.linyibin.cn/2016/11/17/technology-MachineLearning-NaiveBayesian/
 http://www.linyibin.cn/2016/11/15/technology-MachineLearning-DecisionTree/
 http://www.linyibin.cn/2016/11/12/technology-machineLearning-Introduction/
 http://www.linyibin.cn/2016/11/10/technology-IME-HandWritingRecognization/
@@ -68,6 +69,7 @@ http://www.linyibin.cn/2016/02/18/ios-DocumentPicker/
 http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/
 http://www.linyibin.cn/2016/02/05/JNI-Regex/
 http://www.linyibin.cn/2016/02/04/CPP-Regex/
+http://www.linyibin.cn/2016/02/03/ios-NSRegularExpression-Chinese/
 http://www.linyibin.cn/2016/02/01/ios-Swift/
 http://www.linyibin.cn/2016/01/20/economics-economics/
 http://www.linyibin.cn/2016/01/13/product-ToolAppBusiness/
@@ -180,6 +182,4 @@ http://www.linyibin.cn/2014/06/21/django-TimeFormat/
 http://www.linyibin.cn/2014/06/17/java-TimeFormat/
 http://www.linyibin.cn/2014/06/14/django-TimeCompare/
 http://www.linyibin.cn/2014/06/11/django-FormUpload/
-http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/
 http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/
-http://www.linyibin.cn/2014/05/14/java-Servlet-Cookie/
