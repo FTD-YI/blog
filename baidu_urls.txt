@@ -182,4 +182,4 @@ http://www.linyibin.cn/2014/06/21/django-TimeFormat/
 http://www.linyibin.cn/2014/06/17/java-TimeFormat/
 http://www.linyibin.cn/2014/06/14/django-TimeCompare/
 http://www.linyibin.cn/2014/06/11/django-FormUpload/
-http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/
+http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/
