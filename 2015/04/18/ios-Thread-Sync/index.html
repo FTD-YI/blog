@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +93,7 @@
 <meta property="og:url" content="http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文对iOS系统上的线程的同步方式进行了深入的讲解。">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-04-11T06:22:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-线程同步详解">
 <meta name="twitter:description" content="本文对iOS系统上的线程的同步方式进行了深入的讲解。">
@@ -109,7 +107,7 @@
     scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
       userId: 'undefined',
       author: '博主'
@@ -142,6 +140,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -513,8 +521,40 @@ int main(int argc, const char * argv[]) {
 <pre><code>x = 42
 </code></pre><h2 id="Locks-锁"><a href="#Locks-锁" class="headerlink" title="Locks(锁)"></a>Locks(锁)</h2><p>Locks是一种最常用的同步工具。Locks可以对一段代码进行保护，保证同时只有一个线程在执行该段代码。</p>
 <p>Locks的类型分为以下几种。</p>
-<table><br><tr><br>    <th>Lock</th><br>    <th>Description</th><br></tr><br><tr><br>    <td>Mutex(互斥)</td><br>    <td>如果多个线程同时竞争一个Mutex Lock,只有一个将被允许访问，其他将被block。</td><br></tr><br><tr><br>    <td>Recursive(递归)</td><br>    <td>Recursive Lock也是一种Mutex Lock。它允许一个线程在释放锁前，多次执行锁内代码，其他将被block。</td><br></tr><br><tr><br>    <td>Read-write(读写)</td><br>    <td>多用于多读少写的数据，writer线程只有所有reader都释放锁时，才能获得锁，此时，所有reader都等待锁释放。(POSIX线程才有)</td><br></tr><br><tr><br>    <td>Distributed(分布)</td><br>    <td>进程级别的互斥锁，distributed lock不会block一个进程，而只会通知进程该锁无法获取。</td><br></tr><br><tr><br>    <td>Spin(旋转)</td><br>    <td>Spin Lock将锁的条件重复的变换，知道条件符合。Spin Lock多被用于多处理器系统，当需要等待一个锁的时间尽可能短时，切换锁条件比block一个线程要更高效。iOS系统不支持该锁。</td><br></tr><br><tr><br>    <td>Double-checked(复核)</td><br>    <td>Double-checked Lock即在条件满足，获取锁时，再对条件进行一次判断，多与单例模式结合。由于Double-checked Lock是不安全的，iOS系统并不支持该锁。</td><br></tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Lock</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mutex(互斥)</td>
+<td>如果多个线程同时竞争一个Mutex Lock,只有一个将被允许访问，其他将被block。</td>
+</tr>
+<tr>
+<td>Recursive(递归)</td>
+<td>Recursive Lock也是一种Mutex Lock。它允许一个线程在释放锁前，多次执行锁内代码，其他将被block。</td>
+</tr>
+<tr>
+<td>Read-write(读写)</td>
+<td>多用于多读少写的数据，writer线程只有所有reader都释放锁时，才能获得锁，此时，所有reader都等待锁释放。(POSIX线程才有)</td>
+</tr>
+<tr>
+<td>Distributed(分布)</td>
+<td>进程级别的互斥锁，distributed lock不会block一个进程，而只会通知进程该锁无法获取。</td>
+</tr>
+<tr>
+<td>Spin(旋转)</td>
+<td>Spin Lock将锁的条件重复的变换，知道条件符合。Spin Lock多被用于多处理器系统，当需要等待一个锁的时间尽可能短时，切换锁条件比block一个线程要更高效。iOS系统不支持该锁。</td>
+</tr>
+<tr>
+<td>Double-checked(复核)</td>
+<td>Double-checked Lock即在条件满足，获取锁时，再对条件进行一次判断，多与单例模式结合。由于Double-checked Lock是不安全的，iOS系统并不支持该锁。</td>
+</tr>
+</tbody>
+</table>
 <p>下面详细介绍：</p>
 <h3 id="Mutex-Lock"><a href="#Mutex-Lock" class="headerlink" title="Mutex Lock"></a>Mutex Lock</h3><p>(1)POSIX Mutex Lock举例：</p>
 <pre><code>pthread_mutex_t mutex;
@@ -847,7 +887,7 @@ void SignalThreadUsingCondition()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">190</span>
+                <span class="site-state-item-count">195</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

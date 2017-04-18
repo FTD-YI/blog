@@ -40,6 +40,8 @@ http://www.linyibin.cn/2016/08/09/ios-AFNetworking-SpecialChars/
 http://www.linyibin.cn/2016/07/23/ios-DumplicateSymbol/
 http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/
 http://www.linyibin.cn/2016/07/13/ios-BackgroundExecution/
+http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/
+http://www.linyibin.cn/2016/07/04/ios-Rendering/
 http://www.linyibin.cn/2016/06/23/ios-NSData-GetBytes/
 http://www.linyibin.cn/2016/06/15/ios-Inter-App-Communication/
 http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/
@@ -51,9 +53,10 @@ http://www.linyibin.cn/2016/05/20/android-Logcat-Filter/
 http://www.linyibin.cn/2016/05/18/ios-CaptureScreenshotinBackground/
 http://www.linyibin.cn/2016/05/10/ios-IB-Designable/
 http://www.linyibin.cn/2016/05/03/android-Wechat-Message/
+http://www.linyibin.cn/2016/04/18/ios-ARC/
 http://www.linyibin.cn/2016/04/15/android-TTS/
-http://www.linyibin.cn/2016/04/10/android-Wechat-Share/
 http://www.linyibin.cn/2016/04/10/ios-Crash-DSYM/
+http://www.linyibin.cn/2016/04/10/android-Wechat-Share/
 http://www.linyibin.cn/2016/04/06/android-Decompile/
 http://www.linyibin.cn/2016/04/02/android-AccesibilityService/
 http://www.linyibin.cn/2016/03/21/android-PullApk/
@@ -92,6 +95,7 @@ http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/
 http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/
 http://www.linyibin.cn/2015/10/22/technology-Git/
 http://www.linyibin.cn/2015/10/22/ios-AdaptionWith9/
+http://www.linyibin.cn/2015/10/20/ios-CoreAnimation-CADisplayLink/
 http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/
 http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/
 http://www.linyibin.cn/2015/09/26/ios-Emoji/
@@ -179,7 +183,3 @@ http://www.linyibin.cn/2014/06/28/sae-MysqlSetting/
 http://www.linyibin.cn/2014/06/26/java-Http/
 http://www.linyibin.cn/2014/06/23/ios-UISearchBar/
 http://www.linyibin.cn/2014/06/21/django-TimeFormat/
-http://www.linyibin.cn/2014/06/17/java-TimeFormat/
-http://www.linyibin.cn/2014/06/14/django-TimeCompare/
-http://www.linyibin.cn/2014/06/11/django-FormUpload/
-http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/

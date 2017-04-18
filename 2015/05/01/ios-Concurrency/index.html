@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +93,7 @@
 <meta property="og:url" content="http://www.linyibin.cn/2015/05/01/ios-Concurrency/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文对iOS系统上的异步调用方式进行了深入的讲解。">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-04-11T06:22:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-异步编程详解">
 <meta name="twitter:description" content="本文对iOS系统上的异步调用方式进行了深入的讲解。">
@@ -109,7 +107,7 @@
     scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
       userId: 'undefined',
       author: '博主'
@@ -142,6 +140,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -410,8 +418,28 @@
 </code></pre><h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p>GCD(Grand Central Dispatch)在系统级别处理线程管理，而无需开发者编写代码。开发者只需要将task加入到一个dispatch queue中即可。GCD会自动创建需要的线程去处理task。因为线程处理是系统级别的，因为GCD提供了一种更高效地处理task的方法。</p>
 <p>GCD处理task的方式是<strong>先进先出</strong>，按照添加的顺序执行。</p>
 <h3 id="Type"><a href="#Type" class="headerlink" title="*Type"></a>*Type</h3><p>下面是三种类型：</p>
-<table><br><tr><th>Type</th><th>Description</th></tr><br><tr><td>Serial(private dispatch queues)</td><td>每次只执行一个task</td></tr><br><tr><td>Concurrent(global dispatch queues)</td><td>每次执行一个或多个task,数量取决于系统条件</td></tr><br><tr><td>Main dispatch queues</td><td>主线程的queue，与主线程的<a href="http://ftd-yi.github.io/blog/objective-c/2015/03/10/iOS-RunLoop.html" target="_blank" rel="external">RunLoop</a>进行交互</td></tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serial(private dispatch queues)</td>
+<td>每次只执行一个task</td>
+</tr>
+<tr>
+<td>Concurrent(global dispatch queues)</td>
+<td>每次执行一个或多个task,数量取决于系统条件</td>
+</tr>
+<tr>
+<td>Main dispatch queues</td>
+<td>主线程的queue，与主线程的<a href="/2015/03/10/iOS-RunLoop">RunLoop</a>进行交互</td>
+</tr>
+</tbody>
+</table>
 <p>当两个线程同时访问一个共享资源时，与其用锁来控制，不如用Serial，保证每次只有一个Operation访问到该资源，效率更高。</p>
 <h3 id="Init"><a href="#Init" class="headerlink" title="*Init"></a>*Init</h3><p><strong>(1)Serial dispatch queue</strong></p>
 <p>Serial dispatch queue需要自己创建：</p>
@@ -500,7 +528,7 @@ NSLog(@&quot;After group..&quot;);
 <pre><code>Before group..
 Group work..
 After group..
-</code></pre><h3 id="Timer"><a href="#Timer" class="headerlink" title="*Timer"></a>*Timer</h3><p>除了主线程自动设置了<a href="http://ftd-yi.github.io/blog/objective-c/2015/03/10/iOS-RunLoop.html" target="_blank" rel="external">RunLoop</a>外，其他线程是没有设置的，这时如果直接调用</p>
+</code></pre><h3 id="Timer"><a href="#Timer" class="headerlink" title="*Timer"></a>*Timer</h3><p>除了主线程自动设置了<a href="/2015/03/10/iOS-RunLoop">RunLoop</a>外，其他线程是没有设置的，这时如果直接调用</p>
 <pre><code>- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
 </code></pre><p>或者新建<strong>NSTimer</strong>，都会发现，该方法无效的情况。解决办法是：</p>
 <pre><code>dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 5ull *NSEC_PER_SEC);
@@ -509,7 +537,7 @@ dispatch_after(time, queue, ^{
     }
 });
 </code></pre><h2 id="Operation-Queues"><a href="#Operation-Queues" class="headerlink" title="Operation Queues"></a>Operation Queues</h2><p>Operation Queues很像dispatch queue，它会自动处理进行线程管理，开发者只需要定义task，并加入到Operation Queues中即可。</p>
-<p>Operation Queues是一种处理<a href="http://ftd-yi.github.io/blog/objective-c/2014/12/10/iOS-NSOperation.html" target="_blank" rel="external">NSOperation</a>的队列。</p>
+<p>Operation Queues是一种处理<a href="/2014/12/10/iOS-NSOperation">NSOperation</a>的队列。</p>
 <h3 id="Init-amp-Add"><a href="#Init-amp-Add" class="headerlink" title="*Init &amp; Add"></a>*Init &amp; Add</h3><p>Operation Queue创建并addOperation后，即开始异步运行Operation。</p>
 <p><strong>注意，尽管可以创建任意多个Queue，但并不代表可以同时运行，取决于可获取的CPU核和系统的负载。</strong></p>
 <p>举例：</p>
@@ -662,7 +690,7 @@ Queue:waitUntilAllOperationsAreFinished
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">190</span>
+                <span class="site-state-item-count">195</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

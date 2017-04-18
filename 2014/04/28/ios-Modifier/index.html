@@ -1,0 +1,1004 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,strong,weak,assgin,retain,copy" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Strong、Weak、Assgin、Retain、Copy">
+<meta property="og:url" content="http://www.linyibin.cn/2014/04/28/ios-Modifier/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。">
+<meta property="og:updated_time" content="2017-04-17T08:25:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Strong、Weak、Assgin、Retain、Copy">
+<meta name="twitter:description" content="iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2014/04/28/ios-Modifier/"/>
+
+
+
+
+
+  <title> iOS-Strong、Weak、Assgin、Retain、Copy | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2014/04/28/ios-Modifier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Strong、Weak、Assgin、Retain、Copy
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-28T00:00:00+08:00">
+                2014-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2014/04/28/ios-Modifier/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。</p>
+<a id="more"></a>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strong</td>
+<td>只能用于修饰对象 </td>
+</tr>
+<tr>
+<td>retain</td>
+<td>只能用于修饰对象</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>只能用于修饰对象</td>
+</tr>
+<tr>
+<td>weak</td>
+<td>只能用于修饰对象</td>
+</tr>
+<tr>
+<td>assign</td>
+<td>能用于修饰对象和基本数据类型</td>
+</tr>
+</tbody>
+</table>
+<h2 id="栈赋值"><a href="#栈赋值" class="headerlink" title="栈赋值"></a>栈赋值</h2><p>栈赋值的场景为，目标指针指向栈上的对象, 以<strong><strong>NSStackBlock</strong></strong>为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) void(^strongVar)();</div><div class="line">@property (nonatomic, retain) void(^retainVar)();</div><div class="line">@property (nonatomic, copy) void(^copyVar)();</div><div class="line">@property (nonatomic, weak) void(^weakVar)();</div><div class="line">@property (nonatomic, assign) void(^assignVar)();</div><div class="line"></div><div class="line">-(void)test&#123;</div><div class="line">	 __block int i;</div><div class="line">    _strongVar = ^&#123;</div><div class="line">        i++;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _retainVar = ^&#123;</div><div class="line">        i++;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _copyVar = ^&#123;</div><div class="line">        i++;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _weakVar = ^&#123;</div><div class="line">        i++;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _assignVar = ^&#123;</div><div class="line">        i++;</div><div class="line">    &#125;;</div><div class="line">   </div><div class="line">    [self print];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)print&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, _strongVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _retainVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _copyVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _weakVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _assignVar);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;__NSMallocBlock__: 0x600000051fa0&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x600000051e20&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x600000051c70&gt;</div><div class="line">&lt;__NSStackBlock__: 0x7fff507d9a88&gt;</div><div class="line">&lt;__NSStackBlock__: 0x7fff507d9a60&gt;</div></pre></td></tr></table></figure>
+<p>说明，对于栈赋值，strong、retian、copy，会在堆上复制一个，并指向该堆对象，而weak、assgin只会直接指向栈对象。一旦，栈对象被释放，再调用会引起Crash。</p>
+<p>举例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(void)test&#123;</div><div class="line">	 ...</div><div class="line">	 [self performSelector:@selector(print) withObject:nil afterDelay:1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)print&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, _strongVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _retainVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _copyVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _weakVar);   //crash</div><div class="line">    NSLog(@&quot;%@&quot;, _assignVar); //crash</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>RetainCount</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strong</td>
+<td>引用=1</td>
+<td>在堆上复制一个，并指向它</td>
+</tr>
+<tr>
+<td>retain</td>
+<td>引用=1</td>
+<td>在堆上复制一个，并指向它</td>
+</tr>
+<tr>
+<td>weak</td>
+<td>不影响引用</td>
+<td>直接指向栈对象，栈对象被释放时，不会自动变成nil</td>
+</tr>
+<tr>
+<td>assign</td>
+<td>不影响引用</td>
+<td>直接指向栈对象，栈对象被释放时，不会自动变成nil</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>引用=1</td>
+<td>在堆上复制一个，并指向它</td>
+</tr>
+</tbody>
+</table>
+<h2 id="堆赋值"><a href="#堆赋值" class="headerlink" title="堆赋值"></a>堆赋值</h2><p>堆赋值的场景为，目标指针指向堆上的对象, 以<strong> <strong>NSMallocBlock</strong></strong>为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">-(void)test&#123;</div><div class="line">    __block int i;</div><div class="line">    _strongVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _retainVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _copyVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _weakVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _assignVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    [self print];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)print&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, _strongVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _retainVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _copyVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _weakVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _assignVar); // crash</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;__NSMallocBlock__: 0x60800005fe30&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x60800005fd40&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x60800005fbc0&gt;</div><div class="line">(null)</div></pre></td></tr></table></figure>
+<p>说明，对于堆赋值，strong、retian、weak、assign，都是直接指向该堆对象，会导致引用数+1，而weak，assgin不会改变引用数。其中，weak指向的对象如果被释放了，weak指针会自动置为nil，而assgin不会，一旦，堆对象被释放，再调用会引起Crash。</p>
+<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><p>copy的情况比较复杂，要分场景，如果对象是可变类型的，例如NSMutableArray，则其会在堆上复制一个不可变的对象，例如NSArray， 并指向它，此时，引用数为1，如果对象直接是不可变的，那么直接指向该对象，引用数+1。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, copy) NSArray *arrayCopy;</div><div class="line"></div><div class="line">-(void)test&#123;</div><div class="line">    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithObjects:@&quot;mutableArray1&quot;, nil];</div><div class="line">    _arrayCopy = mutableArray;</div><div class="line">    NSLog(@&quot;%p %p&quot;, mutableArray, _arrayCopy);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0x60000005fad0 0x60000005fae0</div></pre></td></tr></table></figure>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>RetainCount</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strong</td>
+<td>引用+1</td>
+<td>直接指向堆对象</td>
+</tr>
+<tr>
+<td>retain</td>
+<td>引用+1</td>
+<td>直接指向堆对象</td>
+</tr>
+<tr>
+<td>weak</td>
+<td>不影响引用</td>
+<td>直接指向堆对象，堆对象被释放时，会自动变成nil</td>
+</tr>
+<tr>
+<td>assign</td>
+<td>不影响引用</td>
+<td>直接指向堆对象，堆对象被释放时，不会自动变成nil</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>引用=1(可变类型);引用+1（不可变类型）</td>
+<td>对于可变类型，在堆上复制一个，并指向它;对于不可变类型，直接指向它</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常量赋值"><a href="#常量赋值" class="headerlink" title="常量赋值"></a>常量赋值</h2><p>常量赋值的场景为，目标指针指向常量空间上的对象, 以<strong><strong>NSGlobalBlock</strong></strong>为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) void(^strongVar)();</div><div class="line">@property (nonatomic, retain) void(^retainVar)();</div><div class="line">@property (nonatomic, copy) void(^copyVar)();</div><div class="line">@property (nonatomic, weak) void(^weakVar)();</div><div class="line">@property (nonatomic, assign) void(^assignVar)();</div><div class="line"></div><div class="line">-(void)test&#123;</div><div class="line">	 _strongVar = ^&#123;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _retainVar = ^&#123;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _copyVar = ^&#123;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _weakVar = ^&#123;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    _assignVar = ^&#123;</div><div class="line">    &#125;;</div><div class="line">   </div><div class="line">    [self print];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)print&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, _strongVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _retainVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _copyVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _weakVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _assignVar);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;__NSGlobalBlock__: 0x10c3050c0&gt;</div><div class="line">&lt;__NSGlobalBlock__: 0x10c305100&gt;</div><div class="line">&lt;__NSGlobalBlock__: 0x10c305140&gt;</div><div class="line">&lt;__NSGlobalBlock__: 0x10c305180&gt;</div><div class="line">&lt;__NSGlobalBlock__: 0x10c3051c0&gt;</div></pre></td></tr></table></figure>
+<p>说明，对于常量赋值，strong、retian、copy、weak、assign，都是直接指向该常量地址，由于常量的生命周期与进程一致，所以引用数没有意义。</p>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>RetainCount</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strong</td>
+<td>引用无意义</td>
+<td>直接指向该常量对象</td>
+</tr>
+<tr>
+<td>retain</td>
+<td>引用无意义</td>
+<td>直接指向该常量对象</td>
+</tr>
+<tr>
+<td>weak</td>
+<td>引用无意义</td>
+<td>直接指向该常量对象</td>
+</tr>
+<tr>
+<td>assign</td>
+<td>引用无意义</td>
+<td>直接指向该常量对象</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>引用无意义</td>
+<td>直接指向该常量对象</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/24/ios-Block/" rel="next" title="iOS-Block">
+                <i class="fa fa-chevron-left"></i> iOS-Block
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/09/java-DynamicWebProject/" rel="prev" title="Java-Servlet搭建简单服务端">
+                Java-Servlet搭建简单服务端 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈赋值"><span class="nav-number">2.</span> <span class="nav-text">栈赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆赋值"><span class="nav-number">3.</span> <span class="nav-text">堆赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#copy"><span class="nav-number">3.1.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量赋值"><span class="nav-number">4.</span> <span class="nav-text">常量赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-number">4.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

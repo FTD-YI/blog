@@ -1,0 +1,956 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,GPU,卡顿" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="原文链接iOS 保持界面流畅的技巧。下面是笔记和总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-保持界面流畅技巧">
+<meta property="og:url" content="http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="原文链接iOS 保持界面流畅的技巧。下面是笔记和总结。">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-UI-ScreenScan.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-UI-ScreenDisplay.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-UI-ScreenError.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-UI-FrameDrop.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Performance.png">
+<meta property="og:updated_time" content="2017-04-17T08:25:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-保持界面流畅技巧">
+<meta name="twitter:description" content="原文链接iOS 保持界面流畅的技巧。下面是笔记和总结。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/iOS-UI-ScreenScan.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/"/>
+
+
+
+
+
+  <title> iOS-保持界面流畅技巧 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-保持界面流畅技巧
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-06T00:00:00+08:00">
+                2016-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/07/06/ios-UI-Smooth/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接<a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a>。下面是笔记和总结。</p>
+<a id="more"></a>
+<h1 id="屏幕显示原理"><a href="#屏幕显示原理" class="headerlink" title="屏幕显示原理"></a>屏幕显示原理</h1><p>CRT显示器的电子枪，是从左到右，再从上到下扫描，扫到右下角，算一帧，完成后又回到左上角开始新的一帧。</p>
+<p><img src="/images/iOS-UI-ScreenScan.png" alt="iOS-UI-ScreenScan"></p>
+<p>为了让显示器和系统的视频控制器(以下简称VC)同步，显示器会用硬件时钟产生一系列的定时信号。电子枪换行时，会发出一个<strong>水平同步信号(Hsync:Horizonal synchronization)</strong>，完成一帧后，会发出<strong>垂直同步信号(VSync:Vertical synchronization)</strong>。</p>
+<p>显示器通常以固定频率进行刷新，这个刷新率就是VSync信号产生的频率。尽管现在的设备大都是液晶显示屏了，但原理仍然没有变。</p>
+<h1 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h1><p>首先，CPU计算好显示内容提交给GPU，GPU渲染完成后将渲染结果放入帧缓冲区，随后VC会按照VSync信号逐行读取帧缓冲区的数据，经过可能的数模转换传递给显示器显示。</p>
+<blockquote>
+<p>如果帧缓冲区只有一个，那么读写会出现效率问题，因此引入了<strong>双缓冲机制</strong>(即两个缓冲区)。GPU会在渲染一帧后，放在缓冲区A中，让VC读取，然后下一帧渲染后，放在缓冲区B中，切换VC的读取指针到B。轮流使用两个缓冲区。</p>
+</blockquote>
+<p><img src="/images/iOS-UI-ScreenDisplay.png" alt="iOS-UI-ScreenDisplay"></p>
+<p>但双缓冲也会出现问题，如果VC读取到一半，即画面实现一半，此时，切换缓冲区，VC会接着一行行扫描新的缓冲区，导致一半上一帧，一半下一帧，造成画面撕裂。</p>
+<p><img src="/images/iOS-UI-ScreenError.jpg" alt="iOS-UI-ScreenError"></p>
+<p>因此，GPU通常支持垂直同步(V-Sync),即当显示器发出VSync信号后，才进行下一帧的渲染和切换缓冲区。<strong>iOS设备是双缓冲，且支持垂直同步。</strong></p>
+<h1 id="卡顿原因"><a href="#卡顿原因" class="headerlink" title="卡顿原因"></a>卡顿原因</h1><p>在VSync信号到来后，iOS系统图形服务会通过CADisplayLink等机制通知App，App主线程开始在CPU中计算显示内容，比如视图的创建、布局计算、图片解码、文本绘制等。完成后，CPU会将计算好的内容提交到GPU去，由GPU进行变换、合成、渲染，并提交到缓冲区。</p>
+<blockquote>
+<p>如果在一个VSync时间内，CPU或者GPU没有完成内容提交，那这一帧就会被丢弃，而这时显示屏会保留之前的内容不变。这就是界面卡顿的原因。</p>
+</blockquote>
+<p><img src="/images/iOS-UI-FrameDrop.png" alt="iOS-UI-FrameDrop"></p>
+<p>CPU和GPU不论哪个阻碍了显示流程，都会造成掉帧现象，开发中需要分别对其进行评估和优化。</p>
+<h1 id="卡顿解决"><a href="#卡顿解决" class="headerlink" title="卡顿解决"></a>卡顿解决</h1><h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h3 id="对象创建"><a href="#对象创建" class="headerlink" title="对象创建"></a>对象创建</h3><p>对象的创建会分配内存、调整属性、甚至还有读取文件等操作，比较消耗 CPU 资源。</p>
+<p>优化策略:</p>
+<ul>
+<li>避免使用Storyboard，Storyboard更耗资源;</li>
+<li>对于无需响应触摸事件的控件，直接用更轻量的CALayer显示，而不创建UIView;</li>
+<li>不涉及UI操作的对象，放到后台线程去创建，但包含CALayer的控件，都只能在主线程创建和操作;</li>
+<li>可以复用的对象，放到缓存池中;</li>
+<li>尽量推迟对象创建的时间，并把对象的创建分散到多个任务中去。</li>
+</ul>
+<h3 id="对象调整"><a href="#对象调整" class="headerlink" title="对象调整"></a>对象调整</h3><p>对象的调整也经常是消耗CPU资源的地方。</p>
+<blockquote>
+<p>CALayer内部并没有属性，当调用属性方法时，它内部是通过Runtime的resolveInstanceMethod为对象临时添加一个方法，并把对应的属性值保存到内部一个Dictionary中，同时通知Delegate，创建动画等，非常消耗资源。</p>
+</blockquote>
+<p>UIView的关于显示相关的属性（比如 frame/bounds/transform）等实际上都是CALayer属性映射来的，所以对 UIView的这些属性进行调整时，消耗的资源要远大于一般的属性。另外，当视图层次调整时，UIView、CALayer 之间会出现很多方法调用与通知，也会消耗资源。</p>
+<p>优化策略:</p>
+<ul>
+<li>尽量避免调整视图层次、添加和移除视图;</li>
+<li>避免修改UIView的属性，特别是显示属性。</li>
+</ul>
+<h3 id="对象销毁"><a href="#对象销毁" class="headerlink" title="对象销毁"></a>对象销毁</h3><p>对象的销毁虽然消耗资源不多，但累积起来也是不容忽视的。通常当容器类持有大量对象时，其销毁时的资源消耗就非常明显。</p>
+<p>优化策略：</p>
+<ul>
+<li>将对象放到后台线程中进行释放。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSArray *tmp = self.array;</div><div class="line">self.array = nil;</div><div class="line">dispatch_async(queue, ^&#123;</div><div class="line">    [tmp class];</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="布局计算"><a href="#布局计算" class="headerlink" title="布局计算"></a>布局计算</h3><p>视图布局的计算是App中最为常见的消耗CPU资源的地方。</p>
+<p>优化策略：</p>
+<ul>
+<li>在后台线程提前计算好视图布局、并且对视图布局进行缓存;</li>
+<li>在需要时一次性调整好对应属性，而不要多次、频繁的计算和调整布局属性。</li>
+</ul>
+<h3 id="AutoLayout"><a href="#AutoLayout" class="headerlink" title="AutoLayout"></a>AutoLayout</h3><p>AutoLayout对于复杂视图会造成严重的性能问题。随着视图数量的增长，Autolayout 带来的CPU消耗会呈指数级上升。</p>
+<p><img src="/images/iOS-AutoLayout-Performance.png" alt="iOS-AutoLayout-Performance"></p>
+<p>优化策略：</p>
+<ul>
+<li>尽量避免使用AutoLayout;</li>
+<li>可以用left/right/top/bottom/width/height等快捷属性。</li>
+</ul>
+<h3 id="文本计算"><a href="#文本计算" class="headerlink" title="文本计算"></a>文本计算</h3><p>如果一个界面中包含大量文本，文本的宽高计算会占用很大一部分资源，并且不可避免。</p>
+<p>优化策略：</p>
+<ul>
+<li>在后台线程中用[NSAttributedString boundingRectWithSize:options:context:]来计算宽高;</li>
+<li>在后台线程中用[NSAttributedString drawWithRect:options:context:]来绘制文本;</li>
+<li>用CoreText绘制文本，先生成CoreText排版对象，然后自己计算，并且保留CoreText对象以供稍后绘制使用。</li>
+</ul>
+<h3 id="文本渲染"><a href="#文本渲染" class="headerlink" title="文本渲染"></a>文本渲染</h3><p>屏幕上能看到的所有文本内容控件(UILabel、UITextView、UIWebView)，在底层都是通过CoreText排版、绘制为Bitmap显示的。由于都在主线程中进行，因此CPU压力很大。</p>
+<p>优化策略：</p>
+<ul>
+<li>自定义文本控件，用TextKit或最底层的CoreText对文本进行异步绘制;</li>
+<li>缓存CoreText对象，以便多次渲染。</li>
+</ul>
+<h3 id="图片解码"><a href="#图片解码" class="headerlink" title="图片解码"></a>图片解码</h3><p>当用UIImage或CGImageSource的那几个方法创建图片时，图片数据并不会立刻解码。图片设置到UIImageView或者CALayer.contents中去，并且CALayer被提交到GPU前，CGImage中的数据才会得到解码。这一步是发生在主线程的，并且不可避免。</p>
+<p>优化策略：</p>
+<ul>
+<li>在后台线程先把图片绘制到CGBitmapContext中，然后从 Bitmap直接创建图片。</li>
+</ul>
+<h3 id="图像绘制"><a href="#图像绘制" class="headerlink" title="图像绘制"></a>图像绘制</h3><p>图像的绘制通常是指用那些以CG开头的方法把图像绘制到画布中，然后从画布创建图片并显示的过程。</p>
+<p>这个最常见的地方就是 [UIView drawRect:] 里面了。由于 CoreGraphic 方法通常都是线程安全的，所以图像的绘制可以很容易的放到后台线程进行。一个简单异步绘制的过程大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)display &#123;</div><div class="line">    dispatch_async(backgroundQueue, ^&#123;</div><div class="line">        CGContextRef ctx = CGBitmapContextCreate(...);</div><div class="line">        // draw in context...</div><div class="line">        CGImageRef img = CGBitmapContextCreateImage(ctx);</div><div class="line">        CFRelease(ctx);</div><div class="line">        dispatch_async(mainQueue, ^&#123;</div><div class="line">            layer.contents = img;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="GPU-1"><a href="#GPU-1" class="headerlink" title="GPU"></a>GPU</h2><p>相对于 CPU 来说，GPU 能干的事情比较单一：接收提交的纹理（Texture）和顶点描述（三角形），应用变换（transform）、混合并渲染，然后输出到屏幕上。通常你所能看到的内容，主要也就是纹理（图片）和形状（三角模拟的矢量图形）两类。</p>
+<h3 id="纹理渲染"><a href="#纹理渲染" class="headerlink" title="纹理渲染"></a>纹理渲染</h3><p>所有的 Bitmap，包括图片、文本、栅格化的内容，最终都要由内存提交到显存，绑定为 GPU Texture。不论是提交到显存的过程，还是 GPU 调整和渲染 Texture 的过程，都要消耗不少 GPU 资源。当在较短时间显示大量图片时，CPU 占用率很低，GPU 占用非常高，界面仍然会掉帧。</p>
+<p>优化策略：</p>
+<ul>
+<li>尽量减少在短时间内大量图片的显示，尽可能将多张图片合成为一张进行显示;</li>
+<li>尽量不要让图片和视图的大小超过GPU 的最大纹理尺寸,否则图片需要先由 CPU 进行预处理，这对 CPU 和 GPU 都会带来额外的资源消耗。iOS为4096x4096。</li>
+</ul>
+<h3 id="视图混合"><a href="#视图混合" class="headerlink" title="视图混合"></a>视图混合</h3><p>当多个CALayer重叠在一起显示时，GPU 会首先把他们混合到一起。如果视图结构过于复杂，混合的过程也会消耗很多 GPU 资源。</p>
+<p>优化策略：</p>
+<ul>
+<li>尽量减少视图数量和层次;</li>
+<li>在不透明的视图里标明 opaque 属性以避免无用的 Alpha 通道合成;</li>
+<li>把多个视图预先渲染为一张图片来显示。</li>
+</ul>
+<h3 id="图形生成"><a href="#图形生成" class="headerlink" title="图形生成"></a>图形生成</h3><p>CALayer 的 border、圆角、阴影、遮罩，CASharpLayer 的矢量图形显示，通常会触发GPU的<a href="/2016/07/04/ios-Rendering">离屏渲染</a>，这时界面仍然能正常滑动，但平均帧数会降到很低。</p>
+<p>优化策略：</p>
+<ul>
+<li>在后台线程中直接生成一张圆角图片，避免使用圆角、阴影、遮罩等属性。</li>
+</ul>
+<h1 id="评测流畅度"><a href="#评测流畅度" class="headerlink" title="评测流畅度"></a>评测流畅度</h1><h2 id="GPU-Driver"><a href="#GPU-Driver" class="headerlink" title="GPU Driver"></a>GPU Driver</h2><p>Instuments-&gt;OpenGL ES Analysis-&gt;GPU Driver，能够实时查看到 CPU 和 GPU 的资源消耗, 并且能查看到几乎所有与显示有关的数据，比如 Texture 数量、CA 提交的频率、GPU 消耗等。</p>
+<h2 id="代码监控"><a href="#代码监控" class="headerlink" title="代码监控"></a>代码监控</h2><p>CPU和GPU的流畅度可以<a href="/2015/10/20/ios-CoreAnimation-CADisplayLink">通过CADisplayLink计算FPS</a>来检测。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="预排版"><a href="#预排版" class="headerlink" title="预排版"></a>预排版</h2><p>将Cell按照内容分类，并将TableView中每条Cell需要的数据，在后台线程中计算并封装为一个布局对象CellLayout，并将其缓存，以便复用。</p>
+<p>不使用AutoLayout，少用UILabel等控件。</p>
+<p>对于无需触摸事件的视图，用CALayer替换UIView，将其统一绘制成一张图片。</p>
+<h2 id="预渲染"><a href="#预渲染" class="headerlink" title="预渲染"></a>预渲染</h2><p>将需要圆角、阴影等图片在后台预先渲染，然后保存到ImageCache中。避免<a href="/2016/07/04/ios-Rendering">离屏渲染</a>。</p>
+<h2 id="异步绘制"><a href="#异步绘制" class="headerlink" title="异步绘制"></a>异步绘制</h2><p>尽量将绘制工作放到后台线程中，并在绘制每一行文本时，检测任务是否已被取消。这种情况出现在TableView快速划动时，有些Cell还没完成绘制，就已经滑出屏幕了，此时应该立刻取消绘制。</p>
+<p>更简单粗暴点的方案就是，在滑动松开手指后，立刻计算划动停止时Cell得位置，并预先绘制附近的几个Cell，忽略滑动中的Cell。这对性能提升也很明显，但是会出现大量空白，属于可以取舍的技巧。</p>
+<h2 id="全局并发控制"><a href="#全局并发控制" class="headerlink" title="全局并发控制"></a>全局并发控制</h2><p>如果使用Concurrent Queue来执行大量的绘制任务，当遇到锁或者其他原因，线程被阻塞时，会创建新的线程，这会导致过多的线程被创建，运行，销毁等。这里，使用多个优先级不同的Serail Queue来执行不同的绘制任务，避免上述问题。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/04/ios-Rendering/" rel="next" title="iOS-GPU屏幕渲染">
+                <i class="fa fa-chevron-left"></i> iOS-GPU屏幕渲染
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/13/ios-BackgroundExecution/" rel="prev" title="iOS-Background Execution">
+                iOS-Background Execution <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#屏幕显示原理"><span class="nav-number">1.</span> <span class="nav-text">屏幕显示原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GPU"><span class="nav-number">2.</span> <span class="nav-text">GPU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卡顿原因"><span class="nav-number">3.</span> <span class="nav-text">卡顿原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卡顿解决"><span class="nav-number">4.</span> <span class="nav-text">卡顿解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU"><span class="nav-number">4.1.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建"><span class="nav-number">4.1.1.</span> <span class="nav-text">对象创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象调整"><span class="nav-number">4.1.2.</span> <span class="nav-text">对象调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象销毁"><span class="nav-number">4.1.3.</span> <span class="nav-text">对象销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局计算"><span class="nav-number">4.1.4.</span> <span class="nav-text">布局计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AutoLayout"><span class="nav-number">4.1.5.</span> <span class="nav-text">AutoLayout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本计算"><span class="nav-number">4.1.6.</span> <span class="nav-text">文本计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本渲染"><span class="nav-number">4.1.7.</span> <span class="nav-text">文本渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片解码"><span class="nav-number">4.1.8.</span> <span class="nav-text">图片解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像绘制"><span class="nav-number">4.1.9.</span> <span class="nav-text">图像绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPU-1"><span class="nav-number">4.2.</span> <span class="nav-text">GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理渲染"><span class="nav-number">4.2.1.</span> <span class="nav-text">纹理渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图混合"><span class="nav-number">4.2.2.</span> <span class="nav-text">视图混合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图形生成"><span class="nav-number">4.2.3.</span> <span class="nav-text">图形生成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评测流畅度"><span class="nav-number">5.</span> <span class="nav-text">评测流畅度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GPU-Driver"><span class="nav-number">5.1.</span> <span class="nav-text">GPU Driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码监控"><span class="nav-number">5.2.</span> <span class="nav-text">代码监控</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预排版"><span class="nav-number">6.1.</span> <span class="nav-text">预排版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预渲染"><span class="nav-number">6.2.</span> <span class="nav-text">预渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步绘制"><span class="nav-number">6.3.</span> <span class="nav-text">异步绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局并发控制"><span class="nav-number">6.4.</span> <span class="nav-text">全局并发控制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
