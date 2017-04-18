@@ -93,8 +93,8 @@ http://www.linyibin.cn/2015/11/10/ios-AutoLayout-SimpleConstrains/
 http://www.linyibin.cn/2015/11/07/ios-AutoLayout-StackView/
 http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/
 http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/
-http://www.linyibin.cn/2015/10/22/technology-Git/
 http://www.linyibin.cn/2015/10/22/ios-AdaptionWith9/
+http://www.linyibin.cn/2015/10/22/technology-Git/
 http://www.linyibin.cn/2015/10/20/ios-CoreAnimation-CADisplayLink/
 http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/
 http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/
