@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Result-Ai.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Result-Shuai.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-IME-Result-Ke.png">
-<meta property="og:updated_time" content="2017-04-18T09:08:32.000Z">
+<meta property="og:updated_time" content="2017-04-18T09:22:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-手写汉字识别">
 <meta name="twitter:description" content="本文主要介绍如何通过机器学习来进行手写汉字识别，代码开源在Github-HandWriteRecognition。">
@@ -413,7 +413,14 @@
       
         <p>本文主要介绍如何通过机器学习来进行手写汉字识别，代码开源在<a href="https://github.com/FTD-YI/HandWriteRecognition" target="_blank" rel="external">Github-HandWriteRecognition</a>。</p>
 <a id="more"></a>
-<p>主要思路是首先提取每个汉字的笔画特征，保存成一个字库，再通过手写板或者触摸板获取用户的手写轨迹坐标，进行预处理后，通过KNN算法，与字库中的每个汉字进行比较，最后根据比较距离的大小进行排序，输出结果。</p>
+<p>主要思路：</p>
+<ul>
+<li>提取每个汉字的笔画特征，保存成一个字库;</li>
+<li>通过手写板或者触摸板获取用户的手写轨迹坐标;</li>
+<li>坐标预处理;</li>
+<li>通过 KNN 算法，与字库中的每个汉字进行比较;</li>
+<li>根据比较距离的大小进行排序，输出结果。</li>
+</ul>
 <h2 id="字库"><a href="#字库" class="headerlink" title="字库"></a>字库</h2><p>这里的字库，是基于<a href="https://pan.baidu.com/s/1c2qWEsg" target="_blank" rel="external">Tomoe Handwriting Dictionary</a>字库进行特殊处理后，生成的model文件。</p>
 <p>Tomoe字库收集了汉字的每一笔的起始和转折点，可以认为是特征点。例如<br>下面是“丁”字的表示，分为两笔，第一笔只有起点和终点，第二笔还包含了转择点：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;character&gt;</div><div class="line">    &lt;utf8&gt;&amp;#x4E01;&lt;/utf8&gt;</div><div class="line">    &lt;strokes&gt;</div><div class="line">      &lt;stroke&gt;</div><div class="line">        &lt;point x=&quot;93&quot; y=&quot;198&quot;/&gt;</div><div class="line">        &lt;point x=&quot;913&quot; y=&quot;205&quot;/&gt;</div><div class="line">      &lt;/stroke&gt;</div><div class="line">      &lt;stroke&gt;</div><div class="line">        &lt;point x=&quot;495&quot; y=&quot;203&quot;/&gt;</div><div class="line">        &lt;point x=&quot;470&quot; y=&quot;847&quot;/&gt;</div><div class="line">        &lt;point x=&quot;405&quot; y=&quot;784&quot;/&gt;</div><div class="line">      &lt;/stroke&gt;</div><div class="line">    &lt;/strokes&gt;</div><div class="line">  &lt;/character&gt;</div></pre></td></tr></table></figure>
