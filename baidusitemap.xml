@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.linyibin.cn/2017/05/04/product-BussinessThinking/</loc>
-    <lastmod>2017-05-04T09:04:55.000Z</lastmod>
+    <lastmod>2017-05-04T09:11:26.000Z</lastmod>
     <data>
         <display>
         <title>Product-生意人思维和利他思维</title>
@@ -174,26 +174,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/04/28/ios-Modifier/</loc>
-    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-Strong、Weak、Assgin、Retain、Copy</title>
-        <pubTime>2014-04-27T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/</loc>
     <lastmod>2017-04-17T08:25:51.000Z</lastmod>
     <data>
@@ -234,16 +214,14 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
-    <lastmod>2017-04-11T06:22:01.000Z</lastmod>
+    <loc>http://www.linyibin.cn/2014/04/28/ios-Modifier/</loc>
+    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-线程同步详解</title>
-        <pubTime>2015-04-17T16:00:00.000Z</pubTime>
+        <title>iOS-Strong、Weak、Assgin、Retain、Copy</title>
+        <pubTime>2014-04-27T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
-         
-        <tag>Multithread</tag>
          
          
            
@@ -262,6 +240,28 @@
         <display>
         <title>iOS-异步编程详解</title>
         <pubTime>2015-04-30T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Multithread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
+    <lastmod>2017-04-11T06:22:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-线程同步详解</title>
+        <pubTime>2015-04-17T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -526,12 +526,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/08/12/java-Sqlite/</loc>
+    <loc>http://www.linyibin.cn/2014/08/13/java-Sqlite-Zero/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Java-Sqlite连接</title>
-        <pubTime>2014-08-11T16:00:00.000Z</pubTime>
+        <title>Java-Sqlite设置自增长ID从零开始</title>
+        <pubTime>2014-08-12T16:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -572,24 +572,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/08/17/sae-sae-SynataxError/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>SAE-Synatax Error:invalid syntax</title>
-        <pubTime>2014-08-16T16:00:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="SAE" url="http://www.linyibin.cn/categories/SAE/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2014/08/16/java-Sqlite-Transaction/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -605,6 +587,24 @@
            
              
               <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/17/sae-sae-SynataxError/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>SAE-Synatax Error:invalid syntax</title>
+        <pubTime>2014-08-16T16:00:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="SAE" url="http://www.linyibin.cn/categories/SAE/"/>
           
         </display>
     </data>
@@ -830,26 +830,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/10/04/android-LogCat-Clear/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android-解决Eclipse中LogCat被自动清屏问题</title>
-        <pubTime>2014-10-03T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2014/09/27/django-Charset/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -863,6 +843,26 @@
            
              
               <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/10/04/android-LogCat-Clear/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android-解决Eclipse中LogCat被自动清屏问题</title>
+        <pubTime>2014-10-03T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
           
         </display>
     </data>
@@ -994,12 +994,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/12/05/ios-Certificates-Update/</loc>
+    <loc>http://www.linyibin.cn/2014/11/26/ios-MixComile-Cpp/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-证书更新</title>
-        <pubTime>2014-12-04T16:00:00.000Z</pubTime>
+        <title>iOS-OC和C++混编</title>
+        <pubTime>2014-11-25T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1014,12 +1014,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/11/26/ios-MixComile-Cpp/</loc>
+    <loc>http://www.linyibin.cn/2014/12/05/ios-Certificates-Update/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-OC和C++混编</title>
-        <pubTime>2014-11-25T16:00:00.000Z</pubTime>
+        <title>iOS-证书更新</title>
+        <pubTime>2014-12-04T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1196,12 +1196,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/01/25/ios-UIImage-UIColor/</loc>
+    <loc>http://www.linyibin.cn/2015/01/19/ios-VolumeControll/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-UIImage与UIColor互转</title>
-        <pubTime>2015-01-24T16:00:00.000Z</pubTime>
+        <title>iOS-音量控制</title>
+        <pubTime>2015-01-18T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1216,12 +1216,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/01/19/ios-VolumeControll/</loc>
+    <loc>http://www.linyibin.cn/2015/01/25/ios-UIImage-UIColor/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-音量控制</title>
-        <pubTime>2015-01-18T16:00:00.000Z</pubTime>
+        <title>iOS-UIImage与UIColor互转</title>
+        <pubTime>2015-01-24T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1256,12 +1256,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/02/08/ios-Unzip/</loc>
+    <loc>http://www.linyibin.cn/2015/02/17/ios-Exception/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-下载并解压Zip文件</title>
-        <pubTime>2015-02-07T16:00:00.000Z</pubTime>
+        <title>iOS-捕获异常</title>
+        <pubTime>2015-02-16T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1276,12 +1276,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/02/17/ios-Exception/</loc>
+    <loc>http://www.linyibin.cn/2015/02/08/ios-Unzip/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-捕获异常</title>
-        <pubTime>2015-02-16T16:00:00.000Z</pubTime>
+        <title>iOS-下载并解压Zip文件</title>
+        <pubTime>2015-02-07T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1422,26 +1422,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/04/03/java-WordToPinyin/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-汉字转拼音</title>
-        <pubTime>2015-04-02T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/03/24/ios-Compile-Optimization/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -1455,6 +1435,26 @@
            
              
               <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/03/java-WordToPinyin/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-汉字转拼音</title>
+        <pubTime>2015-04-02T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
           
         </display>
     </data>
@@ -1546,6 +1546,26 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-NSURL特殊字符</title>
+        <pubTime>2014-05-17T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2015/05/23/ios-CheckUpdate/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -1566,14 +1586,16 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
+    <loc>http://www.linyibin.cn/2015/06/01/ios-Push-javaPNS/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-NSURL特殊字符</title>
-        <pubTime>2014-05-17T16:00:00.000Z</pubTime>
+        <title>iOS-利用JavaPNS实现推送</title>
+        <pubTime>2015-05-31T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -1626,28 +1648,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/06/01/ios-Push-javaPNS/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-利用JavaPNS实现推送</title>
-        <pubTime>2015-05-31T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/07/13/ios-LoadCustomBundle/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -1681,26 +1681,6 @@
            
              
               <breadCrumb title="Other" url="http://www.linyibin.cn/categories/Other/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2015/07/28/ios-AutoBuild/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-自动编译</title>
-        <pubTime>2015-07-27T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
           
         </display>
     </data>
@@ -1748,6 +1728,26 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2015/07/28/ios-AutoBuild/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-自动编译</title>
+        <pubTime>2015-07-27T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2015/08/04/ios-UIImage-Memory/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -1774,6 +1774,26 @@
         <display>
         <title>iOS-Cocoapods</title>
         <pubTime>2015-08-09T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/08/26/ios-Can'tLocateFile/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-解决can't locate file for .a文件异常</title>
+        <pubTime>2015-08-25T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1821,26 +1841,6 @@
            
              
               <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2015/08/26/ios-Can'tLocateFile/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-解决can't locate file for .a文件异常</title>
-        <pubTime>2015-08-25T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
           
         </display>
     </data>
@@ -1908,28 +1908,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-Servlet重定向</title>
-        <pubTime>2014-05-17T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Server</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -1970,12 +1948,34 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
+    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-CoreAnimation[2]-设置Layer</title>
-        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
+        <title>Java-Servlet重定向</title>
+        <pubTime>2014-05-17T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Server</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-CoreAnimation[1]-简介</title>
+        <pubTime>2015-10-11T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -1990,12 +1990,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
+    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-CoreAnimation[1]-简介</title>
-        <pubTime>2015-10-11T16:00:00.000Z</pubTime>
+        <title>iOS-CoreAnimation[2]-设置Layer</title>
+        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2074,6 +2074,26 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-Auto Layout[1]-Constraints</title>
+        <pubTime>2015-11-01T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2100,26 +2120,6 @@
         <display>
         <title>iOS-Auto Layout[3]-Stack Views</title>
         <pubTime>2015-11-06T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-Auto Layout[1]-Constraints</title>
-        <pubTime>2015-11-01T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -2196,28 +2196,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2015/12/22/JNI-Method/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-JNI方法中的签名用法</title>
-        <pubTime>2015-12-21T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>JNI</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2015/11/19/ios-AutoLayout-ChangingConstraints/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2278,6 +2256,50 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2015/12/22/JNI-Method/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-JNI方法中的签名用法</title>
+        <pubTime>2015-12-21T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>JNI</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2015/12/23/JNI-Object/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-JNI对象构造和字符串转换</title>
+        <pubTime>2015-12-22T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>JNI</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2015/12/24/JNI-Process/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2313,28 +2335,6 @@
            
              
               <breadCrumb title="C++" url="http://www.linyibin.cn/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2015/12/23/JNI-Object/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-JNI对象构造和字符串转换</title>
-        <pubTime>2015-12-22T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>JNI</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
           
         </display>
     </data>
@@ -2616,26 +2616,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/03/07/java-Pcm-Play/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-播放PCM文件</title>
-        <pubTime>2016-03-06T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2016/03/06/android-androidTrack/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2656,12 +2636,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/03/09/java-MusicProtocol-Socket/</loc>
+    <loc>http://www.linyibin.cn/2016/03/07/java-Pcm-Play/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Java-解决音乐协议中的Socket通信字节传输问题</title>
-        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
+        <title>Java-播放PCM文件</title>
+        <pubTime>2016-03-06T16:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -2682,6 +2662,26 @@
         <display>
         <title>Java-PCM文件转WAV文件</title>
         <pubTime>2016-03-07T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/03/09/java-MusicProtocol-Socket/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java-解决音乐协议中的Socket通信字节传输问题</title>
+        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -2736,46 +2736,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/03/21/android-PullApk/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android-导出手机上的APK</title>
-        <pubTime>2016-03-20T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2016/04/06/android-Decompile/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android-OS X系统上反编译流程</title>
-        <pubTime>2016-04-05T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2016/03/14/technology-AirKiss/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2789,6 +2749,26 @@
            
              
               <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/03/21/android-PullApk/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android-导出手机上的APK</title>
+        <pubTime>2016-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
           
         </display>
     </data>
@@ -2816,12 +2796,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/04/15/android-TTS/</loc>
+    <loc>http://www.linyibin.cn/2016/04/06/android-Decompile/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Android-最简单的方式使用TTS</title>
-        <pubTime>2016-04-14T16:00:00.000Z</pubTime>
+        <title>Android-OS X系统上反编译流程</title>
+        <pubTime>2016-04-05T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -2878,6 +2858,26 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2016/04/15/android-TTS/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android-最简单的方式使用TTS</title>
+        <pubTime>2016-04-14T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2014/04/24/ios-Block/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -2891,6 +2891,26 @@
            
              
               <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/05/03/android-Wechat-Message/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android-App内部实现收发微信</title>
+        <pubTime>2016-05-02T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
           
         </display>
     </data>
@@ -2944,26 +2964,6 @@
         <display>
         <title>Android-Logcat过滤指定Tag</title>
         <pubTime>2016-05-19T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://www.linyibin.cn/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2016/05/03/android-Wechat-Message/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android-App内部实现收发微信</title>
-        <pubTime>2016-05-02T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -3038,19 +3038,21 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/07/07/ios-ViewWebSource/</loc>
+    <loc>http://www.linyibin.cn/2014/07/05/django-ImageField/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-查看网页源码</title>
-        <pubTime>2014-07-06T16:00:00.000Z</pubTime>
+        <title>Django-ImageField图片不会自动替换问题</title>
+        <pubTime>2014-07-04T16:00:00.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Server</tag>
+         
+        <tag>Python</tag>
          
          
            
              
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
           
         </display>
     </data>
@@ -3064,26 +3066,6 @@
         <display>
         <title>iOS-Strategies for Implementing Specific App Features</title>
         <pubTime>2016-06-13T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/15/ios-Inter-App-Communication/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-Inter-App Communication</title>
-        <pubTime>2016-06-14T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -3118,21 +3100,39 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/07/05/django-ImageField/</loc>
+    <loc>http://www.linyibin.cn/2016/06/15/ios-Inter-App-Communication/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Django-ImageField图片不会自动替换问题</title>
-        <pubTime>2014-07-04T16:00:00.000Z</pubTime>
+        <title>iOS-Inter-App Communication</title>
+        <pubTime>2016-06-14T16:00:00.000Z</pubTime>
         
-        <tag>Server</tag>
-         
-        <tag>Python</tag>
+        <tag>iOS</tag>
          
          
            
              
-              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2014/07/07/ios-ViewWebSource/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-查看网页源码</title>
+        <pubTime>2014-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
           
         </display>
     </data>
@@ -3180,12 +3180,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/08/09/ios-AFNetworking-SpecialChars/</loc>
+    <loc>http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-AFNetworking特殊字符处理</title>
-        <pubTime>2016-08-08T16:00:00.000Z</pubTime>
+        <title>iOS-Performance Tips</title>
+        <pubTime>2016-07-17T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -3220,12 +3220,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/</loc>
+    <loc>http://www.linyibin.cn/2016/08/09/ios-AFNetworking-SpecialChars/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-Performance Tips</title>
-        <pubTime>2016-07-17T16:00:00.000Z</pubTime>
+        <title>iOS-AFNetworking特殊字符处理</title>
+        <pubTime>2016-08-08T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
          
@@ -3350,6 +3350,28 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2016/08/19/technology-DesignPattern-Command/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Technology-设计模式-命令模式</title>
+        <pubTime>2016-08-18T16:00:00.000Z</pubTime>
+        
+        <tag>Technology</tag>
+         
+        <tag>DesignPattern</tag>
+         
+         
+           
+             
+              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2016/08/20/technology-DesignPattern-Adapter/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -3378,28 +3400,6 @@
         <display>
         <title>Technology-设计模式-外观模式</title>
         <pubTime>2016-08-20T16:00:00.000Z</pubTime>
-        
-        <tag>Technology</tag>
-         
-        <tag>DesignPattern</tag>
-         
-         
-           
-             
-              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2016/08/19/technology-DesignPattern-Command/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Technology-设计模式-命令模式</title>
-        <pubTime>2016-08-18T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3460,28 +3460,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/08/26/technology-DesignPattern-Proxy/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Technology-设计模式-代理模式</title>
-        <pubTime>2016-08-25T16:00:00.000Z</pubTime>
-        
-        <tag>Technology</tag>
-         
-        <tag>DesignPattern</tag>
-         
-         
-           
-             
-              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2016/08/24/technology-DesignPattern-Composite/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -3526,12 +3504,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/08/27/technology-DesignPattern-Compound/</loc>
+    <loc>http://www.linyibin.cn/2016/08/26/technology-DesignPattern-Proxy/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Technology-设计模式-复合模式</title>
-        <pubTime>2016-08-26T16:00:00.000Z</pubTime>
+        <title>Technology-设计模式-代理模式</title>
+        <pubTime>2016-08-25T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3548,12 +3526,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/08/30/technology-DesignPattern-ChainOfResponsibility/</loc>
+    <loc>http://www.linyibin.cn/2016/08/27/technology-DesignPattern-Compound/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Technology-设计模式-责任链模式</title>
-        <pubTime>2016-08-29T16:00:00.000Z</pubTime>
+        <title>Technology-设计模式-复合模式</title>
+        <pubTime>2016-08-26T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3614,12 +3592,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
+    <loc>http://www.linyibin.cn/2016/08/30/technology-DesignPattern-ChainOfResponsibility/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Technology-设计模式-原型模式</title>
-        <pubTime>2016-09-01T16:00:00.000Z</pubTime>
+        <title>Technology-设计模式-责任链模式</title>
+        <pubTime>2016-08-29T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3658,28 +3636,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Technology-设计模式-中介者模式</title>
-        <pubTime>2016-09-02T16:00:00.000Z</pubTime>
-        
-        <tag>Technology</tag>
-         
-        <tag>DesignPattern</tag>
-         
-         
-           
-             
-              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2016/09/01/technology-DesignPattern-Memento/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -3702,12 +3658,34 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2016/09/05/technology-DesignPattern-Visitor/</loc>
+    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Technology-设计模式-访问者模式</title>
-        <pubTime>2016-09-04T16:00:00.000Z</pubTime>
+        <title>Technology-设计模式-原型模式</title>
+        <pubTime>2016-09-01T16:00:00.000Z</pubTime>
+        
+        <tag>Technology</tag>
+         
+        <tag>DesignPattern</tag>
+         
+         
+           
+             
+              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Technology-设计模式-中介者模式</title>
+        <pubTime>2016-09-02T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3730,6 +3708,28 @@
         <display>
         <title>Technology-设计模式-解释器模式</title>
         <pubTime>2016-09-03T16:00:00.000Z</pubTime>
+        
+        <tag>Technology</tag>
+         
+        <tag>DesignPattern</tag>
+         
+         
+           
+             
+              <breadCrumb title="Technology" url="http://www.linyibin.cn/categories/Technology/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.linyibin.cn/2016/09/05/technology-DesignPattern-Visitor/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Technology-设计模式-访问者模式</title>
+        <pubTime>2016-09-04T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3830,28 +3830,6 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/07/27/java-ThreadPool/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java-线程池的异步运行和同步返回</title>
-        <pubTime>2014-07-26T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Multithread</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.linyibin.cn/2014/07/23/ios-StorybardIsNotAvailable/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -3893,26 +3871,50 @@
     </url>
 
     
+    
   <url>
-    <loc>http://www.linyibin.cn/2014/08/04/ios-ReceiverBarBlack/</loc>
+    <loc>http://www.linyibin.cn/2014/07/27/java-ThreadPool/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>iOS-短信收件人黑条</title>
-        <pubTime>2014-08-03T16:00:00.000Z</pubTime>
+        <title>Java-线程池的异步运行和同步返回</title>
+        <pubTime>2014-07-26T16:00:00.000Z</pubTime>
         
-        <tag>iOS</tag>
+        <tag>Java</tag>
+         
+        <tag>Multithread</tag>
          
          
            
              
-              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+              <breadCrumb title="Java" url="http://www.linyibin.cn/categories/Java/"/>
           
         </display>
     </data>
     </url>
 
     
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/02/django-APK/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Django-集成APK下载</title>
+        <pubTime>2014-08-01T16:00:00.000Z</pubTime>
+        
+        <tag>Server</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
@@ -3961,12 +3963,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
+    <loc>http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Technology-Computer Networking[2]-Application Layer</title>
-        <pubTime>2017-02-13T16:00:00.000Z</pubTime>
+        <title>Technology-Computer Networking[1]-Computer Networks and the Internet</title>
+        <pubTime>2017-02-11T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -3985,34 +3987,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/08/02/django-APK/</loc>
+    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Django-集成APK下载</title>
-        <pubTime>2014-08-01T16:00:00.000Z</pubTime>
-        
-        <tag>Server</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Django" url="http://www.linyibin.cn/categories/Django/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/</loc>
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Technology-Computer Networking[1]-Computer Networks and the Internet</title>
-        <pubTime>2017-02-11T16:00:00.000Z</pubTime>
+        <title>Technology-Computer Networking[2]-Application Layer</title>
+        <pubTime>2017-02-13T16:00:00.000Z</pubTime>
         
         <tag>Technology</tag>
          
@@ -4051,6 +4031,26 @@
 
     
   <url>
+    <loc>http://www.linyibin.cn/2014/08/04/ios-ReceiverBarBlack/</loc>
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-短信收件人黑条</title>
+        <pubTime>2014-08-03T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Objective-C" url="http://www.linyibin.cn/categories/Objective-C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.linyibin.cn/2014/08/10/django-DbNameCase/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
@@ -4073,12 +4073,12 @@
 
     
   <url>
-    <loc>http://www.linyibin.cn/2014/08/13/java-Sqlite-Zero/</loc>
+    <loc>http://www.linyibin.cn/2014/08/12/java-Sqlite/</loc>
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     <data>
         <display>
-        <title>Java-Sqlite设置自增长ID从零开始</title>
-        <pubTime>2014-08-12T16:00:00.000Z</pubTime>
+        <title>Java-Sqlite连接</title>
+        <pubTime>2014-08-11T16:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
