@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://www.linyibin.cn/2015/04/17/ios-MultiThread/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文对iOS系统上的多线程进行了深入的讲解。">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-05-03T06:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-多线程详解">
 <meta name="twitter:description" content="本文对iOS系统上的多线程进行了深入的讲解。">
@@ -409,103 +409,143 @@
         <p>本文对iOS系统上的多线程进行了深入的讲解。</p>
 <a id="more"></a>
 <h1 id="多任务的线程处理方式"><a href="#多任务的线程处理方式" class="headerlink" title="多任务的线程处理方式"></a>多任务的线程处理方式</h1><p>对于不同的task任务，处理的方式和策略可以参考以下表格。</p>
-<table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Operation objects</td><br>    <td>用队列管理一组task任务，内部使用一或者多个线程</td><br>  </tr><br>  <tr><br>    <td>GCD(Grand Central Dispatch)</td><br>    <td>用队列管理一组task任务，内部使用一个线程</td><br>  </tr><br>  <tr><br>    <td>Idle-time notifications</td><br>    <td>对于短且低优先级的task，可以通过向NSNotificationQueue发送一个包含NSPostWhenIdle选项的通知，当RunLoop处于Idle状态时，系统会处理该task</td><br>  </tr><br>  <tr><br>    <td>Asynchronous functions</td><br>    <td>一些带有异步功能的方法</td><br>  </tr><br>  <tr><br>    <td>Timer</td><br>    <td>在一个线程中利用RunLoop的TimerSources进行执行，一般在主线程中使用</td><br>  </tr><br>  <tr><br>    <td>Separate processes</td><br>    <td>用多进程来处理事务</td><br>  </tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operation objects</td>
+<td>用队列管理一组task任务，内部使用一或者多个线程</td>
+</tr>
+<tr>
+<td>GCD(Grand Central Dispatch)</td>
+<td>用队列管理一组task任务，内部使用一个线程</td>
+</tr>
+<tr>
+<td>Idle-time notifications</td>
+<td>对于短且低优先级的task，可以通过向NSNotificationQueue发送一个包含NSPostWhenIdle选项的通知，当RunLoop处于Idle状态时，系统会处理该task</td>
+</tr>
+<tr>
+<td>Asynchronous functions</td>
+<td>一些带有异步功能的方法</td>
+</tr>
+<tr>
+<td>Timer</td>
+<td>在一个线程中利用RunLoop的TimerSources进行执行，一般在主线程中使用</td>
+</tr>
+<tr>
+<td>Separate processes</td>
+<td>用多进程来处理事务</td>
+</tr>
+</tbody>
+</table>
 <h1 id="线程库"><a href="#线程库" class="headerlink" title="线程库"></a>线程库</h1><p>iOS和OS X系统提供了以下的线程库：</p>
-<table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Cocoa threads</td><br>    <td>OC编写的库，包含NSThread类</td><br>  </tr><br>  <tr><br>    <td>POSIX threads</td><br>    <td>C编写的库，包含POSIX Threads</td><br>  </tr><br>  <tr><br>    <td>Multiprocessing Services</td><br>    <td>遗留的库，尽量避免使用</td><br>  </tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cocoa threads</td>
+<td>OC编写的库，包含NSThread类</td>
+</tr>
+<tr>
+<td>POSIX threads</td>
+<td>C编写的库，包含POSIX Threads</td>
+</tr>
+<tr>
+<td>Multiprocessing Services</td>
+<td>遗留的库，尽量避免使用</td>
+</tr>
+</tbody>
+</table>
 <h1 id="线程的成本"><a href="#线程的成本" class="headerlink" title="线程的成本"></a>线程的成本</h1><h2 id="空间成本"><a href="#空间成本" class="headerlink" title="空间成本"></a>空间成本</h2><p>每个线程需要占用内核和应用两边的内存空间。当线程被创建时，这两部分的内存空间即被占用。</p>
-<table><br>  <tr><br>    <th>Item</th><br>    <th>Approximate cost</th><br>    <th>Notes</th><br>  </tr><br>  <tr><br>    <td>Kernel data structures</td><br>    <td>约1KB</td><br>    <td>用于存储线程本身的结构和属性，不能被分页到硬盘</td><br>  </tr><br>  <tr><br>    <td>Stack space</td><br>    <td>1MB (iOS主线程) 8MB（OSX 主线程）512KB（创建的线程）</td><br>    <td>最小的创建线程的栈空间大小是16KB，且必须是4KB的倍数，内存空间在创建时即被分配，但是只有需要用时，真实的内存分页才会被创建）</td><br>  </tr><br>  <tr><br>    <td>Creation time</td><br>    <td>约90ms</td><br>    <td>从开始创建线程到线程入口开始执行的时间</td><br>  </tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Approximate cost</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kernel data structures</td>
+<td>约1KB</td>
+<td>用于存储线程本身的结构和属性，不能被分页到硬盘</td>
+</tr>
+<tr>
+<td>Stack space</td>
+<td>1MB (iOS主线程) 8MB（OSX 主线程）512KB（创建的线程）</td>
+<td>最小的创建线程的栈空间大小是16KB，且必须是4KB的倍数，内存空间在创建时即被分配，但是只有需要用时，真实的内存分页才会被创建）</td>
+</tr>
+<tr>
+<td>Creation time</td>
+<td>约90ms</td>
+<td>从开始创建线程到线程入口开始执行的时间</td>
+</tr>
+</tbody>
+</table>
 <h2 id="时间成本"><a href="#时间成本" class="headerlink" title="时间成本"></a>时间成本</h2><p>而线程创建的时间，取决于处理器的负载、计算机的速度以及程序的内存等，只能进行粗略的估算，参考上表。</p>
 <h2 id="产品成本"><a href="#产品成本" class="headerlink" title="产品成本"></a>产品成本</h2><p>多线程可能增加产品的不稳定性、开发的复杂性，应谨慎考虑。</p>
 <h1 id="线程创建"><a href="#线程创建" class="headerlink" title="线程创建"></a>线程创建</h1><h2 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h2><p>NSThread有两种创建方式。</p>
-<pre><code>//第一种
-[NSThread detachNewThreadSelector:@selector(myThreadMainMethod:) toTarget:self withObject:nil];
-//第二种
-NSThread* myThread = [[NSThread alloc] initWithTarget:self
-                                    selector:@selector(myThreadMainMethod:)
-                                    object:nil];
-[myThread start];  // Actually create the thread
-</code></pre><h2 id="POSIX-Threads"><a href="#POSIX-Threads" class="headerlink" title="POSIX Threads"></a>POSIX Threads</h2><pre><code>#include &lt;assert.h&gt;
-#include &lt;pthread.h&gt;
-
-void* PosixThreadMainRoutine(void* data)
-{
-    // Do some work here.
-    return NULL;
-}
-
-void LaunchThread()
-{
-    // Create the thread using POSIX routines.
-    pthread_attr_t  attr;
-    pthread_t       posixThreadID;
-    int             returnVal;
-
-    returnVal = pthread_attr_init(&amp;attr);
-    assert(!returnVal);
-    returnVal = pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);
-    assert(!returnVal);
-
-    int     threadError = pthread_create(&amp;posixThreadID, &amp;attr, &amp;PosixThreadMainRoutine, NULL);
-     returnVal = pthread_attr_destroy(&amp;attr);
-    assert(!returnVal);
-    if (threadError != 0)
-    {
-     // Report an error.
-    }
-}
-</code></pre><h2 id="通过NSObject派生线程"><a href="#通过NSObject派生线程" class="headerlink" title="通过NSObject派生线程"></a>通过NSObject派生线程</h2><p>NSObject可以直接创建一个线程，并将对应的方法作为线程的执行入口。</p>
-<pre><code>[myObj performSelectorInBackground:@selector(doSomething) withObject:nil];
-</code></pre><h1 id="线程属性配置"><a href="#线程属性配置" class="headerlink" title="线程属性配置"></a>线程属性配置</h1><h2 id="设置线程的栈空间"><a href="#设置线程的栈空间" class="headerlink" title="设置线程的栈空间"></a>设置线程的栈空间</h2><table><br>  <tr><br>    <th>Technology</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Cocoa</td><br>    <td>在start前用setStackSize:方法设置</td><br>  </tr><br>  <tr><br>    <td>POSIX</td><br>    <td>创建pthread_attr_t结构体和使用pthread_attr_setstacksize方法设置栈空间大小，在创建时传递给pthread_create方法</td><br>  </tr><br>  <tr><br>    <td>Multiprocessing Services</td><br>    <td>MPCreateTask参数设置</td><br>  </tr><br></table>
-
-<h2 id="设置线程属性"><a href="#设置线程属性" class="headerlink" title="设置线程属性"></a>设置线程属性</h2><pre><code>NSThread:threadDictionary
-POSIX:pthread_setspecific pthread_getspecific
-</code></pre><h2 id="设置线程独立状态"><a href="#设置线程独立状态" class="headerlink" title="设置线程独立状态"></a>设置线程独立状态</h2><p>一般情况下，线程都是detached(独立)的，当task完成时可立即被释放。必要时，也可以使用joinable线程，joinable意味着该线程只有被另一个线程join的时候，才会被释放。</p>
-<pre><code>joinable线程可以通过pthread_exit传递数据给调用pthread_join的线程。
-POSIX提供了设置线程独立状态的方法：pthread_attr_setdetachstate
-</code></pre><h2 id="设置线程的优先级"><a href="#设置线程的优先级" class="headerlink" title="设置线程的优先级"></a>设置线程的优先级</h2><p>可以通过以下函数来设置线程优先级。</p>
-<pre><code>NSThread:setThreadPriority
-POSIX:pthread_setschedparam
-</code></pre><p>注意：即使设置了线程的优先级，也不能保证该线程一定会先被执行，只是有更大的可能性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//第一种</div><div class="line">[NSThread detachNewThreadSelector:@selector(myThreadMainMethod:) toTarget:self withObject:nil];</div><div class="line">//第二种</div><div class="line">NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(myThreadMainMethod:) object:nil];</div><div class="line">[myThread start];  // Actually create the thread</div></pre></td></tr></table></figure>
+<h2 id="POSIX-Threads"><a href="#POSIX-Threads" class="headerlink" title="POSIX Threads"></a>POSIX Threads</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#include &lt;assert.h&gt;</div><div class="line">#include &lt;pthread.h&gt;</div><div class="line"> </div><div class="line">void* PosixThreadMainRoutine(void* data)</div><div class="line">&#123;</div><div class="line">    // Do some work here.</div><div class="line">    return NULL;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">void LaunchThread()</div><div class="line">&#123;</div><div class="line">    // Create the thread using POSIX routines.</div><div class="line">    pthread_attr_t  attr;</div><div class="line">    pthread_t       posixThreadID;</div><div class="line">    int             returnVal;</div><div class="line"> </div><div class="line">    returnVal = pthread_attr_init(&amp;attr);</div><div class="line">    assert(!returnVal);</div><div class="line">    returnVal = pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);</div><div class="line">    assert(!returnVal);</div><div class="line"> </div><div class="line">    int     threadError = pthread_create(&amp;posixThreadID, &amp;attr, &amp;PosixThreadMainRoutine, NULL);</div><div class="line"> 	returnVal = pthread_attr_destroy(&amp;attr);</div><div class="line">    assert(!returnVal);</div><div class="line">    if (threadError != 0)</div><div class="line">    &#123;</div><div class="line">    	// Report an error.</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="通过NSObject派生线程"><a href="#通过NSObject派生线程" class="headerlink" title="通过NSObject派生线程"></a>通过NSObject派生线程</h2><p>NSObject可以直接创建一个线程，并将对应的方法作为线程的执行入口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[myObj performSelectorInBackground:@selector(doSomething) withObject:nil];</div></pre></td></tr></table></figure>
+<h1 id="线程属性配置"><a href="#线程属性配置" class="headerlink" title="线程属性配置"></a>线程属性配置</h1><h2 id="设置线程的栈空间"><a href="#设置线程的栈空间" class="headerlink" title="设置线程的栈空间"></a>设置线程的栈空间</h2><table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cocoa</td>
+<td>在start前用setStackSize:方法设置</td>
+</tr>
+<tr>
+<td>POSIX</td>
+<td>创建pthread_attr_t结构体和使用pthread_attr_setstacksize方法设置栈空间大小，在创建时传递给pthread_create方法</td>
+</tr>
+<tr>
+<td>Multiprocessing Services</td>
+<td>MPCreateTask参数设置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="设置线程属性"><a href="#设置线程属性" class="headerlink" title="设置线程属性"></a>设置线程属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSThread:threadDictionary</div><div class="line">POSIX:pthread_setspecific pthread_getspecific</div></pre></td></tr></table></figure>
+<h2 id="设置线程独立状态"><a href="#设置线程独立状态" class="headerlink" title="设置线程独立状态"></a>设置线程独立状态</h2><p>一般情况下，线程都是detached(独立)的，当task完成时可立即被释放。必要时，也可以使用joinable线程，joinable意味着该线程只有被另一个线程join的时候，才会被释放。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">joinable线程可以通过pthread_exit传递数据给调用pthread_join的线程。</div><div class="line">POSIX提供了设置线程独立状态的方法：pthread_attr_setdetachstate</div></pre></td></tr></table></figure>
+<h2 id="设置线程的优先级"><a href="#设置线程的优先级" class="headerlink" title="设置线程的优先级"></a>设置线程的优先级</h2><p>可以通过以下函数来设置线程优先级。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSThread:setThreadPriority</div><div class="line">POSIX:pthread_setschedparam</div></pre></td></tr></table></figure>
+<p>注意：即使设置了线程的优先级，也不能保证该线程一定会先被执行，只是有更大的可能性。</p>
 <h1 id="编写线程入口方法"><a href="#编写线程入口方法" class="headerlink" title="编写线程入口方法"></a>编写线程入口方法</h1><h2 id="使用ARC"><a href="#使用ARC" class="headerlink" title="使用ARC"></a>使用ARC</h2><p>ARC可以自动对线程的资源进行释放。</p>
 <h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>线程的异常如果没有通过try/catch进行捕获，将会导致程序crash。</p>
-<h2 id="建立一个RunLoop"><a href="#建立一个RunLoop" class="headerlink" title="建立一个RunLoop"></a>建立一个RunLoop</h2><p>RunLoop可以帮你处理多任务，参考<a href="http://ftd-yi.github.io/blog/objective-c/2015/12/10/iOS-RunLoop.html" target="_blank" rel="external">iOS-RunLoop详解</a>;</p>
+<h2 id="建立一个RunLoop"><a href="#建立一个RunLoop" class="headerlink" title="建立一个RunLoop"></a>建立一个RunLoop</h2><p>RunLoop可以帮你处理多任务，参考<a href="/2015/12/10/ios-RunLoop/">iOS-RunLoop详解</a>;</p>
 <h1 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h1><p>尽管每种线程库都提供了终止线程的方法，但是最好让线程自己执行到结束，自然终止，有利于线程自己管理空间释放。</p>
 <p>NSThread可以使用RunLoop来检测自身是否可以终止。</p>
-<pre><code>- (void)threadMainRoutine
-{
-       BOOL moreWorkToDo = YES;
-    BOOL exitNow = NO;
-    NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">- (void)threadMainRoutine</div><div class="line">&#123;</div><div class="line">   		BOOL moreWorkToDo = YES;</div><div class="line">    	BOOL exitNow = NO;</div><div class="line">    	NSRunLoop* runLoop = [NSRunLoop currentRunLoop];</div><div class="line"> </div><div class="line">    	// Add the exitNow BOOL to the thread dictionary.</div><div class="line">    	NSMutableDictionary* threadDict = [[NSThread currentThread] threadDictionary];</div><div class="line">    	[threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@&quot;ThreadShouldExitNow&quot;];</div><div class="line"> </div><div class="line">    	// Install an input source.</div><div class="line">    	[self myInstallCustomInputSource];</div><div class="line"> </div><div class="line">    	while (moreWorkToDo &amp;&amp; !exitNow)</div><div class="line">    	&#123;</div><div class="line">        	// Do one chunk of a larger body of work here.</div><div class="line">        	// Change the value of the moreWorkToDo Boolean when done.</div><div class="line"> </div><div class="line">        	// Run the run loop but timeout immediately if the input source isn&apos;t waiting to fire.</div><div class="line">        	[runLoop runUntilDate:[NSDate date]];</div><div class="line"> </div><div class="line">        	// Check to see if an input source handler changed the exitNow value.</div><div class="line">        	exitNow = [[threadDict valueForKey:@&quot;ThreadShouldExitNow&quot;] boolValue];</div><div class="line">    	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-    // Add the exitNow BOOL to the thread dictionary.
-    NSMutableDictionary* threadDict = [[NSThread currentThread] threadDictionary];
-    [threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@&quot;ThreadShouldExitNow&quot;];
-
-    // Install an input source.
-    [self myInstallCustomInputSource];
-
-    while (moreWorkToDo &amp;&amp; !exitNow)
-    {
-        // Do one chunk of a larger body of work here.
-        // Change the value of the moreWorkToDo Boolean when done.
-
-        // Run the run loop but timeout immediately if the input source isn&apos;t waiting to fire.
-        [runLoop runUntilDate:[NSDate date]];
-
-        // Check to see if an input source handler changed the exitNow value.
-        exitNow = [[threadDict valueForKey:@&quot;ThreadShouldExitNow&quot;] boolValue];
-    }
-}
-</code></pre>
       
     </div>
 
     <div>
       
         
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
 
       
     </div>
@@ -623,7 +663,7 @@ POSIX:pthread_setschedparam
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-count">196</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -632,7 +672,7 @@ POSIX:pthread_setschedparam
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -641,7 +681,7 @@ POSIX:pthread_setschedparam
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

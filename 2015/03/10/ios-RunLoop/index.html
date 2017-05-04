@@ -95,7 +95,7 @@
 <meta property="og:description" content="RunLoop是线程相关的基础设计。">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/Art/runloop.jpg">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/Art/custominputsource.jpg">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-04-20T06:41:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-RunLoop详解">
 <meta name="twitter:description" content="RunLoop是线程相关的基础设计。">
@@ -417,8 +417,42 @@
 <p>可以注册run-loop observers，用于接收RunLoop的行为通知。</p>
 <h2 id="Mode"><a href="#Mode" class="headerlink" title="Mode"></a>Mode</h2><p>RunLoop Mode是由Input Sources和Timers组成的集合。当设置RunLoop的Mode后，只有与该Mode复合的sources才被允许分发事件。</p>
 <p>预先定义好的RunLoop Mode。</p>
-<table><br>  <tr><br>    <th>Mode</th><br>    <th>Name</th><br>    <th>Description</th><br>  </tr><br>  <tr><br>    <td>Default</td><br>    <td>NSDefaultRunLoopMode(Cocoa)<br>    kCFRunLoopDefaultMode(CoreFoundation)</td><br>    <td>默认模式</td><br>  </tr><br>  <tr><br>    <td>Connection</td><br>    <td>NSConnectionReplyMode(Cocoa)</td><br>    <td>处理NSConnection相关的事件</td><br>  </tr><br>  <tr><br>    <td>Modal</td><br>    <td>NSModalPanelRunLoopMode(Cocoa)</td><br>    <td>处理Modal Panels相关的事件</td><br>  </tr><br>  <tr><br>    <td>Event tracking</td><br>    <td>NSEventTrackingRunLoopMode(Cocoa)</td><br>    <td>处理鼠标拖动等界面相关事件</td><br>  </tr><br>  <tr><br>    <td>Common modes</td><br>    <td>NSRunLoopCommonMode(Cocoa)<br>    kCFRunLoopCommonMode(CoreFoundation)</td><br>    <td>一组模式组合，Cocoa包含default、modal、event tracking<br>    CoreFoundation只包含default</td><br>  </tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td>NSDefaultRunLoopMode(Cocoa) kCFRunLoopDefaultMode(CoreFoundation)</td>
+<td>默认模式</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>NSConnectionReplyMode(Cocoa)</td>
+<td>处理NSConnection相关的事件</td>
+</tr>
+<tr>
+<td>Modal</td>
+<td>NSModalPanelRunLoopMode(Cocoa)</td>
+<td>处理Modal Panels相关的事件</td>
+</tr>
+<tr>
+<td>Event tracking</td>
+<td>NSEventTrackingRunLoopMode(Cocoa)</td>
+<td>处理鼠标拖动等界面相关事件</td>
+</tr>
+<tr>
+<td>Common modes</td>
+<td>NSDefaultRunLoopMode(Cocoa) kCFRunLoopDefaultMode(CoreFoundation)</td>
+<td>一组模式组合，Cocoa包含default、modal、event tracking，CoreFoundation只包含default</td>
+</tr>
+</tbody>
+</table>
 <p>对于特定的需求，可以自定义Mode，例如用于过滤一些不需要的事件，或者在对时间有严格要求的操作中，忽略一些低优先级的事件。</p>
 <p>自定义Mode方法：</p>
 <pre><code>CFRunLoopAddCommonMode
@@ -428,8 +462,31 @@
 <p>下图是一个例子。当主线程有一个任务需要交给Worker线程去处理时，它发送一个命令到command buffer中，完成后，主线程给Input Source发送信号，并唤醒Worker线程的RunLoop。一旦接收到唤醒命令，Worker线程的RunLoop开始处理command buffer中的命令。<br><img src="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/Art/custominputsource.jpg" alt="Custom Sources"></p>
 <h4 id="Cocoa-Perform-Selector-Sources"><a href="#Cocoa-Perform-Selector-Sources" class="headerlink" title="*Cocoa Perform Selector Sources"></a>*Cocoa Perform Selector Sources</h4><p>Cocoa定义了一些Sources可以在任何线程上调用的selector.这些sources在执行完selector后，将自动从runLoop中移除。</p>
 <p>注意，只有目标线程定义了runLoop，selector sources才会被处理。</p>
-<table><br>  <tr><br>    <th>Methods</th><br>  </tr><br>  <tr><br>    <td>performSelectorOnMainThread:withObject:waitUntilDone:<br>    performSelectorOnMainThread:withObject:waitUntilDone:modes:</td><br>  </tr><br>  <tr><br>    <td>performSelector:onThread:withObject:waitUntilDone:<br>    performSelector:onThread:withObject:waitUntilDone:modes:</td><br>  </tr><br>  <tr><br>    <td>performSelector:withObject:afterDelay:<br>    performSelector:withObject:afterDelay:inModes:</td><br>  </tr><br>  <tr><br>    <td>cancelPreviousPerformRequestsWithTarget:<br>    cancelPreviousPerformRequestsWithTarget:selector:object:</td><br>  </tr><br> </table>
-
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>performSelectorOnMainThread:withObject:waitUntilDone: performSelectorOnMainThread:withObject:waitUntilDone:modes:</td>
+<td></td>
+</tr>
+<tr>
+<td>performSelector:onThread:withObject:waitUntilDone: performSelector:onThread:withObject:waitUntilDone:modes:</td>
+<td></td>
+</tr>
+<tr>
+<td>performSelector:withObject:afterDelay: performSelector:withObject:afterDelay:inModes:</td>
+<td></td>
+</tr>
+<tr>
+<td>cancelPreviousPerformRequestsWithTarget: cancelPreviousPerformRequestsWithTarget:selector:object:</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="Timer-Sources"><a href="#Timer-Sources" class="headerlink" title="Timer Sources"></a>Timer Sources</h3><p>Timer Sources，负责分发同步事件. 注意Timer fire并不一定会立刻执行，只有runLoop处理该source时，才会开始执行。</p>
 <h3 id="Run-Loop-Observers"><a href="#Run-Loop-Observers" class="headerlink" title="Run Loop Observers"></a>Run Loop Observers</h3><p>Observers将会监听以下几种RunLoop状态。</p>
 <ul>
@@ -534,6 +591,11 @@
     <div>
       
         
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
 
       
     </div>
@@ -649,7 +711,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-count">196</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -658,7 +720,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -667,7 +729,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
