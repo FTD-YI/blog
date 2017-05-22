@@ -1,1 +1,2 @@
-http://www.linyibin.cn/2016/10/15/ios-Security-DebugBridge/
+http://www.linyibin.cn/2016/10/18/ios-Security-Header/
+http://www.linyibin.cn/2016/10/17/ios-Security-Modify/
