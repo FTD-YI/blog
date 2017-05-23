@@ -1,0 +1,939 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Security,Cycript" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Theos 是一款越狱开发工具包。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Security[8]-插件开发">
+<meta property="og:url" content="http://www.linyibin.cn/2016/10/21/ios-Security-Theos/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Theos 是一款越狱开发工具包。">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Create.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Create-Project.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Make.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Package-Error.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Package-Make.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Package-Deb.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Install-Error.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Install-Success.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Install-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-Creat.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-Makefile.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-XM-Default.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-QQMusic.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-QQMusic-Result.png">
+<meta property="og:updated_time" content="2017-05-23T08:18:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Security[8]-插件开发">
+<meta name="twitter:description" content="Theos 是一款越狱开发工具包。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/iOS-Theos-Create.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/10/21/ios-Security-Theos/"/>
+
+
+
+
+
+  <title> iOS-Security[8]-插件开发 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/10/21/ios-Security-Theos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Security[8]-插件开发
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-21T00:00:00+08:00">
+                2016-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/10/21/ios-Security-Theos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Theos 是一款越狱开发工具包。</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Dpkg"><a href="#Dpkg" class="headerlink" title="Dpkg"></a>Dpkg</h3><p>Dpkg(Debian Packager) 是 Theos 的依赖工具，用于制作 deb(发布格式)。</p>
+<p>安装命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install dpkg</div></pre></td></tr></table></figure>
+<h3 id="Ldid"><a href="#Ldid" class="headerlink" title="Ldid"></a>Ldid</h3><p>Ldid 是一款签名工具，参考<a href="http://www.linyibin.cn/2016/10/15/ios-Security-DebugBridge/">iOS-Security[4]-调试</a>。</p>
+<h3 id="Theos"><a href="#Theos" class="headerlink" title="Theos"></a>Theos</h3><p>将 Theos 安装到 /opt/ 目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt</div><div class="line">sudo git clone --recursive https://github.com/theos/theos.git</div></pre></td></tr></table></figure>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>先设置路径变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export THEOS=/opt/theos</div></pre></td></tr></table></figure>
+<p>然后输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$THEOS/bin/nic.pl</div></pre></td></tr></table></figure>
+<p>紧接着，选择要创建的模板，这里是 application_modern， 接着输入项目信息即可：</p>
+<p><img src="/images/iOS-Theos-Create.png" alt="iOS-Theos-Create"></p>
+<p><strong>这里，注意，包名只能是小写字母和’-+.’三个字母组成。</strong></p>
+<p>创建的项目如下：</p>
+<p><img src="/images/iOS-Theos-Create-Project.png" alt="iOS-Theos-Create-Project"></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>查看 XCode 的 SDK 版本，路径为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/</div></pre></td></tr></table></figure>
+<p>设置 SDK 版本, 这里为 10.3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export SDKVERSION=10.3</div></pre></td></tr></table></figure>
+<p>设置设备的 IP 地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export THEOS_DEVICE_IP=192.168.2.31</div></pre></td></tr></table></figure>
+<p><strong>这里，注意，设备必须支持 <a href="/2016/10/12/ios-Security-RemoteLogin/">SSH</a>。</strong></p>
+<p>cd 到项目目录下，执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Theos-Make.png" alt="iOS-Theos-Make"></p>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>打包命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make package</div></pre></td></tr></table></figure>
+<p>如果报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; Making all for application YI_Theos_Application…</div><div class="line">==&gt; Copying resource directories into the application wrapper…</div><div class="line">make[2]: Nothing to be done for `internal-application-compile&apos;.</div><div class="line">&gt; Making stage for application YI_Theos_Application…</div><div class="line">dpkg-deb: error: obsolete compression type &apos;lzma&apos;; use xz instead</div><div class="line"></div><div class="line">Type dpkg-deb --help for help about manipulating *.deb files;</div><div class="line">Type dpkg --help for help about installing and deinstalling packages.</div><div class="line">make: *** [internal-package] Error 2</div></pre></td></tr></table></figure>
+<p>修改以下文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/theos/makefiles/package/deb.mk</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Theos-Package-Error.png" alt="iOS-Theos-Package-Error"></p>
+<p>将其第六行修改的 lzma：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_THEOS_PLATFORM_DPKG_DEB_COMPRESSION ?= lzma</div></pre></td></tr></table></figure>
+<p>改为 xz:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_THEOS_PLATFORM_DPKG_DEB_COMPRESSION ?= xz</div></pre></td></tr></table></figure>
+<p>打包成功：</p>
+<p><img src="/images/iOS-Theos-Package-Make.png" alt="iOS-Theos-Package-Make"></p>
+<p>在项目的 Packages 目录下生成了 Deb 文件：</p>
+<p><img src="/images/iOS-Theos-Package-Deb.png" alt="iOS-Theos-Package-Deb"></p>
+<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><p>发布到设备命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make install</div></pre></td></tr></table></figure>
+<p>如果报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Selecting previously unselected package com.yi.theos.</div><div class="line">(Reading database ... 4355 files and directories currently installed.)</div><div class="line">Preparing to unpack /tmp/_theos_install.deb ...</div><div class="line">Unpacking com.yi.theos (0.0.1-1+debug) ...</div><div class="line">dpkg-deb (subprocess): unable to execute decompressing archive member (xz): No such file or directory</div><div class="line">dpkg-deb (subprocess): subprocess decompressing archive member returned error exit status 2</div><div class="line">dpkg-deb: error: subprocess &lt;decompress&gt; returned error exit status 2</div><div class="line">dpkg: error processing archive /tmp/_theos_install.deb (--install):</div><div class="line"> subprocess dpkg-deb --fsys-tarfile returned error exit status 2</div><div class="line">Errors were encountered while processing:</div><div class="line"> /tmp/_theos_install.deb</div><div class="line">make: *** [internal-install] Error 1</div></pre></td></tr></table></figure>
+<p>修改上面提到的 Deb.mk 文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/theos/makefiles/package/deb.mk</div></pre></td></tr></table></figure>
+<p>将以下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(ECHO_NOTHING)COPYFILE_DISABLE=1 $(FAKEROOT) -r $(_THEOS_PLATFORM_DPKG_DEB) -Z$(_THEOS_PLATFORM_DPKG_DEB_COMPRESSION) -b &quot;$(THEOS_STAGING_DIR)&quot; &quot;$(_THEOS_DEB_PACKAGE_FILENAME)&quot;$(ECHO_END)</div></pre></td></tr></table></figure>
+<p>替换成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(ECHO_NOTHING)COPYFILE_DISABLE=1 $(FAKEROOT) -r dpkg-deb -Zgzip -b &quot;$(THEOS_STAGING_DIR)&quot; &quot;$(_THEOS_DEB_PACKAGE_FILENAME)&quot; $(STDERR_NULL_REDIRECT)$(ECHO_END)</div></pre></td></tr></table></figure>
+<p>如果报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(Reading database ... 4355 files and directories currently installed.)</div><div class="line">Preparing to unpack /tmp/_theos_install.deb ...</div><div class="line">Unpacking com.yi.theos (0.0.1-2+debug) ...</div><div class="line">dpkg: error processing archive /tmp/_theos_install.deb (--install):</div><div class="line"> cannot copy extracted data for &apos;./Applications/YI_Theos_Application.app/Info.plist&apos; to &apos;/Applications/YI_Theos_Application.app/Info.plist.dpkg-new&apos;: failed to write (No space left on device)</div><div class="line">Errors were encountered while processing:</div><div class="line"> /tmp/_theos_install.deb</div><div class="line">make: *** [internal-install] Error 1</div></pre></td></tr></table></figure>
+<p>怀疑是分区空间不足，通过 SSH 命令查看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure>
+<p>结果，确实是占用率百分百了。</p>
+<p><img src="/images/iOS-Theos-Install-Error.png" alt="iOS-Theos-Install-Error"></p>
+<p>解决办法：在 Cydia 中添加源 <a href="https://www.reddit.com/r/jailbreak/comments/4ugzui/release_stashing_for_92933_get_more_space_on_your/" target="_blank" rel="external">https://coolstar.org/publicrepo</a>, 并安装 “Stashing for iOS 9.2 - 9.3.3”。</p>
+<p>重新发布：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make install</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Theos-Install-Success.png" alt="iOS-Theos-Install-Success"></p>
+<p>可以看到，其删除了一些原来的插件 app，腾出了空间，安装成功了。</p>
+<p><img src="/images/iOS-Theos-Install-Result.png" alt="iOS-Theos-Install-Result"></p>
+<h2 id="Tweak"><a href="#Tweak" class="headerlink" title="Tweak"></a>Tweak</h2><h3 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h3><p>Tweak 的工程创建参考上文。</p>
+<p><img src="/images/iOS-Theos-Tweak-Creat.png" alt="iOS-Theos-Tweak-Creat"></p>
+<h3 id="Makefile文件"><a href="#Makefile文件" class="headerlink" title="Makefile文件"></a>Makefile文件</h3><p>在 Makefile 文件头加上一些必要的信息:</p>
+<p><img src="/images/iOS-Theos-Tweak-Makefile.png" alt="iOS-Theos-Tweak-Makefile"></p>
+<h3 id="Tweak-xm文件"><a href="#Tweak-xm文件" class="headerlink" title="Tweak.xm文件"></a>Tweak.xm文件</h3><p>Tweak.xm文件是用 <a href="http://iphonedevwiki.net/index.php/Logos" target="_blank" rel="external">Logos</a> 语法和 OC 混编的文件，可以对特定的 Class 的特定方法进行 Hook，修改其实现。</p>
+<p>默认格式为：</p>
+<p><img src="/images/iOS-Theos-Tweak-XM-Default.png" alt="iOS-Theos-Tweak-XM-Default"></p>
+<p>以 QQ 音乐为例，先<a href="/2016/10/14/ios-Security-Decryption/">破壳</a>，然后<a href="/2016/10/18/ios-Security-Header/">导出头文件</a>，从头文件中查看想要 Hook 的方法，这里以跳转到语音识别页面的方法为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%hook QMRootTabBarVC</div><div class="line"></div><div class="line">- (void)jumpToRecognizeVC &#123;</div><div class="line">    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;YI&quot; message:@&quot;就不让你跳..&quot; delegate:nil cancelButtonTitle:@&quot;Cancel&quot; otherButtonTitles:nil];</div><div class="line">    [alert show];</div><div class="line">&#125;</div><div class="line"></div><div class="line">%end</div></pre></td></tr></table></figure>
+<h3 id="编译打包发布"><a href="#编译打包发布" class="headerlink" title="编译打包发布"></a>编译打包发布</h3><p>编译打包发布流程参考上文。</p>
+<p><img src="/images/iOS-Theos-Tweak-QQMusic.png" alt="iOS-Theos-Tweak-QQMusic"></p>
+<p>启动 QQ 音乐后，点击右上角，效果如下：</p>
+<p><img src="/images/iOS-Theos-Tweak-QQMusic-Result.png" alt="iOS-Theos-Tweak-QQMusic-Result"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/19/ios-Security-Disassembler/" rel="next" title="iOS-Security[7]-反汇编">
+                <i class="fa fa-chevron-left"></i> iOS-Security[7]-反汇编
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/technology-IME/" rel="prev" title="Technology-从零开始做一款拼音输入法">
+                Technology-从零开始做一款拼音输入法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dpkg"><span class="nav-number">1.1.</span> <span class="nav-text">Dpkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ldid"><span class="nav-number">1.2.</span> <span class="nav-text">Ldid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theos"><span class="nav-number">1.3.</span> <span class="nav-text">Theos</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.3.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布"><span class="nav-number">2.4.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tweak"><span class="nav-number">3.</span> <span class="nav-text">Tweak</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-1"><span class="nav-number">3.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Makefile文件"><span class="nav-number">3.2.</span> <span class="nav-text">Makefile文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tweak-xm文件"><span class="nav-number">3.3.</span> <span class="nav-text">Tweak.xm文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译打包发布"><span class="nav-number">3.4.</span> <span class="nav-text">编译打包发布</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
