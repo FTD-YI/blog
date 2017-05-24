@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Security,Cycript" />
+  <meta name="keywords" content="iOS,Security,Theos,Tweak" />
 
 
 
@@ -107,7 +107,9 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-XM-Default.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-QQMusic.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-QQMusic-Result.png">
-<meta property="og:updated_time" content="2017-05-23T08:18:08.000Z">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-Logify.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Theos-Tweak-Logify-Result.png">
+<meta property="og:updated_time" content="2017-05-24T10:30:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Security[8]-插件开发">
 <meta name="twitter:description" content="Theos 是一款越狱开发工具包。">
@@ -498,7 +500,29 @@
 <p><img src="/images/iOS-Theos-Tweak-QQMusic.png" alt="iOS-Theos-Tweak-QQMusic"></p>
 <p>启动 QQ 音乐后，点击右上角，效果如下：</p>
 <p><img src="/images/iOS-Theos-Tweak-QQMusic-Result.png" alt="iOS-Theos-Tweak-QQMusic-Result"></p>
-
+<h3 id="Logify"><a href="#Logify" class="headerlink" title="Logify"></a>Logify</h3><p>Logify 是 Theos 的一个工具，可以对一个 .h 头文件，生成一个 Tweak.xm 文件，该文件对 .h 所有方法都进行 hook，并打印出日志。</p>
+<p>以 QQ 音乐的 QMRootTabBarVC 类为例，命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">THEOS/bin/logify.pl QMRootTabBarVC.h  &gt; Tweak.xm</div></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<p><img src="/images/iOS-Theos-Tweak-Logify.png" alt="iOS-Theos-Tweak-Logify"></p>
+<p>其对每个方法都植入了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%log;</div></pre></td></tr></table></figure>
+<p>同样，编译打包发布后，在 XCode-&gt;Device-&gt;Console 中可以看到日志：</p>
+<p><img src="/images/iOS-Theos-Tweak-Logify-Result.png" alt="iOS-Theos-Tweak-Logify-Result"></p>
+<p>通过日志，可以看出该类的方法调用次序。</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>这里，在编译时候，遇到一些异常，总结如下：</p>
+<h4 id="unknown-type"><a href="#unknown-type" class="headerlink" title="unknown type"></a>unknown type</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Tweak.xm:25:2288: error: unknown type name &apos;DiscoverRootViewController&apos;</div><div class="line">Tweak.xm:25:3166: error: unknown type name &apos;SkinViewController&apos;; did you mean</div><div class="line">      &apos;UIViewController&apos;?</div></pre></td></tr></table></figure>
+<p>处理方法是，在文件头引入前置定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@class DiscoverRootViewController;</div><div class="line">@class SkinViewController;</div><div class="line">@class QMTabBar;</div><div class="line">@class QMMoreVC;</div><div class="line"></div><div class="line">%hook QMRootTabBarVC</div></pre></td></tr></table></figure>
+<p>如果是遇到常量类型的，例如下面的 CDUnknownBlockType：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (void)delayPlaySong:(unsigned long long)arg1 song:(id)arg2 block:(CDUnknownBlockType)arg3 &#123; %log; %orig; &#125;</div></pre></td></tr></table></figure>
+<p>直接替换成 id:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (void)delayPlaySong:(unsigned long long)arg1 song:(id)arg2 block:(id)arg3 &#123; %log; %orig; &#125;</div></pre></td></tr></table></figure>
+<h4 id="cxx-destruct"><a href="#cxx-destruct" class="headerlink" title="cxx_destruct"></a>cxx_destruct</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Tweak.xm:25:9: error: expected selector for Objective-C method</div><div class="line">- (void).cxx_destruct &#123; HBLogDebug(@&quot;-[&lt;QMRootTabBarVC: %p&gt; tabBar]&quot;, se...</div></pre></td></tr></table></figure>
+<p>直接删除该方法。</p>
+<h4 id="丢失精度"><a href="#丢失精度" class="headerlink" title="丢失精度"></a>丢失精度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Tweak.xm:80:401: error: cast from pointer to smaller type &apos;unsigned int&apos; loses</div><div class="line">      information</div><div class="line">  ..._cmd); HBLogDebug(@&quot; = 0x%x&quot;, (unsigned int)r); return r; &#125;</div></pre></td></tr></table></figure>
+<p>原因是 clang 严格的类型转换限制，在 64 位机子上，指令为 64 位，而 int 为 32 位导致的，解决办法为，加多一次 size_t 的类型转换，因为 size_t 跟指令的位数为一致的，而 size_t 转换到 int 不会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HBLogDebug(@&quot; = 0x%x&quot;, (unsigned int)(size_t)r);</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -698,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dpkg"><span class="nav-number">1.1.</span> <span class="nav-text">Dpkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ldid"><span class="nav-number">1.2.</span> <span class="nav-text">Ldid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theos"><span class="nav-number">1.3.</span> <span class="nav-text">Theos</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.3.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布"><span class="nav-number">2.4.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tweak"><span class="nav-number">3.</span> <span class="nav-text">Tweak</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-1"><span class="nav-number">3.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Makefile文件"><span class="nav-number">3.2.</span> <span class="nav-text">Makefile文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tweak-xm文件"><span class="nav-number">3.3.</span> <span class="nav-text">Tweak.xm文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译打包发布"><span class="nav-number">3.4.</span> <span class="nav-text">编译打包发布</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dpkg"><span class="nav-number">1.1.</span> <span class="nav-text">Dpkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ldid"><span class="nav-number">1.2.</span> <span class="nav-text">Ldid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theos"><span class="nav-number">1.3.</span> <span class="nav-text">Theos</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包"><span class="nav-number">2.3.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布"><span class="nav-number">2.4.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tweak"><span class="nav-number">3.</span> <span class="nav-text">Tweak</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-1"><span class="nav-number">3.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Makefile文件"><span class="nav-number">3.2.</span> <span class="nav-text">Makefile文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tweak-xm文件"><span class="nav-number">3.3.</span> <span class="nav-text">Tweak.xm文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译打包发布"><span class="nav-number">3.4.</span> <span class="nav-text">编译打包发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logify"><span class="nav-number">3.5.</span> <span class="nav-text">Logify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常"><span class="nav-number">3.6.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#unknown-type"><span class="nav-number">3.6.1.</span> <span class="nav-text">unknown type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cxx-destruct"><span class="nav-number">3.6.2.</span> <span class="nav-text">cxx_destruct</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#丢失精度"><span class="nav-number">3.6.3.</span> <span class="nav-text">丢失精度</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
