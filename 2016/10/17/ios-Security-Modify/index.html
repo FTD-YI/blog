@@ -97,10 +97,13 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-BadgeNumber.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-Control.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-Control-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-Class-Propertys.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-Class-Functions.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-MethodSwizzling.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-NSLog.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Cycripty-View-Recurise.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Snoop-it.png">
-<meta property="og:updated_time" content="2017-05-22T09:43:53.000Z">
+<meta property="og:updated_time" content="2017-05-25T06:00:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Security[5]-修改">
 <meta name="twitter:description" content="Cycript 是一款支持 OC 和 JS 混合语法，可用于动态修改 App 行为的工具。Snoop-it 是一款可以动态分析以及黑盒安全测试的工具。">
@@ -428,8 +431,18 @@
 <p><img src="/images/iOS-Cycripty-Control.png" alt="iOS-Cycripty-Control"></p>
 <p>效果如下：</p>
 <p><img src="/images/iOS-Cycripty-Control-Result.png" alt="iOS-Cycripty-Control-Result"></p>
+<p>查看 Instance 的所有变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function tryPrintIvars(a)&#123; var x=&#123;&#125;; for(i in *a)&#123; try&#123; x[i] = (*a)[i]; &#125; catch(e)&#123;&#125; &#125; return x; &#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Cycripty-Class-Propertys.png" alt="iOS-Cycripty-Class-Propertys"></p>
+<p>查看 Class 的所有方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function printMethods(className, isa) &#123;</div><div class="line">  var count = new new Type(&quot;I&quot;);</div><div class="line">  var classObj = (isa != undefined) ? objc_getClass(className).constructor : objc_getClass(className);</div><div class="line">  var methods = class_copyMethodList(classObj, count);</div><div class="line">  var methodsArray = [];</div><div class="line">  for(var i = 0; i &lt; *count; i++) &#123;</div><div class="line">    var method = methods[i];</div><div class="line">    methodsArray.push(&#123;selector:method_getName(method), implementation:method_getImplementation(method)&#125;);</div><div class="line">  &#125;</div><div class="line">  free(methods);</div><div class="line">  return methodsArray;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Cycripty-Class-Functions.png" alt="iOS-Cycripty-Class-Functions"></p>
 <p>Method Swizzling 替换实现：</p>
 <p><img src="/images/iOS-Cycripty-MethodSwizzling.png" alt="iOS-Cycripty-MethodSwizzling"></p>
+<p>调用 NSLog:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSLog_ = dlsym(RTLD_DEFAULT, &quot;NSLog&quot;)</div><div class="line">NSLog = function() &#123; var types = &apos;v&apos;, args = [], count = arguments.length; for (var i = 0; i != count; ++i) &#123; types += &apos;@&apos;; args.push(arguments[i]); &#125; new Functor(NSLog_, types).apply(null, args); &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSLog(&quot;From cycript&quot;)</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Cycripty-NSLog.png" alt="iOS-Cycripty-NSLog"></p>
 <p>查看页面构成:</p>
 <p><img src="/images/iOS-Cycripty-View-Recurise.png" alt="iOS-Cycripty-View-Recurise"></p>
 <h2 id="Snoop-it"><a href="#Snoop-it" class="headerlink" title="Snoop-it"></a>Snoop-it</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p><a href="https://code.google.com/archive/p/snoop-it/" target="_blank" rel="external">Snoop-it</a> 支持的功能如下：</p>
@@ -573,7 +586,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">208</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
