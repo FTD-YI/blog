@@ -95,9 +95,10 @@
 <meta property="og:description" content="Hopper Disassembler 和 IDA 是两款可以将执行文件(Mach-O)反汇编的工具。">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Disassembler-QQMusic.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Disassembler-Hopper-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Disassembler-Hopper-Modify.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-IDA.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-IDA-64.png">
-<meta property="og:updated_time" content="2017-05-23T08:38:46.000Z">
+<meta property="og:updated_time" content="2017-06-01T10:15:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Security[7]-反汇编">
 <meta name="twitter:description" content="Hopper Disassembler 和 IDA 是两款可以将执行文件(Mach-O)反汇编的工具。">
@@ -420,6 +421,16 @@
 <p><img src="/images/iOS-Disassembler-Hopper-Result.png" alt="iOS-Disassembler-Hopper-Result"></p>
 <p>可以看到，左边是所有类以及方法，包括共有和私有方法都可以看到，中间是方法的汇编源码，包含了其寻址地址，可以用于 <a href="/2016/10/15/ios-Security-DebugBridge/">LLDB</a> 中创建断点，以及查看变量，右边还有一些粗略的 OC 信息，可以作为阅读参考。</p>
 <p><strong>注意，Hopper Disassembler 的使用需要先破壳，流程参考<a href="/2016/10/14/ios-Security-Decryption/">iOS-Security[3]-破解</a>。</strong></p>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>Hopper Disassembler 支持直接修改汇编指令，操作路径：</p>
+<blockquote>
+<p>Modify &gt; Assemble Instruction</p>
+</blockquote>
+<p>例如将 jne 修改为 jmp，绕开一些逻辑判断：</p>
+<p><img src="/images/iOS-Disassembler-Hopper-Modify.png" alt="iOS-Disassembler-Hopper-Modify"></p>
+<p>完成后，执行生成新的可执行文件：</p>
+<blockquote>
+<p>File &gt; Produce New Executable</p>
+</blockquote>
 <h2 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h2><h3 id="下载-1"><a href="#下载-1" class="headerlink" title="下载"></a>下载</h3><p><a href="https://www.hex-rays.com/products/ida/support/download_demo.shtml" target="_blank" rel="external">IDA</a> 是一款反汇编的工具，直接下载安装即可。</p>
 <h3 id="执行-1"><a href="#执行-1" class="headerlink" title="执行"></a>执行</h3><p>将 QQ音乐 的可执行文件拖入到 IDA 中:</p>
 <p><img src="/images/iOS-IDA.png" alt="iOS-IDA"></p>
@@ -552,7 +563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">208</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -625,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hopper-Disassembler"><span class="nav-number">1.</span> <span class="nav-text">Hopper Disassembler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行"><span class="nav-number">1.2.</span> <span class="nav-text">执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA"><span class="nav-number">2.</span> <span class="nav-text">IDA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载-1"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-1"><span class="nav-number">2.2.</span> <span class="nav-text">执行</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hopper-Disassembler"><span class="nav-number">1.</span> <span class="nav-text">Hopper Disassembler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行"><span class="nav-number">1.2.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">1.3.</span> <span class="nav-text">修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA"><span class="nav-number">2.</span> <span class="nav-text">IDA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载-1"><span class="nav-number">2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-1"><span class="nav-number">2.2.</span> <span class="nav-text">执行</span></a></li></ol></li></ol></div>
             
 
           </div>
