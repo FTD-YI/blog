@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Security,Network,Wireshark,TCPDump,Burpsuite,SSL Kill switch" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="通过对网络流量进行分析，可以帮助我们分析 App 的网络行为。Wireshark, TcpDump, Burpsuite, SSL Kill switch 都是常用的分析工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Security[11]-网络请求">
+<meta property="og:url" content="http://www.linyibin.cn/2016/10/25/ios-Security-Network/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="通过对网络流量进行分析，可以帮助我们分析 App 的网络行为。Wireshark, TcpDump, Burpsuite, SSL Kill switch 都是常用的分析工具。">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Wireshark.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-TcpDump.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Certificate.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Intercept.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Device.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Https-Install.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Https-Cer.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Https-Trust.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Burp-Proxy-Https-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Disable.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-SSLKill-Install.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-SSLKill-Setting.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Network-SSLKill-Open.png">
+<meta property="og:updated_time" content="2017-06-05T10:59:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Security[11]-网络请求">
+<meta name="twitter:description" content="通过对网络流量进行分析，可以帮助我们分析 App 的网络行为。Wireshark, TcpDump, Burpsuite, SSL Kill switch 都是常用的分析工具。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/iOS-Security-Network-Wireshark.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/10/25/ios-Security-Network/"/>
+
+
+
+
+
+  <title> iOS-Security[11]-网络请求 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/10/25/ios-Security-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Security[11]-网络请求
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-25T00:00:00+08:00">
+                2016-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/10/25/ios-Security-Network/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过对网络流量进行分析，可以帮助我们分析 App 的网络行为。Wireshark, TcpDump, Burpsuite, SSL Kill switch 都是常用的分析工具。</p>
+<a id="more"></a>
+<h2 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h2><p>通过设备连接到 Mac 的共享 Wifi，再通过 Wireshark 可以进行定向的 IP 抓包，但是如果网络状况不好，可能出现丢包的现象。</p>
+<p>例如，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip.src==192.168.2.9 or ip.dst==192.168.2.9</div></pre></td></tr></table></figure>
+<p>可以抓到设备的网络请求。</p>
+<p><img src="/images/iOS-Security-Network-Wireshark.png" alt="iOS-Security-Network-Wireshark"></p>
+<h2 id="TcpDump"><a href="#TcpDump" class="headerlink" title="TcpDump"></a>TcpDump</h2><p>通过 Cydia 安装后，通过 <a href="/2016/10/12/ios-Security-RemoteLogin/">SSH</a> 执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tcpdump -i en0 -w /tmp/capture.pcap</div></pre></td></tr></table></figure>
+<p>操作完成后，可以在 /tmp 目录下看到生成的 capture.pcap 文件：</p>
+<p><img src="/images/iOS-Security-Network-TcpDump.png" alt="iOS-Security-Network-TcpDump"></p>
+<p>将其导出到 Mac 上，即可以用 Wireshark 查看。</p>
+<h2 id="Burpsuite"><a href="#Burpsuite" class="headerlink" title="Burpsuite"></a>Burpsuite</h2><p><a href="http://portswigger.net/burp/" target="_blank" rel="external">Burpsuite</a> 是一款可以创建代理，并通过代理进行网络拦截的软件。</p>
+<h3 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h3><p>打开 Burpsuite 后，操作路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Proxy -&gt; Options -&gt; Edit -&gt; Binding -&gt; All interfaces</div></pre></td></tr></table></figure>
+<p>这一步是由于我们要让设备连接到代理从而监听，因此要监听所有的 interfaces :</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy.png" alt="iOS-Security-Network-Burp-Proxy"></p>
+<p>然后切换到 Certificate 并点击 OK :</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Certificate.png" alt="iOS-Security-Network-Burp-Proxy-Certificate"></p>
+<p>然后切换到 Intercept 确保其是 off 状态，免得被转发的包所困扰:</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Intercept.png" alt="iOS-Security-Network-Burp-Proxy-Intercept"></p>
+<p>完成后，在设备上设置代理:</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Device.png" alt="iOS-Security-Network-Burp-Proxy-Device"></p>
+<p>然后，操作想要监控的 App，既可以得到其 Http 网络交互包:</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Result.png" alt="iOS-Security-Network-Burp-Proxy-Result"></p>
+<h3 id="Https"><a href="#Https" class="headerlink" title="Https"></a>Https</h3><p>上面的流程，对于 Https 的网络请求是不行的，因为没有对应的证书，例如，在设备上打不开百度首页。</p>
+<p>解决办法是，让设备安装 Burpsuite 的自生成证书，首先，设备访问 <strong><a href="http://burp" target="_blank" rel="external">http://burp</a></strong> ，点击右上角的证书。</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Https-Install.png" alt="iOS-Security-Network-Burp-Proxy-Https-Install"></p>
+<p>安装证书：</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Https-Cer.png" alt="iOS-Security-Network-Burp-Proxy-Https-Cer"></p>
+<p>接着到，设置-&gt;通用-&gt;关于-&gt;Certificate Trust Settings 下面信任证书:</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Https-Trust.png" alt="iOS-Security-Network-Burp-Proxy-Https-Trust"></p>
+<p>然后，操作想要监控的 App，既可以得到其 Https 网络交互包：</p>
+<p><img src="/images/iOS-Security-Network-Burp-Proxy-Https-Result.png" alt="iOS-Security-Network-Burp-Proxy-Https-Result"></p>
+<h2 id="SSL-Kill-switch"><a href="#SSL-Kill-switch" class="headerlink" title="SSL Kill switch"></a>SSL Kill switch</h2><p>从 Burpsuite 使用中可以看出， Https 是会遭受中间人攻击的，例如，一个代理，冒充设备与服务端交互，又冒充服务端与设备交互，从中窃取信息。为了规避中间人共计，有些 App 采用了将证书硬编码到代码中的方式。例如，上面 Burpsuite 的方式，App Store 就无法获取到信息。</p>
+<p><img src="/images/iOS-Security-Network-Disable.png" alt="iOS-Security-Network-Disable"></p>
+<p>但是我们仍然可以通过 Runtime 的特性来绕开其判断的方法，例如 fishhook，<a href="https://github.com/nabla-c0d3/ssl-kill-switch2" target="_blank" rel="external">iOS SSL Kill Switch</a> 正是一个这样的工具。</p>
+<p>下载其 Release 包，并发布到设备上，流程参考：<a href="/2016/10/21/ios-Security-Theos/">iOS-Security[8]-插件开发</a>。</p>
+<p>确保设备上安装了:</p>
+<ul>
+<li>dpkg</li>
+<li>MobileSubstrate</li>
+<li>PreferenceLoader</li>
+</ul>
+<p>安装命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dpkg -i com.nablac0d3.SSLKillSwitch2_0.11.deb </div><div class="line">killall SpringBoard</div></pre></td></tr></table></figure>
+<p><img src="/images/iOS-Security-Network-SSLKill-Install.png" alt="iOS-Security-Network-SSLKill-Install"></p>
+<p>完成后，可以在设置中看到:</p>
+<p><img src="/images/iOS-Security-Network-SSLKill-Setting.png" alt="iOS-Security-Network-SSLKill-Setting"></p>
+<p>打开开关:</p>
+<p><img src="/images/iOS-Security-Network-SSLKill-Open.png" alt="iOS-Security-Network-SSLKill-Open"></p>
+<p>App Store 可以正常使用了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/24/ios-Security-DataStorage/" rel="next" title="iOS-Security[10]-数据存储">
+                <i class="fa fa-chevron-left"></i> iOS-Security[10]-数据存储
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/28/ios-Security-Protect/" rel="prev" title="iOS-Security[12]-防护">
+                iOS-Security[12]-防护 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wireshark"><span class="nav-number">1.</span> <span class="nav-text">Wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TcpDump"><span class="nav-number">2.</span> <span class="nav-text">TcpDump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Burpsuite"><span class="nav-number">3.</span> <span class="nav-text">Burpsuite</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http"><span class="nav-number">3.1.</span> <span class="nav-text">Http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Https"><span class="nav-number">3.2.</span> <span class="nav-text">Https</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-Kill-switch"><span class="nav-number">4.</span> <span class="nav-text">SSL Kill switch</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
