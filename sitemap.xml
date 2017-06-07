@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.linyibin.cn/2017/06/07/ios-CoreML-Try/</loc>
+    
+    <lastmod>2017-06-07T08:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.linyibin.cn/2016/10/28/ios-Security-Protect/</loc>
     
     <lastmod>2017-06-05T11:00:58.000Z</lastmod>
@@ -114,27 +121,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2017/05/04/product-BussinessThinking/</loc>
-    
-    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2015/03/17/Cpp-Sqlite/</loc>
-    
-    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/16/java-Sqlite-Transaction/</loc>
-    
-    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2014/10/07/database-NormalForms/</loc>
     
     <lastmod>2017-05-05T04:30:01.000Z</lastmod>
@@ -142,21 +128,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/06/28/sae-MysqlSetting/</loc>
-    
-    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/22/java-Sqlite-Exception/</loc>
-    
-    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/14/java-Sqlite-html/</loc>
+    <loc>http://www.linyibin.cn/2017/05/04/product-BussinessThinking/</loc>
     
     <lastmod>2017-05-05T04:30:01.000Z</lastmod>
     
@@ -170,7 +142,42 @@
   </url>
   
   <url>
+    <loc>http://www.linyibin.cn/2015/03/17/Cpp-Sqlite/</loc>
+    
+    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.linyibin.cn/2014/08/13/java-Sqlite-Zero/</loc>
+    
+    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/14/java-Sqlite-html/</loc>
+    
+    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/06/28/sae-MysqlSetting/</loc>
+    
+    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/16/java-Sqlite-Transaction/</loc>
+    
+    <lastmod>2017-05-05T04:30:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/22/java-Sqlite-Exception/</loc>
     
     <lastmod>2017-05-05T04:30:01.000Z</lastmod>
     
@@ -219,21 +226,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/</loc>
-    
-    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2014/04/28/ios-Modifier/</loc>
-    
-    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2016/07/04/ios-Rendering/</loc>
     
     <lastmod>2017-04-17T08:25:51.000Z</lastmod>
     
@@ -247,14 +240,28 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
+    <loc>http://www.linyibin.cn/2016/07/04/ios-Rendering/</loc>
+    
+    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/</loc>
+    
+    <lastmod>2017-04-17T08:25:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/05/01/ios-Concurrency/</loc>
     
     <lastmod>2017-04-11T06:22:01.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/05/01/ios-Concurrency/</loc>
+    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
     
     <lastmod>2017-04-11T06:22:01.000Z</lastmod>
     
@@ -345,7 +352,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
+    <loc>http://www.linyibin.cn/2014/12/16/java-Encoding/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -359,20 +366,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/12/05/ios-Certificates-Update/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/12/23/Cpp-CalTime/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2014/12/10/ios-NSOperation/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -380,7 +373,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/01/19/ios-VolumeControll/</loc>
+    <loc>http://www.linyibin.cn/2014/12/23/Cpp-CalTime/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -415,7 +408,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
+    <loc>http://www.linyibin.cn/2015/01/19/ios-VolumeControll/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -423,6 +416,20 @@
   
   <url>
     <loc>http://www.linyibin.cn/2015/01/25/ios-UIImage-UIColor/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/06/23/ios-UISearchBar/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/02/08/ios-Unzip/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -450,7 +457,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/02/08/ios-Unzip/</loc>
+    <loc>http://www.linyibin.cn/2015/02/22/ios-CrashLog/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -464,14 +471,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/02/22/ios-CrashLog/</loc>
+    <loc>http://www.linyibin.cn/2015/03/07/ios-UIControlState/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/03/07/ios-UIControlState/</loc>
+    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -492,20 +499,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/04/10/ios-TTS/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/06/26/java-Http/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2015/03/24/ios-Compile-Optimization/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -513,7 +506,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/05/12/java-HttpClient/</loc>
+    <loc>http://www.linyibin.cn/2015/04/10/ios-TTS/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -527,6 +520,13 @@
   </url>
   
   <url>
+    <loc>http://www.linyibin.cn/2014/06/26/java-Http/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.linyibin.cn/2014/07/05/django-ImageField/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -534,7 +534,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/07/12/ios-LibtoolFailed/</loc>
+    <loc>http://www.linyibin.cn/2014/05/12/java-HttpClient/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -548,14 +548,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/06/11/ios-Dispatch-Timer/</loc>
+    <loc>http://www.linyibin.cn/2015/06/01/ios-Push-javaPNS/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/06/20/ios-CompileUniverseBundle/</loc>
+    <loc>http://www.linyibin.cn/2015/06/11/ios-Dispatch-Timer/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -569,7 +569,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/06/01/ios-Push-javaPNS/</loc>
+    <loc>http://www.linyibin.cn/2015/06/20/ios-CompileUniverseBundle/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/07/23/mac-Cat/</loc>
+    <loc>http://www.linyibin.cn/2015/07/18/mac-Hosts/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/07/18/mac-Hosts/</loc>
+    <loc>http://www.linyibin.cn/2015/07/23/mac-Cat/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -611,20 +611,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/08/26/ios-Can'tLocateFile/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2015/09/04/java-SougouScel/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2015/08/10/ios-Cocoapods/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -632,7 +618,21 @@
   </url>
   
   <url>
+    <loc>http://www.linyibin.cn/2015/08/26/ios-Can'tLocateFile/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.linyibin.cn/2015/09/06/java-SougouCorebin/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/09/04/java-SougouScel/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -660,7 +660,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/</loc>
+    <loc>http://www.linyibin.cn/2014/07/07/ios-ViewWebSource/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -674,28 +674,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/07/07/ios-ViewWebSource/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/07/14/ios-XMPP/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/07/23/ios-StorybardIsNotAvailable/</loc>
+    <loc>http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -709,35 +688,21 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/08/04/ios-ReceiverBarBlack/</loc>
+    <loc>http://www.linyibin.cn/2014/07/12/ios-LibtoolFailed/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/11/07/ios-AutoLayout-StackView/</loc>
+    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/11/10/ios-AutoLayout-SimpleConstrains/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2015/11/13/ios-AutoLayout-IntrinsicContentSize/</loc>
+    <loc>http://www.linyibin.cn/2014/07/23/ios-StorybardIsNotAvailable/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -751,7 +716,35 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
+    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/07/ios-AutoLayout-StackView/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/10/ios-AutoLayout-SimpleConstrains/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/13/ios-AutoLayout-IntrinsicContentSize/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -759,6 +752,20 @@
   
   <url>
     <loc>http://www.linyibin.cn/2015/11/19/ios-AutoLayout-ChangingConstraints/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/07/14/ios-XMPP/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -779,13 +786,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2015/12/23/JNI-Object/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -800,14 +800,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/12/25/CPP-GppCompile/</loc>
+    <loc>http://www.linyibin.cn/2015/12/28/JNI-android/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2015/12/28/JNI-android/</loc>
+    <loc>http://www.linyibin.cn/2015/12/25/CPP-GppCompile/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -835,21 +835,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/01/20/economics-economics/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/10/django-DbNameCase/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2016/01/13/product-ToolAppBusiness/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2016/01/20/economics-economics/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -863,7 +856,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/02/04/CPP-Regex/</loc>
+    <loc>http://www.linyibin.cn/2014/08/02/django-APK/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -877,7 +870,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/03/05/ios-Pcm-Mp3/</loc>
+    <loc>http://www.linyibin.cn/2016/02/04/CPP-Regex/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -891,7 +891,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/</loc>
+    <loc>http://www.linyibin.cn/2016/03/05/ios-Pcm-Mp3/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -926,7 +926,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/08/02/django-APK/</loc>
+    <loc>http://www.linyibin.cn/2014/08/04/ios-ReceiverBarBlack/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -940,14 +940,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/03/21/android-PullApk/</loc>
+    <loc>http://www.linyibin.cn/2016/03/14/technology-AirKiss/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/03/14/technology-AirKiss/</loc>
+    <loc>http://www.linyibin.cn/2016/03/21/android-PullApk/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -961,7 +961,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/05/14/java-Servlet-Cookie/</loc>
+    <loc>http://www.linyibin.cn/2016/04/06/android-Decompile/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -975,7 +975,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/04/06/android-Decompile/</loc>
+    <loc>http://www.linyibin.cn/2014/08/10/django-DbNameCase/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -989,14 +989,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2016/05/03/android-Wechat-Message/</loc>
+    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1004,6 +997,13 @@
   
   <url>
     <loc>http://www.linyibin.cn/2016/05/10/ios-IB-Designable/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2016/05/03/android-Wechat-Message/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1038,13 +1038,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -1052,7 +1045,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
+    <loc>http://www.linyibin.cn/2014/05/14/java-Servlet-Cookie/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1066,7 +1059,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/06/14/django-TimeCompare/</loc>
+    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1080,7 +1073,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/08/17/sae-sae-SynataxError/</loc>
+    <loc>http://www.linyibin.cn/2014/05/18/ios-NSURL-SpecialChar/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/06/11/django-FormUpload/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1094,7 +1094,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/</loc>
+    <loc>http://www.linyibin.cn/2016/07/23/ios-DumplicateSymbol/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1108,7 +1108,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/07/23/ios-DumplicateSymbol/</loc>
+    <loc>http://www.linyibin.cn/2016/07/18/ios-PerformanceTips/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1122,14 +1122,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/15/technology-DesignPattern-Observer/</loc>
+    <loc>http://www.linyibin.cn/2016/08/16/technology-DesignPattern-Decorator/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/16/technology-DesignPattern-Decorator/</loc>
+    <loc>http://www.linyibin.cn/2016/08/15/technology-DesignPattern-Observer/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1157,14 +1157,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/21/technology-DesignPattern-Facade/</loc>
+    <loc>http://www.linyibin.cn/2016/08/20/technology-DesignPattern-Adapter/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/20/technology-DesignPattern-Adapter/</loc>
+    <loc>http://www.linyibin.cn/2016/08/21/technology-DesignPattern-Facade/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1178,14 +1178,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/24/technology-DesignPattern-Composite/</loc>
+    <loc>http://www.linyibin.cn/2016/08/23/technology-DesignPattern-Iterator/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/23/technology-DesignPattern-Iterator/</loc>
+    <loc>http://www.linyibin.cn/2016/08/24/technology-DesignPattern-Composite/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1206,13 +1206,6 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/08/29/technology-DesignPattern-Builder/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2016/08/27/technology-DesignPattern-Compound/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -1221,6 +1214,13 @@
   
   <url>
     <loc>http://www.linyibin.cn/2016/08/28/technology-DesignPattern-Bridge/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2016/08/29/technology-DesignPattern-Builder/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1248,14 +1248,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
+    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
+    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1269,21 +1269,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2016/09/06/technology-DesignPattern-Classification/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2016/09/05/technology-DesignPattern-Visitor/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/08/18/sae-LocalIO/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1297,14 +1283,28 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/06/23/ios-UISearchBar/</loc>
+    <loc>http://www.linyibin.cn/2016/09/06/technology-DesignPattern-Classification/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/</loc>
+    <loc>http://www.linyibin.cn/2014/08/17/sae-sae-SynataxError/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/18/sae-LocalIO/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/05/18/java-Servlet-Redirect/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1318,14 +1318,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/09/03/django-UserObjectsGet/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/06/11/django-FormUpload/</loc>
+    <loc>http://www.linyibin.cn/2014/08/24/java-Sqlite-Auto/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1339,7 +1332,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/09/27/django-Charset/</loc>
+    <loc>http://www.linyibin.cn/2014/06/14/django-TimeCompare/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/09/03/django-UserObjectsGet/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1353,14 +1353,21 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/09/24/html-SafariAutoPlay/</loc>
+    <loc>http://www.linyibin.cn/2014/09/18/ios-AvoidClickTooQuick/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/09/18/ios-AvoidClickTooQuick/</loc>
+    <loc>http://www.linyibin.cn/2014/09/27/django-Charset/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/09/24/html-SafariAutoPlay/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1374,6 +1381,13 @@
   </url>
   
   <url>
+    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.linyibin.cn/2016/11/08/technology-IME/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
@@ -1381,7 +1395,14 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/tags/index.html</loc>
+    <loc>http://www.linyibin.cn/2014/10/13/django-UnboundMethod/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/categories/index.html</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1402,77 +1423,7 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/10/13/django-UnboundMethod/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.linyibin.cn/2014/10/24/ios-SOAP/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/09/economics-IndexFund/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/27/humanity-superforecasting/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/11/26/ios-MixComile-Cpp/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/11/05/android-AssetsPath/</loc>
-    
-    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.linyibin.cn/2014/11/11/ios-JS/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
@@ -1486,14 +1437,70 @@
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/2014/12/16/java-Encoding/</loc>
+    <loc>http://www.linyibin.cn/2017/02/09/economics-IndexFund/</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.linyibin.cn/categories/index.html</loc>
+    <loc>http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/11/05/android-AssetsPath/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/27/humanity-superforecasting/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/11/11/ios-JS/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/11/26/ios-MixComile-Cpp/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/2014/12/05/ios-Certificates-Update/</loc>
+    
+    <lastmod>2017-03-17T10:02:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.linyibin.cn/tags/index.html</loc>
     
     <lastmod>2017-03-17T10:02:45.000Z</lastmod>
     
