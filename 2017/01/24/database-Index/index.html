@@ -95,7 +95,7 @@
 <meta property="og:description" content="数据库的索引原理。">
 <meta property="og:image" content="http://www.linyibin.cn/images/Algorithm-BTree.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Algorithm-RTree.jpg">
-<meta property="og:updated_time" content="2017-05-08T04:00:05.000Z">
+<meta property="og:updated_time" content="2017-06-12T10:04:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Database-索引原理">
 <meta name="twitter:description" content="数据库的索引原理。">
@@ -515,7 +515,7 @@
 </tbody>
 </table>
 <p>对于这一列，实际上，只有两种值，Male 和 Female，索引命中率计算公式为：</p>
-<p>$$Selectivity of index = cardinality/(number\ of\ records) * 100%$$</p>
+<p>$$Selectivity\ of\ index = cardinality\ /\ (number\ of\ records) * 100\%$$</p>
 <p>假设表有10000行，cardinality 代入 2， 计算结果为：0.02%，非常低，这种情况下，实际上，使用索引并不能提升效率。例如，我们要查找 Famele 的行，那么很可能有5000行满足条件，使用索引需要耗时，并且消耗资源，访问索引5000次，远不如直接检索全表来得快。</p>
 <h2 id="索引的代价"><a href="#索引的代价" class="headerlink" title="索引的代价"></a>索引的代价</h2><p>使用索引需要额外的代价：</p>
 <ul>
@@ -649,7 +649,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">215</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -658,7 +658,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -667,7 +667,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

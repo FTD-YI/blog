@@ -1,0 +1,967 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Machine Learning,NLP,Natural Language Processing,Deep Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="CS224N 课程学习笔记。 NLP with DL (Natural Language Processing with Deep Learning) 简介。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-机器学习-Deep NLP简介">
+<meta property="og:url" content="http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="CS224N 课程学习笔记。 NLP with DL (Natural Language Processing with Deep Learning) 简介。">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-Levels.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-HumanLanguage-Symbol.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-MachineLearing-Sparsity.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-MachineLearing-InputFeatures.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-MachineLearing-Workflow.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Speed.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-ImageNet.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Visualization.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Morphology-Tranditional.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Morphology-DL.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Parser.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Semantics-Traditional.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Semantics-DL.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Semantics-SentimentAnalysis.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Application.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-MT-Traditional.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-MT-DL.png">
+<meta property="og:updated_time" content="2017-06-13T11:30:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-机器学习-Deep NLP简介">
+<meta name="twitter:description" content="CS224N 课程学习笔记。 NLP with DL (Natural Language Processing with Deep Learning) 简介。">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/NLP-Levels.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/"/>
+
+
+
+
+
+  <title> Technology-机器学习-Deep NLP简介 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-机器学习-Deep NLP简介
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T00:00:00+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://web.stanford.edu/class/cs224n/" target="_blank" rel="external">CS224N</a> 课程学习笔记。 NLP with DL (Natural Language Processing with Deep Learning) 简介。</p>
+<a id="more"></a>
+<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>NLP 是一个交叉的领域，涉及计算机科学、人工智能以及语言学。</p>
+</blockquote>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>NLP 目标是让计算机可以处理(“理解”)自然语言，从而执行一些有用的任务，例如预约事件、购买物品以及问答，Siri，Google Assistant, Facebook M, Cortana等均在执行这样的任务。</p>
+<p>然而，完全的理解以及呈现语言的含义(甚至去定义它)，是一件非常难的事情。完美的语言理解是一个 <strong>“AI-complete”</strong> 问题。</p>
+<h3 id="层级"><a href="#层级" class="headerlink" title="层级"></a>层级</h3><p><img src="/images/NLP-Levels.png" alt="NLP-Levels"></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>NLP 包含了从简单到复杂的使用场景:</p>
+<ul>
+<li>拼写检查，关键词检索，同义词查找；</li>
+<li>从网站中检索出信息，例如产品的价格，日期，位置，人名或者公司名等；</li>
+<li>分类：学校文本阅读分级，长文本的正负情绪判断；</li>
+<li>机器翻译；</li>
+<li>口语对话系统；</li>
+<li>复杂回答系统。</li>
+</ul>
+<p>NLP 在业界被用于:</p>
+<ul>
+<li>检索(写作和口语)；</li>
+<li>在线广告匹配；</li>
+<li>自动/协作翻译；</li>
+<li>市场或者金融的情绪分析；</li>
+<li>语音识别；</li>
+<li>对话机器人：智能客服，控制设备以及预订物品。</li>
+</ul>
+<h2 id="人类语言"><a href="#人类语言" class="headerlink" title="人类语言"></a>人类语言</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>人类语言是一门符号化的，分类的信号(signaling)系统。</p>
+</blockquote>
+<p>人类语言是一门专门用于传达说话或者文字含义的系统，其不仅仅是环境的信号，也是一种特意的交流方式，甚至连小孩都能很快掌握。</p>
+<p>例如：</p>
+<ul>
+<li>火箭 = 🚀，小提琴 = 🎻；</li>
+<li>有一些比较小的异常表达，例如 “I looooove it.” 和 “Whoomppaaa”；</li>
+<li>依赖于信号；</li>
+<li>符号(Symbols)并只是逻辑或者典型 AI 的产物。</li>
+</ul>
+<h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><p>一门语言的分类符号可以被编码成不同的交互方式，例如声音，手势和图片。</p>
+<blockquote>
+<p>切换不同的编码方式时，符号的意义是不变的。</p>
+</blockquote>
+<p><img src="/images/NLP-HumanLanguage-Symbol.png" alt="NLP-HumanLanguage-Symbol"></p>
+<p>人类语言是一个符号化，分类的信号系统，人类的大脑一直在运转，因此，这些语言符号通过声音或者视觉的持续信号的方式被传输。</p>
+<p>人类语言的巨大词库，对于词汇的符号编码，形成了机器学习的一个难题 - <strong>信息的缺乏(Sparisity)</strong>。</p>
+<p><img src="/images/NLP-MachineLearing-Sparsity.png" alt="NLP-MachineLearing-Sparsity"></p>
+<h2 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>深度学习(Deep Learning)是机器学习的一个子领域。</p>
+</blockquote>
+<p>大多数的机器学习方法之所以能效果良好，是因为已经人为定义好了呈现的方式以及输入的元素。例如，定义好了查找位置、公司名等名称实体的输入元素。</p>
+<p><img src="/images/NLP-MachineLearing-InputFeatures.png" alt="NLP-MachineLearing-InputFeatures"></p>
+<p>因此，机器学习变成了只是单纯的调优参数，来获得一个更好的预测效果。</p>
+<p><img src="/images/NLP-MachineLearing-Workflow.png" alt="NLP-MachineLearing-Workflow"></p>
+<blockquote>
+<p>表征学习指的是我们只需要给予计算机原始信号(视觉或者语言信号)，计算机就能自动学习，创建良好的中间层表征。</p>
+<p>深度学习是表征学习(Representation Learning)的一部分。深度学习算法尝试去学习多个层次的表征以及输出。深度学习并不等同于使用神经网络，虽然现在基本都是使用神经网络。</p>
+</blockquote>
+<p><img src="/images/NLP-DL.png" alt="NLP-DL"></p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>从 2010 年开始，深度学习开始比其他机器学习方法更突出的原因在于：</p>
+<ul>
+<li>大量的可供训练的数据；</li>
+<li>更快的机器以及多核 CPU/GPU；</li>
+<li>新的模型，算法，创意。</li>
+</ul>
+<h3 id="语音"><a href="#语音" class="headerlink" title="语音"></a>语音</h3><p>深度学习的第一个成功的案例在于基于大数据集合的语音识别。2010年，基于上下文的预先训练的深度学习神经网络将识别的错误率降低了将近 30% 。</p>
+<p><img src="/images/NLP-DL-Speed.png" alt="NLP-DL-Speed"></p>
+<p>第二个成功的案例在于2012年，ImageNet 上通过深度卷积神经网络的分类方法，将错误率降低了将近三分之一。</p>
+<p><img src="/images/NLP-DL-ImageNet.png" alt="NLP-DL-ImageNet"></p>
+<h2 id="Deep-NLP"><a href="#Deep-NLP" class="headerlink" title="Deep NLP"></a>Deep NLP</h2><h3 id="可视化-Visualization"><a href="#可视化-Visualization" class="headerlink" title="可视化(Visualization)"></a>可视化(Visualization)</h3><p>单词的含义作为一个神经向量，例如 “expect” 可以转化为：</p>
+<p><img src="/images/NLP-DL-Visualization.png" alt="NLP-DL-Visualization"></p>
+<p>通过向量间的聚类，可以将近义词归类到一起。</p>
+<h3 id="词态-Morphology"><a href="#词态-Morphology" class="headerlink" title="词态(Morphology)"></a>词态(Morphology)</h3><p>传统方法的单词表示形式是由前缀，词干，后缀构成的，例如：</p>
+<p><img src="/images/NLP-DL-Morphology-Tranditional.png" alt="NLP-DL-Morphology-Tranditional"></p>
+<p>而 DL 的表示形式是，将每次词态表示成一个向量，并通过神经网络将其组合起来。</p>
+<p><img src="/images/NLP-DL-Morphology-DL.png" alt="NLP-DL-Morphology-DL"></p>
+<h3 id="分词-Parsing"><a href="#分词-Parsing" class="headerlink" title="分词(Parsing)"></a>分词(Parsing)</h3><p>神经网络可以准确地判断一个句子的结构，从而进行理解。</p>
+<p><img src="/images/NLP-DL-Parser.png" alt="NLP-DL-Parser"></p>
+<h3 id="语义-Semantics"><a href="#语义-Semantics" class="headerlink" title="语义(Semantics)"></a>语义(Semantics)</h3><p>传统的方法是 λ 演算(Lambda calculus)：通过手工定义不同单词的意义的函数，通过逻辑代数函数将单词的含义组合在一起，没有相似性和语言的歧义的概念：</p>
+<p><img src="/images/NLP-DL-Semantics-Traditional.png" alt="NLP-DL-Semantics-Traditional"></p>
+<p>而 DL 是将每个单词，词组表示成向量，并通过神经网络将其组合起来。</p>
+<p><img src="/images/NLP-DL-Semantics-DL.png" alt="NLP-DL-Semantics-DL"></p>
+<p>例如，对于以下句子，传统方式是通过字典匹配的方式(忽略词序)来判断其情绪，而深度学习模型可以从全局的角度进行理解，例如递归神经网络(RecursiveNN)：</p>
+<p><img src="/images/NLP-DL-Semantics-SentimentAnalysis.png" alt="NLP-DL-Semantics-SentimentAnalysis"></p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>Google Inbox app 的自动回复功能是一个简单，成功的应用，其使用的是神经语言模型(Neural Language Models)的一个通用技术。</p>
+<p><img src="/images/NLP-DL-Application.png" alt="NLP-DL-Applications"></p>
+<p>机器翻译是另一个典型应用，传统的机器翻译系统及其复杂：</p>
+<p><img src="/images/NLP-DL-MT-Traditional.png" alt="NLP-DL-MT-Traditional"></p>
+<p>而神经机器翻译系统将句子都映射成向量：</p>
+<p><img src="/images/NLP-DL-MT-DL.png" alt="NLP-DL-MT-DL"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/Natural-Language-Processing/" rel="tag"># Natural Language Processing</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/07/ios-CoreML-Try/" rel="next" title="iOS-CoreML-初探">
+                <i class="fa fa-chevron-left"></i> iOS-CoreML-初探
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="YI" />
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NLP"><span class="nav-number">1.</span> <span class="nav-text">NLP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层级"><span class="nav-number">1.3.</span> <span class="nav-text">层级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.4.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人类语言"><span class="nav-number">2.</span> <span class="nav-text">人类语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号"><span class="nav-number">2.2.</span> <span class="nav-text">符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Learning"><span class="nav-number">3.</span> <span class="nav-text">Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-2"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">3.2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语音"><span class="nav-number">3.3.</span> <span class="nav-text">语音</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-NLP"><span class="nav-number">4.</span> <span class="nav-text">Deep NLP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化-Visualization"><span class="nav-number">4.1.</span> <span class="nav-text">可视化(Visualization)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词态-Morphology"><span class="nav-number">4.2.</span> <span class="nav-text">词态(Morphology)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分词-Parsing"><span class="nav-number">4.3.</span> <span class="nav-text">分词(Parsing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义-Semantics"><span class="nav-number">4.4.</span> <span class="nav-text">语义(Semantics)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用-1"><span class="nav-number">4.5.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
