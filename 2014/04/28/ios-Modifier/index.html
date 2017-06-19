@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://www.linyibin.cn/2014/04/28/ios-Modifier/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。">
-<meta property="og:updated_time" content="2017-04-17T08:25:51.000Z">
+<meta property="og:updated_time" content="2017-06-14T11:21:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Strong、Weak、Assgin、Retain、Copy">
 <meta name="twitter:description" content="iOS的五个修饰符，strong、weak、assgin、retain、copy的用法。">
@@ -485,12 +485,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">-(void)test&#123;</div><div class="line">    __block int i;</div><div class="line">    _strongVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _retainVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _copyVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _weakVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    _assignVar = [^&#123;</div><div class="line">        i++;</div><div class="line">    &#125; copy];</div><div class="line">    </div><div class="line">    [self print];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)print&#123;</div><div class="line">    NSLog(@&quot;%@&quot;, _strongVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _retainVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _copyVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _weakVar);</div><div class="line">    NSLog(@&quot;%@&quot;, _assignVar); // crash</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>打印结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;__NSMallocBlock__: 0x60800005fe30&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x60800005fd40&gt;</div><div class="line">&lt;__NSMallocBlock__: 0x60800005fbc0&gt;</div><div class="line">(null)</div></pre></td></tr></table></figure>
-<p>说明，对于堆赋值，strong、retian、weak、assign，都是直接指向该堆对象，会导致引用数+1，而weak，assgin不会改变引用数。其中，weak指向的对象如果被释放了，weak指针会自动置为nil，而assgin不会，一旦，堆对象被释放，再调用会引起Crash。</p>
-<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><p>copy的情况比较复杂，要分场景，如果对象是可变类型的，例如NSMutableArray，则其会在堆上复制一个不可变的对象，例如NSArray， 并指向它，此时，引用数为1，如果对象直接是不可变的，那么直接指向该对象，引用数+1。</p>
-<p>举例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, copy) NSArray *arrayCopy;</div><div class="line"></div><div class="line">-(void)test&#123;</div><div class="line">    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithObjects:@&quot;mutableArray1&quot;, nil];</div><div class="line">    _arrayCopy = mutableArray;</div><div class="line">    NSLog(@&quot;%p %p&quot;, mutableArray, _arrayCopy);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>打印结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0x60000005fad0 0x60000005fae0</div></pre></td></tr></table></figure>
+<p>说明，对于堆赋值，strong、retian、copy、weak、assign，都是直接指向该堆对象，会导致引用数+1，而weak，assgin不会改变引用数。其中，weak指向的对象如果被释放了，weak指针会自动置为nil，而assgin不会，一旦，堆对象被释放，再调用会引起Crash。</p>
 <h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><table>
 <thead>
 <tr>
@@ -695,7 +690,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-count">216</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -768,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈赋值"><span class="nav-number">2.</span> <span class="nav-text">栈赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆赋值"><span class="nav-number">3.</span> <span class="nav-text">堆赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#copy"><span class="nav-number">3.1.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量赋值"><span class="nav-number">4.</span> <span class="nav-text">常量赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-number">4.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈赋值"><span class="nav-number">2.</span> <span class="nav-text">栈赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆赋值"><span class="nav-number">3.</span> <span class="nav-text">堆赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量赋值"><span class="nav-number">4.</span> <span class="nav-text">常量赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-number">4.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

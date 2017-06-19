@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍如何搭建简单服务端，并通过servlet提供服务。">
 <meta property="og:image" content="http://www.linyibin.cn/images/Java-WebProject-Create.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-06-19T11:41:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-Servlet搭建简单服务端">
 <meta name="twitter:description" content="本文介绍如何搭建简单服务端，并通过servlet提供服务。">
@@ -414,10 +414,13 @@
 <p><img src="/images/Java-WebProject-Create.png" alt="Dynamic Web Project"></p>
 <h4 id="导入Libs"><a href="#导入Libs" class="headerlink" title="导入Libs"></a>导入Libs</h4><p>如果需要用到一些外部Jar包，需要拷贝到以下目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WebContent/WEB-INF/lib</div></pre></td></tr></table></figure>
+<p><strong>注意，这里不能建子文件夹，需要直接放 Jar 包。</strong></p>
 <p>拷贝完成后，Eclipse会自动在目录下生成：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Web App Libraries</div></pre></td></tr></table></figure>
 <h3 id="开发服务"><a href="#开发服务" class="headerlink" title="开发服务"></a>开发服务</h3><h4 id="创建HttpServlet服务"><a href="#创建HttpServlet服务" class="headerlink" title="创建HttpServlet服务"></a>创建HttpServlet服务</h4><p>创建一个<strong>HttpServlet</strong>子类，里面包含了<strong>doGet</strong>和<strong>doPost</strong>方法，分别对应Get和Post请求。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@WebServlet(&quot;/TestService&quot;)</div><div class="line">public class TestService extends HttpServlet &#123;</div><div class="line">	private static final long serialVersionUID = 1L;</div><div class="line"></div><div class="line">	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</div><div class="line">		response.getWriter().append(&quot;Get Success&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</div><div class="line">		response.getWriter().append(&quot;Post Success&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了防止乱码，可以加上编码设置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">response.setCharacterEncoding(&quot;UTF-8&quot;);</div><div class="line">response.setHeader(&quot;content-type&quot;,&quot;text/html;charset=UTF-8&quot;);</div></pre></td></tr></table></figure>
 <h4 id="在web-xml文件中注册"><a href="#在web-xml文件中注册" class="headerlink" title="在web.xml文件中注册"></a>在web.xml文件中注册</h4><p>web.xml的目录为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WebContent/WEB-INF/web.xml</div></pre></td></tr></table></figure>
 <p>注册url映射servlet:</p>
@@ -562,7 +565,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">215</span>
+                <span class="site-state-item-count">216</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
