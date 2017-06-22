@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://www.linyibin.cn/2014/04/20/python-email/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="通过 Python 自动发送邮件，用于监测服务。">
-<meta property="og:updated_time" content="2017-06-22T07:49:54.000Z">
+<meta property="og:updated_time" content="2017-06-22T08:00:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-发送邮件">
 <meta name="twitter:description" content="通过 Python 自动发送邮件，用于监测服务。">
@@ -409,9 +409,44 @@
         <p>通过 Python 自动发送邮件，用于监测服务。</p>
 <a id="more"></a>
 <p>这里的发送内容，定义为 html 格式，同时可以附加图片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># -*- coding: UTF-8 -*-</div><div class="line"></div><div class="line">import smtplib</div><div class="line">from email.mime.text import MIMEText</div><div class="line">from email.mime.image import MIMEImage</div><div class="line">from email.mime.multipart import MIMEMultipart</div><div class="line"></div><div class="line">    </div><div class="line">def sendEmail(subject, content, imagePath):</div><div class="line"></div><div class="line">    sender = &apos;xxx@qq.com&apos;</div><div class="line">    reveicers = [&apos;xxx@qq.com&apos;, &apos;xxx@qq.com&apos;]</div><div class="line"></div><div class="line">    msg = MIMEMultipart()</div><div class="line"></div><div class="line">    msg[&apos;From&apos;] = sender</div><div class="line">    msg[&apos;To&apos;] = &apos;,&apos;.join(reveicers)</div><div class="line">    msg[&apos;Subject&apos;] = subject</div><div class="line">    msg.attach(MIMEText(content, &apos;html&apos;, &apos;utf-8&apos;))</div><div class="line">    fp = open(imagePath, &apos;rb&apos;)</div><div class="line">    image = MIMEImage(fp.read())</div><div class="line">    msg.attach(image)</div><div class="line">    fp.close()</div><div class="line"></div><div class="line">    try:</div><div class="line">        smtp = smtplib.SMTP(host=&apos;smtp.qq.com&apos;, port=465)</div><div class="line">        smtp.sendmail(sender, reveicers, msg.as_string())</div><div class="line">        smtp.quit()</div><div class="line">    except Exception, e:</div><div class="line">        print e</div><div class="line">        </div><div class="line">```对于，需要安全认证的服务，举例如下：</div></pre></td></tr></table></figure>
-<p>smtp = smtplib.SMTP(host=’smtp.qq.com’, port=465)<br>smtp.set_debuglevel(True)<br>smtp.ehlo()<br>smtp.starttls()<br>smtp.ehlo()<br>smtp.login(USER, PASS)<br>```</p>
+<pre><code># -*- coding: UTF-8 -*-
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+
+
+def sendEmail(subject, content, imagePath):
+
+    sender = &apos;xxx@qq.com&apos;
+    reveicers = [&apos;xxx@qq.com&apos;, &apos;xxx@qq.com&apos;]
+
+    msg = MIMEMultipart()
+
+    msg[&apos;From&apos;] = sender
+    msg[&apos;To&apos;] = &apos;,&apos;.join(reveicers)
+    msg[&apos;Subject&apos;] = subject
+    msg.attach(MIMEText(content, &apos;html&apos;, &apos;utf-8&apos;))
+    fp = open(imagePath, &apos;rb&apos;)
+    image = MIMEImage(fp.read())
+    msg.attach(image)
+    fp.close()
+
+    try:
+        smtp = smtplib.SMTP(host=&apos;smtp.qq.com&apos;, port=465)
+        smtp.sendmail(sender, reveicers, msg.as_string())
+        smtp.quit()
+    except Exception, e:
+        print e
+</code></pre><p>对于，需要安全认证的服务，举例如下：</p>
+<pre><code>smtp = smtplib.SMTP(host=&apos;smtp.qq.com&apos;, port=465)
+smtp.set_debuglevel(True)
+smtp.ehlo()
+smtp.starttls()
+smtp.ehlo()
+smtp.login(USER, PASS)
+</code></pre>
       
     </div>
 
