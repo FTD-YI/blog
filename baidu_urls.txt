@@ -1,1 +1,2 @@
-http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/
+http://www.linyibin.cn/2014/04/20/python-email/
+http://www.linyibin.cn/2015/01/03/python-plot/
