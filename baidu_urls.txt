@@ -1,2 +1,1 @@
-http://www.linyibin.cn/2014/04/20/python-email/
-http://www.linyibin.cn/2015/01/03/python-plot/
+http://www.linyibin.cn/2014/05/20/python-opencv/
