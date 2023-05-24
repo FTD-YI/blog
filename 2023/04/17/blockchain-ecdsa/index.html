@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="区块链">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="ECDSA 椭圆曲线数字签名算法">
+<meta name="keywords" content="区块链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BlockChain-ECDSA 椭圆曲线数字签名算法">
+<meta property="og:url" content="http://www.linyibin.cn/2023/04/17/blockchain-ecdsa/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="ECDSA 椭圆曲线数字签名算法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.linyibin.cn/images/Blockchain-Cruve-Secp256k1.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/Blockchain-Cruve-ModP.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/Blockchain-ECDSA-Sign.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/Blockchain-ECDSA-Verify.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/Blockchain-ECDSA-Total.jpg">
+<meta property="og:updated_time" content="2023-05-23T04:56:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BlockChain-ECDSA 椭圆曲线数字签名算法">
+<meta name="twitter:description" content="ECDSA 椭圆曲线数字签名算法">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/Blockchain-Cruve-Secp256k1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2023/04/17/blockchain-ecdsa/">
+
+
+
+
+
+  <title> BlockChain-ECDSA 椭圆曲线数字签名算法 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2023/04/17/blockchain-ecdsa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                BlockChain-ECDSA 椭圆曲线数字签名算法
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-04-17T00:00:00+08:00">
+                2023-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BlockChain/" itemprop="url" rel="index">
+                    <span itemprop="name">BlockChain</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2023/04/17/blockchain-ecdsa/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ECDSA 椭圆曲线数字签名算法</p>
+<a id="more"></a>
+<h1 id="签名定义"><a href="#签名定义" class="headerlink" title="签名定义"></a>签名定义</h1><blockquote>
+<p>签名跟加密不同，签名只为了验证，对内容不做隐藏，为了计算方便，一般对内容的摘要（例如：压缩后的MD5）进行签名。</p>
+</blockquote>
+<h1 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h1><p>参考之前的文章 <a href="/2022/10/15/blockchain-curse/">BlockChain-ECC 椭圆曲线</a></p>
+<h3 id="区块链用的椭圆曲线-Secp256k1"><a href="#区块链用的椭圆曲线-Secp256k1" class="headerlink" title="区块链用的椭圆曲线 Secp256k1"></a>区块链用的椭圆曲线 Secp256k1</h3><blockquote>
+<p>曲线方程：y² = x³ + 7</p>
+</blockquote>
+<p><img src="/images/Blockchain-Cruve-Secp256k1.jpg" alt="Blockchain-Cruve-Secp256k1"></p>
+<h1 id="数字签名算法"><a href="#数字签名算法" class="headerlink" title="数字签名算法"></a>数字签名算法</h1><h2 id="椭圆公式"><a href="#椭圆公式" class="headerlink" title="椭圆公式"></a>椭圆公式</h2><blockquote>
+<p>y^2 = (x ^ 3 + a * x + b ) mod P</p>
+</blockquote>
+<p><img src="/images/Blockchain-Cruve-ModP.jpg" alt="Blockchain-Cruve-ModP"></p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>P: &gt;3的质数，由于椭圆曲线是无限大实数集，为了计算方便，只取x, y 都在(0, P)内的整数点（有限域）<br>N: 满足上面P条件的所有点的数量（包括无限远的那个元点0）<br>n: 子群的点数量，称为子群的阶，一般=N<br>h: 子群的余因子，其实就是 = N / n，一般=1<br>G: 基点<br>a, b: 公式里的a, b</p>
+<h2 id="计算逆模"><a href="#计算逆模" class="headerlink" title="计算逆模"></a>计算逆模</h2><blockquote>
+<p>逆模定义：A X ≅ 1 (mod M) ，有 ((A % M) * (X % M)) % M == 1，则 A 跟 X 互为逆模</p>
+</blockquote>
+<h3 id="利用扩展的欧几里得算法（GCD）来计算逆模"><a href="#利用扩展的欧几里得算法（GCD）来计算逆模" class="headerlink" title="利用扩展的欧几里得算法（GCD）来计算逆模"></a>利用扩展的欧几里得算法（GCD）来计算逆模</h3><p>原理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">定义 Ax + My = gcd(x, M) </span><br><span class="line">因为 M 是质数，所以 gcd(x, M) = 1</span><br><span class="line">Ax + My = 1</span><br><span class="line">两边加上取模：Ax + My ≅ 1 (mod M)</span><br><span class="line">因此：Ax  ≅ 1 (mod M)</span><br></pre></td></tr></table></figure>
+<p>计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ax + by = gcd(a, b)</span><br><span class="line">gcd(a, b) = gcd(b % a, a)</span><br><span class="line">gcd(b % a, a) = (b % a)x1 + ay1</span><br><span class="line">ax + by = (b % a)x1 + ay1</span><br><span class="line">ax + by = (b – [b / a] * a)x1 + ay1</span><br><span class="line">ax + by = a(y1 – [b / a] * x1) + bx1</span><br><span class="line">消除同类项：</span><br><span class="line">x = y1 – ⌊b / a⌋ * x1</span><br><span class="line">y = x1</span><br></pre></td></tr></table></figure>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def gcd(a, b):</span><br><span class="line">    if a == 0:</span><br><span class="line">        return b, 0, 1</span><br><span class="line">    gcd, x1, y1 = gcd(b % a, a)</span><br><span class="line">    x = y1 - b // a * x1</span><br><span class="line">    y = x1</span><br><span class="line">    return gcd, x, y</span><br><span class="line"></span><br><span class="line">def inverseModal(n, p):</span><br><span class="line">        gcd, x, y = gcd(n, p)</span><br><span class="line">        if gcd == 1:</span><br><span class="line">            return x % p</span><br><span class="line">        return -1</span><br></pre></td></tr></table></figure>
+<h2 id="计算点加法"><a href="#计算点加法" class="headerlink" title="计算点加法"></a>计算点加法</h2><h3 id="计算斜率"><a href="#计算斜率" class="headerlink" title="计算斜率"></a>计算斜率</h3><blockquote>
+<p>两点不同：斜率 k = [（A.y - B.y）/ (A.x - B.x )] mod P = [（A.y - B.y）% P * (A.x - B.x ) 逆] % P<br>两点相同：斜率 k = [（3 * A.x ^ 2 + a * A.x）/ (2 * A.y) ]  mod P = [（3 <em> A.x ^ 2 + a \</em> A.x）% P * (2 * A.y)逆 ] % P</p>
+</blockquote>
+<h3 id="计算交点"><a href="#计算交点" class="headerlink" title="计算交点"></a>计算交点</h3><p>韦达定理</p>
+<blockquote>
+<p>x = （k ^ 2 - A.x - B.x） %  P<br>y = （-k *(x - A.x) - A.y） % P</p>
+</blockquote>
+<h2 id="计算点乘法"><a href="#计算点乘法" class="headerlink" title="计算点乘法"></a>计算点乘法</h2><p>乘法本质上是加法，但是如果乘法次数太大，那么需要进行快速运算，用倍加算法拆成2的幂次方，然后再做加法<br>例如： 151 = 2^7 + 2 ^ 4 + 2^ 2 + 2 ^ 1 + 2 ^ 0</p>
+<p>代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def multi(p, count):</span><br><span class="line">    countBits = bin(count)[2:]</span><br><span class="line">    p1 = p</span><br><span class="line">    p2 = Point(0, 0)</span><br><span class="line">    for i in reversed(range(len(countBits))):</span><br><span class="line">        if countBits[i] == &apos;1&apos; :</span><br><span class="line">            p2 = add(p1, p2) //加法</span><br><span class="line">        p1 = double(p1) //乘法</span><br><span class="line">    return p2</span><br></pre></td></tr></table></figure>
+<h2 id="签名流程"><a href="#签名流程" class="headerlink" title="签名流程"></a>签名流程</h2><h3 id="生成密钥对"><a href="#生成密钥对" class="headerlink" title="生成密钥对"></a>生成密钥对</h3><blockquote>
+<p>私钥 Pri：生成 &lt; N 的随机整数<br>公钥 Pub：基点 G 经过 Pri 次乘法后的点（x, y）</p>
+</blockquote>
+<h3 id="加密内容信息"><a href="#加密内容信息" class="headerlink" title="加密内容信息"></a>加密内容信息</h3><blockquote>
+<p>加密内容信息 m：对内容信息进行（一次或者多次）哈希处理，例如sha256，转成整数</p>
+</blockquote>
+<h3 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h3><p><img src="/images/Blockchain-ECDSA-Sign.jpg" alt="Blockchain-ECDSA-Sign"></p>
+<h4 id="生成随机数k"><a href="#生成随机数k" class="headerlink" title="生成随机数k"></a>生成随机数k</h4><blockquote>
+<p>生成 &lt; N 的随机整数</p>
+</blockquote>
+<h4 id="计算点-R"><a href="#计算点-R" class="headerlink" title="计算点 R"></a>计算点 R</h4><blockquote>
+<p>基点 G 经过 k 次乘法后的点（x,y），验证 R 不为无穷元点 0，且 R.x 不为零</p>
+</blockquote>
+<h4 id="计算-s"><a href="#计算-s" class="headerlink" title="计算 s"></a>计算 s</h4><blockquote>
+<p>s = [(m + R.x * Pri) / k] mod N = [(m + R.x * Pri) % N * k逆 ]% N<br>要验证 s 不为零，否则重新生成 k</p>
+</blockquote>
+<h4 id="计算-v"><a href="#计算-v" class="headerlink" title="计算 v"></a>计算 v</h4><p>因为签名只传递 R.x，而不是完整的 R 坐标，R.y 可以通过 R.x 算出来，但是有多个 R.y 可能，所以需要标志位 recid</p>
+<blockquote>
+<p>v = recovery_id + 27</p>
+</blockquote>
+<p>其中：</p>
+<p>R.x &lt; N 且 R.y 是偶数: recovery_id := 0<br>R.x &lt; N 且 R.y 是奇数: recovery_id := 1<br>R.x &gt; N 且 R.y 是偶数: recovery_id := 2<br>R.x &gt; N 且 R.y 是奇数: recovery_id := 3</p>
+<h4 id="签名返回值"><a href="#签名返回值" class="headerlink" title="签名返回值"></a>签名返回值</h4><blockquote>
+<p>返回 （r = R.x, s, v）元组</p>
+</blockquote>
+<h2 id="校验流程"><a href="#校验流程" class="headerlink" title="校验流程"></a>校验流程</h2><p><img src="/images/Blockchain-ECDSA-Verify.jpg" alt="Blockchain-ECDSA-Verify"></p>
+<h4 id="计算点-P"><a href="#计算点-P" class="headerlink" title="计算点 P"></a>计算点 P</h4><blockquote>
+<p>P = (m * G + r * Pub ) / s = （m 点乘 G * s逆） 点加 （r 点乘 Pub * s逆）</p>
+</blockquote>
+<h4 id="判断-P-x-和-r"><a href="#判断-P-x-和-r" class="headerlink" title="判断 P.x 和 r"></a>判断 P.x 和 r</h4><blockquote>
+<p>判断 p.x == r</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整体流程图：</p>
+<p><img src="/images/Blockchain-ECDSA-Total.jpg" alt="Blockchain-ECDSA-Total"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BlockChain/" rel="tag"># BlockChain</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/04/02/blockchain-curse/" rel="next" title="BlockChain-ECC 椭圆曲线">
+                <i class="fa fa-chevron-left"></i> BlockChain-ECC 椭圆曲线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">347</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#签名定义"><span class="nav-number">1.</span> <span class="nav-text">签名定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#椭圆曲线"><span class="nav-number">2.</span> <span class="nav-text">椭圆曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链用的椭圆曲线-Secp256k1"><span class="nav-number">2.0.1.</span> <span class="nav-text">区块链用的椭圆曲线 Secp256k1</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#数字签名算法"><span class="nav-number">3.</span> <span class="nav-text">数字签名算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆公式"><span class="nav-number">3.1.</span> <span class="nav-text">椭圆公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">3.1.1.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算逆模"><span class="nav-number">3.2.</span> <span class="nav-text">计算逆模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用扩展的欧几里得算法（GCD）来计算逆模"><span class="nav-number">3.2.1.</span> <span class="nav-text">利用扩展的欧几里得算法（GCD）来计算逆模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算点加法"><span class="nav-number">3.3.</span> <span class="nav-text">计算点加法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算斜率"><span class="nav-number">3.3.1.</span> <span class="nav-text">计算斜率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算交点"><span class="nav-number">3.3.2.</span> <span class="nav-text">计算交点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算点乘法"><span class="nav-number">3.4.</span> <span class="nav-text">计算点乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#签名流程"><span class="nav-number">3.5.</span> <span class="nav-text">签名流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成密钥对"><span class="nav-number">3.5.1.</span> <span class="nav-text">生成密钥对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密内容信息"><span class="nav-number">3.5.2.</span> <span class="nav-text">加密内容信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名"><span class="nav-number">3.5.3.</span> <span class="nav-text">签名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成随机数k"><span class="nav-number">3.5.3.1.</span> <span class="nav-text">生成随机数k</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算点-R"><span class="nav-number">3.5.3.2.</span> <span class="nav-text">计算点 R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算-s"><span class="nav-number">3.5.3.3.</span> <span class="nav-text">计算 s</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算-v"><span class="nav-number">3.5.3.4.</span> <span class="nav-text">计算 v</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名返回值"><span class="nav-number">3.5.3.5.</span> <span class="nav-text">签名返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#校验流程"><span class="nav-number">3.6.</span> <span class="nav-text">校验流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计算点-P"><span class="nav-number">3.6.0.1.</span> <span class="nav-text">计算点 P</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断-P-x-和-r"><span class="nav-number">3.6.0.2.</span> <span class="nav-text">判断 P.x 和 r</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.7.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

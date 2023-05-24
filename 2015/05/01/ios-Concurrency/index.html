@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS,Multithread," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,Multithread,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,12 +88,14 @@
 
 
 <meta name="description" content="本文对iOS系统上的异步调用方式进行了深入的讲解。">
+<meta name="keywords" content="iOS,Multithread">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-异步编程详解">
 <meta property="og:url" content="http://www.linyibin.cn/2015/05/01/ios-Concurrency/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文对iOS系统上的异步调用方式进行了深入的讲解。">
-<meta property="og:updated_time" content="2017-04-11T06:22:01.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-04-07T13:19:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-异步编程详解">
 <meta name="twitter:description" content="本文对iOS系统上的异步调用方式进行了深入的讲解。">
@@ -124,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/05/01/ios-Concurrency/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/05/01/ios-Concurrency/">
 
 
 
@@ -174,7 +176,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -237,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -301,7 +303,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -344,7 +346,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -486,7 +488,7 @@ dispatch_sync(queue, ^{
 });
 </code></pre><h3 id="Storing-Custom-Context"><a href="#Storing-Custom-Context" class="headerlink" title="*Storing Custom Context"></a>*Storing Custom Context</h3><p>Diapatch Queue可以保存一些自定义的上下文信息，参考下面的例子。</p>
 <h3 id="Clean-Up-Function"><a href="#Clean-Up-Function" class="headerlink" title="*Clean Up Function"></a>*Clean Up Function</h3><p>Serial dispatch queue可以设置一个回收函数，当它设置了Context，并被析构时，将调用该函数。没有设置Context，将不会调用该函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">void myFinalizerFunction(void *context)</div><div class="line">&#123;</div><div class="line">    MyDataContext* theData = (MyDataContext*)context;</div><div class="line">    </div><div class="line">    // Clean up the contents of the structure</div><div class="line">    myCleanUpDataContextFunction(theData);</div><div class="line">    </div><div class="line">    // Now release the structure itself.</div><div class="line">    free(theData);</div><div class="line">&#125;</div><div class="line"></div><div class="line">dispatch_queue_t createMyQueue()</div><div class="line">&#123;</div><div class="line">    MyDataContext*  data = (MyDataContext*) malloc(sizeof(MyDataContext));</div><div class="line">    myInitializeDataContextFunction(data);</div><div class="line">    </div><div class="line">    // Create the queue and set the context data.</div><div class="line">    dispatch_queue_t serialQueue = dispatch_queue_create(&quot;com.example.CriticalTaskQueue&quot;, NULL);</div><div class="line">    if (serialQueue)</div><div class="line">    &#123;</div><div class="line">        dispatch_set_context(serialQueue, data);</div><div class="line">        dispatch_set_finalizer_f(serialQueue, &amp;myFinalizerFunction);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return serialQueue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">void myFinalizerFunction(void *context)</span><br><span class="line">&#123;</span><br><span class="line">    MyDataContext* theData = (MyDataContext*)context;</span><br><span class="line">    </span><br><span class="line">    // Clean up the contents of the structure</span><br><span class="line">    myCleanUpDataContextFunction(theData);</span><br><span class="line">    </span><br><span class="line">    // Now release the structure itself.</span><br><span class="line">    free(theData);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dispatch_queue_t createMyQueue()</span><br><span class="line">&#123;</span><br><span class="line">    MyDataContext*  data = (MyDataContext*) malloc(sizeof(MyDataContext));</span><br><span class="line">    myInitializeDataContextFunction(data);</span><br><span class="line">    </span><br><span class="line">    // Create the queue and set the context data.</span><br><span class="line">    dispatch_queue_t serialQueue = dispatch_queue_create(&quot;com.example.CriticalTaskQueue&quot;, NULL);</span><br><span class="line">    if (serialQueue)</span><br><span class="line">    &#123;</span><br><span class="line">        dispatch_set_context(serialQueue, data);</span><br><span class="line">        dispatch_set_finalizer_f(serialQueue, &amp;myFinalizerFunction);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return serialQueue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Loop-Iterations-Concurrently"><a href="#Loop-Iterations-Concurrently" class="headerlink" title="*Loop Iterations Concurrently"></a>*Loop Iterations Concurrently</h3><p>对于for循环，如果每次的循环结果是独立的，不互相依赖，可以使用dispatch queue的以下方法使其同时运行，提高效率。</p>
 <pre><code>dispatch_apply
 dispatch_apply_f
@@ -510,7 +512,7 @@ End
 dispatch_resume(queue);
 </code></pre><h3 id="Dispatch-Semaphores-信号量"><a href="#Dispatch-Semaphores-信号量" class="headerlink" title="*Dispatch Semaphores(信号量)"></a>*Dispatch Semaphores(信号量)</h3><p>Dispatch Semaphores可以用来控制对于有限资源的访问，例如每个应用只能访问有限数量的文件修饰符，但是很多线程要访问，例如一个停车场有三个车位，而有五辆车要停。</p>
 <p>举例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dispatch_semaphore_t fd_sema = dispatch_semaphore_create(getdtablesize() / 2);</div><div class="line"></div><div class="line">dispatch_semaphore_wait(fd_sema, DISPATCH_TIME_FOREVER);</div><div class="line">fd = open(&quot;/etc/services&quot;, O_RDONLY);</div><div class="line">close(fd);</div><div class="line"></div><div class="line">dispatch_semaphore_signal(fd_sema);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dispatch_semaphore_t fd_sema = dispatch_semaphore_create(getdtablesize() / 2);</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_wait(fd_sema, DISPATCH_TIME_FOREVER);</span><br><span class="line">fd = open(&quot;/etc/services&quot;, O_RDONLY);</span><br><span class="line">close(fd);</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_signal(fd_sema);</span><br></pre></td></tr></table></figure>
 <p>创建Semaphores时，必须设置一个数量变量。每次wait，将减一，而signal，则加一。如果值为负，将挂起当前线程。</p>
 <h3 id="Wait-on-Groups-of-Tasks"><a href="#Wait-on-Groups-of-Tasks" class="headerlink" title="*Wait on Groups of Tasks"></a>*Wait on Groups of Tasks</h3><p>有时候，需要等待一组异步task完成后，才能进行下一步操作，可以使用dispatch group来完成。</p>
 <p>举例：</p>
@@ -573,11 +575,6 @@ Queue:waitUntilAllOperationsAreFinished
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -671,7 +668,7 @@ Queue:waitUntilAllOperationsAreFinished
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -682,9 +679,7 @@ Queue:waitUntilAllOperationsAreFinished
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -695,7 +690,7 @@ Queue:waitUntilAllOperationsAreFinished
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -704,7 +699,7 @@ Queue:waitUntilAllOperationsAreFinished
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -713,7 +708,7 @@ Queue:waitUntilAllOperationsAreFinished
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -768,7 +763,7 @@ Queue:waitUntilAllOperationsAreFinished
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步来源"><span class="nav-number">1.</span> <span class="nav-text">异步来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步方法"><span class="nav-number">2.</span> <span class="nav-text">异步方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步函数"><span class="nav-number">2.1.</span> <span class="nav-text">异步函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">2.2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type"><span class="nav-number">2.2.1.</span> <span class="nav-text">*Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init"><span class="nav-number">2.2.2.</span> <span class="nav-text">*Init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add"><span class="nav-number">2.2.3.</span> <span class="nav-text">*Add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Storing-Custom-Context"><span class="nav-number">2.2.4.</span> <span class="nav-text">*Storing Custom Context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clean-Up-Function"><span class="nav-number">2.2.5.</span> <span class="nav-text">*Clean Up Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loop-Iterations-Concurrently"><span class="nav-number">2.2.6.</span> <span class="nav-text">*Loop Iterations Concurrently</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspending-amp-Resuming"><span class="nav-number">2.2.7.</span> <span class="nav-text">*Suspending & Resuming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dispatch-Semaphores-信号量"><span class="nav-number">2.2.8.</span> <span class="nav-text">*Dispatch Semaphores(信号量)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wait-on-Groups-of-Tasks"><span class="nav-number">2.2.9.</span> <span class="nav-text">*Wait on Groups of Tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer"><span class="nav-number">2.2.10.</span> <span class="nav-text">*Timer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operation-Queues"><span class="nav-number">2.3.</span> <span class="nav-text">Operation Queues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-amp-Add"><span class="nav-number">2.3.1.</span> <span class="nav-text">*Init & Add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cancel"><span class="nav-number">2.3.2.</span> <span class="nav-text">*Cancel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WaitForFinished"><span class="nav-number">2.3.3.</span> <span class="nav-text">*WaitForFinished</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspending-amp-Resuming-1"><span class="nav-number">2.3.4.</span> <span class="nav-text">*Suspending & Resuming</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能Tips"><span class="nav-number">3.</span> <span class="nav-text">性能Tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步来源"><span class="nav-number">1.</span> <span class="nav-text">异步来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步方法"><span class="nav-number">2.</span> <span class="nav-text">异步方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步函数"><span class="nav-number">2.1.</span> <span class="nav-text">异步函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">2.2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Type"><span class="nav-number">2.2.1.</span> <span class="nav-text">*Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init"><span class="nav-number">2.2.2.</span> <span class="nav-text">*Init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add"><span class="nav-number">2.2.3.</span> <span class="nav-text">*Add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Storing-Custom-Context"><span class="nav-number">2.2.4.</span> <span class="nav-text">*Storing Custom Context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clean-Up-Function"><span class="nav-number">2.2.5.</span> <span class="nav-text">*Clean Up Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loop-Iterations-Concurrently"><span class="nav-number">2.2.6.</span> <span class="nav-text">*Loop Iterations Concurrently</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspending-amp-Resuming"><span class="nav-number">2.2.7.</span> <span class="nav-text">*Suspending &amp; Resuming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dispatch-Semaphores-信号量"><span class="nav-number">2.2.8.</span> <span class="nav-text">*Dispatch Semaphores(信号量)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wait-on-Groups-of-Tasks"><span class="nav-number">2.2.9.</span> <span class="nav-text">*Wait on Groups of Tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer"><span class="nav-number">2.2.10.</span> <span class="nav-text">*Timer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operation-Queues"><span class="nav-number">2.3.</span> <span class="nav-text">Operation Queues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-amp-Add"><span class="nav-number">2.3.1.</span> <span class="nav-text">*Init &amp; Add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cancel"><span class="nav-number">2.3.2.</span> <span class="nav-text">*Cancel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WaitForFinished"><span class="nav-number">2.3.3.</span> <span class="nav-text">*WaitForFinished</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspending-amp-Resuming-1"><span class="nav-number">2.3.4.</span> <span class="nav-text">*Suspending &amp; Resuming</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能Tips"><span class="nav-number">3.</span> <span class="nav-text">性能Tips</span></a></li></ol></div>
             
 
           </div>
@@ -788,10 +783,10 @@ Queue:waitUntilAllOperationsAreFinished
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

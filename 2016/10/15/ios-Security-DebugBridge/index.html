@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS,Security,DebugServer,LLDB" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,Security,DebugServer,LLDB">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,11 +88,13 @@
 
 
 <meta name="description" content="利用 DebugServer 以及 LLDB 进行远程调试。">
+<meta name="keywords" content="iOS,Security,DebugServer,LLDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Security[4]-调试">
 <meta property="og:url" content="http://www.linyibin.cn/2016/10/15/ios-Security-DebugBridge/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="利用 DebugServer 以及 LLDB 进行远程调试。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-DebugServer.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-DebugServer-Hook.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-LLDB.png">
@@ -102,7 +104,7 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-LLDB-QQMusic-Breakpoint.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-LLDB-QQMusic-Breakpoint-Next.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-LLDB-QQMusic-Breakpoint-PO.png">
-<meta property="og:updated_time" content="2017-05-23T10:16:53.000Z">
+<meta property="og:updated_time" content="2017-05-28T05:44:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Security[4]-调试">
 <meta name="twitter:description" content="利用 DebugServer 以及 LLDB 进行远程调试。">
@@ -134,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/10/15/ios-Security-DebugBridge/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/10/15/ios-Security-DebugBridge/">
 
 
 
@@ -184,7 +186,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -234,7 +236,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -247,7 +249,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -311,7 +313,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -354,7 +356,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -397,7 +399,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -418,76 +420,71 @@
       
         <p>利用 DebugServer 以及 LLDB 进行远程调试。</p>
 <a id="more"></a>
-<h2 id="LDID"><a href="#LDID" class="headerlink" title="LDID"></a>LDID</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://pan.baidu.com/s/1bp4D10b" target="_blank" rel="external">LDID</a> 是一款可以用于查看权限签名，以及重签名权限的工具。</p>
+<h2 id="LDID"><a href="#LDID" class="headerlink" title="LDID"></a>LDID</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a href="https://pan.baidu.com/s/1bp4D10b" target="_blank" rel="noopener">LDID</a> 是一款可以用于查看权限签名，以及重签名权限的工具。</p>
 <p>下载完成后，将其放置在系统执行目录下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/bin</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin</span><br></pre></td></tr></table></figure>
 <p>并修改权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 777 /usr/local/bin/ldid</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /usr/local/bin/ldid</span><br></pre></td></tr></table></figure>
 <h3 id="添加-task-for-pid-权限"><a href="#添加-task-for-pid-权限" class="headerlink" title="添加 task_for_pid 权限"></a>添加 task_for_pid 权限</h3><p>将以下内容保存为 entitlement.xml 文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">    &lt;dict&gt;</div><div class="line">        &lt;key&gt;com.apple.springboard.debugapplications&lt;/key&gt;</div><div class="line">        &lt;true/&gt;</div><div class="line">        &lt;key&gt;get-task-allow&lt;/key&gt;</div><div class="line">        &lt;true/&gt;</div><div class="line">        &lt;key&gt;task_for_pid-allow&lt;/key&gt;</div><div class="line">        &lt;true/&gt;</div><div class="line">        &lt;key&gt;run-unsigned-code&lt;/key&gt;</div><div class="line">        &lt;true/&gt;</div><div class="line">    &lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">    &lt;dict&gt;</span><br><span class="line">        &lt;key&gt;com.apple.springboard.debugapplications&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">        &lt;key&gt;get-task-allow&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">        &lt;key&gt;task_for_pid-allow&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">        &lt;key&gt;run-unsigned-code&lt;/key&gt;</span><br><span class="line">        &lt;true/&gt;</span><br><span class="line">    &lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
 <p>对 DebugServer(后面会介绍) 进行重签名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ldid -Sentitlement.xml debugserver</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldid -Sentitlement.xml debugserver</span><br></pre></td></tr></table></figure>
 <p><strong>注意，S后不需要空格。</strong></p>
 <p>不然会报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ldid.cpp(383): _assert(false); errno=0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldid.cpp(383): _assert(false); errno=0</span><br></pre></td></tr></table></figure>
 <h2 id="DebugServer"><a href="#DebugServer" class="headerlink" title="DebugServer"></a>DebugServer</h2><h3 id="DeveloperDiskImage"><a href="#DeveloperDiskImage" class="headerlink" title="DeveloperDiskImage"></a>DeveloperDiskImage</h3><p>首先，显示 XCode 的包内容，找到iOS设备系统对应的 DeveloperDiskImage.dmg，以 9.3 为例，路径如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/9.3/DeveloperDiskImage.dmg</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/9.3/DeveloperDiskImage.dmg</span><br></pre></td></tr></table></figure>
 <h3 id="DebugServer-1"><a href="#DebugServer-1" class="headerlink" title="DebugServer"></a>DebugServer</h3><p>双击 DeveloperDiskImage.dmg，找到 debugserver 可执行文件，路径为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/debugserver</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/debugserver</span><br></pre></td></tr></table></figure>
 <h3 id="重签名"><a href="#重签名" class="headerlink" title="重签名"></a>重签名</h3><p>重签名过程参考前面的 LDID 章节。</p>
 <h3 id="远程执行"><a href="#远程执行" class="headerlink" title="远程执行"></a>远程执行</h3><p>直接通过 <a href="/2016/10/12/ios-Security-RemoteLogin/">SSH/CyberDuck</a> 将 debugserver 可执行文件拷到设备的以下目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin</span><br></pre></td></tr></table></figure>
 <p>可能出现权限不足的情况，直接 <strong>chmod 777</strong> 解决。</p>
 <p>完成后，直接 SSH 执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">debugserver</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debugserver</span><br></pre></td></tr></table></figure>
 <p><img src="/images/iOS-DebugServer.png" alt="iOS-DebugServer"></p>
 <p>Hook 住特定的 App，例如微信，命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">debugserver *:12345 -a &quot;Wechat&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debugserver *:12345 -a &quot;Wechat&quot;</span><br></pre></td></tr></table></figure>
 <p><img src="/images/iOS-DebugServer-Hook.png" alt="iOS-DebugServer-Hook"></p>
 <p>这里的12345，是可以任意设置的端口号，用于跟 LLDB 连接。</p>
 <h2 id="LLDB"><a href="#LLDB" class="headerlink" title="LLDB"></a>LLDB</h2><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>LLDB 是 XCode 内置的调试工具。</p>
 <p>与 DebugServer 建立连接，命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lldb</div><div class="line">process connect connect://IP Address:12345</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lldb</span><br><span class="line">process connect connect://IP Address:12345</span><br></pre></td></tr></table></figure>
 <p><img src="/images/iOS-LLDB.png" alt="iOS-LLDB"></p>
-<p>常见的 LLDB 命令参考:<a href="http://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="external">LLDB COMMAND MAP</a>。</p>
+<p>常见的 LLDB 命令参考:<a href="http://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="noopener">LLDB COMMAND MAP</a>。</p>
 <h3 id="查看偏移量"><a href="#查看偏移量" class="headerlink" title="查看偏移量"></a>查看偏移量</h3><p>这里，以 QQ 音乐为例，先让其继续运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">c</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c</span><br></pre></td></tr></table></figure>
 <p>然后，查看所有 image 地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">image list -o -f</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image list -o -f</span><br></pre></td></tr></table></figure>
 <p><img src="/images/iOS-LLDB-QQMusic-ASLR.png" alt="iOS-LLDB-QQMusic-ASLR"></p>
 <p>可以看到，QQ 音乐在虚拟内存中的基址地址，和模块的起始地址分别为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">0x0000000000048000</div><div class="line">0x0000000100048000</div></pre></td></tr></table></figure>
-<p>这所以会偏移，是因为 <a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization" target="_blank" rel="external">ASLR</a> 机制，计算公式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">模块偏移后的基地址 = ASLR偏移量 + 模块偏移前基地址</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000048000</span><br><span class="line">0x0000000100048000</span><br></pre></td></tr></table></figure>
+<p>这所以会偏移，是因为 <a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization" target="_blank" rel="noopener">ASLR</a> 机制，计算公式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模块偏移后的基地址 = ASLR偏移量 + 模块偏移前基地址</span><br></pre></td></tr></table></figure>
 <p>这里，可以计算出模块的起始地址应该为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0x0000000100000000</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000100000000</span><br></pre></td></tr></table></figure>
 <p>在 <a href="/2016/10/19/ios-Security-Disassembler/">Hopper</a> 中查看，确认其地址无误。</p>
 <p><img src="/images/iOS-LLDB-QQMusic-BaseAddress.png" alt="iOS-LLDB-QQMusic-BaseAddress"></p>
 <h3 id="创建断点"><a href="#创建断点" class="headerlink" title="创建断点"></a>创建断点</h3><p>基于此公式，我们可以通过查看其可执行文件中的地址，然后加上偏移量，来添加断点，进行调试，例如，跳转到语音识别页面的方法的基准地址为:</p>
 <p><img src="/images/iOS-LLDB-QQMusic-Breakpoint-BaseAddress.png" alt="iOS-LLDB-QQMusic-Breakpoint-BaseAddress"></p>
 <p>加上 ASLR 偏移量，结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">100b13518 + 48000 = 100b5b518</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100b13518 + 48000 = 100b5b518</span><br></pre></td></tr></table></figure>
 <p>在偏移后的地址出创建断点：</p>
 <p><img src="/images/iOS-LLDB-QQMusic-Breakpoint.png" alt="iOS-LLDB-QQMusic-Breakpoint"></p>
 <p>触发断点后，确认其汇编代码完全一致。</p>
 <h3 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h3><p>可以用 ni 或者 si 等命令进行单步调试：</p>
 <p><img src="/images/iOS-LLDB-QQMusic-Breakpoint-Next.png" alt="iOS-LLDB-QQMusic-Breakpoint-Next"></p>
 <p>查看某个寄存器的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p/po 寄存器</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p/po 寄存器</span><br></pre></td></tr></table></figure>
 <p><img src="/images/iOS-LLDB-QQMusic-Breakpoint-PO.png" alt="iOS-LLDB-QQMusic-Breakpoint-PO"></p>
 <p>也可以修改某个寄存器的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">register write 寄存器 值</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register write 寄存器 值</span><br></pre></td></tr></table></figure>
       
     </div>
 
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -579,7 +576,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -590,9 +587,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -603,7 +598,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -612,7 +607,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -621,7 +616,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -696,10 +691,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS,Security" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,Security">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,16 +88,18 @@
 
 
 <meta name="description" content="数据存储常用的方式有 NSUserDefaults, KeyChain 以及 CoreData 等，在特定条件下，这些方式都不安全。">
+<meta name="keywords" content="iOS,Security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Security[10]-数据存储">
 <meta property="og:url" content="http://www.linyibin.cn/2016/10/24/ios-Security-DataStorage/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="数据存储常用的方式有 NSUserDefaults, KeyChain 以及 CoreData 等，在特定条件下，这些方式都不安全。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Data-UserDefault.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Data-UserDefault-View.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Data-Keychain-Wifi.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-Security-Data-Keychain-Zhihu.png">
-<meta property="og:updated_time" content="2017-06-01T06:33:50.000Z">
+<meta property="og:updated_time" content="2017-06-07T16:41:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Security[10]-数据存储">
 <meta name="twitter:description" content="数据存储常用的方式有 NSUserDefaults, KeyChain 以及 CoreData 等，在特定条件下，这些方式都不安全。">
@@ -129,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/10/24/ios-Security-DataStorage/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/10/24/ios-Security-DataStorage/">
 
 
 
@@ -179,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -229,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -242,7 +244,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -306,7 +308,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -349,7 +351,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -392,7 +394,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -419,23 +421,23 @@
 <p>直接打开，可以看到所有信息：</p>
 <p><img src="/images/iOS-Security-Data-UserDefault-View.png" alt="iOS-Security-Data-UserDefault-View.png"></p>
 <h2 id="Keychain"><a href="#Keychain" class="headerlink" title="Keychain"></a>Keychain</h2><p>KeyChain 的数据在越狱设备上，是可被导出的，方式如下：</p>
-<h3 id="安装-Keychain-Dumper"><a href="#安装-Keychain-Dumper" class="headerlink" title="安装 Keychain Dumper"></a>安装 Keychain Dumper</h3><p><a href="https://github.com/ptoomey3/Keychain-Dumper" target="_blank" rel="external">Keychain Dumper</a> 是一款可以导出 Keychain 数据的开源工具。</p>
+<h3 id="安装-Keychain-Dumper"><a href="#安装-Keychain-Dumper" class="headerlink" title="安装 Keychain Dumper"></a>安装 Keychain Dumper</h3><p><a href="https://github.com/ptoomey3/Keychain-Dumper" target="_blank" rel="noopener">Keychain Dumper</a> 是一款可以导出 Keychain 数据的开源工具。</p>
 <p>下载完成后，将其安装到设备的 tmp 目录下，并修改其权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /tmp</div><div class="line">chmod a+x keychain_dumper</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">chmod a+x keychain_dumper</span><br></pre></td></tr></table></figure>
 <h3 id="修改-Keychain-数据库权限"><a href="#修改-Keychain-数据库权限" class="headerlink" title="修改 Keychain 数据库权限"></a>修改 Keychain 数据库权限</h3><p>Keychain 数据库路径为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/private/var/Keychains/keychain-2.db</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/private/var/Keychains/keychain-2.db</span><br></pre></td></tr></table></figure>
 <p>修改其权限为可读：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /private/var/Keychains/ </div><div class="line">chmod +r keychain-2.db</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /private/var/Keychains/ </span><br><span class="line">chmod +r keychain-2.db</span><br></pre></td></tr></table></figure>
 <h3 id="导出-Keychain-数据"><a href="#导出-Keychain-数据" class="headerlink" title="导出 Keychain 数据"></a>导出 Keychain 数据</h3><p>执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /tmp</div><div class="line">./keychain_dumper</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">./keychain_dumper</span><br></pre></td></tr></table></figure>
 <p>可以看到所有的 Keychain 数据都被导出了，包括 Wifi 密码：</p>
 <p><img src="/images/iOS-Security-Data-Keychain-Wifi.png" alt="iOS-Security-Data-Keychain-Wifi"></p>
 <p>也包括知乎的历史数据：</p>
 <p><img src="/images/iOS-Security-Data-Keychain-Zhihu.png" alt="iOS-Security-Data-Keychain-Zhihu"></p>
 <h2 id="CoreData"><a href="#CoreData" class="headerlink" title="CoreData"></a>CoreData</h2><p>CoreData 的持久化存储类型有以下几种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">COREDATA_EXTERN NSString * const NSSQLiteStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</div><div class="line">COREDATA_EXTERN NSString * const NSXMLStoreType API_AVAILABLE(macosx(10.4)) API_UNAVAILABLE(ios);</div><div class="line">COREDATA_EXTERN NSString * const NSBinaryStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</div><div class="line">COREDATA_EXTERN NSString * const NSInMemoryStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COREDATA_EXTERN NSString * const NSSQLiteStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</span><br><span class="line">COREDATA_EXTERN NSString * const NSXMLStoreType API_AVAILABLE(macosx(10.4)) API_UNAVAILABLE(ios);</span><br><span class="line">COREDATA_EXTERN NSString * const NSBinaryStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</span><br><span class="line">COREDATA_EXTERN NSString * const NSInMemoryStoreType API_AVAILABLE(macosx(10.4),ios(3.0));</span><br></pre></td></tr></table></figure>
 <p>除了指定类型，还需要指定存储文件的路径，例如 Sqlite:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];</div><div class="line"></div><div class="line">NSURL *sqliteURL = [NSURL URLWithString:@&quot;.../CoreDataDemo.sqlite&quot;];</div><div class="line">NSError *error;</div><div class="line">[_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType</div><div class="line">                                                  configuration:nil</div><div class="line">                                                            URL:sqliteURL</div><div class="line">                                                        options:nil</div><div class="line">                                                          error:&amp;error];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];</span><br><span class="line"></span><br><span class="line">NSURL *sqliteURL = [NSURL URLWithString:@&quot;.../CoreDataDemo.sqlite&quot;];</span><br><span class="line">NSError *error;</span><br><span class="line">[_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType</span><br><span class="line">                                                  configuration:nil</span><br><span class="line">                                                            URL:sqliteURL</span><br><span class="line">                                                        options:nil</span><br><span class="line">                                                          error:&amp;error];</span><br></pre></td></tr></table></figure>
 <p>由于沙盒机制，因此 CoreData 的存储文件只能储存在有限的几个目录下，参考<a href="/2015/01/28/ios-DirectoryStructure/">iOS-目录结构</a>，因此其是可获取的，并且是明文的，并不安全。</p>
 
       
@@ -444,11 +446,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -540,7 +537,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -551,9 +548,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -564,7 +559,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -573,7 +568,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -582,7 +577,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -657,10 +652,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

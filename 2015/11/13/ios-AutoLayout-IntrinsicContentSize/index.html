@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,17 +88,19 @@
 
 
 <meta name="description" content="本文列举了一些利用CHCR进行布局控制的例子。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Auto Layout[5]-Views with Intrinsic Content Size">
 <meta property="og:url" content="http://www.linyibin.cn/2015/11/13/ios-AutoLayout-IntrinsicContentSize/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文列举了一些利用CHCR进行布局控制的例子。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Label_and_Text_Field_Pair_2x.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-CHCR-Simple.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Label_and_Text_Field_Columns_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Two_Buttons_with_Equal_Spacing_screen_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_buttons_with_equal_spacing_2x.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:27:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Auto Layout[5]-Views with Intrinsic Content Size">
 <meta name="twitter:description" content="本文列举了一些利用CHCR进行布局控制的例子。">
@@ -130,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/11/13/ios-AutoLayout-IntrinsicContentSize/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/13/ios-AutoLayout-IntrinsicContentSize/">
 
 
 
@@ -180,7 +182,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -210,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +222,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,7 +232,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -243,7 +245,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -307,7 +309,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -350,7 +352,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -393,7 +395,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -417,20 +419,20 @@
 <h3 id="Simple-Label-and-Text-Field"><a href="#Simple-Label-and-Text-Field" class="headerlink" title="Simple Label and Text Field"></a>Simple Label and Text Field</h3><p>设计如下的布局效果时:</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Label_and_Text_Field_Pair_2x.png" alt="AutoLayout-CHCR"></p>
 <p>Constraint为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Name Label.Leading = Superview.LeadingMargin</div><div class="line">Name Text Field.Trailing = Superview.TrailingMargin</div><div class="line">Name Text Field.Leading = Name Label.Trailing + Standard</div><div class="line">Name Text Field.Top = Top Layout Guide.Bottom + 20.0</div><div class="line">Name label.Baseline = Name Text Field.Baseline</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Name Label.Leading = Superview.LeadingMargin</span><br><span class="line">Name Text Field.Trailing = Superview.TrailingMargin</span><br><span class="line">Name Text Field.Leading = Name Label.Trailing + Standard</span><br><span class="line">Name Text Field.Top = Top Layout Guide.Bottom + 20.0</span><br><span class="line">Name label.Baseline = Name Text Field.Baseline</span><br></pre></td></tr></table></figure>
 <p>Label的宽度首先满足，其次TextField填充剩余的空间，所以，CHCR设置为：</p>
 <p><img src="/images/iOS-AutoLayout-CHCR-Simple.png" alt="AutoLayout-CHCR"></p>
 <h3 id="Dynamic-Height-Columns"><a href="#Dynamic-Height-Columns" class="headerlink" title="Dynamic Height Columns"></a>Dynamic Height Columns</h3><p>当要实现多行的效果时：</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Label_and_Text_Field_Columns_2x.png" alt="AutoLayout-CHCR"></p>
 <p>建立Constraints如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">First Name Label.Leading = Superview.LeadingMargin</div><div class="line">Middle Name Label.Leading = Superview.LeadingMargin</div><div class="line">Last Name Label.Leading = Superview.LeadingMargin</div><div class="line">First Name Text Field.Leading = First Name Label.Trailing + Standard</div><div class="line">Middle Name Text Field.Leading = Middle Name Label.Trailing + Standard</div><div class="line">Last Name Text Field.Leading = Last Name Label.Trailing + Standard</div><div class="line">First Name Text Field.Trailing = Superview.TrailingMargin</div><div class="line">Middle Name Text Field.Trailing = Superview.TrailingMargin</div><div class="line">Last Name Text Field.Trailing = Superview.TrailingMargin</div><div class="line">First Name Label.Baseline = First Name Text Field.Baseline</div><div class="line">Middle Name Label.Baseline = Middle Name Text Field.Baseline</div><div class="line">Last Name Label.Baseline = Last Name Text Field.Baseline</div><div class="line">First Name Text Field.Width = Middle Name Text Field.Width</div><div class="line">First Name Text Field.Width = Last Name Text Field.Width</div><div class="line">First Name Label.Top &gt;= Top Layout Guide.Bottom + 20.0</div><div class="line">First Name Label.Top = Top Layout Guide.Bottom + 20.0 (Priority 249)</div><div class="line">First Name Text Field.Top &gt;= Top Layout Guide.Bottom + 20.0</div><div class="line">First Name Text Field.Top = Top Layout Guide.Bottom + 20.0 (Priority 249)</div><div class="line">Middle Name Label.Top &gt;= Top Layout Guide.Bottom + Standard</div><div class="line">Middle Name Label.Top = Top Layout Guide.Bottom + Standard (Priority 249)</div><div class="line">Middle Name Text Field.Top &gt;= Top Layout Guide.Bottom + Standard</div><div class="line">Middle Name Text Field.Top = Top Layout Guide.Bottom + Standard (Priority 249)</div><div class="line">Last Name Label.Top &gt;= Top Layout Guide.Bottom + Standard</div><div class="line">Last Name Label.Top = Top Layout Guide.Bottom + Standard (Priority 249)</div><div class="line">Last Name Text Field.Top &gt;= Top Layout Guide.Bottom + Standard</div><div class="line">Last Name Text Field.Top = Top Layout Guide.Bottom + Standard (Priority 249)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">First Name Label.Leading = Superview.LeadingMargin</span><br><span class="line">Middle Name Label.Leading = Superview.LeadingMargin</span><br><span class="line">Last Name Label.Leading = Superview.LeadingMargin</span><br><span class="line">First Name Text Field.Leading = First Name Label.Trailing + Standard</span><br><span class="line">Middle Name Text Field.Leading = Middle Name Label.Trailing + Standard</span><br><span class="line">Last Name Text Field.Leading = Last Name Label.Trailing + Standard</span><br><span class="line">First Name Text Field.Trailing = Superview.TrailingMargin</span><br><span class="line">Middle Name Text Field.Trailing = Superview.TrailingMargin</span><br><span class="line">Last Name Text Field.Trailing = Superview.TrailingMargin</span><br><span class="line">First Name Label.Baseline = First Name Text Field.Baseline</span><br><span class="line">Middle Name Label.Baseline = Middle Name Text Field.Baseline</span><br><span class="line">Last Name Label.Baseline = Last Name Text Field.Baseline</span><br><span class="line">First Name Text Field.Width = Middle Name Text Field.Width</span><br><span class="line">First Name Text Field.Width = Last Name Text Field.Width</span><br><span class="line">First Name Label.Top &gt;= Top Layout Guide.Bottom + 20.0</span><br><span class="line">First Name Label.Top = Top Layout Guide.Bottom + 20.0 (Priority 249)</span><br><span class="line">First Name Text Field.Top &gt;= Top Layout Guide.Bottom + 20.0</span><br><span class="line">First Name Text Field.Top = Top Layout Guide.Bottom + 20.0 (Priority 249)</span><br><span class="line">Middle Name Label.Top &gt;= Top Layout Guide.Bottom + Standard</span><br><span class="line">Middle Name Label.Top = Top Layout Guide.Bottom + Standard (Priority 249)</span><br><span class="line">Middle Name Text Field.Top &gt;= Top Layout Guide.Bottom + Standard</span><br><span class="line">Middle Name Text Field.Top = Top Layout Guide.Bottom + Standard (Priority 249)</span><br><span class="line">Last Name Label.Top &gt;= Top Layout Guide.Bottom + Standard</span><br><span class="line">Last Name Label.Top = Top Layout Guide.Bottom + Standard (Priority 249)</span><br><span class="line">Last Name Text Field.Top &gt;= Top Layout Guide.Bottom + Standard</span><br><span class="line">Last Name Text Field.Top = Top Layout Guide.Bottom + Standard (Priority 249)</span><br></pre></td></tr></table></figure>
 <p>这里，用不等式实现了，动态调节距离顶部的高度，CHCR设置与上方相同。</p>
 <h3 id="Two-Buttons-with-Equal-Spacing"><a href="#Two-Buttons-with-Equal-Spacing" class="headerlink" title="Two Buttons with Equal Spacing"></a>Two Buttons with Equal Spacing</h3><p>当要实现两个Button与左右两边的间距都相等的效果时：</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Two_Buttons_with_Equal_Spacing_screen_2x.png" alt="AutoLayout-CHCR"></p>
 <p>由于，没办法对空的区域建立Constraints，所以，需要引入辅助的Dummy View：</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_buttons_with_equal_spacing_2x.png" alt="AutoLayout-CHCR"></p>
 <p>建立Constraints如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Leading Dummy View.Leading = Superview.LeadingMargin</div><div class="line">Short Button.Leading = Leading Dummy View.Trailing</div><div class="line">Center Dummy View.Leading = Short Button.Trailing</div><div class="line">Long Button.Leading = Center Dummy View.Trailing</div><div class="line">Trailing Dummy View.Leading = Long Button.Trailing</div><div class="line">Trailing Dummy View.Trailing = Superview.TrailingMargin</div><div class="line">Bottom Layout Guide.Top = Leading Dummy View.Bottom + 20.0</div><div class="line">Bottom Layout Guide.Top = Short Button.Bottom + 20.0</div><div class="line">Bottom Layout Guide.Top = Center Dummy View.Bottom + 20.0</div><div class="line">Bottom Layout Guide.Top = Long Button.Bottom + 20.0</div><div class="line">Bottom Layout Guide.Top = Trailing Dummy View.Bottom + 20.0</div><div class="line">Short Button.Leading &gt;= Superview.LeadingMargin</div><div class="line">Long Button.Leading &gt;= Short Button.Trailing + Standard</div><div class="line">Superview.TrailingMargin &gt;= Long Button.Trailing</div><div class="line">Leading Dummy View.Width = Center Dummy View.Width</div><div class="line">Leading Dummy View.Width = Trailing Dummy View.Width</div><div class="line">Short Button.Width = Long Button.Width</div><div class="line">Leading Dummy View.Height = 0.0</div><div class="line">Center Dummy View.Height = 0.0</div><div class="line">Trailing Dummy View.Height = 0.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Leading Dummy View.Leading = Superview.LeadingMargin</span><br><span class="line">Short Button.Leading = Leading Dummy View.Trailing</span><br><span class="line">Center Dummy View.Leading = Short Button.Trailing</span><br><span class="line">Long Button.Leading = Center Dummy View.Trailing</span><br><span class="line">Trailing Dummy View.Leading = Long Button.Trailing</span><br><span class="line">Trailing Dummy View.Trailing = Superview.TrailingMargin</span><br><span class="line">Bottom Layout Guide.Top = Leading Dummy View.Bottom + 20.0</span><br><span class="line">Bottom Layout Guide.Top = Short Button.Bottom + 20.0</span><br><span class="line">Bottom Layout Guide.Top = Center Dummy View.Bottom + 20.0</span><br><span class="line">Bottom Layout Guide.Top = Long Button.Bottom + 20.0</span><br><span class="line">Bottom Layout Guide.Top = Trailing Dummy View.Bottom + 20.0</span><br><span class="line">Short Button.Leading &gt;= Superview.LeadingMargin</span><br><span class="line">Long Button.Leading &gt;= Short Button.Trailing + Standard</span><br><span class="line">Superview.TrailingMargin &gt;= Long Button.Trailing</span><br><span class="line">Leading Dummy View.Width = Center Dummy View.Width</span><br><span class="line">Leading Dummy View.Width = Trailing Dummy View.Width</span><br><span class="line">Short Button.Width = Long Button.Width</span><br><span class="line">Leading Dummy View.Height = 0.0</span><br><span class="line">Center Dummy View.Height = 0.0</span><br><span class="line">Trailing Dummy View.Height = 0.0</span><br></pre></td></tr></table></figure>
 <p>注意，引入的Dummy View的高度为0，但是其依然会造成内存消耗以及影响View结构树的响应链，可能导致一些难以定位的异常。</p>
 
       
@@ -439,11 +441,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -535,7 +532,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -546,9 +543,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -559,7 +554,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -568,7 +563,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -577,7 +572,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -652,10 +647,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

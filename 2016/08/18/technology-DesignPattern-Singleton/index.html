@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,DesignPattern," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,DesignPattern,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,13 +88,15 @@
 
 
 <meta name="description" content="本文介绍了GoF中的单件模式。">
+<meta name="keywords" content="Technology,DesignPattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-设计模式-单件模式">
 <meta property="og:url" content="http://www.linyibin.cn/2016/08/18/technology-DesignPattern-Singleton/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍了GoF中的单件模式。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Singleton-Class.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-设计模式-单件模式">
 <meta name="twitter:description" content="本文介绍了GoF中的单件模式。">
@@ -126,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/08/18/technology-DesignPattern-Singleton/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/08/18/technology-DesignPattern-Singleton/">
 
 
 
@@ -176,7 +178,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +208,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +218,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -226,7 +228,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -239,7 +241,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -303,7 +305,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -346,7 +348,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -389,7 +391,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -411,10 +413,10 @@
         <p>本文介绍了GoF中的单件模式。</p>
 <a id="more"></a>
 <h2 id="模式推演"><a href="#模式推演" class="headerlink" title="模式推演"></a>模式推演</h2><h4 id="当需要保证某个对象独一无二时："><a href="#当需要保证某个对象独一无二时：" class="headerlink" title="当需要保证某个对象独一无二时："></a>当需要保证某个对象独一无二时：</h4><p>有时候，我们需要保证某个对象是独一无二的，例如针对锁，我们需要保证钥匙是唯一的，为了控制类的初始化，我们将构造函数设置为private，然后提供一个方法专门用于初始化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Singleton&#123;</div><div class="line">	private static Singleton uniqueInstance;</div><div class="line">	</div><div class="line">	private Singleton()&#123;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public getInstance()&#123;</div><div class="line">		if(uniqueInstance == null)&#123;</div><div class="line">			uniqueInstance = new Singleton();</div><div class="line">		&#125;</div><div class="line">		return uniqueInstance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singleton&#123;</span><br><span class="line">	private static Singleton uniqueInstance;</span><br><span class="line">	</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public getInstance()&#123;</span><br><span class="line">		if(uniqueInstance == null)&#123;</span><br><span class="line">			uniqueInstance = new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		return uniqueInstance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>乍看之下，没什么问题，但是在多线程中，依然可能导致创造多个对象，需要进一步优化。</p>
 <h4 id="注意多线程："><a href="#注意多线程：" class="headerlink" title="注意多线程："></a>注意多线程：</h4><p>为了规避多线程并发导致的，创造多个对象的问题，加上保护，首先，将静态变量设置为volatitle，保证每次从内存读取，而不是从寄存器缓存中读取，其次，在创建的时候，加上锁：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Singleton&#123;</div><div class="line">	private volatitle static Singleton uniqueInstance;</div><div class="line">	</div><div class="line">	private Singleton()&#123;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public getInstance()&#123;</div><div class="line">		if(uniqueInstance == null)&#123;</div><div class="line">			synchronized(Singleton.class)&#123;</div><div class="line">				if(uniqueInstance == null)</div><div class="line">					uniqueInstance = new Singleton();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return uniqueInstance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Singleton&#123;</span><br><span class="line">	private volatitle static Singleton uniqueInstance;</span><br><span class="line">	</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public getInstance()&#123;</span><br><span class="line">		if(uniqueInstance == null)&#123;</span><br><span class="line">			synchronized(Singleton.class)&#123;</span><br><span class="line">				if(uniqueInstance == null)</span><br><span class="line">					uniqueInstance = new Singleton();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return uniqueInstance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种设计方式就是单件模式，与直接使用静态全局变量的区别在于，单件可以在被使用到的时候才创建对象，并且静态全局变量不能保证只有一个，有可能创造了多个实例，再重新复制给静态全局变量。</p>
 <p>还需要注意的是，如果有多个类加载器(Class Loader)，那可能会存在多个单件，解决办法就是自行指定同一个类加载器。</p>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
@@ -429,11 +431,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -527,7 +524,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -538,9 +535,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -551,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -560,7 +555,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -569,7 +564,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -624,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当需要保证某个对象独一无二时："><span class="nav-number">1.0.1.</span> <span class="nav-text">当需要保证某个对象独一无二时：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意多线程："><span class="nav-number">1.0.2.</span> <span class="nav-text">注意多线程：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当需要保证某个对象独一无二时："><span class="nav-number">1.0.1.</span> <span class="nav-text">当需要保证某个对象独一无二时：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意多线程："><span class="nav-number">1.0.2.</span> <span class="nav-text">注意多线程：</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li></div>
             
 
           </div>
@@ -644,10 +639,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

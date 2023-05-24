@@ -1,0 +1,877 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="分布式系统">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Distributed System 分布式系统 Consistent Hashing 一致性哈希">
+<meta name="keywords" content="分布式系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Distributed System-分布式系统 Consistent Hashing 一致性哈希">
+<meta property="og:url" content="http://www.linyibin.cn/2022/09/15/distributedSystem-ConsistentHashing/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Distributed System 分布式系统 Consistent Hashing 一致性哈希">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Circle.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Pair.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Add.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Remove.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Question.jpg">
+<meta property="og:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Solution.jpg">
+<meta property="og:updated_time" content="2023-05-24T10:41:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Distributed System-分布式系统 Consistent Hashing 一致性哈希">
+<meta name="twitter:description" content="Distributed System 分布式系统 Consistent Hashing 一致性哈希">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/DistributedSystem-ConsistentHashing-Circle.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2022/09/15/distributedSystem-ConsistentHashing/">
+
+
+
+
+
+  <title> Distributed System-分布式系统 Consistent Hashing 一致性哈希 | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2022/09/15/distributedSystem-ConsistentHashing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Distributed System-分布式系统 Consistent Hashing 一致性哈希
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-15T00:00:00+08:00">
+                2022-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2022/09/15/distributedSystem-ConsistentHashing/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Distributed System 分布式系统 Consistent Hashing 一致性哈希</p>
+<a id="more"></a>
+<h1 id="DHT"><a href="#DHT" class="headerlink" title="DHT"></a>DHT</h1><blockquote>
+<p>Distributed Hash Table (DHT) 是分布式系统的一个基础组件</p>
+</blockquote>
+<h1 id="环形-Hash-空间"><a href="#环形-Hash-空间" class="headerlink" title="环形 Hash 空间"></a>环形 Hash 空间</h1><p>把 Hash 空间头尾相连，形成一个闭合的环形</p>
+<p><img src="/images/DistributedSystem-ConsistentHashing-Circle.jpg" alt="DistributedSystem-ConsistentHashing-Circle"></p>
+<h2 id="机器和数据配对"><a href="#机器和数据配对" class="headerlink" title="机器和数据配对"></a>机器和数据配对</h2><ol>
+<li>将机器（IP或机器唯一标识作为输入）通过 Hash 算法映射到环上</li>
+<li>将数据通过 Hash 算法映射到环上</li>
+<li>按顺时针转动。让数据点找到跟它最近的机器点</li>
+</ol>
+<p><img src="/images/DistributedSystem-ConsistentHashing-Pair.jpg" alt="DistributedSystem-ConsistentHashing-Pair"></p>
+<h2 id="机器的添加与删除"><a href="#机器的添加与删除" class="headerlink" title="机器的添加与删除"></a>机器的添加与删除</h2><h4 id="向集群中增加机器-C4"><a href="#向集群中增加机器-C4" class="headerlink" title="向集群中增加机器 C4"></a>向集群中增加机器 C4</h4><p><img src="/images/DistributedSystem-ConsistentHashing-Add.jpg" alt="DistributedSystem-ConsistentHashing-Add"></p>
+<p>只有数据 M4 会从 C2 迁移到 C4，其他数据不受影响</p>
+<h4 id="从集群中删除机器-C1"><a href="#从集群中删除机器-C1" class="headerlink" title="从集群中删除机器 C1"></a>从集群中删除机器 C1</h4><p><img src="/images/DistributedSystem-ConsistentHashing-Remove.jpg" alt="DistributedSystem-ConsistentHashing-Remove"></p>
+<p>只有 C1 的数据会迁移到 C3，其他数据不受影响</p>
+<h2 id="问题和方案"><a href="#问题和方案" class="headerlink" title="问题和方案"></a>问题和方案</h2><h4 id="问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash-环的倾斜）"><a href="#问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash-环的倾斜）" class="headerlink" title="问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash 环的倾斜）"></a>问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash 环的倾斜）</h4><p><img src="/images/DistributedSystem-ConsistentHashing-Question.jpg" alt="DistributedSystem-ConsistentHashing-Question"></p>
+<ul>
+<li>A、B、C三台机器的负载极其不均衡</li>
+<li>雪崩效应<ul>
+<li>在极端情况下，假如A节点出现故障，A上的数据全部转移到B上，大量的数据导可能会导致节点B的崩溃，之后A和B上所有的数据向节点C迁移，导致节点C也崩溃，由此导致整个集群宕机。</li>
+</ul>
+</li>
+</ul>
+<h4 id="方案：虚拟节点"><a href="#方案：虚拟节点" class="headerlink" title="方案：虚拟节点"></a>方案：虚拟节点</h4><p>解决哈希环偏斜问题的方法就是，让集群中的节点尽可能的多，从而让各个节点均匀的分布在哈希空间中。</p>
+<p>在现实情境下，机器的数量一般都是固定的，所以我们只能将现有的物理节通过虚拟的方法复制多个出来，这些由实际节点虚拟复制而来的节点被称为虚拟节点。</p>
+<p><img src="/images/DistributedSystem-ConsistentHashing-Solution.jpg" alt="DistributedSystem-ConsistentHashing-Solution"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Distributed-System/" rel="tag"># Distributed System</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/08/27/distributedSystem-LongConnect/" rel="next" title="Distributed System-分布式系统 Long-Polling vs WebSockets vs Server-Sent Events 长连接">
+                <i class="fa fa-chevron-left"></i> Distributed System-分布式系统 Long-Polling vs WebSockets vs Server-Sent Events 长连接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/09/27/distributedSystem-Design/" rel="prev" title="Distributed System-分布式系统设计概述">
+                Distributed System-分布式系统设计概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">347</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DHT"><span class="nav-number">1.</span> <span class="nav-text">DHT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环形-Hash-空间"><span class="nav-number">2.</span> <span class="nav-text">环形 Hash 空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器和数据配对"><span class="nav-number">2.1.</span> <span class="nav-text">机器和数据配对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器的添加与删除"><span class="nav-number">2.2.</span> <span class="nav-text">机器的添加与删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#向集群中增加机器-C4"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">向集群中增加机器 C4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从集群中删除机器-C1"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">从集群中删除机器 C1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题和方案"><span class="nav-number">2.3.</span> <span class="nav-text">问题和方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash-环的倾斜）"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">问题：当集群中的节点数量较少时，可能会出现节点在哈希空间中分布不平衡的问题。（Hash 环的倾斜）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方案：虚拟节点"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">方案：虚拟节点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

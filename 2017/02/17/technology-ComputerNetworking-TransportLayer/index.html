@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,Network,Computer," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,Network,Computer,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,11 +88,13 @@
 
 
 <meta name="description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
+<meta name="keywords" content="Technology,Network,Computer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-Computer Networking[3]-Transport Layer">
 <meta property="og:url" content="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TransportLayer.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Multiplexing&Demultiplexing.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Segment.png">
@@ -144,7 +146,7 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TCP-AIMD.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TCP-Bottleneck.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TCP-Throughput.png">
-<meta property="og:updated_time" content="2017-04-18T05:16:53.000Z">
+<meta property="og:updated_time" content="2017-04-18T13:44:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-Computer Networking[3]-Transport Layer">
 <meta name="twitter:description" content="This chapter we study the critical role of providing com- munication services directly to the application processes running on different hosts.">
@@ -176,7 +178,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2017/02/17/technology-ComputerNetworking-TransportLayer/">
 
 
 
@@ -226,7 +228,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -256,7 +258,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -266,7 +268,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -276,7 +278,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -289,7 +291,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -353,7 +355,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -396,7 +398,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -439,7 +441,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -475,12 +477,16 @@
 <p>These two minimal transport-layer services process-to-process data delivery and error checking are the only two services that UDP provides.</p>
 <blockquote>
 <p>UDP:process-to-process data delivery, error checking</p>
+</blockquote>
+<blockquote>
 <p>TCP:process-to-process data delivery, error checking, reliable data transfer, congestion control</p>
 </blockquote>
 <h2 id="Multiplexing-and-Demultiplexing"><a href="#Multiplexing-and-Demultiplexing" class="headerlink" title="Multiplexing and Demultiplexing"></a>Multiplexing and Demultiplexing</h2><p>Transport-layer Multiplexing and Demultiplexing:extending the host-to-host delivery service provided by the network layer to a process-to-process delivery service for applications running on the hosts.</p>
 <p>The transport layer in the receiving host does not actually deliver data directly to a process, but instead to an intermediary socket.</p>
 <blockquote>
 <p>Demultiplexing:This job of delivering the data in a transport-layer segment to the correct socket.</p>
+</blockquote>
+<blockquote>
 <p>Multiplexing:The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information (that will later be used in demultiplexing) to create segments, and passing the segments to the network layer.</p>
 </blockquote>
 <p><img src="/images/Technology-ComputerNetworking-Internet-Multiplexing&amp;Demultiplexing.png" alt="Multiplexing&amp;Demultiplexing"></p>
@@ -546,6 +552,8 @@
 <p>with a perfectly reliablechannel there is no need for the receiver side to provide any feedback to the sendersince nothing can go wrong. No need forthe receiver to ask the sender to slow down.</p>
 <h4 id="Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-0"><a href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt2-0" class="headerlink" title="Reliable Data Transfer over a Channel with Bit Errors: rdt2.0"></a>Reliable Data Transfer over a Channel with Bit Errors: rdt2.0</h4><blockquote>
 <p>ACK:positive acknowledgments(“OK”)</p>
+</blockquote>
+<blockquote>
 <p>NDK:negative acknowledgments (“Please repeat that.”)</p>
 </blockquote>
 <p>In a computer network setting, reliable data transfer protocols based on such retransmission are known as <strong>ARQ (Automatic Repeat reQuest)</strong> protocols.</p>
@@ -606,8 +614,14 @@
 <h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p><img src="/images/Technology-ComputerNetworking-Internet-RDT-Summary.png" alt="RDT-Summary"></p>
 <h2 id="Connection-Oriented-Transport-TCP"><a href="#Connection-Oriented-Transport-TCP" class="headerlink" title="Connection-Oriented Transport: TCP"></a>Connection-Oriented Transport: TCP</h2><h3 id="The-TCP-Connection"><a href="#The-TCP-Connection" class="headerlink" title="The TCP Connection"></a>The TCP Connection</h3><blockquote>
 <p>connection-oriented, full-duplex service(double-sided<br>), point-to-point</p>
+</blockquote>
+<blockquote>
 <p>MTU(maximum transmission unit):the length of the largest link-layer frame that can be sent by the local sending host.</p>
+</blockquote>
+<blockquote>
 <p>MSS(maximum segment size):the maximum amount of application-layer data in the segment, not the maximum size of the TCP segment including headers.</p>
+</blockquote>
+<blockquote>
 <p>The MSS is typically set by first determining MTU, and then setting the MSS to ensure that a TCP segment plus the TCP/IP header length (typically 40 bytes) will fit into a single link-layer frame. Both Ethernet and PPP link-layer protocols have an MSS of 1,500 bytes.</p>
 </blockquote>
 <h3 id="TCP-Segment-Structure"><a href="#TCP-Segment-Structure" class="headerlink" title="TCP Segment Structure"></a>TCP Segment Structure</h3><p>When TCP sends a large file, it typically <strong>breaks the file into chunks of size MSS</strong>.</p>
@@ -664,7 +678,11 @@
 <p>TCP’s error-recovery mechanism is probably best categorized as a hybrid of GBN and SR protocols.</p>
 <h3 id="Flow-Control"><a href="#Flow-Control" class="headerlink" title="Flow Control"></a>Flow Control</h3><blockquote>
 <p>Flow-Control Service:to eliminate the possibility of the sender overflowing the receiver’s buffer. Flow control is thus a speed-matching service, matching the rate at which the sender is sending against the rate at which the receiving application is reading. </p>
+</blockquote>
+<blockquote>
 <p>LastByteRead: the number of the last byte in the data stream read from the buffer by the application process.</p>
+</blockquote>
+<blockquote>
 <p>LastByteRcvd: the number of the last byte in the data stream that has arrived from the network and has been placed in the receive buffer.</p>
 </blockquote>
 <p><img src="/images/Technology-ComputerNetworking-Internet-TCP-RevBuffer.png" alt="TCP-RevBuffer"></p>
@@ -799,11 +817,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -899,7 +912,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -910,9 +923,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -923,7 +934,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -932,7 +943,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -941,7 +952,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1016,10 +1027,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,11 +88,13 @@
 
 
 <meta name="description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Auto Layout[1]-Constraints">
 <meta property="og:url" content="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png">
@@ -101,7 +103,7 @@
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-IntrinsicSize.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:23:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Auto Layout[1]-Constraints">
 <meta name="twitter:description" content="Auto Layout可以根据View之间的Constraints(约束)来自动计算View的大小以及位置。这种基于Constraints的设计方法可以帮助开发者搭建起用户界面来应对外部或者内部的变化。">
@@ -133,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/">
 
 
 
@@ -183,7 +185,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -213,7 +215,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -223,7 +225,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -233,7 +235,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -246,7 +248,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -310,7 +312,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -353,7 +355,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -396,7 +398,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -477,14 +479,14 @@
 </tbody>
 </table>
 <p><strong>尽量避免使用Left和Right，用Leading和Trailing代替，因为Left和Right是单方向地从左往右递增，而Leading和Trailing是区分反向的，这一点在切换方向时尤其关键，上面有提到，阿拉伯的习惯是从右到左布局的。iOS中可以设置SuperView的semanticContentAttribute属性来切换语言方向。</strong></p>
-<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h2><p>Auto Layout可以不直接通过Constraints，使用<a href="http://" target="_blank" rel="external">UIStackView</a>控件。而其他方式，需要通过Constraints。</p>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h2><p>Auto Layout可以不直接通过Constraints，使用<a href="http://" target="_blank" rel="noopener">UIStackView</a>控件。而其他方式，需要通过Constraints。</p>
 <h3 id="Equation"><a href="#Equation" class="headerlink" title="Equation"></a>Equation</h3><h4 id="Equation介绍"><a href="#Equation介绍" class="headerlink" title="Equation介绍"></a>Equation介绍</h4><p>Views的Layout是通过一组线性的Equation来定义的，每一个Constraint代表一个方程式。</p>
 <p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png" alt="AutoLayout-Constraints-Formula"></p>
 <p>大多数Constraint都是定义了两个Item之间的关系，但同时也能表示一个Item之间两个Attribute之间的关系，例如长是高的两倍。如果设置了Item的宽或高是常量，则此时Multiplier为0，Second Item为空，Second Attribute设置为<strong>NotAnAttribute</strong>。</p>
 <p>里面是一些Equation例子:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// Setting a constant height</div><div class="line">View.height = 0.0 * NotAnAttribute + 40.0</div><div class="line"> </div><div class="line">// Setting a fixed distance between two buttons</div><div class="line">Button_2.leading = 1.0 * Button_1.trailing + 8.0</div><div class="line"> </div><div class="line">// Aligning the leading edge of two buttons</div><div class="line">Button_1.leading = 1.0 * Button_2.leading + 0.0</div><div class="line"> </div><div class="line">// Give two buttons the same width</div><div class="line">Button_1.width = 1.0 * Button_2.width + 0.0</div><div class="line"> </div><div class="line">// Center a view in its superview</div><div class="line">View.centerX = 1.0 * Superview.centerX + 0.0</div><div class="line">View.centerY = 1.0 * Superview.centerY + 0.0</div><div class="line"> </div><div class="line">// Give a view a constant aspect ratio</div><div class="line">View.height = 2.0 * View.width + 0.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// Setting a constant height</span><br><span class="line">View.height = 0.0 * NotAnAttribute + 40.0</span><br><span class="line"> </span><br><span class="line">// Setting a fixed distance between two buttons</span><br><span class="line">Button_2.leading = 1.0 * Button_1.trailing + 8.0</span><br><span class="line"> </span><br><span class="line">// Aligning the leading edge of two buttons</span><br><span class="line">Button_1.leading = 1.0 * Button_2.leading + 0.0</span><br><span class="line"> </span><br><span class="line">// Give two buttons the same width</span><br><span class="line">Button_1.width = 1.0 * Button_2.width + 0.0</span><br><span class="line"> </span><br><span class="line">// Center a view in its superview</span><br><span class="line">View.centerX = 1.0 * Superview.centerX + 0.0</span><br><span class="line">View.centerY = 1.0 * Superview.centerY + 0.0</span><br><span class="line"> </span><br><span class="line">// Give a view a constant aspect ratio</span><br><span class="line">View.height = 2.0 * View.width + 0.0</span><br></pre></td></tr></table></figure>
 <p><strong>需要注意的是，Auto Layout并不是简单地对其进行从右往左赋值，而是解所有方程式得出最终值，例如下例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// Setting a fixed distance between two buttons</div><div class="line">Button_1.trailing = 1.0 * Button_2.leading - 8.0</div><div class="line"> </div><div class="line">// Aligning the leading edge of two buttons</div><div class="line">Button_2.leading = 1.0 * Button_1.leading + 0.0</div><div class="line"> </div><div class="line">// Give two buttons the same width</div><div class="line">Button_2.width = 1.0 * Button.width + 0.0</div><div class="line"> </div><div class="line">// Center a view in its superview</div><div class="line">Superview.centerX = 1.0 * View.centerX + 0.0</div><div class="line">Superview.centerY = 1.0 * View.centerY + 0.0</div><div class="line"> </div><div class="line">// Give a view a constant aspect ratio</div><div class="line">View.width = 0.5 * View.height + 0.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// Setting a fixed distance between two buttons</span><br><span class="line">Button_1.trailing = 1.0 * Button_2.leading - 8.0</span><br><span class="line"> </span><br><span class="line">// Aligning the leading edge of two buttons</span><br><span class="line">Button_2.leading = 1.0 * Button_1.leading + 0.0</span><br><span class="line"> </span><br><span class="line">// Give two buttons the same width</span><br><span class="line">Button_2.width = 1.0 * Button.width + 0.0</span><br><span class="line"> </span><br><span class="line">// Center a view in its superview</span><br><span class="line">Superview.centerX = 1.0 * View.centerX + 0.0</span><br><span class="line">Superview.centerY = 1.0 * View.centerY + 0.0</span><br><span class="line"> </span><br><span class="line">// Give a view a constant aspect ratio</span><br><span class="line">View.width = 0.5 * View.height + 0.0</span><br></pre></td></tr></table></figure>
 <h4 id="创建无歧义，可解的Equations"><a href="#创建无歧义，可解的Equations" class="headerlink" title="创建无歧义，可解的Equations"></a>创建无歧义，可解的Equations</h4><p>Auto Layout要求系列Equations必须是有且只有唯一解，要求每个View都定义好了大小和位置。例如下图：</p>
 <p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/constraint_examples_2x.png" alt="AutoLayout-Constraints-Equations"></p>
 <p>只看水平方向:</p>
@@ -498,12 +500,12 @@
 <p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Portrait_2x.png" alt="AutoLayout-Constraints-Equations-Vertical"></p>
 <p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png" alt="AutoLayout-Constraints-Equations-Horizontal"></p>
 <p>在设备旋转是，两个View的位置保持布局不变，Equations可以这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Vertical Constraints</div><div class="line">Red.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</div><div class="line">Blue.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Blue.bottom + 20.0</div><div class="line"> </div><div class="line">// Horizontal Constraints</div><div class="line">Red.leading = 1.0 * Superview.leading + 20.0</div><div class="line">Blue.leading = 1.0 * Red.trailing + 8.0</div><div class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</div><div class="line">Red.width = 1.0 * Blue.width + 0.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Vertical Constraints</span><br><span class="line">Red.top = 1.0 * Superview.top + 20.0</span><br><span class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</span><br><span class="line">Blue.top = 1.0 * Superview.top + 20.0</span><br><span class="line">Superview.bottom = 1.0 * Blue.bottom + 20.0</span><br><span class="line"> </span><br><span class="line">// Horizontal Constraints</span><br><span class="line">Red.leading = 1.0 * Superview.leading + 20.0</span><br><span class="line">Blue.leading = 1.0 * Red.trailing + 8.0</span><br><span class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</span><br><span class="line">Red.width = 1.0 * Blue.width + 0.0</span><br></pre></td></tr></table></figure>
 <p>也可以这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Vertical Constraints</div><div class="line">Red.top = 1.0 * Superview.top + 20.0</div><div class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</div><div class="line">Red.top = 1.0 * Blue.top + 0.0</div><div class="line">Red.bottom = 1.0 * Blue.bottom + 0.0</div><div class="line"> </div><div class="line">//Horizontal Constraints</div><div class="line">Red.leading = 1.0 * Superview.leading + 20.0</div><div class="line">Blue.leading = 1.0 * Red.trailing + 8.0</div><div class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</div><div class="line">Red.width = 1.0 * Blue.width + 0.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Vertical Constraints</span><br><span class="line">Red.top = 1.0 * Superview.top + 20.0</span><br><span class="line">Superview.bottom = 1.0 * Red.bottom + 20.0</span><br><span class="line">Red.top = 1.0 * Blue.top + 0.0</span><br><span class="line">Red.bottom = 1.0 * Blue.bottom + 0.0</span><br><span class="line"> </span><br><span class="line">//Horizontal Constraints</span><br><span class="line">Red.leading = 1.0 * Superview.leading + 20.0</span><br><span class="line">Blue.leading = 1.0 * Red.trailing + 8.0</span><br><span class="line">Superview.trailing = 1.0 * Blue.trailing + 20.0</span><br><span class="line">Red.width = 1.0 * Blue.width + 0.0</span><br></pre></td></tr></table></figure>
 <p>两种写法各有优劣，第一种写法即使Red View被移除了，Blue View依然布局不变，但是需要注意Red View和Blue View的top和bottom的常量保持一致;第二种写法，无需注意Red View的top的常量，但是一旦Red View被移除，Blue View将只有一个Constraint。</p>
 <h3 id="Inequalites"><a href="#Inequalites" class="headerlink" title="Inequalites"></a>Inequalites</h3><p>除了Equations，Auto Layout也支持Inequalites，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Setting the minimum width</div><div class="line">View.width &gt;= 0.0 * NotAnAttribute + 40.0</div><div class="line"> </div><div class="line">// Setting the maximum width</div><div class="line">View.width &lt;= 0.0 * NotAnAttribute + 280.0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Setting the minimum width</span><br><span class="line">View.width &gt;= 0.0 * NotAnAttribute + 40.0</span><br><span class="line"> </span><br><span class="line">// Setting the maximum width</span><br><span class="line">View.width &lt;= 0.0 * NotAnAttribute + 280.0</span><br></pre></td></tr></table></figure>
 <p>这种情况下，需要其他的属性来决定其最终的大小。</p>
 <h3 id="Priorities"><a href="#Priorities" class="headerlink" title="Priorities"></a>Priorities</h3><p>一般情况下，每一个Constraint都必须满足，如果没有解满足所有Constraint，则其中一条将被抛弃，Auto Layout会将不满足的Constraint打印到控制台。</p>
 <p>每一个Constraint都有一个Priority，优先级为1000的必须满足，其他的属于可选的，可能被抛弃。Auto Layout会从优先级高到低进行计算，如果一个Constraint不满足，则跳过它，继续运算。但是即使被跳过，该Constraint也可以影响结果，Auto Layout会选择结果集合中靠近它的来作为解。</p>
@@ -539,7 +541,7 @@
 <p>Auto Layout在水平和垂直维度上都通过一组Constraint来展示内部内容，其中，Content Hugging尝试压缩，而Compression Resistance尝试扩张。</p>
 <p><img src="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png" alt="AutoLayout-Constraints-IntrinsicContent"></p>
 <p>这些Constraints是通过Inequalites方式定义的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// Compression Resistance</div><div class="line">View.height &gt;= 0.0 * NotAnAttribute + IntrinsicHeight</div><div class="line">View.width &gt;= 0.0 * NotAnAttribute + IntrinsicWidth</div><div class="line"> </div><div class="line">// Content Hugging</div><div class="line">View.height &lt;= 0.0 * NotAnAttribute + IntrinsicHeight</div><div class="line">View.width &lt;= 0.0 * NotAnAttribute + IntrinsicWidth</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Compression Resistance</span><br><span class="line">View.height &gt;= 0.0 * NotAnAttribute + IntrinsicHeight</span><br><span class="line">View.width &gt;= 0.0 * NotAnAttribute + IntrinsicWidth</span><br><span class="line"> </span><br><span class="line">// Content Hugging</span><br><span class="line">View.height &lt;= 0.0 * NotAnAttribute + IntrinsicHeight</span><br><span class="line">View.width &lt;= 0.0 * NotAnAttribute + IntrinsicWidth</span><br></pre></td></tr></table></figure>
 <p>每一个Constraint都有Priority，一般为Content Hugging为250，Compression Resistance为750。因此，伸展比压缩更容易满足要求，例如，如果过度压缩，会裁剪按钮上的文字。</p>
 <p>尽可能使用View的Intrinsic Content Size，可以不必自己维护Constraints，但是需要设置CHCR(Content-Hugging &amp; Compression-Resistance)的Priority。</p>
 <p>下面是一些需要注意的点:</p>
@@ -560,11 +562,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -656,7 +653,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -667,9 +664,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -680,7 +675,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -689,7 +684,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -698,7 +693,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -773,10 +768,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

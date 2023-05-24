@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,17 +88,19 @@
 
 
 <meta name="description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Strategies for Handling App State Transitions">
 <meta property="og:url" content="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_fg_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_launch_bg_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_enter_foreground_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_life_cycle_2x.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:51:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Strategies for Handling App State Transitions">
 <meta name="twitter:description" content="iOS App的生命周期参考iOS-App Life Cycle。本文介绍了，App的生命周期的各种状态下的处理策略。">
@@ -130,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/">
 
 
 
@@ -180,7 +182,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -210,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +222,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,7 +232,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -243,7 +245,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -307,7 +309,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -350,7 +352,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -393,7 +395,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -415,7 +417,7 @@
         <p>iOS App的生命周期参考<a href="/2016/06/10/ios-AppLifeCycle">iOS-App Life Cycle</a>。本文介绍了，App的生命周期的各种状态下的处理策略。</p>
 <a id="more"></a>
 <h3 id="Launch-Time"><a href="#Launch-Time" class="headerlink" title="Launch Time"></a>Launch Time</h3><h4 id="状态变化"><a href="#状态变化" class="headerlink" title="状态变化"></a>状态变化</h4><p>当App开始运行时(无论是进入Foreground或者background状态)，都需要通过以下两个回调：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div><div class="line">-application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">-application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br></pre></td></tr></table></figure>
 <p>来完成以下工作：</p>
 <ul>
 <li>通过application.applicationState来判断是进入什么状态，如果是Foregound，则为UIApplicationStateInactive，如果是Background，则为UIApplicationStateBackground;</li>
@@ -437,7 +439,7 @@
 <li>对于StatusBar，系统也会根据UIInterfaceOrientation进行自动设置，效果等同于在applicationDidFinishLaunching:方法中调用[application setStatusBarOrientation:animated:]方法。</li>
 </ul>
 <h4 id="初次启动时创建数据文件"><a href="#初次启动时创建数据文件" class="headerlink" title="初次启动时创建数据文件"></a>初次启动时创建数据文件</h4><p>在初次启动时，可能需要进行创建一些App需要的数据和配置文件，应该在以下目录中创建：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Library/Application Support/&lt;bundleID&gt;/</div><div class="line">/Documents/</div><div class="line">iCloud的包含目录</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Library/Application Support/&lt;bundleID&gt;/</span><br><span class="line">/Documents/</span><br><span class="line">iCloud的包含目录</span><br></pre></td></tr></table></figure>
 <p>如果App的Bundle中包含了需要进行修改的文件，需要复制这些文件到上述目录下，再进行修改。不能直接修改Bundle中的文件，否则会造成签名不匹配，可能导致启动失败。</p>
 <h3 id="Interrupted-Temporarily"><a href="#Interrupted-Temporarily" class="headerlink" title="Interrupted Temporarily"></a>Interrupted Temporarily</h3><p>App在运行时，可能遇到一些中断(Alert-based Interruptions)，这种情况下，App依然在前台，但是收不到任何触摸事件(依然可以收到推送以及其他一些事件，例如加速计事件)。</p>
 <h4 id="中断处理"><a href="#中断处理" class="headerlink" title="中断处理"></a>中断处理</h4><p>当中断发生时，例如来电时，App会切换到Inactive状态，直到用户取消这一中断，此时，App切换回Active状态或者Background状态。</p>
@@ -445,7 +447,7 @@
 <p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_interruptions_2x.png" alt="App-Interruptions"></p>
 <p>如果是推送的Banner，不会造成中断。但是，如果用户往下拉Banner,出现通知中心时，App将会切换到Inactive状态，与中断一样，直到用户关闭通知中心或者启动其他App。</p>
 <p>在处理这种情况时，App应该在以下回调中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">applicationWillResignActive:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">applicationWillResignActive:</span><br></pre></td></tr></table></figure>
 <p>处理：</p>
 <ul>
 <li>保存数据和任何相关的状态信息;</li>
@@ -458,7 +460,7 @@
 <li>挂起dispatch queues或者operation queues的运行代码(可以在inactive状态下在background tasks中继续处理一些网络请求或者其他时间敏感的后台任务)。</li>
 </ul>
 <p>当App重新变成Active状态时，App应该在以下回调中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">applicationDidBecomeActive:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">applicationDidBecomeActive:</span><br></pre></td></tr></table></figure>
 <p>反向处理上面的操作，游戏除外，游戏应该依然处于暂停状态，让用户自己选择。</p>
 <h4 id="电源键-Sleep-Wake-Button"><a href="#电源键-Sleep-Wake-Button" class="headerlink" title="电源键(Sleep/Wake Button)"></a>电源键(Sleep/Wake Button)</h4><p>如果用户按下电源键，系统会disables触摸事件，将App切换到后台，并将<strong>application.applicationState</strong>设置为<strong>UIApplicationStateBackground</strong>，并且锁屏。</p>
 <p>如果用户按下电源键，app必须关闭与<strong>NSFileProtectionComplete</strong>保护选项下的文件的引用。当电源键被按下时，系统将锁屏，并丢弃这些保护文件的引用，任何与这些文件相关的访问将会失败。所以，应该在<strong>applicationWillResignActive:</strong>方法中关闭，而在<strong>applicationDidBecomeActive:</strong>方法中重新打开。</p>
@@ -526,7 +528,7 @@
 <p>App在后台时，依然可以调用<strong>setNeedsDisplay</strong>和<strong>setNeedsDisplayInRect:</strong>方法，当时此时系统会先搁置这些请求，并在App切换回Foreground状态时，分发这些尚未完成的View-Update通知。</p>
 <h4 id="处理iCloud账号状态变化"><a href="#处理iCloud账号状态变化" class="headerlink" title="处理iCloud账号状态变化"></a>处理iCloud账号状态变化</h4><p>当iCloud账号状态变化时，例如，用户登录或退出，或者用户开启或者关闭iCloud的文件和数据同步，系统会分发<strong>NSUbiquityIdentityDidChangeNotification</strong>通知，App应该做出相应的变化。例如，当用户退出iCloud时，App对iCloud的文件应用应该关闭。</p>
 <h4 id="处理地区变化"><a href="#处理地区变化" class="headerlink" title="处理地区变化"></a>处理地区变化</h4><p>当用户切换地区时，App会收到<strong>NSCurrentLocaleDidChangeNotification</strong>通知，此时，应该对一些地区敏感的信息进行处理，例如日期，时间和一些数字。可以利用以下方法来获取一个自动切换的NSLocale对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[NSLocale autoupdatingCurrentLocale]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NSLocale autoupdatingCurrentLocale]</span><br></pre></td></tr></table></figure>
 <h4 id="处理App的设置变化"><a href="#处理App的设置变化" class="headerlink" title="处理App的设置变化"></a>处理App的设置变化</h4><p>当App的设置项变化时(在设置App中被用户手动变化，例如关闭推送通知)，App会收到<strong>NSUserDefaultsDidChangeNotification</strong>通知，App应该做出相应的变化。例如，邮件App应该对用户的账户信息敏感，当用户在设置App中关闭这一权限时，邮件App应该不能再操作用户的邮件，否则可能会造成安全问题。</p>
 <h3 id="Enter-the-Background"><a href="#Enter-the-Background" class="headerlink" title="Enter the Background"></a>Enter the Background</h3><h4 id="后台任务"><a href="#后台任务" class="headerlink" title="后台任务"></a>后台任务</h4><p>当App切换到后台时，应该在<strong>applicationDidEnterBackground:</strong>回调中，处理：</p>
 <ul>
@@ -535,7 +537,7 @@
 <li>预备好App即将被截图：系统会在applicationDidEnterBackground回调后进行App的截图，用于多任务处理，如果有敏感信息，应该在applicationWillResignActive回调中进行隐藏或者修改，因为applicationDidEnterBackground在双击Home键的时候不会触发。</li>
 </ul>
 <p>回调applicationDidEnterBackground，大概有<strong>5秒</strong>左右的处理时间，如果超出，App将会被系统直接终止并从内存移除，如果需要进行更多的时间，调用方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">beginBackgroundTaskWithExpirationHandler:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beginBackgroundTaskWithExpirationHandler:</span><br></pre></td></tr></table></figure>
 <p>并在子线程中进行耗时任务。</p>
 <p>流程图：</p>
 <p><img src="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_life_cycle_2x.png" alt="App-Bg-Life-Cycle"></p>
@@ -547,11 +549,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -643,7 +640,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -654,9 +651,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -667,7 +662,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -676,7 +671,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -685,7 +680,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -760,10 +755,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

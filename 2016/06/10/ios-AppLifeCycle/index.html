@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,18 +88,20 @@
 
 
 <meta name="description" content="iOS frameworks是基于MVC设计模式搭建的，本文介绍了其App Life Cycle(生命周期)。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-App Life Cycle">
 <meta property="og:url" content="http://www.linyibin.cn/2016/06/10/ios-AppLifeCycle/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="iOS frameworks是基于MVC设计模式搭建的，本文介绍了其App Life Cycle(生命周期)。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/core_objects_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/event_draw_cycle_a_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/high_level_flow_2x.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-ViewController-LifeCycle.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-ViewController-LifeCycle-Two.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-ViewController-LifeCycle-Push.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:51:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-App Life Cycle">
 <meta name="twitter:description" content="iOS frameworks是基于MVC设计模式搭建的，本文介绍了其App Life Cycle(生命周期)。">
@@ -131,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/06/10/ios-AppLifeCycle/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/06/10/ios-AppLifeCycle/">
 
 
 
@@ -181,7 +183,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -211,7 +213,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -221,7 +223,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -231,7 +233,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -244,7 +246,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -308,7 +310,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -351,7 +353,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -394,7 +396,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -416,7 +418,7 @@
         <p>iOS frameworks是基于MVC设计模式搭建的，本文介绍了其App Life Cycle(生命周期)。</p>
 <a id="more"></a>
 <h3 id="The-Main-Function"><a href="#The-Main-Function" class="headerlink" title="The Main Function"></a>The Main Function</h3><p>与其他C语言开发的App一样，iOS Apps的入口也是<strong>main</strong>函数。<strong>main</strong>函数的唯一作用就是将任务委托为<strong>UIKit Frameworks</strong>。<strong>UIKit Frameworks</strong>负责创建<strong>Core Objects</strong>，从<strong>storyboard</strong>文件中加载界面，调用初始化的App设置代码，并启动Run Loop。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#import &lt;UIKit/UIKit.h&gt;</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line"> </div><div class="line">int main(int argc, char * argv[])</div><div class="line">&#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line">#import &quot;AppDelegate.h&quot;</span><br><span class="line"> </span><br><span class="line">int main(int argc, char * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="The-structure-of-an-App"><a href="#The-structure-of-an-App" class="headerlink" title="The structure of an App"></a>The structure of an App</h3><p>在启动App过程中，<strong>UIApplicationMain</strong>函数创建了一些Key Objects，并启动App，如下图。每个iOS app的核心是一个<strong>UIApplication</strong>对象，<strong>UIApplication</strong>对象负责管理在系统和app的其他对象之间的交互。</p>
 <p><img src="https://developer.apple.com/library/prerelease/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/core_objects_2x.png" alt="The structure of an App"></p>
 <table>
@@ -520,12 +522,12 @@
 <p><img src="/images/iOS-ViewController-LifeCycle-Two.png" alt="iOS-ViewController-LifeCycle-Two"></p>
 <p><strong>注意：B的viewWillAppear在A的viewWillDisappear后，viewDidAppear在A的viewDidDisappear后。</strong></p>
 <p>这其中的某些回调是可能不出现的，例如：</p>
-<h4 id="如果在A的viewDidLoad函数中，Push-B，且设置animated为YES："><a href="#如果在A的viewDidLoad函数中，Push-B，且设置animated为YES：" class="headerlink" title="如果在A的viewDidLoad函数中，Push B，且设置animated为YES："></a>如果在A的viewDidLoad函数中，Push B，且设置animated为YES：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [super viewDidLoad]; </div><div class="line">    NSLog(@&quot;A:viewDidLoad&quot;);</div><div class="line">    [self.navigationController pushViewController:[CLWechatDetailViewController new] animated:YES];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="如果在A的viewDidLoad函数中，Push-B，且设置animated为YES："><a href="#如果在A的viewDidLoad函数中，Push-B，且设置animated为YES：" class="headerlink" title="如果在A的viewDidLoad函数中，Push B，且设置animated为YES："></a>如果在A的viewDidLoad函数中，Push B，且设置animated为YES：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [super viewDidLoad]; </span><br><span class="line">    NSLog(@&quot;A:viewDidLoad&quot;);</span><br><span class="line">    [self.navigationController pushViewController:[CLWechatDetailViewController new] animated:YES];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A:viewDidLoad</div><div class="line">A:viewWillAppear</div><div class="line">B:viewDidLoad</div><div class="line">A:viewWillDisappear</div><div class="line">B:viewWillAppear</div><div class="line">A:viewDidDisappear</div><div class="line">B:viewDidAppear</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A:viewDidLoad</span><br><span class="line">A:viewWillAppear</span><br><span class="line">B:viewDidLoad</span><br><span class="line">A:viewWillDisappear</span><br><span class="line">B:viewWillAppear</span><br><span class="line">A:viewDidDisappear</span><br><span class="line">B:viewDidAppear</span><br></pre></td></tr></table></figure>
 <p>A的viewDidAppear没有出现。</p>
 <p>如果设置animated为NO, 则结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A:viewDidLoad</div><div class="line">B:viewDidLoad</div><div class="line">B:viewWillAppear</div><div class="line">B:viewDidAppear</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A:viewDidLoad</span><br><span class="line">B:viewDidLoad</span><br><span class="line">B:viewWillAppear</span><br><span class="line">B:viewDidAppear</span><br></pre></td></tr></table></figure>
 <p>A只出现了viewDidLoad回调。</p>
 <p>结论：</p>
 <ul>
@@ -535,9 +537,9 @@
 </ul>
 <p>流程图如下：</p>
 <p><img src="/images/iOS-ViewController-LifeCycle-Push.png" alt="iOS-ViewController-LifeCycle-Push"></p>
-<h4 id="如果在A的viewWillAppear函数中，Push-B，且设置animated为NO："><a href="#如果在A的viewWillAppear函数中，Push-B，且设置animated为NO：" class="headerlink" title="如果在A的viewWillAppear函数中，Push B，且设置animated为NO："></a>如果在A的viewWillAppear函数中，Push B，且设置animated为NO：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)viewWillAppear:(BOOL)animated</div><div class="line">&#123;</div><div class="line">    [super viewWillAppear:animated]; </div><div class="line">    NSLog(@&quot;A:viewWillAppear&quot;);</div><div class="line">    [self.navigationController pushViewController:[CLWechatDetailViewController new] animated:NO];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="如果在A的viewWillAppear函数中，Push-B，且设置animated为NO："><a href="#如果在A的viewWillAppear函数中，Push-B，且设置animated为NO：" class="headerlink" title="如果在A的viewWillAppear函数中，Push B，且设置animated为NO："></a>如果在A的viewWillAppear函数中，Push B，且设置animated为NO：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewWillAppear:(BOOL)animated</span><br><span class="line">&#123;</span><br><span class="line">    [super viewWillAppear:animated]; </span><br><span class="line">    NSLog(@&quot;A:viewWillAppear&quot;);</span><br><span class="line">    [self.navigationController pushViewController:[CLWechatDetailViewController new] animated:NO];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">A:viewDidLoad</div><div class="line">A:viewWillAppear</div><div class="line">A:viewWillDisappear</div><div class="line">A:viewDidDisappear</div><div class="line">B:viewDidLoad</div><div class="line">B:viewWillAppear</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A:viewDidLoad</span><br><span class="line">A:viewWillAppear</span><br><span class="line">A:viewWillDisappear</span><br><span class="line">A:viewDidDisappear</span><br><span class="line">B:viewDidLoad</span><br><span class="line">B:viewWillAppear</span><br></pre></td></tr></table></figure>
 <p><strong>结论：A的viewDidDisappear和B的viewWillAppear之间并没有先后关系，两个will之间有，两个did之间也有，参考上图。</strong></p>
 
       
@@ -546,11 +548,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -642,7 +639,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -653,9 +650,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -666,7 +661,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -675,7 +670,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -684,7 +679,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -759,10 +754,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

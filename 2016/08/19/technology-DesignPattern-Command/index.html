@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,DesignPattern," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,DesignPattern,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,14 +88,16 @@
 
 
 <meta name="description" content="本文介绍了GoF中的命令模式。">
+<meta name="keywords" content="Technology,DesignPattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-设计模式-命令模式">
 <meta property="og:url" content="http://www.linyibin.cn/2016/08/19/technology-DesignPattern-Command/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍了GoF中的命令模式。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Command-Request.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Command-Class.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:56:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-设计模式-命令模式">
 <meta name="twitter:description" content="本文介绍了GoF中的命令模式。">
@@ -127,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/08/19/technology-DesignPattern-Command/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/08/19/technology-DesignPattern-Command/">
 
 
 
@@ -177,7 +179,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -207,7 +209,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -227,7 +229,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -240,7 +242,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -304,7 +306,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -347,7 +349,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -390,7 +392,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -413,13 +415,13 @@
 <a id="more"></a>
 <h2 id="模式推演"><a href="#模式推演" class="headerlink" title="模式推演"></a>模式推演</h2><h4 id="个遥控器有多个按钮，用来控制多个设备："><a href="#个遥控器有多个按钮，用来控制多个设备：" class="headerlink" title="个遥控器有多个按钮，用来控制多个设备："></a>个遥控器有多个按钮，用来控制多个设备：</h4><p>一个遥控器有多个按钮，每个按钮都是按下，或者松开状态，希望可以控制多个设备，并且可以随时进行替换。</p>
 <p>首先，我们将变化部分独立出来，就是可以随时替换的控制命令，由于有很多种命令，所以先建立一个命令的基类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Command&#123;</div><div class="line">	public void execute();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Command&#123;</span><br><span class="line">	public void execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每个命令有一个调用者，就是控制器，有一个接收者，就是设备，将命令传递给控制器的就是用户。</p>
 <p><img src="/images/Technology-DesignPattern-Command-Request.png" alt="Technology-DesignPattern-Command-Request"></p>
 <h4 id="命令支持撤销，支持一次执行多个命令："><a href="#命令支持撤销，支持一次执行多个命令：" class="headerlink" title="命令支持撤销，支持一次执行多个命令："></a>命令支持撤销，支持一次执行多个命令：</h4><p>进一步，我们需要让命令支持撤销：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Command&#123;</div><div class="line">	public void execute();</div><div class="line">	public void undo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Command&#123;</span><br><span class="line">	public void execute();</span><br><span class="line">	public void undo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>支持一次执行多次命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class MacroCommand implements Command &#123;</div><div class="line">	Command[] commands;</div><div class="line">	</div><div class="line">	public MacroCommand(Command[] commands)&#123;</div><div class="line">		this.commands = commands;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public void execute()&#123;</div><div class="line">		for(Command command : commands)&#123;</div><div class="line">			command.execute();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public void undo()&#123;</div><div class="line">		for(Command command : commands)&#123;</div><div class="line">			command.undo();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class MacroCommand implements Command &#123;</span><br><span class="line">	Command[] commands;</span><br><span class="line">	</span><br><span class="line">	public MacroCommand(Command[] commands)&#123;</span><br><span class="line">		this.commands = commands;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void execute()&#123;</span><br><span class="line">		for(Command command : commands)&#123;</span><br><span class="line">			command.execute();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void undo()&#123;</span><br><span class="line">		for(Command command : commands)&#123;</span><br><span class="line">			command.undo();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>命令模式(Command Pattern)：将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也支持可撤销的操作。</p>
 </blockquote>
@@ -436,11 +438,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -534,7 +531,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -545,9 +542,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -558,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -567,7 +562,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -576,7 +571,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -631,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#个遥控器有多个按钮，用来控制多个设备："><span class="nav-number">1.0.1.</span> <span class="nav-text">个遥控器有多个按钮，用来控制多个设备：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令支持撤销，支持一次执行多个命令："><span class="nav-number">1.0.2.</span> <span class="nav-text">命令支持撤销，支持一次执行多个命令：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典型例子"><span class="nav-number">3.</span> <span class="nav-text">典型例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#个遥控器有多个按钮，用来控制多个设备："><span class="nav-number">1.0.1.</span> <span class="nav-text">个遥控器有多个按钮，用来控制多个设备：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令支持撤销，支持一次执行多个命令："><span class="nav-number">1.0.2.</span> <span class="nav-text">命令支持撤销，支持一次执行多个命令：</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典型例子"><span class="nav-number">3.</span> <span class="nav-text">典型例子</span></a></li></div>
             
 
           </div>
@@ -651,10 +646,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

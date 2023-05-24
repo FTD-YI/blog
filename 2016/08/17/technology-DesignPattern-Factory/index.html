@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,DesignPattern," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,DesignPattern,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,16 +88,18 @@
 
 
 <meta name="description" content="本文介绍了GoF中的工厂模式。">
+<meta name="keywords" content="Technology,DesignPattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-设计模式-工厂模式">
 <meta property="og:url" content="http://www.linyibin.cn/2016/08/17/technology-DesignPattern-Factory/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍了GoF中的工厂模式。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Factory-Dependency.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Factory-DependencyInversion.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Factory-Class.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-AbstractFactory-Class.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:56:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-设计模式-工厂模式">
 <meta name="twitter:description" content="本文介绍了GoF中的工厂模式。">
@@ -129,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/08/17/technology-DesignPattern-Factory/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/08/17/technology-DesignPattern-Factory/">
 
 
 
@@ -179,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -229,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -242,7 +244,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -306,7 +308,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -349,7 +351,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -392,7 +394,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -414,20 +416,20 @@
         <p>本文介绍了GoF中的工厂模式。</p>
 <a id="more"></a>
 <h2 id="模式推演"><a href="#模式推演" class="headerlink" title="模式推演"></a>模式推演</h2><h4 id="创造不同类型的披萨："><a href="#创造不同类型的披萨：" class="headerlink" title="创造不同类型的披萨："></a>创造不同类型的披萨：</h4><p>初始写法为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class PizzaStore&#123;</div><div class="line">	Pizza orderPizza(String type)&#123;</div><div class="line">		Pizza pizza;</div><div class="line">		</div><div class="line">		if(type.equals(&quot;cheese&quot;))</div><div class="line">			pizza = new CheesePizza();</div><div class="line">		else if(type.equals(&quot;greek&quot;))</div><div class="line">			pizza = new GreekPizza();</div><div class="line">		else if(type.equals(&quot;pepperoni&quot;))</div><div class="line">			pizza = new PepperoniPizza();</div><div class="line">		</div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line">		return pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class PizzaStore&#123;</span><br><span class="line">	Pizza orderPizza(String type)&#123;</span><br><span class="line">		Pizza pizza;</span><br><span class="line">		</span><br><span class="line">		if(type.equals(&quot;cheese&quot;))</span><br><span class="line">			pizza = new CheesePizza();</span><br><span class="line">		else if(type.equals(&quot;greek&quot;))</span><br><span class="line">			pizza = new GreekPizza();</span><br><span class="line">		else if(type.equals(&quot;pepperoni&quot;))</span><br><span class="line">			pizza = new PepperoniPizza();</span><br><span class="line">		</span><br><span class="line">		pizza.prepare();</span><br><span class="line">		pizza.bake();</span><br><span class="line">		pizza.cut();</span><br><span class="line">		pizza.box();</span><br><span class="line">		return pizza;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>显然，如果要加入一种新的pizza，就得修改这个方法，并且下方的prepare这些方法是不变的。我们必须封装变化。</p>
 <h4 id="创建简单工厂："><a href="#创建简单工厂：" class="headerlink" title="创建简单工厂："></a>创建简单工厂：</h4><p>从需求来看，创建pizza是变化部分，我们将其从原来的类中独立出来，用一个专门的类来负责创造：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class SimpleFactrory&#123;</div><div class="line">	</div><div class="line">	Pizza createPizza(String type)&#123;</div><div class="line">		Pizza pizza = null;</div><div class="line">		</div><div class="line">		if(type.equals(&quot;cheese&quot;))</div><div class="line">			pizza = new CheesePizza();</div><div class="line">		else if(type.equals(&quot;greek&quot;))</div><div class="line">			pizza = new GreekPizza();</div><div class="line">		else if(type.equals(&quot;pepperoni&quot;))</div><div class="line">			pizza = new PepperoniPizza();</div><div class="line">		return pizza;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class SimpleFactrory&#123;</span><br><span class="line">	</span><br><span class="line">	Pizza createPizza(String type)&#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line">		</span><br><span class="line">		if(type.equals(&quot;cheese&quot;))</span><br><span class="line">			pizza = new CheesePizza();</span><br><span class="line">		else if(type.equals(&quot;greek&quot;))</span><br><span class="line">			pizza = new GreekPizza();</span><br><span class="line">		else if(type.equals(&quot;pepperoni&quot;))</span><br><span class="line">			pizza = new PepperoniPizza();</span><br><span class="line">		return pizza;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>简单工厂其实不是一种设计模式，而像是一种编程习惯。</p>
 </blockquote>
 <h4 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h4><p>每个地方的pizza口味不一样，例如深圳和广州两地的，用简单工厂方法，不能满足这种扩展需求，因此我们进一步优化，把createPizza方法通过抽象类的方式，让子类来决定:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class abstract PizzaStore&#123;</div><div class="line">	</div><div class="line">	Pizza orderPizza(String type)&#123;</div><div class="line">		Pizza pizza = createPizza(type);</div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line">		return pizza;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	abstract Pizza createPizza(String type);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">class SZPizzaStore extends PizzaStore&#123;</div><div class="line">	</div><div class="line">	Pizza createPizza(String type)&#123;</div><div class="line">		Pizza pizza = null;</div><div class="line">		</div><div class="line">		if(type.equals(&quot;cheese&quot;))</div><div class="line">			pizza = new SZCheesePizza();</div><div class="line">		else if(type.equals(&quot;greek&quot;))</div><div class="line">			pizza = new SZGreekPizza();</div><div class="line">		else if(type.equals(&quot;pepperoni&quot;))</div><div class="line">			pizza = new SZPepperoniPizza();</div><div class="line">		return pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class abstract PizzaStore&#123;</span><br><span class="line">	</span><br><span class="line">	Pizza orderPizza(String type)&#123;</span><br><span class="line">		Pizza pizza = createPizza(type);</span><br><span class="line">		pizza.prepare();</span><br><span class="line">		pizza.bake();</span><br><span class="line">		pizza.cut();</span><br><span class="line">		pizza.box();</span><br><span class="line">		return pizza;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	abstract Pizza createPizza(String type);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class SZPizzaStore extends PizzaStore&#123;</span><br><span class="line">	</span><br><span class="line">	Pizza createPizza(String type)&#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line">		</span><br><span class="line">		if(type.equals(&quot;cheese&quot;))</span><br><span class="line">			pizza = new SZCheesePizza();</span><br><span class="line">		else if(type.equals(&quot;greek&quot;))</span><br><span class="line">			pizza = new SZGreekPizza();</span><br><span class="line">		else if(type.equals(&quot;pepperoni&quot;))</span><br><span class="line">			pizza = new SZPepperoniPizza();</span><br><span class="line">		return pizza;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>工厂方法与简单工厂的不同是：简单工厂把全部事情，在一个地方都处理了，而工厂方法是创建一个框架，让子类决定如何实现。简单工厂不涉及到继承，只是一个简单的类，而工厂方法可以利用继承具备弹性。</p>
 </blockquote>
 <h4 id="依赖倒置"><a href="#依赖倒置" class="headerlink" title="依赖倒置"></a>依赖倒置</h4><p>如果没有使用工厂方法，写法是这样的:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class PizzaStore&#123;</div><div class="line">	Pizza orderPizza(String style, String type)&#123;</div><div class="line">		Pizza pizza = null;</div><div class="line">		</div><div class="line">		if(style.equals(&quot;NY&quot;))&#123;</div><div class="line">			if(type.equals(&quot;cheese&quot;))</div><div class="line">				pizza = new NYCheesePizza();</div><div class="line">			else if(type.equals(&quot;greek&quot;))</div><div class="line">				pizza = new NYGreekPizza();</div><div class="line">			else if(type.equals(&quot;pepperoni&quot;))</div><div class="line">				pizza = new NYPepperoniPizza();</div><div class="line">		&#125;else if(style.equals(&quot;Chicago&quot;))&#123;</div><div class="line">			if(type.equals(&quot;cheese&quot;))</div><div class="line">				pizza = new ChicagoCheesePizza();</div><div class="line">			else if(type.equals(&quot;greek&quot;))</div><div class="line">				pizza = new ChicagoGreekPizza();</div><div class="line">			else if(type.equals(&quot;pepperoni&quot;))</div><div class="line">				pizza = new ChicagoPepperoniPizza();</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		pizza.prepare();</div><div class="line">		pizza.bake();</div><div class="line">		pizza.cut();</div><div class="line">		pizza.box();</div><div class="line">		return pizza;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class PizzaStore&#123;</span><br><span class="line">	Pizza orderPizza(String style, String type)&#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line">		</span><br><span class="line">		if(style.equals(&quot;NY&quot;))&#123;</span><br><span class="line">			if(type.equals(&quot;cheese&quot;))</span><br><span class="line">				pizza = new NYCheesePizza();</span><br><span class="line">			else if(type.equals(&quot;greek&quot;))</span><br><span class="line">				pizza = new NYGreekPizza();</span><br><span class="line">			else if(type.equals(&quot;pepperoni&quot;))</span><br><span class="line">				pizza = new NYPepperoniPizza();</span><br><span class="line">		&#125;else if(style.equals(&quot;Chicago&quot;))&#123;</span><br><span class="line">			if(type.equals(&quot;cheese&quot;))</span><br><span class="line">				pizza = new ChicagoCheesePizza();</span><br><span class="line">			else if(type.equals(&quot;greek&quot;))</span><br><span class="line">				pizza = new ChicagoGreekPizza();</span><br><span class="line">			else if(type.equals(&quot;pepperoni&quot;))</span><br><span class="line">				pizza = new ChicagoPepperoniPizza();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		pizza.prepare();</span><br><span class="line">		pizza.bake();</span><br><span class="line">		pizza.cut();</span><br><span class="line">		pizza.box();</span><br><span class="line">		return pizza;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>依赖关系如下：</p>
 <p><img src="/images/Technology-DesignPattern-Factory-Dependency.png" alt="Technology-DesignPattern-Factory-Dependency"></p>
 <p>如果设计一个Pizza的基类，PizzaStore只依赖于Pizza类，那么依赖关系如下：</p>
@@ -437,7 +439,7 @@
 <p>OO原则(依赖倒置原则)：要依赖抽象，不要依赖具体类。</p>
 </blockquote>
 <h4 id="当工厂创造的产品种类不止一种且可能重复时"><a href="#当工厂创造的产品种类不止一种且可能重复时" class="headerlink" title="当工厂创造的产品种类不止一种且可能重复时"></a>当工厂创造的产品种类不止一种且可能重复时</h4><p>Pizza需要一些原料，例如sauce、cheese、clam，这些原料对于多种Pizza可能相同，所以我们需要通过工厂来生成这些原料，但也可能不同，所以我们需要定义多个工厂，把工厂的共有方法通过抽象提取出来:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public interface PizzaIngredientFactroy&#123;</div><div class="line">	public Sauce createSacce();</div><div class="line">	public Cheese createCheese();</div><div class="line">	public Clam createClam();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class NYPizzaIngredientFactroy implements PizzaIngredientFactroy&#123;</div><div class="line">	...</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class ChigagoPizzaIngredientFactroy implements PizzaIngredientFactroy&#123;</div><div class="line">	...</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Pizza&#123;</div><div class="line">	private PizzaIngredientFactroy factroy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public interface PizzaIngredientFactroy&#123;</span><br><span class="line">	public Sauce createSacce();</span><br><span class="line">	public Cheese createCheese();</span><br><span class="line">	public Clam createClam();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class NYPizzaIngredientFactroy implements PizzaIngredientFactroy&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ChigagoPizzaIngredientFactroy implements PizzaIngredientFactroy&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Pizza&#123;</span><br><span class="line">	private PizzaIngredientFactroy factroy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种设计模式，就是抽象工厂模式，抽象工厂与工厂方法不同，工厂方法是通过继承的方式，只创造一种产品，而抽象工厂是通过组合，创造一个产品家族。</p>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>工厂方法模式(Factory Pattern)：定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个，工厂方法让类把实例化推迟到子类。</p>
@@ -456,11 +458,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -554,7 +551,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -565,9 +562,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -578,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +582,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -596,7 +591,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -651,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创造不同类型的披萨："><span class="nav-number">1.0.1.</span> <span class="nav-text">创造不同类型的披萨：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建简单工厂："><span class="nav-number">1.0.2.</span> <span class="nav-text">创建简单工厂：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.0.3.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖倒置"><span class="nav-number">1.0.4.</span> <span class="nav-text">依赖倒置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当工厂创造的产品种类不止一种且可能重复时"><span class="nav-number">1.0.5.</span> <span class="nav-text">当工厂创造的产品种类不止一种且可能重复时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创造不同类型的披萨："><span class="nav-number">1.0.1.</span> <span class="nav-text">创造不同类型的披萨：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建简单工厂："><span class="nav-number">1.0.2.</span> <span class="nav-text">创建简单工厂：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.0.3.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖倒置"><span class="nav-number">1.0.4.</span> <span class="nav-text">依赖倒置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当工厂创造的产品种类不止一种且可能重复时"><span class="nav-number">1.0.5.</span> <span class="nav-text">当工厂创造的产品种类不止一种且可能重复时</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li></div>
             
 
           </div>
@@ -671,10 +666,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

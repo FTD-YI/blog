@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,DesignPattern," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,DesignPattern,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,15 +88,17 @@
 
 
 <meta name="description" content="本文介绍了GoF中的解释器模式。">
+<meta name="keywords" content="Technology,DesignPattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-设计模式-解释器模式">
 <meta property="og:url" content="http://www.linyibin.cn/2016/09/04/technology-DesignPattern-Interpreter/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍了GoF中的解释器模式。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Interpreter-Request.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Interpreter-Language.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-DesignPattern-Interpreter-Class.jpg">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:59:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-设计模式-解释器模式">
 <meta name="twitter:description" content="本文介绍了GoF中的解释器模式。">
@@ -128,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/09/04/technology-DesignPattern-Interpreter/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/09/04/technology-DesignPattern-Interpreter/">
 
 
 
@@ -178,7 +180,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -208,7 +210,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -218,7 +220,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -228,7 +230,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -241,7 +243,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -305,7 +307,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -348,7 +350,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -391,7 +393,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -415,13 +417,13 @@
 <h2 id="模式推演"><a href="#模式推演" class="headerlink" title="模式推演"></a>模式推演</h2><h4 id="用简单的语言控制鸭子"><a href="#用简单的语言控制鸭子" class="headerlink" title="用简单的语言控制鸭子"></a>用简单的语言控制鸭子</h4><p><img src="/images/Technology-DesignPattern-Interpreter-Request.png" alt="Technology-DesignPattern-Interpreter-Request"></p>
 <h4 id="归纳语法"><a href="#归纳语法" class="headerlink" title="归纳语法"></a>归纳语法</h4><p><img src="/images/Technology-DesignPattern-Interpreter-Language.png" alt="Technology-DesignPattern-Interpreter-Language"></p>
 <h4 id="将每种语法用一个类表示"><a href="#将每种语法用一个类表示" class="headerlink" title="将每种语法用一个类表示"></a>将每种语法用一个类表示</h4><p><img src="/images/Technology-DesignPattern-Interpreter-Class.jpg" alt="Technology-DesignPattern-Interpreter-Class"></p>
-<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><h4 id="Expression接口"><a href="#Expression接口" class="headerlink" title="Expression接口"></a>Expression接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Expression &#123;</div><div class="line">   public boolean interpret(String context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Variable类"><a href="#Variable类" class="headerlink" title="Variable类"></a>Variable类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">class Variable implements Expression &#123;</div><div class="line">	</div><div class="line">	private static int currentHour = 13;</div><div class="line">	private String name;</div><div class="line">	</div><div class="line">	public Variable(String name)&#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		if(this.name.equalsIgnoreCase(&quot;daylight&quot;))&#123;</div><div class="line">			System.out.println(&quot;Hour:&quot; + currentHour);</div><div class="line">			if(currentHour &gt;= 6 &amp;&amp; currentHour &lt;= 18)&#123;</div><div class="line">				++currentHour;</div><div class="line">				currentHour %= 24;</div><div class="line">				return true;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		++currentHour;</div><div class="line">		currentHour %= 24;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Repetition-amp-Sequence"><a href="#Repetition-amp-Sequence" class="headerlink" title="Repetition &amp; Sequence"></a>Repetition &amp; Sequence</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">class Repetition implements Expression &#123;</div><div class="line">	</div><div class="line">	private Variable var = null;</div><div class="line">	private Expression expr = null;</div><div class="line">	</div><div class="line">	public Repetition(Variable var, Expression expr)&#123;</div><div class="line">		this.var = var;</div><div class="line">		this.expr = expr;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		while(this.var.interpret(context))&#123;</div><div class="line">			this.expr.interpret(context);</div><div class="line">			try &#123;</div><div class="line">				Thread.sleep(1000);</div><div class="line">			&#125; catch (InterruptedException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Sequence implements Expression &#123;</div><div class="line">	</div><div class="line">	private Expression expr1 = null;</div><div class="line">	private Expression expr2 = null;</div><div class="line">	</div><div class="line">	public Sequence(Expression expr1, Expression expr2)&#123;</div><div class="line">		this.expr1 = expr1;</div><div class="line">		this.expr2 = expr2;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		this.expr1.interpret(context);</div><div class="line">		if(this.expr2 != null)</div><div class="line">			this.expr2.interpret(context);</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="QuackCommand-amp-RightCommand-amp-FlyCommand"><a href="#QuackCommand-amp-RightCommand-amp-FlyCommand" class="headerlink" title="QuackCommand &amp; RightCommand &amp; FlyCommand"></a>QuackCommand &amp; RightCommand &amp; FlyCommand</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class QuackCommand implements Expression &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		System.out.println(&quot;Duck Quack..&quot;);</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line">class RightCommand implements Expression &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		System.out.println(&quot;Duck Right..&quot;);</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line">class FlyCommand implements Expression &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public boolean interpret(String context) &#123;</div><div class="line">		System.out.println(&quot;Duck Fly..&quot;);</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="语法解析Parse类"><a href="#语法解析Parse类" class="headerlink" title="语法解析Parse类"></a>语法解析Parse类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">class Parser &#123;</div><div class="line">	</div><div class="line">	public static void parse(String context)&#123;</div><div class="line">		parseExpression(context).interpret(null);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	private static Variable parseVariable(String context)&#123;</div><div class="line">		byte chars[] = context.getBytes();</div><div class="line">		for(int i = 0; i &lt; chars.length; ++i)&#123;</div><div class="line">			byte c = chars[i];</div><div class="line">			if(!(c &gt;= &apos;A&apos; &amp;&amp; c &lt;= &apos;Z&apos;) &amp;&amp; !(c &gt;= &apos;a&apos; &amp;&amp; c &lt;= &apos;z&apos;))&#123;</div><div class="line">				return null;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return new Variable(context);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	private static Expression parseExpression(String context)&#123;</div><div class="line">		Expression expression = parseCommand(context);</div><div class="line">		if(expression == null)&#123;</div><div class="line">			expression = parseSequence(context);</div><div class="line">			if(expression == null)&#123;</div><div class="line">				expression = parseRepetition(context);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return expression;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	private static Expression parseSequence(String context)&#123;</div><div class="line">		int split = context.indexOf(&apos;;&apos;);</div><div class="line">		if(split != -1)</div><div class="line">			return new Sequence(parseExpression(context.substring(0, split)), parseExpression(context.substring(split + 1)));</div><div class="line">		return null;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	private static Expression parseRepetition(String context) &#123;</div><div class="line">		String left = &quot;while(&quot;;</div><div class="line">		if(context.startsWith(left))&#123;</div><div class="line">			int right = context.indexOf(&apos;)&apos;);</div><div class="line">			if(right &gt; 6)&#123;</div><div class="line">				return new Repetition(parseVariable(context.substring(left.length(), right)), parseExpression(context.substring(right + 1)));</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return null;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	private static Expression parseCommand(String context)&#123;</div><div class="line">		if(context.equalsIgnoreCase(&quot;right&quot;))</div><div class="line">			return new RightCommand();</div><div class="line">		if(context.equalsIgnoreCase(&quot;quack&quot;))</div><div class="line">			return new QuackCommand();</div><div class="line">		if(context.equalsIgnoreCase(&quot;fly&quot;))</div><div class="line">			return new FlyCommand();</div><div class="line">		return null;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Main函数"><a href="#Main函数" class="headerlink" title="Main函数"></a>Main函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Main &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Parser.parse(&quot;right;while(daylight)fly;quack;&quot;);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Duck Right..</div><div class="line">Hour:13</div><div class="line">Duck Fly..</div><div class="line">Hour:14</div><div class="line">Duck Fly..</div><div class="line">Hour:15</div><div class="line">Duck Fly..</div><div class="line">Hour:16</div><div class="line">Duck Fly..</div><div class="line">Hour:17</div><div class="line">Duck Fly..</div><div class="line">Hour:18</div><div class="line">Duck Fly..</div><div class="line">Hour:19</div><div class="line">Duck Quack..</div></pre></td></tr></table></figure>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><h4 id="Expression接口"><a href="#Expression接口" class="headerlink" title="Expression接口"></a>Expression接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Expression &#123;</span><br><span class="line">   public boolean interpret(String context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Variable类"><a href="#Variable类" class="headerlink" title="Variable类"></a>Variable类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Variable implements Expression &#123;</span><br><span class="line">	</span><br><span class="line">	private static int currentHour = 13;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public Variable(String name)&#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		if(this.name.equalsIgnoreCase(&quot;daylight&quot;))&#123;</span><br><span class="line">			System.out.println(&quot;Hour:&quot; + currentHour);</span><br><span class="line">			if(currentHour &gt;= 6 &amp;&amp; currentHour &lt;= 18)&#123;</span><br><span class="line">				++currentHour;</span><br><span class="line">				currentHour %= 24;</span><br><span class="line">				return true;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		++currentHour;</span><br><span class="line">		currentHour %= 24;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Repetition-amp-Sequence"><a href="#Repetition-amp-Sequence" class="headerlink" title="Repetition &amp; Sequence"></a>Repetition &amp; Sequence</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class Repetition implements Expression &#123;</span><br><span class="line">	</span><br><span class="line">	private Variable var = null;</span><br><span class="line">	private Expression expr = null;</span><br><span class="line">	</span><br><span class="line">	public Repetition(Variable var, Expression expr)&#123;</span><br><span class="line">		this.var = var;</span><br><span class="line">		this.expr = expr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		while(this.var.interpret(context))&#123;</span><br><span class="line">			this.expr.interpret(context);</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(1000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Sequence implements Expression &#123;</span><br><span class="line">	</span><br><span class="line">	private Expression expr1 = null;</span><br><span class="line">	private Expression expr2 = null;</span><br><span class="line">	</span><br><span class="line">	public Sequence(Expression expr1, Expression expr2)&#123;</span><br><span class="line">		this.expr1 = expr1;</span><br><span class="line">		this.expr2 = expr2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		this.expr1.interpret(context);</span><br><span class="line">		if(this.expr2 != null)</span><br><span class="line">			this.expr2.interpret(context);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="QuackCommand-amp-RightCommand-amp-FlyCommand"><a href="#QuackCommand-amp-RightCommand-amp-FlyCommand" class="headerlink" title="QuackCommand &amp; RightCommand &amp; FlyCommand"></a>QuackCommand &amp; RightCommand &amp; FlyCommand</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class QuackCommand implements Expression &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		System.out.println(&quot;Duck Quack..&quot;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class RightCommand implements Expression &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		System.out.println(&quot;Duck Right..&quot;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class FlyCommand implements Expression &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean interpret(String context) &#123;</span><br><span class="line">		System.out.println(&quot;Duck Fly..&quot;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="语法解析Parse类"><a href="#语法解析Parse类" class="headerlink" title="语法解析Parse类"></a>语法解析Parse类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">class Parser &#123;</span><br><span class="line">	</span><br><span class="line">	public static void parse(String context)&#123;</span><br><span class="line">		parseExpression(context).interpret(null);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static Variable parseVariable(String context)&#123;</span><br><span class="line">		byte chars[] = context.getBytes();</span><br><span class="line">		for(int i = 0; i &lt; chars.length; ++i)&#123;</span><br><span class="line">			byte c = chars[i];</span><br><span class="line">			if(!(c &gt;= &apos;A&apos; &amp;&amp; c &lt;= &apos;Z&apos;) &amp;&amp; !(c &gt;= &apos;a&apos; &amp;&amp; c &lt;= &apos;z&apos;))&#123;</span><br><span class="line">				return null;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Variable(context);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static Expression parseExpression(String context)&#123;</span><br><span class="line">		Expression expression = parseCommand(context);</span><br><span class="line">		if(expression == null)&#123;</span><br><span class="line">			expression = parseSequence(context);</span><br><span class="line">			if(expression == null)&#123;</span><br><span class="line">				expression = parseRepetition(context);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return expression;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static Expression parseSequence(String context)&#123;</span><br><span class="line">		int split = context.indexOf(&apos;;&apos;);</span><br><span class="line">		if(split != -1)</span><br><span class="line">			return new Sequence(parseExpression(context.substring(0, split)), parseExpression(context.substring(split + 1)));</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static Expression parseRepetition(String context) &#123;</span><br><span class="line">		String left = &quot;while(&quot;;</span><br><span class="line">		if(context.startsWith(left))&#123;</span><br><span class="line">			int right = context.indexOf(&apos;)&apos;);</span><br><span class="line">			if(right &gt; 6)&#123;</span><br><span class="line">				return new Repetition(parseVariable(context.substring(left.length(), right)), parseExpression(context.substring(right + 1)));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static Expression parseCommand(String context)&#123;</span><br><span class="line">		if(context.equalsIgnoreCase(&quot;right&quot;))</span><br><span class="line">			return new RightCommand();</span><br><span class="line">		if(context.equalsIgnoreCase(&quot;quack&quot;))</span><br><span class="line">			return new QuackCommand();</span><br><span class="line">		if(context.equalsIgnoreCase(&quot;fly&quot;))</span><br><span class="line">			return new FlyCommand();</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Main函数"><a href="#Main函数" class="headerlink" title="Main函数"></a>Main函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Parser.parse(&quot;right;while(daylight)fly;quack;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Duck Right..</span><br><span class="line">Hour:13</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:14</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:15</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:16</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:17</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:18</span><br><span class="line">Duck Fly..</span><br><span class="line">Hour:19</span><br><span class="line">Duck Quack..</span><br></pre></td></tr></table></figure>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>解释器模式(Interpreter Pattern)：为语言创建解释器。</p>
 </blockquote>
@@ -448,11 +450,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -546,7 +543,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -557,9 +554,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -570,7 +565,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -579,7 +574,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -588,7 +583,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -643,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用简单的语言控制鸭子"><span class="nav-number">1.0.1.</span> <span class="nav-text">用简单的语言控制鸭子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归纳语法"><span class="nav-number">1.0.2.</span> <span class="nav-text">归纳语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将每种语法用一个类表示"><span class="nav-number">1.0.3.</span> <span class="nav-text">将每种语法用一个类表示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实例"><span class="nav-number">2.</span> <span class="nav-text">代码实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression接口"><span class="nav-number">2.0.1.</span> <span class="nav-text">Expression接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable类"><span class="nav-number">2.0.2.</span> <span class="nav-text">Variable类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repetition-amp-Sequence"><span class="nav-number">2.0.3.</span> <span class="nav-text">Repetition & Sequence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QuackCommand-amp-RightCommand-amp-FlyCommand"><span class="nav-number">2.0.4.</span> <span class="nav-text">QuackCommand & RightCommand & FlyCommand</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法解析Parse类"><span class="nav-number">2.0.5.</span> <span class="nav-text">语法解析Parse类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Main函数"><span class="nav-number">2.0.6.</span> <span class="nav-text">Main函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行结果"><span class="nav-number">2.0.7.</span> <span class="nav-text">执行结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式推演"><span class="nav-number">1.</span> <span class="nav-text">模式推演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用简单的语言控制鸭子"><span class="nav-number">1.0.1.</span> <span class="nav-text">用简单的语言控制鸭子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归纳语法"><span class="nav-number">1.0.2.</span> <span class="nav-text">归纳语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将每种语法用一个类表示"><span class="nav-number">1.0.3.</span> <span class="nav-text">将每种语法用一个类表示</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实例"><span class="nav-number">2.</span> <span class="nav-text">代码实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression接口"><span class="nav-number">2.0.1.</span> <span class="nav-text">Expression接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable类"><span class="nav-number">2.0.2.</span> <span class="nav-text">Variable类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repetition-amp-Sequence"><span class="nav-number">2.0.3.</span> <span class="nav-text">Repetition &amp; Sequence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QuackCommand-amp-RightCommand-amp-FlyCommand"><span class="nav-number">2.0.4.</span> <span class="nav-text">QuackCommand &amp; RightCommand &amp; FlyCommand</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法解析Parse类"><span class="nav-number">2.0.5.</span> <span class="nav-text">语法解析Parse类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Main函数"><span class="nav-number">2.0.6.</span> <span class="nav-text">Main函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行结果"><span class="nav-number">2.0.7.</span> <span class="nav-text">执行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li></div>
             
 
           </div>
@@ -663,10 +658,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

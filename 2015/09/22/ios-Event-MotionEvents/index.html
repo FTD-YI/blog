@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,16 +88,18 @@
 
 
 <meta name="description" content="本文对Motion Events的机制进行讲解。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Events[4]-Motion Events">
 <meta property="og:url" content="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文对Motion Events的机制进行讲解。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/prerelease/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/events_to_app_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/acceleration_axes_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/gyro_rotation_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/rm_times_gravityret_2x.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:19:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Events[4]-Motion Events">
 <meta name="twitter:description" content="本文对Motion Events的机制进行讲解。">
@@ -129,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/">
 
 
 
@@ -179,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -229,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -242,7 +244,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -306,7 +308,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -349,7 +351,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -392,7 +394,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -418,13 +420,13 @@
 <h3 id="Motion-Events"><a href="#Motion-Events" class="headerlink" title="Motion Events"></a>Motion Events</h3><p>Motion Events包括设备的定位(Location)、朝向(Orientation)和移动(Movement)。通过处理这些Events，可以对App进行更精妙的处理。加速器(Accelerometer)和陀螺仪(gyroscope)数据可以用于检测设备的倾斜(tilting)、旋转(rotation)和摇晃(shaking)。</p>
 <p>加速器(Accelerometer)实际上是由三个不同维度的加速度构成的，分别对应x, y, z轴，每个加速器测量该维度随着时间沿着线性的速度变化。把这三个组合在一起，就可以取到设备的朝向以及任意方向上的移动。陀螺仪(gyroscope)是测量这三个方向上的旋转速度。</p>
 <h4 id="Getting-the-Current-Device-Orientation-with-UIDevice"><a href="#Getting-the-Current-Device-Orientation-with-UIDevice" class="headerlink" title="Getting the Current Device Orientation with UIDevice"></a>Getting the Current Device Orientation with UIDevice</h4><p>如果只需要获取设备的朝向，而并不需要获取到精准的向量信息，使用<strong>UIDevice</strong>类即可。使用方式如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-(void) viewDidLoad &#123;</div><div class="line">     // Request to turn on accelerometer and begin receiving accelerometer events</div><div class="line">     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];</div><div class="line">     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)orientationChanged:(NSNotification *)notification &#123;</div><div class="line">     NSLog(@&quot;%@&quot;, @([UIDevice currentDevice].orientation));</div><div class="line">&#125;</div><div class="line"> </div><div class="line">-(void) viewDidDisappear &#123;</div><div class="line">     // Request to stop receiving accelerometer events and turn off accelerometer</div><div class="line">     [[NSNotificationCenter defaultCenter] removeObserver:self];</div><div class="line">     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-(void) viewDidLoad &#123;</span><br><span class="line">     // Request to turn on accelerometer and begin receiving accelerometer events</span><br><span class="line">     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];</span><br><span class="line">     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (void)orientationChanged:(NSNotification *)notification &#123;</span><br><span class="line">     NSLog(@&quot;%@&quot;, @([UIDevice currentDevice].orientation));</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">-(void) viewDidDisappear &#123;</span><br><span class="line">     // Request to stop receiving accelerometer events and turn off accelerometer</span><br><span class="line">     [[NSNotificationCenter defaultCenter] removeObserver:self];</span><br><span class="line">     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里，为了防止硬件处于省电关闭状态，需要先调用一下<strong>beginGeneratingDeviceOrientationNotifications</strong>方法，在不需要时，调用<strong>endGeneratingDeviceOrientationNotifications</strong>方法。</p>
 <h4 id="Detecting-Shake-Motion-Events-with-UIEvent"><a href="#Detecting-Shake-Motion-Events-with-UIEvent" class="headerlink" title="Detecting Shake-Motion Events with UIEvent"></a>Detecting Shake-Motion Events with UIEvent</h4><p>当用户摇晃设备时，iOS系统计算加速器的加速度，一旦达到阈值，则生成一个<strong>UIEvent</strong>，并将其传递给App处理。<strong>Motion Events</strong>只会在开始和结束时候，传递给App，不像Touch Events是连续的。<strong>Motion Events</strong>只包含了一种事件类型<strong>UIEventTypeMotion</strong>，和子事件类型<strong>UIEventSubtypeMotionShake</strong>，以及时间戳<strong>Timestamp</strong>。</p>
 <p>举例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake began..&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake ended..&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    if(motion == UIEventSubtypeMotionShake)</div><div class="line">        NSLog(@&quot;A shake cancelled..&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if(motion == UIEventSubtypeMotionShake)</span><br><span class="line">        NSLog(@&quot;A shake began..&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if(motion == UIEventSubtypeMotionShake)</span><br><span class="line">        NSLog(@&quot;A shake ended..&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if(motion == UIEventSubtypeMotionShake)</span><br><span class="line">        NSLog(@&quot;A shake cancelled..&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="Setting-and-Checking-Required-Hardware-Capabilities-for-Motion-Events"><a href="#Setting-and-Checking-Required-Hardware-Capabilities-for-Motion-Events" class="headerlink" title="Setting and Checking Required Hardware Capabilities for Motion Events"></a>Setting and Checking Required Hardware Capabilities for Motion Events</h4><p>如果App是严重依赖于设备的加速器或者陀螺仪的数据，而对于那些不支持的设备，App可能并不能起到作用，则App应该在info.plist中加入以下字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;UIRequiredDeviceCapabilities&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">	&lt;string&gt;accelerometer&lt;/string&gt;</div><div class="line">   &lt;string&gt;gyroscope&lt;/string&gt;</div><div class="line">&lt;/array&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;UIRequiredDeviceCapabilities&lt;/key&gt;</span><br><span class="line">&lt;array&gt;</span><br><span class="line">	&lt;string&gt;accelerometer&lt;/string&gt;</span><br><span class="line">   &lt;string&gt;gyroscope&lt;/string&gt;</span><br><span class="line">&lt;/array&gt;</span><br></pre></td></tr></table></figure>
 <p>iOS系统会根据该字段判断是否在必要时运行App，且App Store也会通过该字段确保用户的设备是有上述硬件的。</p>
 <p>如果App并不是严重依赖该硬件，可以在运行时判断硬件是否支持，下面章节会介绍。</p>
 <h4 id="Capturing-Device-Movement-with-Core-Motion"><a href="#Capturing-Device-Movement-with-Core-Motion" class="headerlink" title="Capturing Device Movement with Core Motion"></a>Capturing Device Movement with Core Motion</h4><p>如果需要精确的加速器和陀螺仪数据，可以使用<strong>CoreMotion.framework</strong>。<strong>CoreMotion</strong>与UIKit不同，它与UIEvent无关，也不会使用响应链，而是简单的分发<strong>Core Motion Events</strong>.</p>
@@ -436,14 +438,14 @@
 </ul>
 <p>以上的数据类，都继承自<strong>CMLogItem</strong>,该类包含了时间戳，可以用于比较Event的前后顺序。</p>
 <p>这里用到的类是<strong>CMMotionManager</strong>，每个App都必须只能创造一个该类的实例，否则会导致数据的接收收到影响。例如，检查硬件是否支持：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_motionManager = [CMMotionManager new];</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.gyroAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.accelerometerAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.magnetometerAvailable);</div><div class="line">NSLog(@&quot;%d&quot;, _motionManager.deviceMotionAvailable);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_motionManager = [CMMotionManager new];</span><br><span class="line">NSLog(@&quot;%d&quot;, _motionManager.gyroAvailable);</span><br><span class="line">NSLog(@&quot;%d&quot;, _motionManager.accelerometerAvailable);</span><br><span class="line">NSLog(@&quot;%d&quot;, _motionManager.magnetometerAvailable);</span><br><span class="line">NSLog(@&quot;%d&quot;, _motionManager.deviceMotionAvailable);</span><br></pre></td></tr></table></figure>
 <p><strong>CMMotionManager</strong>有两种方式可以获取到数据，分别是：</p>
 <ul>
 <li>Pull:调用CMMotionManager的startUpdate方法，并且通过计时器，去获取CMMotionManager的属性值，来主动获取数据;</li>
 <li>Push:设置CMMotionManager的updateInterval属性，来设置间隔时间，并调用CMMotionManager的startUpdate的block方法，来被动获取数据。</li>
 </ul>
 <p>显然，Push方法更好一些，下面是例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_motionManager = [CMMotionManager new];</div><div class="line">if(_motionManager.gyroAvailable)&#123;</div><div class="line">	_motionManager.gyroUpdateInterval = 3.0;</div><div class="line">	[_motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMGyroData * _Nullable gyroData, NSError * _Nullable error) &#123;</div><div class="line">		if(!error)</div><div class="line">            NSLog(@&quot;x:%lf y:%lf z:%lf&quot;, gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">_motionManager = [CMMotionManager new];</span><br><span class="line">if(_motionManager.gyroAvailable)&#123;</span><br><span class="line">	_motionManager.gyroUpdateInterval = 3.0;</span><br><span class="line">	[_motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMGyroData * _Nullable gyroData, NSError * _Nullable error) &#123;</span><br><span class="line">		if(!error)</span><br><span class="line">            NSLog(@&quot;x:%lf y:%lf z:%lf&quot;, gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意，在不需要数据时，要调用stopUpdate，这样可以关闭传感器，以节省设备电量。</p>
 <p><strong>(1) 间隔时间设置</strong></p>
 <p>下面是获取数据的推荐频率：</p>
@@ -468,12 +470,12 @@
 <p>如果没有设置，则<strong>CMDeviceMotion</strong>的参考轴面是重力轴面，即：</p>
 <p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/rm_times_gravityret_2x.png" alt="Gravity"></p>
 <p><strong>CMDeviceMotion</strong>通过这个参考轴面来与当前轴面进行比较，从而得出设备的旋转信息，如果需要，可以修改参考轴面，例如，下面是以Pitch开始的轴面为参考轴面，而不是以重力轴面：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-(void) startPitch &#123;</div><div class="line">    // referenceAttitude is a property</div><div class="line">    self.referenceAttitude = self.motionManager.deviceMotion.attitude;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">- (void)drawView &#123;</div><div class="line">    CMAttitude *currentAttitude = self.motionManager.deviceMotion.attitude;</div><div class="line">    [currentAttitude multiplyByInverseOfAttitude: self.referenceAttitude];</div><div class="line">    // Render bat using currentAttitude</div><div class="line">    [self updateModelsWithAttitude:currentAttitude];</div><div class="line">    [renderer render];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-(void) startPitch &#123;</span><br><span class="line">    // referenceAttitude is a property</span><br><span class="line">    self.referenceAttitude = self.motionManager.deviceMotion.attitude;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (void)drawView &#123;</span><br><span class="line">    CMAttitude *currentAttitude = self.motionManager.deviceMotion.attitude;</span><br><span class="line">    [currentAttitude multiplyByInverseOfAttitude: self.referenceAttitude];</span><br><span class="line">    // Render bat using currentAttitude</span><br><span class="line">    [self updateModelsWithAttitude:currentAttitude];</span><br><span class="line">    [renderer render];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h4><p>利用<strong>Motion Events</strong>可以做很多有意思的事情，例如:</p>
 <p>保持图片永远水平：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;me.jpg&quot;]];</div><div class="line"> iv.frame = self.view.bounds;</div><div class="line"> [self.view addSubview:iv];</div><div class="line">    </div><div class="line"> _motionManager = [CMMotionManager new];</div><div class="line"> if(_motionManager.accelerometerAvailable)&#123;</div><div class="line"> 	_motionManager.accelerometerUpdateInterval = 0.1f;</div><div class="line">  	__weak UIImageView *weakIV = iv;</div><div class="line">   [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</div><div class="line">		double angle = atan2(accelerometerData.acceleration.x, accelerometerData.acceleration.y) - M_PI;</div><div class="line">   		if(fabs(angle - lastAngle) &gt; 0.05f)</div><div class="line">       	weakIV.transform = CGAffineTransformMakeRotation(angle);</div><div class="line">          lastAngle = angle;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;me.jpg&quot;]];</span><br><span class="line"> iv.frame = self.view.bounds;</span><br><span class="line"> [self.view addSubview:iv];</span><br><span class="line">    </span><br><span class="line"> _motionManager = [CMMotionManager new];</span><br><span class="line"> if(_motionManager.accelerometerAvailable)&#123;</span><br><span class="line"> 	_motionManager.accelerometerUpdateInterval = 0.1f;</span><br><span class="line">  	__weak UIImageView *weakIV = iv;</span><br><span class="line">   [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</span><br><span class="line">		double angle = atan2(accelerometerData.acceleration.x, accelerometerData.acceleration.y) - M_PI;</span><br><span class="line">   		if(fabs(angle - lastAngle) &gt; 0.05f)</span><br><span class="line">       	weakIV.transform = CGAffineTransformMakeRotation(angle);</span><br><span class="line">          lastAngle = angle;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>倾斜可以自动滑动列表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];</div><div class="line">    [_tv registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cellID&quot;];</div><div class="line">    _tv.dataSource = self;</div><div class="line">    [self.view addSubview:_tv];</div><div class="line">    </div><div class="line">    _row = 10;</div><div class="line">    _motionManager = [CMMotionManager new];</div><div class="line">    if(_motionManager.accelerometerAvailable)&#123;</div><div class="line">        _motionManager.accelerometerUpdateInterval = 0.1f;</div><div class="line">        [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</div><div class="line">            if(accelerometerData.acceleration.z &lt; -0.5f)</div><div class="line">                _row = MIN(_row + 1, 99);</div><div class="line">            else if(accelerometerData.acceleration.z &gt; 0.5f)</div><div class="line">                _row = MAX(0, _row - 1);</div><div class="line">            [_tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_row inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;</div><div class="line">    return 100;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cellID&quot; forIndexPath:indexPath];</div><div class="line">    if(!cell)&#123;</div><div class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;123&quot;];</div><div class="line">    &#125;</div><div class="line">    cell.textLabel.text = [NSString stringWithFormat:@&quot;%d&quot;, (int)indexPath.row + 1];</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];</span><br><span class="line">    [_tv registerClass:[UITableViewCell class] forCellReuseIdentifier:@&quot;cellID&quot;];</span><br><span class="line">    _tv.dataSource = self;</span><br><span class="line">    [self.view addSubview:_tv];</span><br><span class="line">    </span><br><span class="line">    _row = 10;</span><br><span class="line">    _motionManager = [CMMotionManager new];</span><br><span class="line">    if(_motionManager.accelerometerAvailable)&#123;</span><br><span class="line">        _motionManager.accelerometerUpdateInterval = 0.1f;</span><br><span class="line">        [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) &#123;</span><br><span class="line">            if(accelerometerData.acceleration.z &lt; -0.5f)</span><br><span class="line">                _row = MIN(_row + 1, 99);</span><br><span class="line">            else if(accelerometerData.acceleration.z &gt; 0.5f)</span><br><span class="line">                _row = MAX(0, _row - 1);</span><br><span class="line">            [_tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_row inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;</span><br><span class="line">    return 100;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;cellID&quot; forIndexPath:indexPath];</span><br><span class="line">    if(!cell)&#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;123&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    cell.textLabel.text = [NSString stringWithFormat:@&quot;%d&quot;, (int)indexPath.row + 1];</span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -481,11 +483,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -577,7 +574,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -588,9 +585,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -601,7 +596,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -610,7 +605,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -619,7 +614,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -694,10 +689,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

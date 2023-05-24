@@ -1,0 +1,925 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Technology,Machine Learning,NLP,Natural Language Processing,Deep Learning,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Word Vectors  词向量">
+<meta name="keywords" content="Technology,Machine Learning,NLP,Natural Language Processing,Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technology-机器学习-Word Vectors">
+<meta property="og:url" content="http://www.linyibin.cn/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Word Vectors  词向量">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet-Onehot.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet-Onehots.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations-Example.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-SG-Example.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-SG-Function.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-SG-Softmax.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-SG-Result.png">
+<meta property="og:image" content="http://www.linyibin.cn/images/NLP-DL-SG-Model.png">
+<meta property="og:updated_time" content="2023-05-20T08:56:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technology-机器学习-Word Vectors">
+<meta name="twitter:description" content="Word Vectors  词向量">
+<meta name="twitter:image" content="http://www.linyibin.cn/images/NLP-DL-Meaning-WordNet.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/">
+
+
+
+
+
+  <title> Technology-机器学习-Word Vectors | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Technology-机器学习-Word Vectors
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-18T00:00:00+08:00">
+                2022-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://web.stanford.edu/class/cs224n/" target="_blank" rel="noopener">Word Vectors</a>  词向量</p>
+<a id="more"></a>
+<h2 id="词义"><a href="#词义" class="headerlink" title="词义"></a>词义</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>传统的语言学认为:</p>
+<p>意符 (Signifier) 和意指 (Signified) 可以互相推出。</p>
+<h3 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h3><p>WordNet 是一个人工管理的词义库，可以用其来检测上下位 (is - a) 关系和近义词：</p>
+<p><img src="/images/NLP-DL-Meaning-WordNet.png" alt="NLP-DL-Meaning-WordNet"></p>
+<p>但是这种离散的呈现方式，有很多问题：</p>
+<ul>
+<li>无法区分一些细微的区别，例如：adept，expert，good，practiced，proficient，skillful；</li>
+<li>需要人力进行维持，并无法一直保持更新；</li>
+<li>属于主观的判断；</li>
+<li>很难准确计算单次的相似性。</li>
+</ul>
+<h3 id="离散的表示方式"><a href="#离散的表示方式" class="headerlink" title="离散的表示方式"></a>离散的表示方式</h3><p>绝大多数这种基于规则和统计的 NLP 方法将单词识别成单个原子(不可分割)的符号，例如 hotel, conference, walk。这样的方式，在向量空间里面，是类似以下的表示：</p>
+<p><img src="/images/NLP-DL-Meaning-WordNet-Onehot.png" alt="NLP-DL-Meaning-WordNet-Onehot"></p>
+<p>这种离散的表示方式 (Distributed Representations) ，称为 “one-hot”, 这会导致词库文件非常大。另外，其无法检测相似性。</p>
+<p>例如，当我们输入 “Seattle motel” 时，我们其实是想搜索 “Seattle hotel”，然而，”motel” 与 “hotel” 的向量表示方式为：</p>
+<p><img src="/images/NLP-DL-Meaning-WordNet-Onehots.png" alt="NLP-DL-Meaning-WordNet-Onehots"></p>
+<p>两者是正交的。</p>
+<h3 id="基于离散相似性的表示方式"><a href="#基于离散相似性的表示方式" class="headerlink" title="基于离散相似性的表示方式"></a>基于离散相似性的表示方式</h3><p>基于离散相似性的表示方式 (Distributional Similarity based Representations) 指的是结合上下文，进行语义的理解。</p>
+<p><img src="/images/NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations.png" alt="NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations"></p>
+<p>将词义定义成向量，再通过向量来对上下文的其他单词进行预测，从而达到理解的目的。</p>
+<p><img src="/images/NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations-Example.png" alt="NLP-DL-Meaning-WordNet-DistributionalSimilarityBasedRepresentations-Example"></p>
+<h3 id="词嵌入的学习神经网络"><a href="#词嵌入的学习神经网络" class="headerlink" title="词嵌入的学习神经网络"></a>词嵌入的学习神经网络</h3><p>我们定义好一个模型，用于预测一个单词 $w_t$ 的上下文单词的概率为：</p>
+<p>$$p(context|w_t)=…$$</p>
+<p>同时，定义好其错误率函数，例如：</p>
+<p>$$J = 1 - p(w_{-t}|w_t)$$</p>
+<p>这里的， $w_{-t}$ 代表除了 $w_t$ 以外的所有单词。 </p>
+<p>那么， 我们的目标在于，在一个大的语言集中，检索非常多 t 的位置，并调整单词的向量表示方式，来最小化错误率。</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>Word2vec 可以预测每个单词的上下文词汇的概率。</p>
+<p>两个算法，SG(Skip-grams) 和 CBOW(Continuous Bag of Words)。</p>
+<p>两个训练方法，Hierarchical Softmax 和 Negative Sampling。</p>
+<h3 id="Skip-grams"><a href="#Skip-grams" class="headerlink" title="Skip-grams"></a>Skip-grams</h3><p>对于任一个单词 $t = 1 … T$ ，建立一个半径为 $m$ 的窗口，预测该窗口中每个单词的出现概率，然后，我们尽可能地通过不断尝试单词的向量表示的方式，来最大化其概率分布。</p>
+<p> <img src="/images/NLP-DL-SG-Example.png" alt="NLP-DL-SG-Example"></p>
+<p>函数(Objective/Loss/Cost Funtion)为：</p>
+<p> <img src="/images/NLP-DL-SG-Function.png" alt="NLP-DL-SG-Function"></p>
+<p>其中，$θ$ 代表要优化的变量，即是向量表示方式，下方是对数的表示方式，”-“ 号代表将最大转换成最小，这是机器学习比较喜欢的表达方式，例如错误率越低越好。</p>
+<h4 id="Softmax-函数"><a href="#Softmax-函数" class="headerlink" title="Softmax 函数"></a>Softmax 函数</h4><p>Softmax 函数用于将 $R^v$ 空间映射成概率分布:</p>
+<p><img src="/images/NLP-DL-SG-Softmax.png" alt="NLP-DL-SG-Softmax"></p>
+<p>好处在于，通过幂函数，让结果变成正数，另外，让结果控制在 $[0, 1]$ 之间，实现正则化。另外，通过 $e$ 的幂函数，实现两极化，正样本的结果趋向于 $1$， 而负样本的结果趋向于 $0$。</p>
+<h4 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h4><p>点积(Dot Product)可用于计算两个向量的相似性。</p>
+<p>例如，向量 $u$ 和 $v$：</p>
+<p>$$u^Tv = u.v = \sum_{i=1}^nu_iv_i$$</p>
+<h4 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h4><p>结合 Softmax 函数和点积函数，可以预测出每个单词的半径为 $m$ 的窗口的上下文单词的出现概率。</p>
+<p>例如，对于 $p(w_{t+j}|w_t)$ ，最简单的公式为：</p>
+<p>$$p(o|c) = \frac{exp(u_o^Tv_c)}{\sum_{w=1}^vexp(u_w^Tv_c)}$$</p>
+<p>其中，$o$ 代表上下文单词的索引，$c$ 代表关键字单词的索引，$v_c$ 和 $u_o$ 分别代表其向量。</p>
+<p><strong>为了计算方便，每个单词维持两个向量，一个是其本身的表示向量，另一个是上下文向量。</strong></p>
+<p>用图来表示 SG 算法如下：</p>
+<p><img src="/images/NLP-DL-SG-Result.png" alt="NLP-DL-SG-Result"></p>
+<p>最后，通过计算 Softmax 结果与真实位置的单词向量比较，看其错误率，并进行参数调优。</p>
+<p>我们将所有参数的集合定义为一个长向量 $θ$ ，如果在一个 $d$ 维的向量空间中，有 $V$ 个单词，则：</p>
+<p><img src="/images/NLP-DL-SG-Model.png" alt="NLP-DL-SG-Model"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Technology/" rel="tag"># Technology</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/Natural-Language-Processing/" rel="tag"># Natural Language Processing</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/22/technology-so-lib/" rel="next" title="Technology-修改 SO 文件依赖库">
+                <i class="fa fa-chevron-left"></i> Technology-修改 SO 文件依赖库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/15/technology-jetson-memory/" rel="prev" title="Technology-Jetson Nano 内存优化">
+                Technology-Jetson Nano 内存优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">347</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/candy-yi-84/" target="_blank" rel="external nofollow" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词义"><span class="nav-number">1.</span> <span class="nav-text">词义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测"><span class="nav-number">1.2.</span> <span class="nav-text">检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散的表示方式"><span class="nav-number">1.3.</span> <span class="nav-text">离散的表示方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于离散相似性的表示方式"><span class="nav-number">1.4.</span> <span class="nav-text">基于离散相似性的表示方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词嵌入的学习神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">词嵌入的学习神经网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-number">2.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Skip-grams"><span class="nav-number">2.2.</span> <span class="nav-text">Skip-grams</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Softmax-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">Softmax 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点积"><span class="nav-number">2.2.2.</span> <span class="nav-text">点积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Word2Vec"><span class="nav-number">2.2.3.</span> <span class="nav-text">Word2Vec</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>

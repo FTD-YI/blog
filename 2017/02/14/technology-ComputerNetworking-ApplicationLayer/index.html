@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,Network,Computer," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,Network,Computer,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,11 +88,13 @@
 
 
 <meta name="description" content="This chapter we study the conceptual and implementation aspects of network applications.">
+<meta name="keywords" content="Technology,Network,Computer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-Computer Networking[2]-Application Layer">
 <meta property="og:url" content="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="This chapter we study the conceptual and implementation aspects of network applications.">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-ApplicationArchitecture.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-RequirementsOfApplications.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-PopularApplications.png">
@@ -116,7 +118,7 @@
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-Time-P2P-CS.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-BitTorrent.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-DHT.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T14:23:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-Computer Networking[2]-Application Layer">
 <meta name="twitter:description" content="This chapter we study the conceptual and implementation aspects of network applications.">
@@ -148,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/">
 
 
 
@@ -198,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -238,7 +240,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -248,7 +250,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -261,7 +263,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -325,7 +327,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -368,7 +370,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -411,7 +413,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -491,6 +493,8 @@
 </ul>
 <h3 id="Non-Persistent-and-Persistent-Connections"><a href="#Non-Persistent-and-Persistent-Connections" class="headerlink" title="Non-Persistent and Persistent Connections"></a>Non-Persistent and Persistent Connections</h3><blockquote>
 <p>Non-persistent Connections:each request/response pair be sent over a separate TCP connection.</p>
+</blockquote>
+<blockquote>
 <p>Persistent Connections:all of the requests and their cor-responding responses be sent over the same TCP connection.</p>
 </blockquote>
 <p>Although <strong>HTTP uses persistent connections in its default mode</strong>, HTTP clients and servers can be configured to use non-persistent connections instead.</p>
@@ -500,7 +504,7 @@
 <p>Note that each TCP connection transports exactly one request mes-sage and one response message.</p>
 <p><img src="/images/Technology-ComputerNetworking-Internet-RTT.png" alt="RTT"></p>
 <h4 id="HTTP-with-Persistent-Connections"><a href="#HTTP-with-Persistent-Connections" class="headerlink" title="HTTP with Persistent Connections"></a>HTTP with Persistent Connections</h4><p>HTTP server closes a con-nection when it isn’t used for a certain time.</p>
-<h3 id="HTTP-Message-Format"><a href="#HTTP-Message-Format" class="headerlink" title="HTTP Message Format"></a>HTTP Message Format</h3><h4 id="HTTP-Request-Message"><a href="#HTTP-Request-Message" class="headerlink" title="HTTP Request Message"></a>HTTP Request Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /somedir/page.html HTTP/1.1  //request line:three fields(the method field, the URL field, and the HTTP version field)</div><div class="line">Host: www.someschool.edu //header line:required by Web proxy cachesConnection: close //header line:it wants the server to close the connection after sending the requested object</div><div class="line">User-agent: Mozilla/5.0 //header line:specifies the user agent, that is, the browser type</div><div class="line">Accept-language: fr //header line:indicates that the user prefers to receive a French version of the object</div></pre></td></tr></table></figure>
+<h3 id="HTTP-Message-Format"><a href="#HTTP-Message-Format" class="headerlink" title="HTTP Message Format"></a>HTTP Message Format</h3><h4 id="HTTP-Request-Message"><a href="#HTTP-Request-Message" class="headerlink" title="HTTP Request Message"></a>HTTP Request Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /somedir/page.html HTTP/1.1  //request line:three fields(the method field, the URL field, and the HTTP version field)</span><br><span class="line">Host: www.someschool.edu //header line:required by Web proxy cachesConnection: close //header line:it wants the server to close the connection after sending the requested object</span><br><span class="line">User-agent: Mozilla/5.0 //header line:specifies the user agent, that is, the browser type</span><br><span class="line">Accept-language: fr //header line:indicates that the user prefers to receive a French version of the object</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>GET</strong>:used when the browser requests an object, with the requested object iden-tified in the URL field;</li>
 <li><strong>HEAD</strong>:it responds with an HTTP message but it leaves out the requested object;Application developers often use the HEAD method for debug-ging;</li>
@@ -509,7 +513,7 @@
 <li><strong>DELETE</strong>:allows a user, or an application, to delete an object on a Web server.</li>
 </ul>
 <p><img src="/images/Technology-ComputerNetworking-Internet-HTTP-Request.png" alt="Request"></p>
-<h4 id="HTTP-Response-Message"><a href="#HTTP-Response-Message" class="headerlink" title="HTTP Response Message"></a>HTTP Response Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK //status line:three fields(the protocol ver-sion field, a status code, and a corresponding status message)</div><div class="line">Connection: close //header lineDate: Tue, 09 Aug 2011 15:44:04 GMT //header line:indicates the time and date when the HTTP response was created and sent by the server;Server: Apache/2.2.3 (CentOS) //header lineLast-Modified: Tue, 09 Aug 2011 15:11:03 GMT Content-Length: 6821 //header line:indicates the time and date when the object was created or last modified;Content-Type: text/html //header line:(data data data data data ...) //entity body</div></pre></td></tr></table></figure>
+<h4 id="HTTP-Response-Message"><a href="#HTTP-Response-Message" class="headerlink" title="HTTP Response Message"></a>HTTP Response Message</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK //status line:three fields(the protocol ver-sion field, a status code, and a corresponding status message)</span><br><span class="line">Connection: close //header lineDate: Tue, 09 Aug 2011 15:44:04 GMT //header line:indicates the time and date when the HTTP response was created and sent by the server;Server: Apache/2.2.3 (CentOS) //header lineLast-Modified: Tue, 09 Aug 2011 15:11:03 GMT Content-Length: 6821 //header line:indicates the time and date when the object was created or last modified;Content-Type: text/html //header line:(data data data data data ...) //entity body</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>200 OK</strong>: Request succeeded and the information is returned in the response.</li>
 <li><strong>301 Moved Permanently</strong>: Requested object has been permanently moved;the new URL is specified in Location: header of the response message. Theclient software will automatically retrieve the new URL.</li>
@@ -553,9 +557,9 @@
 <li>the request message includes an If-Modified-Since: header line.</li>
 </ul>
 <p>Request:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /fruit/kiwi.gif HTTP/1.1</div><div class="line">Host: www.exotiquecuisine.com</div><div class="line">If-modified-since: Wed, 7 Sep 2011 09:23:24</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /fruit/kiwi.gif HTTP/1.1</span><br><span class="line">Host: www.exotiquecuisine.com</span><br><span class="line">If-modified-since: Wed, 7 Sep 2011 09:23:24</span><br></pre></td></tr></table></figure>
 <p>Response:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 304 Not Modified</div><div class="line">Date: Sat, 15 Oct 2011 15:39:29</div><div class="line">Server: Apache/1.3.0 (Unix)</div><div class="line">(empty entity body)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 304 Not Modified</span><br><span class="line">Date: Sat, 15 Oct 2011 15:39:29</span><br><span class="line">Server: Apache/1.3.0 (Unix)</span><br><span class="line">(empty entity body)</span><br></pre></td></tr></table></figure>
 <h2 id="File-Transfer-FTP"><a href="#File-Transfer-FTP" class="headerlink" title="File Transfer: FTP"></a>File Transfer: FTP</h2><p><img src="/images/Technology-ComputerNetworking-Internet-FTP.png" alt="FTP"></p>
 <blockquote>
 <p>FTP is said to send its control information out-of-band. HTTP, as you recall, sends requestand response header lines into the same TCPconnection that carries the transferredfile itself.</p>
@@ -574,9 +578,9 @@
 </blockquote>
 <p>Keeping track of this state information for each ongoing user session significantly constrains the total number of sessions that FTP can maintain simultaneously.</p>
 <h3 id="FTP-Commands-and-Replies"><a href="#FTP-Commands-and-Replies" class="headerlink" title="FTP Commands and Replies"></a>FTP Commands and Replies</h3><p>Commands:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">USER username: Used to send the user identification to the server.PASS password: Used to send the user password to the server.LIST: Used to ask the server to send back a list of all the files in the current remote directory. The list of files is sent over a (new and non-persistent) data connection rather than the control TCP connection.</div><div class="line">RETR filename: Used to retrieve (that is, get) a file from the current direc- tory of the remote host. This command causes the remote host to initiate a data connection and to send the requested file over the data connection.STOR filename: Used to store (that is, put) a file into the current directory of the remote host.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USER username: Used to send the user identification to the server.PASS password: Used to send the user password to the server.LIST: Used to ask the server to send back a list of all the files in the current remote directory. The list of files is sent over a (new and non-persistent) data connection rather than the control TCP connection.</span><br><span class="line">RETR filename: Used to retrieve (that is, get) a file from the current direc- tory of the remote host. This command causes the remote host to initiate a data connection and to send the requested file over the data connection.STOR filename: Used to store (that is, put) a file into the current directory of the remote host.</span><br></pre></td></tr></table></figure>
 <p>Replies:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">331 Username OK, password required125 Data connection already open; transfer starting </div><div class="line">425 Can’t open data connection452 Error writing file</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">331 Username OK, password required125 Data connection already open; transfer starting </span><br><span class="line">425 Can’t open data connection452 Error writing file</span><br></pre></td></tr></table></figure>
 <h2 id="Electronic-Mail-in-the-Internet"><a href="#Electronic-Mail-in-the-Internet" class="headerlink" title="Electronic Mail in the Internet"></a>Electronic Mail in the Internet</h2><blockquote>
 <p>Simple Mail Transfer Protocol (SMTP)</p>
 </blockquote>
@@ -591,7 +595,7 @@
 <blockquote>
 <p>SMTP has TCP establish a connection to port 25.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">S: 220 hamburger.eduC: HELO crepes.frS: 250 Hello crepes.fr, pleased to meet youC: MAIL FROM: &lt;alice@crepes.fr&gt;S: 250 alice@crepes.fr ... Sender okC: RCPT TO: &lt;bob@hamburger.edu&gt;S: 250 bob@hamburger.edu ... Recipient okC: DATAS: 354 Enter mail, end with “.” on a line by itself C: Do you like ketchup?C: How about pickles?C: .S: 250 Message accepted for deliveryC: QUITS: 221 hamburger.edu closing connection</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S: 220 hamburger.eduC: HELO crepes.frS: 250 Hello crepes.fr, pleased to meet youC: MAIL FROM: &lt;alice@crepes.fr&gt;S: 250 alice@crepes.fr ... Sender okC: RCPT TO: &lt;bob@hamburger.edu&gt;S: 250 bob@hamburger.edu ... Recipient okC: DATAS: 354 Enter mail, end with “.” on a line by itself C: Do you like ketchup?C: How about pickles?C: .S: 250 Message accepted for deliveryC: QUITS: 221 hamburger.edu closing connection</span><br></pre></td></tr></table></figure>
 <p>SMTP commands:</p>
 <ul>
 <li>HELO</li>
@@ -604,7 +608,7 @@
 <h3 id="Comparison-with-HTTP"><a href="#Comparison-with-HTTP" class="headerlink" title="Comparison with HTTP"></a>Comparison with HTTP</h3><blockquote>
 <p>SMTP is primarily a push protocol, HTTP is mainly a pull protocol;<br>SMTP requires each message, including the body of each message, to be in 7-bit ASCII format.<br>HTTP encapsulates each object in its own HTTP response message. Internet mail places all of the message’s objects into one message.</p>
 </blockquote>
-<h3 id="Mail-Message-Formats"><a href="#Mail-Message-Formats" class="headerlink" title="Mail Message Formats"></a>Mail Message Formats</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">From: alice@crepes.frTo: bob@hamburger.eduSubject: Searching for the meaning of life.</div></pre></td></tr></table></figure>
+<h3 id="Mail-Message-Formats"><a href="#Mail-Message-Formats" class="headerlink" title="Mail Message Formats"></a>Mail Message Formats</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: alice@crepes.frTo: bob@hamburger.eduSubject: Searching for the meaning of life.</span><br></pre></td></tr></table></figure>
 <h3 id="Mail-Access-Protocols"><a href="#Mail-Access-Protocols" class="headerlink" title="Mail Access Protocols"></a>Mail Access Protocols</h3><blockquote>
 <p>popular mail access protocols, including Post Office Protocol—Version 3 (POP3), Internet Mail Access Protocol (IMAP), and HTTP.</p>
 </blockquote>
@@ -623,18 +627,20 @@
 <li><strong>+OK</strong>:used by the server to indicate that the previous command was fine;</li>
 <li><strong>-ERR</strong>:used by the server to indicate that something was wrong with the previous command.</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">telnet mailServer 110 </div><div class="line">+OK POP3 server ready </div><div class="line">user bob+OK </div><div class="line">pass hungry+OK user successfully logged on</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet mailServer 110 </span><br><span class="line">+OK POP3 server ready </span><br><span class="line">user bob+OK </span><br><span class="line">pass hungry+OK user successfully logged on</span><br></pre></td></tr></table></figure>
 <p>A user agent using POP3 can often be configured (by the user) to :</p>
 <ul>
 <li><strong>download and delete</strong>:The user agent retrieves and deletes each message from the server.Four commands:list, retr, dele, and quit.</li>
 <li><strong>download and keep</strong>:the user agent leaves the messages on the mail server after downloading them. In this case, He can reread messages from different machines.</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C: list S: 1 498 S: 2 912 S: .C: retr 1S: (blah blah ...S: .................S: ..........blah)S: .C: dele 1C: retr 2S: (blah blah ...S: .................S: ..........blah)S: .C: dele 2C: quitS: +OK POP3 server signing off</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C: list S: 1 498 S: 2 912 S: .C: retr 1S: (blah blah ...S: .................S: ..........blah)S: .C: dele 1C: retr 2S: (blah blah ...S: .................S: ..........blah)S: .C: dele 2C: quitS: +OK POP3 server signing off</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>The POP3server <strong>maintains some state information</strong>; in particular, it keeps track of which usermessages have been marked deleted. However, the POP3 server <strong>does not carry stateinformation across POP3 sessions</strong>.</p>
 </blockquote>
 <h3 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h3><blockquote>
 <p>The IMAP protocol provides commands to allow users to <strong>create folders and move messages from one folder to another</strong>. IMAP also provides commands that allow users to <strong>search remote folders for messages matching specific criteria</strong>.</p>
+</blockquote>
+<blockquote>
 <p>Unlike POP3, an IMAP server maintains user state information across IMAP sessions.Another important feature of IMAP is that it has commands that permit a user agent to obtain components of messages.</p>
 </blockquote>
 <h3 id="Web-Based-E-Mail"><a href="#Web-Based-E-Mail" class="headerlink" title="Web-Based E-Mail"></a>Web-Based E-Mail</h3><p>The e-mail message is sent from web browser to mail server over HTTP rather than over SMTP.</p>
@@ -649,6 +655,8 @@
 </ul>
 <blockquote>
 <p>The DNS protocol runs over UDP and usesport 53.</p>
+</blockquote>
+<blockquote>
 <p>A “nearby” DNS server:cache IP address, which helps to reduce DNS network traffic as well as the average DNS delay.</p>
 </blockquote>
 <p>DNS provides a few other services:</p>
@@ -684,7 +692,7 @@
 <p>the DNS distributed database store <strong>resource records (RRs)</strong>, which provide hostname-to-IP address mappings.</p>
 </blockquote>
 <p>Aresource record is a four-tuple that contains the following fields:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(Name, Value, Type, TTL)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(Name, Value, Type, TTL)</span><br></pre></td></tr></table></figure>
 <p>TTL is the time to live of the resource record; it determines when a resource shouldbe removed from a cache.</p>
 <ul>
 <li>If <strong>Type=A</strong>, then Name is a hostname and Value is the IP address for the host-name. Thus, a Type A record provides the standard hostname-to-IP address map-ping. As an example, <strong>(relay1.bar.foo.com, 145.37.93.126, A)</strong>is a Type Arecord;</li>
@@ -704,7 +712,7 @@
 <li>The additional section contains other helpful records. For example, the answer field in a reply to an MX query contains a resource record providing the canonical hostname of a mail server. The additional section contains a Type A record providing the IP address for the canonical hostname of the mail server.</li>
 </ul>
 <h4 id="Inserting-Records-into-the-DNS-Database"><a href="#Inserting-Records-into-the-DNS-Database" class="headerlink" title="Inserting Records into the DNS Database"></a>Inserting Records into the DNS Database</h4><p>A registrar is a commercial entity that verifies the uniqueness of the domain name,enters the domain name into the DNS database.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(networkutopia.com, dns1.networkutopia.com, NS)</div><div class="line">(dns1.networkutopia.com, 212.212.212.1, A)</div><div class="line">(networkutopia.com, mail.networkutopia.com, MX)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(networkutopia.com, dns1.networkutopia.com, NS)</span><br><span class="line">(dns1.networkutopia.com, 212.212.212.1, A)</span><br><span class="line">(networkutopia.com, mail.networkutopia.com, MX)</span><br></pre></td></tr></table></figure>
 <p>More recently, an <strong>UPDATE</strong> option has been added to the DNS protocol to allow data to be dynamically added or deleted from the database via DNS messages.</p>
 <h3 id="DNS-Vulnerabilities"><a href="#DNS-Vulnerabilities" class="headerlink" title="DNS Vulnerabilities"></a>DNS Vulnerabilities</h3><ul>
 <li>A DDoS bandwidth-flooding attack against DNS servers. For example, an attacker could attempt to send to each DNS root server a deluge of packets, so many that the majority of legitimate DNSqueries never get answered;</li>
@@ -786,11 +794,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -886,7 +889,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -897,9 +900,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -910,7 +911,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -919,7 +920,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -928,7 +929,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1003,10 +1004,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

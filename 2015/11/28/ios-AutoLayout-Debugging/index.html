@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,16 +88,18 @@
 
 
 <meta name="description" content="AutoLayout中可能出现三类异常，Unsatisfiable Layouts， Ambiguous Layouts 和 Logical Errors。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Auto Layout[9]-Debugging">
 <meta property="og:url" content="http://www.linyibin.cn/2015/11/28/ios-AutoLayout-Debugging/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="AutoLayout中可能出现三类异常，Unsatisfiable Layouts， Ambiguous Layouts 和 Logical Errors。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Document_Outline_With_Errors_2x.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-Debug-ID.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Show_Alignment_Rectangles_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Debug_View_Hierarchy_2x.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:27:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Auto Layout[9]-Debugging">
 <meta name="twitter:description" content="AutoLayout中可能出现三类异常，Unsatisfiable Layouts， Ambiguous Layouts 和 Logical Errors。">
@@ -129,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/11/28/ios-AutoLayout-Debugging/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/28/ios-AutoLayout-Debugging/">
 
 
 
@@ -179,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -229,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -242,7 +244,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -306,7 +308,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -349,7 +351,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -392,7 +394,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -438,20 +440,20 @@
 <h2 id="Logical-Errors"><a href="#Logical-Errors" class="headerlink" title="Logical Errors"></a>Logical Errors</h2><p>Logical Errors指的是布局有时候虽然没有明显的错误，但是得到的结果与预想的不符，这个没有定位方法，只能通过检查和调试来解决。</p>
 <h2 id="Debugging-Tricks-and-Tips"><a href="#Debugging-Tricks-and-Tips" class="headerlink" title="Debugging Tricks and Tips"></a>Debugging Tricks and Tips</h2><p>一些Debug技巧：</p>
 <h3 id="Logs"><a href="#Logs" class="headerlink" title="Logs"></a>Logs</h3><p>控制台打印出来的Log，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">2015-08-26 14:27:54.790 Auto Layout Cookbook[10040:1906606] Unable to simultaneously satisfy constraints.</div><div class="line">    Probably at least one of the constraints in the following list is one you don&apos;t want. Try this: (1) look at each constraint and try to figure out which you don&apos;t expect; (2) find the code that added the unwanted constraint or constraints and fix it. (Note: If you&apos;re seeing NSAutoresizingMaskLayoutConstraints that you don&apos;t understand, refer to the documentation for the UIView property translatesAutoresizingMaskIntoConstraints) </div><div class="line">(</div><div class="line">    &quot;&lt;NSLayoutConstraint:0x7a87b000 H:[UILabel:0x7a8724b0&apos;Name&apos;(&gt;=400)]&gt;&quot;,</div><div class="line">    &quot;&lt;NSLayoutConstraint:0x7a895e30 UILabel:0x7a8724b0&apos;Name&apos;.leading == UIView:0x7a887ee0.leadingMargin&gt;&quot;,</div><div class="line">    &quot;&lt;NSLayoutConstraint:0x7a886d20 H:[UILabel:0x7a8724b0&apos;Name&apos;]-(NSSpace(8))-[UITextField:0x7a88cff0]&gt;&quot;,</div><div class="line">    &quot;&lt;NSLayoutConstraint:0x7a87b2e0 UITextField:0x7a88cff0.trailing == UIView:0x7a887ee0.trailingMargin&gt;&quot;,</div><div class="line">    &quot;&lt;NSLayoutConstraint:0x7ac7c430 &apos;UIView-Encapsulated-Layout-Width&apos; H:[UIView:0x7a887ee0(320)]&gt;&quot;</div><div class="line">)</div><div class="line"> </div><div class="line">Will attempt to recover by breaking constraint</div><div class="line">&lt;NSLayoutConstraint:0x7a87b000 H:[UILabel:0x7a8724b0&apos;Name&apos;(&gt;=400)]&gt;</div><div class="line"> </div><div class="line">Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.</div><div class="line">The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in &lt;UIKit/UIView.h&gt; may also be helpful.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2015-08-26 14:27:54.790 Auto Layout Cookbook[10040:1906606] Unable to simultaneously satisfy constraints.</span><br><span class="line">    Probably at least one of the constraints in the following list is one you don&apos;t want. Try this: (1) look at each constraint and try to figure out which you don&apos;t expect; (2) find the code that added the unwanted constraint or constraints and fix it. (Note: If you&apos;re seeing NSAutoresizingMaskLayoutConstraints that you don&apos;t understand, refer to the documentation for the UIView property translatesAutoresizingMaskIntoConstraints) </span><br><span class="line">(</span><br><span class="line">    &quot;&lt;NSLayoutConstraint:0x7a87b000 H:[UILabel:0x7a8724b0&apos;Name&apos;(&gt;=400)]&gt;&quot;,</span><br><span class="line">    &quot;&lt;NSLayoutConstraint:0x7a895e30 UILabel:0x7a8724b0&apos;Name&apos;.leading == UIView:0x7a887ee0.leadingMargin&gt;&quot;,</span><br><span class="line">    &quot;&lt;NSLayoutConstraint:0x7a886d20 H:[UILabel:0x7a8724b0&apos;Name&apos;]-(NSSpace(8))-[UITextField:0x7a88cff0]&gt;&quot;,</span><br><span class="line">    &quot;&lt;NSLayoutConstraint:0x7a87b2e0 UITextField:0x7a88cff0.trailing == UIView:0x7a887ee0.trailingMargin&gt;&quot;,</span><br><span class="line">    &quot;&lt;NSLayoutConstraint:0x7ac7c430 &apos;UIView-Encapsulated-Layout-Width&apos; H:[UIView:0x7a887ee0(320)]&gt;&quot;</span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line">Will attempt to recover by breaking constraint</span><br><span class="line">&lt;NSLayoutConstraint:0x7a87b000 H:[UILabel:0x7a8724b0&apos;Name&apos;(&gt;=400)]&gt;</span><br><span class="line"> </span><br><span class="line">Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.</span><br><span class="line">The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in &lt;UIKit/UIView.h&gt; may also be helpful.</span><br></pre></td></tr></table></figure>
 <p>可以明显看出，第一个和第五个Constraints冲突，系统破坏了第一个。</p>
 <p>如果View的<strong>translatesAutoresizingMaskIntoConstraints</strong>为YES时，会有一些额外的信息，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;NSAutoresizingMaskLayoutConstraint:0x7ff28252e480 h=--&amp; v=--&amp; H:[UIView:0x7ff282617cc0(50)]&gt;&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;NSAutoresizingMaskLayoutConstraint:0x7ff28252e480 h=--&amp; v=--&amp; H:[UIView:0x7ff282617cc0(50)]&gt;&quot;</span><br></pre></td></tr></table></figure>
 <p>其中，<strong>h=</strong>后面带着三个参数，代表左边界，宽度和右边界，<strong>v=</strong>后面带着三个参数，上边界，高度和下边界，<strong>“-”</strong>代表固定值，<strong>“&amp;”</strong>代表可变值。</p>
 <h3 id="Adding-Identifiers"><a href="#Adding-Identifiers" class="headerlink" title="Adding Identifiers"></a>Adding Identifiers</h3><p>为了更好在Log中识别信息，可以给View设置<strong>identifier</strong>属性，如图：</p>
 <p><img src="/images/iOS-AutoLayout-Debug-ID.png" alt="AutoLayout-Debug"></p>
 <p>当没有设置时，XCode也会用一些属性进行标示，例如Label的Text，Button的Title，Text Filed的Placeholder。</p>
 <h3 id="Visualizing-Views-and-Constraints"><a href="#Visualizing-Views-and-Constraints" class="headerlink" title="Visualizing Views and Constraints"></a>Visualizing Views and Constraints</h3><p>在虚拟器上运行App，然后在XCode中选择：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Debug &gt; View Debugging &gt; Show Alignment Rectangles</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug &gt; View Debugging &gt; Show Alignment Rectangles</span><br></pre></td></tr></table></figure>
 <p>可以看到控件的矩形，如下图：</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Show_Alignment_Rectangles_2x.png" alt="AutoLayout-Debug"></p>
 <p>选择：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Debug &gt; View Debugging &gt; Capture View Hierarchy</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug &gt; View Debugging &gt; Capture View Hierarchy</span><br></pre></td></tr></table></figure>
 <p>可以看到整个View的结构，如下图：<br><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Debug_View_Hierarchy_2x.png" alt="AutoLayout-Debug"></p>
 <h2 id="Edge-Case"><a href="#Edge-Case" class="headerlink" title="Edge Case"></a>Edge Case</h2><p>下面是一些可能出现的Edge Case:</p>
 <ul>
@@ -469,11 +471,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -565,7 +562,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -576,9 +573,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -589,7 +584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -598,7 +593,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -607,7 +602,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -682,10 +677,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

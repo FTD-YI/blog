@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java,JNI," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Java,JNI,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,17 +88,19 @@
 
 
 <meta name="description" content="JNI 全称为 Java Native Interface，它提供了实现Java与其他语言通信的API。注意，JNI可能会导致丧失平台可移植性。下面是调用JNI的步骤。">
+<meta name="keywords" content="Java,JNI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-OS X系统下JNI步骤">
 <meta property="og:url" content="http://www.linyibin.cn/2015/12/24/JNI-Process/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="JNI 全称为 Java Native Interface，它提供了实现Java与其他语言通信的API。注意，JNI可能会导致丧失平台可移植性。下面是调用JNI的步骤。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/JNI-CppProject.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/JNI-JAVAHOME-V.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/JNI-JNI-File.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/JNI-RunScript.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/JNI-Result.png">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:updated_time" content="2017-02-25T16:32:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-OS X系统下JNI步骤">
 <meta name="twitter:description" content="JNI 全称为 Java Native Interface，它提供了实现Java与其他语言通信的API。注意，JNI可能会导致丧失平台可移植性。下面是调用JNI的步骤。">
@@ -130,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/12/24/JNI-Process/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/12/24/JNI-Process/">
 
 
 
@@ -180,7 +182,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -210,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +222,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,7 +232,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -243,7 +245,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -307,7 +309,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -350,7 +352,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -393,7 +395,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -474,7 +476,7 @@ JNIEXPORT jobject JNICALL Java_Main_search
     }
     return list;
 }
-</code></pre><p>其中,JNI的对象构造和字符串转换参考：<a href="http://ftd-yi.github.io/blog/java/2015/12/23/JNI-Object.html" target="_blank" rel="external">Java-JNI对象构造和字符串转换</a>。</p>
+</code></pre><p>其中,JNI的对象构造和字符串转换参考：<a href="http://ftd-yi.github.io/blog/java/2015/12/23/JNI-Object.html" target="_blank" rel="noopener">Java-JNI对象构造和字符串转换</a>。</p>
 <h2 id="编写自动编译脚本"><a href="#编写自动编译脚本" class="headerlink" title="编写自动编译脚本"></a>编写自动编译脚本</h2><p>在Xcode &gt; Target &gt; BuildPhases面板中，增加Run Script一项。</p>
 <p><img src="/images/JNI-RunScript.png" alt="RunScript"></p>
 <p>并在RunSctipt中输入以下脚本：</p>
@@ -506,11 +508,6 @@ at HelloWorld.(HelloWorld.java:7)
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -604,7 +601,7 @@ at HelloWorld.(HelloWorld.java:7)
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -615,9 +612,7 @@ at HelloWorld.(HelloWorld.java:7)
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -628,7 +623,7 @@ at HelloWorld.(HelloWorld.java:7)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -637,7 +632,7 @@ at HelloWorld.(HelloWorld.java:7)
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -646,7 +641,7 @@ at HelloWorld.(HelloWorld.java:7)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -721,10 +716,10 @@ at HelloWorld.(HelloWorld.java:7)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

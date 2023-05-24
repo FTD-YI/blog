@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Technology,Machine Learning," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Technology,Machine Learning,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,15 +88,17 @@
 
 
 <meta name="description" content="本文介绍决策树算法(Division Tree)。">
+<meta name="keywords" content="Technology,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Technology-机器学习-决策树算法">
 <meta property="og:url" content="http://www.linyibin.cn/2016/11/15/technology-MachineLearning-DecisionTree/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文介绍决策树算法(Division Tree)。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-MachineLearning-DecisionTree-WorkFlow.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-MachineLearning-DecisionTree-Recuisive.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/Technology-MachineLearning-DecisionTree-Overfitting.png">
-<meta property="og:updated_time" content="2017-03-17T09:26:57.000Z">
+<meta property="og:updated_time" content="2017-03-18T03:49:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technology-机器学习-决策树算法">
 <meta name="twitter:description" content="本文介绍决策树算法(Division Tree)。">
@@ -128,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2016/11/15/technology-MachineLearning-DecisionTree/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2016/11/15/technology-MachineLearning-DecisionTree/">
 
 
 
@@ -178,7 +180,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -208,7 +210,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -218,7 +220,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -228,7 +230,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -241,7 +243,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -305,7 +307,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -348,7 +350,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -391,7 +393,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -429,6 +431,8 @@
 </ol>
 <h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><blockquote>
 <p>信息增益(Infomation Gain):在划分数据集之前之后信息发生的变化。</p>
+</blockquote>
+<blockquote>
 <p>熵(Entropy)/香农熵:集合信息的度量方式。</p>
 </blockquote>
 <p>如果数据集可能划分在多个分类中，则符号$x_i$的信息定义为:</p>
@@ -437,11 +441,11 @@
 <p>将所有类别，每个类别里面的所有可能值包含的信息期望值叠加，就是熵的计算方式：</p>
 <p>$$H = -\sum_{i=1}^np(x_i)log_2p(x_i)$$</p>
 <p>例如，数据集:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[1, &apos;yes&apos;], [0, &apos;yes&apos;], [1, &apos;no&apos;], [0, &apos;no&apos;], [0, &apos;no&apos;]]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[1, &apos;yes&apos;], [0, &apos;yes&apos;], [1, &apos;no&apos;], [0, &apos;no&apos;], [0, &apos;no&apos;]]</span><br></pre></td></tr></table></figure>
 <p>其中，熵的计算为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p(&apos;yes&apos;) = 2 / 5 //yes的概率</div><div class="line">p(&apos;no&apos;) = 3/ 5   //no的概率</div><div class="line">H = -(p(&apos;yes&apos;) * log(2, p(&apos;yes&apos;)) + p(&apos;no&apos;) * log(2, p(&apos;no&apos;)))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p(&apos;yes&apos;) = 2 / 5 //yes的概率</span><br><span class="line">p(&apos;no&apos;) = 3/ 5   //no的概率</span><br><span class="line">H = -(p(&apos;yes&apos;) * log(2, p(&apos;yes&apos;)) + p(&apos;no&apos;) * log(2, p(&apos;no&apos;)))</span><br></pre></td></tr></table></figure>
 <h3 id="划分数据集"><a href="#划分数据集" class="headerlink" title="划分数据集"></a>划分数据集</h3><p><strong>在选择一个数据集的特征的时候，可以通过计算每个特征值划分数据集的信息增益(通过熵衡量)，越高，则代表该特征值的划分效果越好。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">def splitDataSet(dataSet, axis, value):</div><div class="line">	retDataSet = []</div><div class="line">	for featVec in dataSet:</div><div class="line">		if featVec[axis] == value:</div><div class="line">			reducedFeatVec = featVec[:axis]</div><div class="line">			reducedFeatVec.extend(featVec[axis+1:])</div><div class="line">			retDataSet.append(reducedFeatVec)</div><div class="line">	return retDataSet</div><div class="line">	</div><div class="line">def chooseBestFeatureToSplit(dataSet):</div><div class="line">	numFeatures = len(dataSet[0]) - 1</div><div class="line">	baseEntropy = calcShannonEnt(dataSet)</div><div class="line">	bestInfoGain = 0.0</div><div class="line">	bestFeature = -1</div><div class="line">	for i in range(numFeatures):</div><div class="line">		featList = [example[i] for example in dataSet]</div><div class="line">		uniqueVals = set(featList)</div><div class="line">		newEntropy = 0.0</div><div class="line">		for value in uniqueVals:</div><div class="line">			subDataSet = splitDataSet(dataSet, i, value)</div><div class="line">			prob = len(subDataSet)/float(len(dataSet))</div><div class="line">			newEntropy -= prob * calcShannonEnt(subDataSet)</div><div class="line">		infoGain = baseEntropy + newEntropy</div><div class="line">		if(infoGain &gt; bestInfoGain)</div><div class="line">			bestInfoGain = infoGain</div><div class="line">			bestFeature = i</div><div class="line">	return bestFeature</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def splitDataSet(dataSet, axis, value):</span><br><span class="line">	retDataSet = []</span><br><span class="line">	for featVec in dataSet:</span><br><span class="line">		if featVec[axis] == value:</span><br><span class="line">			reducedFeatVec = featVec[:axis]</span><br><span class="line">			reducedFeatVec.extend(featVec[axis+1:])</span><br><span class="line">			retDataSet.append(reducedFeatVec)</span><br><span class="line">	return retDataSet</span><br><span class="line">	</span><br><span class="line">def chooseBestFeatureToSplit(dataSet):</span><br><span class="line">	numFeatures = len(dataSet[0]) - 1</span><br><span class="line">	baseEntropy = calcShannonEnt(dataSet)</span><br><span class="line">	bestInfoGain = 0.0</span><br><span class="line">	bestFeature = -1</span><br><span class="line">	for i in range(numFeatures):</span><br><span class="line">		featList = [example[i] for example in dataSet]</span><br><span class="line">		uniqueVals = set(featList)</span><br><span class="line">		newEntropy = 0.0</span><br><span class="line">		for value in uniqueVals:</span><br><span class="line">			subDataSet = splitDataSet(dataSet, i, value)</span><br><span class="line">			prob = len(subDataSet)/float(len(dataSet))</span><br><span class="line">			newEntropy -= prob * calcShannonEnt(subDataSet)</span><br><span class="line">		infoGain = baseEntropy + newEntropy</span><br><span class="line">		if(infoGain &gt; bestInfoGain)</span><br><span class="line">			bestInfoGain = infoGain</span><br><span class="line">			bestFeature = i</span><br><span class="line">	return bestFeature</span><br></pre></td></tr></table></figure>
 <p>例如，对于数据集:</p>
 <table>
 <thead>
@@ -480,9 +484,9 @@
 </tbody>
 </table>
 <p>抽象成:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[1, 1, &apos;yes&apos;], [1, 1, &apos;yes&apos;], [1, 0, &apos;no&apos;], [0, 1, &apos;no&apos;], [0, 1, &apos;no&apos;]]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[1, 1, &apos;yes&apos;], [1, 1, &apos;yes&apos;], [1, 0, &apos;no&apos;], [0, 1, &apos;no&apos;], [0, 1, &apos;no&apos;]]</span><br></pre></td></tr></table></figure>
 <p>带入上述代码，结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0</span><br></pre></td></tr></table></figure>
 <p>意外着，通过第一列的特征去进行分类，效果是最好的。</p>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>得到原始数据集后，基于最好的特征值分类，第一次划分后，可以进行递归，每次都在剩下的特征值中取最好的进行分类，直到递归结束。</p>
 <p>递归结束的条件是：</p>
@@ -492,14 +496,14 @@
 </ul>
 <p><img src="/images/Technology-MachineLearning-DecisionTree-Recuisive.png" alt="Technology-MachineLearning-DecisionTree-Recuisive"></p>
 <p>如果数据集已经处理了所有属性，但是类标签依然不是唯一的，此时可以采用<strong>多数表决</strong>的方法处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def majorityCnt(classList):</div><div class="line">	classCount = &#123;&#125;</div><div class="line">	for vote in classList:</div><div class="line">		if vote not in classCount.keys() : </div><div class="line">			classCount[vote] = 0</div><div class="line">		classCount[vote] += 1</div><div class="line">	sortedClassCount = sorted(classCount.iteriems(), key=operator.itemgetter(1), reverse=True)</div><div class="line">	return sortedClassCount[0][0]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def majorityCnt(classList):</span><br><span class="line">	classCount = &#123;&#125;</span><br><span class="line">	for vote in classList:</span><br><span class="line">		if vote not in classCount.keys() : </span><br><span class="line">			classCount[vote] = 0</span><br><span class="line">		classCount[vote] += 1</span><br><span class="line">	sortedClassCount = sorted(classCount.iteriems(), key=operator.itemgetter(1), reverse=True)</span><br><span class="line">	return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
 <p>递归构造树:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">def createTree(dataSet, labels):</div><div class="line">	classList = [example[-1] for example in dataSet]</div><div class="line">	if classList.count(classList[0]) == len(classList):</div><div class="line">		return classList[0]</div><div class="line">	if len(dataSet[0]) == 1:</div><div class="line">		return majorityCnt(classList)</div><div class="line">	bestFeat = chooseBestFeatureToSplit(dataSet)</div><div class="line">	bestFeatLabel = lables[bestFeat]</div><div class="line">	myTree = &#123;bestFeatLabe:&#123;&#125;&#125;</div><div class="line">	del(labels[bestFeat])</div><div class="line">	featValues = [example[bestFeat] for example in dataSet]</div><div class="line">	uniqueVals = set(featValues)</div><div class="line">	for value in uniqueVals:</div><div class="line">		subLabels = labels[:]</div><div class="line">		myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)</div><div class="line">	return myTree</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def createTree(dataSet, labels):</span><br><span class="line">	classList = [example[-1] for example in dataSet]</span><br><span class="line">	if classList.count(classList[0]) == len(classList):</span><br><span class="line">		return classList[0]</span><br><span class="line">	if len(dataSet[0]) == 1:</span><br><span class="line">		return majorityCnt(classList)</span><br><span class="line">	bestFeat = chooseBestFeatureToSplit(dataSet)</span><br><span class="line">	bestFeatLabel = lables[bestFeat]</span><br><span class="line">	myTree = &#123;bestFeatLabe:&#123;&#125;&#125;</span><br><span class="line">	del(labels[bestFeat])</span><br><span class="line">	featValues = [example[bestFeat] for example in dataSet]</span><br><span class="line">	uniqueVals = set(featValues)</span><br><span class="line">	for value in uniqueVals:</span><br><span class="line">		subLabels = labels[:]</span><br><span class="line">		myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)</span><br><span class="line">	return myTree</span><br></pre></td></tr></table></figure>
 <p>结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&apos;no surfacing&apos;:&#123;0:&apos;no&apos;, 1:&#123;&apos;flippers&apos;:&#123;0:&apos;no&apos;, 1:&apos;yes&apos;&#125;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def classify(inputTree, featLabels, testVec):</div><div class="line">	firstStr = inputTree.keys()[0]</div><div class="line">	secondDict = inputTree[firstStr]</div><div class="line">	featIndex = featLabels.index(firstStr)</div><div class="line">	for key in secondDict.keys():</div><div class="line">		if testVec[featIndex] == key:</div><div class="line">			if type(secondDict[key]).__name__ == &apos;dict&apos;:</div><div class="line">				classLabel = classify(secondDict[key], featLabels, testVec)</div><div class="line">			else:</div><div class="line">				classLabel = secondDict[key]</div><div class="line">	return classLabel</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;no surfacing&apos;:&#123;0:&apos;no&apos;, 1:&#123;&apos;flippers&apos;:&#123;0:&apos;no&apos;, 1:&apos;yes&apos;&#125;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def classify(inputTree, featLabels, testVec):</span><br><span class="line">	firstStr = inputTree.keys()[0]</span><br><span class="line">	secondDict = inputTree[firstStr]</span><br><span class="line">	featIndex = featLabels.index(firstStr)</span><br><span class="line">	for key in secondDict.keys():</span><br><span class="line">		if testVec[featIndex] == key:</span><br><span class="line">			if type(secondDict[key]).__name__ == &apos;dict&apos;:</span><br><span class="line">				classLabel = classify(secondDict[key], featLabels, testVec)</span><br><span class="line">			else:</span><br><span class="line">				classLabel = secondDict[key]</span><br><span class="line">	return classLabel</span><br></pre></td></tr></table></figure>
 <p>结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">labels:&#123;&apos;no surfacing&apos;, &apos;flippers&apos;&#125;</div><div class="line">myTree:&#123;&apos;no surfacing&apos;:&#123;0:&apos;no&apos;, 1:&#123;&apos;flippers&apos;:&#123;0:&apos;no&apos;, 1:&apos;yes&apos;&#125;&#125;&#125;&#125;</div><div class="line">classify(myTree, labels, &#123;1, 0&#125;)</div><div class="line">&apos;no&apos;</div><div class="line">classify(myTree, labels, &#123;1, 1&#125;)</div><div class="line">&apos;yes&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">labels:&#123;&apos;no surfacing&apos;, &apos;flippers&apos;&#125;</span><br><span class="line">myTree:&#123;&apos;no surfacing&apos;:&#123;0:&apos;no&apos;, 1:&#123;&apos;flippers&apos;:&#123;0:&apos;no&apos;, 1:&apos;yes&apos;&#125;&#125;&#125;&#125;</span><br><span class="line">classify(myTree, labels, &#123;1, 0&#125;)</span><br><span class="line">&apos;no&apos;</span><br><span class="line">classify(myTree, labels, &#123;1, 1&#125;)</span><br><span class="line">&apos;yes&apos;</span><br></pre></td></tr></table></figure>
 <h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>构造决策树是很耗时的任务，可以将已经构造好的树，序列化到硬盘中，要用时，在反序列化到内存中。</p>
 <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>对于某些情景，可能匹配选项太多了，会导致过度匹配(overfitting)问题，例如下图，对于这种情况，可以对其进行裁剪，去掉一些不必要的叶子节点。如果叶子节点只能增加少许信息，则可以删除该节点，将它并入到其他叶子节点中。</p>
 <p><img src="/images/Technology-MachineLearning-DecisionTree-Overfitting.png" alt="Technology-MachineLearning-DecisionTree-Overfitting"></p>
@@ -510,11 +514,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -608,7 +607,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -619,9 +618,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -632,7 +629,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -641,7 +638,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -650,7 +647,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -725,10 +722,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

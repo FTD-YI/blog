@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,15 +88,17 @@
 
 
 <meta name="description" content="本文讲解了Auto Layout中两类特殊View, UIScrollView &amp;amp; UITableViewCell。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Auto Layout[6]-UIScrollView And UITableViewCell">
 <meta property="og:url" content="http://www.linyibin.cn/2015/11/16/ios-AutoLayout-UIScollViewAndUITableViewCell/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="本文讲解了Auto Layout中两类特殊View, UIScrollView &amp;amp; UITableViewCell。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-ScollView-Error.png">
 <meta property="og:image" content="http://www.linyibin.cn/images/iOS-AutoLayout-ScollView-Placeholder.png">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Chain_of_Views_and_Constraints_2x.png">
-<meta property="og:updated_time" content="2017-03-20T02:21:11.000Z">
+<meta property="og:updated_time" content="2017-03-20T00:51:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Auto Layout[6]-UIScrollView And UITableViewCell">
 <meta name="twitter:description" content="本文讲解了Auto Layout中两类特殊View, UIScrollView &amp;amp; UITableViewCell。">
@@ -128,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/11/16/ios-AutoLayout-UIScollViewAndUITableViewCell/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/16/ios-AutoLayout-UIScollViewAndUITableViewCell/">
 
 
 
@@ -178,7 +180,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -208,7 +210,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -218,7 +220,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -228,7 +230,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -241,7 +243,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -305,7 +307,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -348,7 +350,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -391,7 +393,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -415,24 +417,24 @@
 <h2 id="UIScollView"><a href="#UIScollView" class="headerlink" title="UIScollView"></a>UIScollView</h2><p>UIScrollView是比较特殊的控件，其有Content Size需要与Constraints进行计算，当在UIScrollView中加入View时，需要注意这一点。</p>
 <p>举例：</p>
 <p>定义好UIScrollView在SuperView的Constraints后，往UIScrollView中加入一个View，设置其Constraints为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">view.leading = scollView.leading + 50;</div><div class="line">view.trailing = scollView.trailing - 50;</div><div class="line">view.top = scollView.top + 50;</div><div class="line">view.bottom = scollView.bottom - 50;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">view.leading = scollView.leading + 50;</span><br><span class="line">view.trailing = scollView.trailing - 50;</span><br><span class="line">view.top = scollView.top + 50;</span><br><span class="line">view.bottom = scollView.bottom - 50;</span><br></pre></td></tr></table></figure>
 <p>一般情况下，这样的Constraints，AutoLayout已经可以计算出其布局了，但是在UIScrollView中，由于view没有设置width和height，其无法计算出Content Size，所以会报异常：</p>
 <p><img src="/images/iOS-AutoLayout-ScollView-Error.png" alt="AutoLayout-UIScrollView-Error"></p>
 <p>加上以下Constraints即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">view.width = 300;</div><div class="line">view.height = 100;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">view.width = 300;</span><br><span class="line">view.height = 100;</span><br></pre></td></tr></table></figure>
 <p>这是，Content Size可以计算出为：(400, 200)。</p>
 <p>对于，UILabel, UIImageView这种需要在运行时决定其大小的控件，可以在IB中设计时，将其<strong>Intrinsic Size</strong>属性设置为<strong>Placeholder</strong>，并设置宽高：</p>
 <p><img src="/images/iOS-AutoLayout-ScollView-Placeholder.png" alt="AutoLayout-UIScrollView-Placeholder"></p>
 <p>这里的Intrinsic Size只会在设计时有效，在运行时可以重新设置其大小。</p>
 <h2 id="UITableViewCell"><a href="#UITableViewCell" class="headerlink" title="UITableViewCell"></a>UITableViewCell</h2><p>在AutoLayout中，有时候需要UITableViewCell的高度参与Constraints运算，但是其高度是通过回调设置的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tableView:heightForRowAtIndexPath:</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableView:heightForRowAtIndexPath:</span><br></pre></td></tr></table></figure>
 <p>为了满足计算的需要，可以设置一个估算的高度，AutoLayout将会根据这个估算的高度来计算UITableViewCell最后的真实高度：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tableView.estimatedRowHeight = 85.0;</div><div class="line">tableView.rowHeight = UITableViewAutomaticDimension;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tableView.estimatedRowHeight = 85.0;</span><br><span class="line">tableView.rowHeight = UITableViewAutomaticDimension;</span><br></pre></td></tr></table></figure>
 <p>另外，系统会根据该估算高度来计算一些控件的高度，例如ScrollBar，所以，估算高度要尽可能的精确。</p>
 <p>为了正确地计算UITableViewCell的真实高度，需要定义好Subviews的Constraints：</p>
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Chain_of_Views_and_Constraints_2x.png" alt="Chain-of-Views-and-Constraints"></p>
 <p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;123&quot; forIndexPath:indexPath];</div><div class="line">    if(!cell)&#123;</div><div class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;123&quot;];</div><div class="line">    &#125;</div><div class="line">    UIView *testView = [UIView new];</div><div class="line">    testView.backgroundColor = [UIColor greenColor];</div><div class="line">    testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">    [cell addSubview:testView];</div><div class="line">    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;|-[TestView]-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div><div class="line">    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:|-[TestView(&gt;=60)]-|&quot; options:NSLayoutFormatAlignAllTop metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;123&quot; forIndexPath:indexPath];</span><br><span class="line">    if(!cell)&#123;</span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@&quot;123&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    UIView *testView = [UIView new];</span><br><span class="line">    testView.backgroundColor = [UIColor greenColor];</span><br><span class="line">    testView.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">    [cell addSubview:testView];</span><br><span class="line">    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;|-[TestView]-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</span><br><span class="line">    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:|-[TestView(&gt;=60)]-|&quot; options:NSLayoutFormatAlignAllTop metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>需要注意的点：</p>
 <ul>
 <li>不能改变已包含的控件的Constraints，例如textLabel，detailTextLabel和imageView，但可以建立与其相关的Constraints；</li>
@@ -446,11 +448,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -542,7 +539,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -553,9 +550,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -566,7 +561,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -575,7 +570,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -584,7 +579,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -659,10 +654,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

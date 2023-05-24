@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,12 +88,14 @@
 
 
 <meta name="description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Auto Layout[8]-Programmatically Creating Constraints">
 <meta property="og:url" content="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
-<meta property="og:updated_time" content="2017-03-17T10:02:45.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-25T16:27:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Auto Layout[8]-Programmatically Creating Constraints">
 <meta name="twitter:description" content="AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用NSLayoutConstraint、Layout Anchors、Visual Format Language三种方式来创造Constraints。">
@@ -124,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2015/11/22/ios-AutoLayout-Programmaticically/">
 
 
 
@@ -174,7 +176,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -237,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -301,7 +303,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -344,7 +346,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -409,18 +411,18 @@
         <p>AutoLayout大部分情况下是在IB中设计的，如果需要在代码中设计，可以使用<strong>NSLayoutConstraint</strong>、<strong>Layout Anchors</strong>、<strong>Visual Format Language</strong>三种方式来创造Constraints。</p>
 <a id="more"></a>
 <h2 id="NSLayoutConstraint-Class"><a href="#NSLayoutConstraint-Class" class="headerlink" title="NSLayoutConstraint Class"></a>NSLayoutConstraint Class</h2><p>直接通过<strong>NSLayoutConstraint Class</strong>的函数可以在相应的View上添加Constraints:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f].active = YES;</div><div class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.5f constant:0.0f].active = YES;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">UIView *testView = [[UIView alloc] init];</span><br><span class="line">testView.backgroundColor = [UIColor redColor];</span><br><span class="line">[self.view addSubview:testView];</span><br><span class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f].active = YES;</span><br><span class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f].active = YES;</span><br><span class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f].active = YES;</span><br><span class="line">[NSLayoutConstraint constraintWithItem:testView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.5f constant:0.0f].active = YES;</span><br></pre></td></tr></table></figure>
 <p><strong>这里，要注意的是，在创建Constraints之前，需要将对应的View添加到View结构树中去</strong>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.view addSubview:testView];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.view addSubview:testView];</span><br></pre></td></tr></table></figure>
 <p>否则，会报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**Terminating app due to uncaught exception &apos;NSGenericException&apos;, reason: &apos;Unable to activate constraint with items &lt;UIView: 0x7fe56a421c20; frame = (0 0; 0 0); layer = &lt;CALayer: 0x7fe56a41c6e0&gt;&gt; and &lt;UIView: 0x7fe56a426e80; frame = (0 0; 667 375); autoresize = W+H; layer = &lt;CALayer: 0x7fe56a424fa0&gt;&gt; because they have no common ancestor.  Does the constraint reference items in different view hierarchies?  That&apos;s illegal.&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**Terminating app due to uncaught exception &apos;NSGenericException&apos;, reason: &apos;Unable to activate constraint with items &lt;UIView: 0x7fe56a421c20; frame = (0 0; 0 0); layer = &lt;CALayer: 0x7fe56a41c6e0&gt;&gt; and &lt;UIView: 0x7fe56a426e80; frame = (0 0; 667 375); autoresize = W+H; layer = &lt;CALayer: 0x7fe56a424fa0&gt;&gt; because they have no common ancestor.  Does the constraint reference items in different view hierarchies?  That&apos;s illegal.&apos;</span><br></pre></td></tr></table></figure>
 <p>另外，需要设置<strong>translatesAutoresizingMaskIntoConstraints</strong>属性为<strong>NO</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</span><br></pre></td></tr></table></figure>
 <p>否则，会报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Unable to simultaneously satisfy constraints.</div><div class="line">	Probably at least one of the constraints in the following list is one you don&apos;t want. </div><div class="line">	Try this: </div><div class="line">		(1) look at each constraint and try to figure out which you don&apos;t expect; </div><div class="line">		(2) find the code that added the unwanted constraint or constraints and fix it.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Unable to simultaneously satisfy constraints.</span><br><span class="line">	Probably at least one of the constraints in the following list is one you don&apos;t want. </span><br><span class="line">	Try this: </span><br><span class="line">		(1) look at each constraint and try to figure out which you don&apos;t expect; </span><br><span class="line">		(2) find the code that added the unwanted constraint or constraints and fix it.</span><br></pre></td></tr></table></figure>
 <p>当出现约束错误时，<strong>NSLayoutConstraint Class</strong>不会在编译时报错，只会在运行时报错。</p>
 <h2 id="Layout-Anchors"><a href="#Layout-Anchors" class="headerlink" title="Layout Anchors"></a>Layout Anchors</h2><p>由于NSLayoutConstraint Class比较复杂，易读性较差，所以，<strong>iOS 9以上</strong>系统又提供了更便捷地创建Constraints方式，使用<strong>Layout Anchors</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">UILayoutGuide *margins = self.view.layoutMarginsGuide;</div><div class="line">[testView.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;</div><div class="line">[testView.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;</div><div class="line">[testView.topAnchor constraintEqualToAnchor:margins.topAnchor].active = YES;</div><div class="line">[testView.heightAnchor constraintEqualToAnchor:testView.widthAnchor multiplier:0.5f].active = YES;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UIView *testView = [[UIView alloc] init];</span><br><span class="line">testView.backgroundColor = [UIColor redColor];</span><br><span class="line">[self.view addSubview:testView];</span><br><span class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line">UILayoutGuide *margins = self.view.layoutMarginsGuide;</span><br><span class="line">[testView.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;</span><br><span class="line">[testView.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;</span><br><span class="line">[testView.topAnchor constraintEqualToAnchor:margins.topAnchor].active = YES;</span><br><span class="line">[testView.heightAnchor constraintEqualToAnchor:testView.widthAnchor multiplier:0.5f].active = YES;</span><br></pre></td></tr></table></figure>
 <p><strong>相比于NSLayoutConstraint Class，Layout Anchors不仅提供了更易读的方法，而且，还加入了类型信息，可以在编译时可以报错，而不是等到运行时。</strong>例如：在leadingAnchor和widthAnchor之间创建Constraints时，会报错。</p>
 <h2 id="Visual-Format-Language"><a href="#Visual-Format-Language" class="headerlink" title="Visual Format Language"></a>Visual Format Language</h2><p><strong>Visual Format Language</strong>使用一个类似<strong>ASCII-art</strong>类型的字符串来定义Constratints，其有以下的优缺点：</p>
 <ul>
@@ -431,23 +433,23 @@
 <li>编译器不会校验Visual Format Language的表达式，只能在运行时发现错误。</li>
 </ul>
 <p>Visual Format Language的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">UIView *testView = [[UIView alloc] init];</div><div class="line">testView.backgroundColor = [UIColor redColor];</div><div class="line">[self.view addSubview:testView];</div><div class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line"> </div><div class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;H:|-[TestView(&gt;=100)]-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div><div class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:|-Height-[TestView]-Height-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:@&#123;@&quot;Height&quot;:@40&#125; views:@&#123;@&quot;TestView&quot;:testView&#125;]];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UIView *testView = [[UIView alloc] init];</span><br><span class="line">testView.backgroundColor = [UIColor redColor];</span><br><span class="line">[self.view addSubview:testView];</span><br><span class="line">testView.translatesAutoresizingMaskIntoConstraints = NO;</span><br><span class="line"> </span><br><span class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;H:|-[TestView(&gt;=100)]-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:@&#123;@&quot;TestView&quot;:testView&#125;]];</span><br><span class="line">[NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:|-Height-[TestView]-Height-|&quot; options:NSLayoutFormatDirectionLeadingToTrailing metrics:@&#123;@&quot;Height&quot;:@40&#125; views:@&#123;@&quot;TestView&quot;:testView&#125;]];</span><br></pre></td></tr></table></figure>
 <p>注意views要用NSDictionary定义好，在表达式中使用到的view：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">views:@&#123;@&quot;TestView&quot;:testView&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views:@&#123;@&quot;TestView&quot;:testView&#125;</span><br></pre></td></tr></table></figure>
 <p>matrics也是用NSDictionary定义好，在表达式中使用到的变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">metrics:@&#123;@&quot;Height&quot;:@40&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">metrics:@&#123;@&quot;Height&quot;:@40&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>表达式语法如下：</strong></p>
-<h4 id="View用-括起来表示，例如"><a href="#View用-括起来表示，例如" class="headerlink" title="View用[]括起来表示，例如:"></a>View用[]括起来表示，例如:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView]</div></pre></td></tr></table></figure>
-<h4 id="SuperVie用’-’表示，例如："><a href="#SuperVie用’-’表示，例如：" class="headerlink" title="SuperVie用’|’表示，例如："></a>SuperVie用’|’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div></pre></td></tr></table></figure>
-<h4 id="表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><a href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如：" class="headerlink" title="表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如："></a>表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div><div class="line">V:|-[TestView]-|</div></pre></td></tr></table></figure>
-<h4 id="标准间距-8px-用’-‘表示，例如："><a href="#标准间距-8px-用’-‘表示，例如：" class="headerlink" title="标准间距(8px)用’-‘表示，例如："></a>标准间距(8px)用’-‘表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-|</div></pre></td></tr></table></figure>
+<h4 id="View用-括起来表示，例如"><a href="#View用-括起来表示，例如" class="headerlink" title="View用[]括起来表示，例如:"></a>View用[]括起来表示，例如:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[TestView]</span><br></pre></td></tr></table></figure>
+<h4 id="SuperVie用’-’表示，例如："><a href="#SuperVie用’-’表示，例如：" class="headerlink" title="SuperVie用’|’表示，例如："></a>SuperVie用’|’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|-[TestView]-|</span><br></pre></td></tr></table></figure>
+<h4 id="表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><a href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如：" class="headerlink" title="表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如："></a>表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|-[TestView]-|</span><br><span class="line">V:|-[TestView]-|</span><br></pre></td></tr></table></figure>
+<h4 id="标准间距-8px-用’-‘表示，例如："><a href="#标准间距-8px-用’-‘表示，例如：" class="headerlink" title="标准间距(8px)用’-‘表示，例如："></a>标准间距(8px)用’-‘表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|-[TestView]-|</span><br></pre></td></tr></table></figure>
 <p>表示TestView距离左右两边都是8px。</p>
-<h4 id="长度约束用’-gt-’、’-’、’-lt-’表示，例如："><a href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如：" class="headerlink" title="长度约束用’&gt;=’、’==’、’&lt;=’表示，例如："></a>长度约束用’&gt;=’、’==’、’&lt;=’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-40-[TestView(&gt;=50)]-40-|</div><div class="line">[TestView(==TestView2)]</div><div class="line">[TestView(&gt;=70, &lt;=100)]</div></pre></td></tr></table></figure>
+<h4 id="长度约束用’-gt-’、’-’、’-lt-’表示，例如："><a href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如：" class="headerlink" title="长度约束用’&gt;=’、’==’、’&lt;=’表示，例如："></a>长度约束用’&gt;=’、’==’、’&lt;=’表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|-40-[TestView(&gt;=50)]-40-|</span><br><span class="line">[TestView(==TestView2)]</span><br><span class="line">[TestView(&gt;=70, &lt;=100)]</span><br></pre></td></tr></table></figure>
 <p>第一句表示TestView的Width至少为50，第二句表示TestView的Width等于TestView2的Width，第三句表示TestView的Width在70和100之间。</p>
-<h4 id="没有间距，可以直接并列，例如："><a href="#没有间距，可以直接并列，例如：" class="headerlink" title="没有间距，可以直接并列，例如："></a>没有间距，可以直接并列，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView][TestView2]</div></pre></td></tr></table></figure>
-<h4 id="优先级用’-’加数字表示，例如："><a href="#优先级用’-’加数字表示，例如：" class="headerlink" title="优先级用’@’加数字表示，例如："></a>优先级用’@’加数字表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[TestView(100@20)]</div></pre></td></tr></table></figure>
+<h4 id="没有间距，可以直接并列，例如："><a href="#没有间距，可以直接并列，例如：" class="headerlink" title="没有间距，可以直接并列，例如："></a>没有间距，可以直接并列，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[TestView][TestView2]</span><br></pre></td></tr></table></figure>
+<h4 id="优先级用‘-’加数字表示，例如："><a href="#优先级用‘-’加数字表示，例如：" class="headerlink" title="优先级用‘@’加数字表示，例如："></a>优先级用‘@’加数字表示，例如：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[TestView(100@20)]</span><br></pre></td></tr></table></figure>
 <p>表示TestView的Width为100，优先级为20。</p>
-<h4 id="多个View的Constraints可以写在一条表达式中："><a href="#多个View的Constraints可以写在一条表达式中：" class="headerlink" title="多个View的Constraints可以写在一条表达式中："></a>多个View的Constraints可以写在一条表达式中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">|-[TestView]-[TestView2]-[TestView3(&gt;=20)]-|</div></pre></td></tr></table></figure>
+<h4 id="多个View的Constraints可以写在一条表达式中："><a href="#多个View的Constraints可以写在一条表达式中：" class="headerlink" title="多个View的Constraints可以写在一条表达式中："></a>多个View的Constraints可以写在一条表达式中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|-[TestView]-[TestView2]-[TestView3(&gt;=20)]-|</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -455,11 +457,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -551,7 +548,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -562,9 +559,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -575,7 +570,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +579,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -593,7 +588,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -648,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSLayoutConstraint-Class"><span class="nav-number">1.</span> <span class="nav-text">NSLayoutConstraint Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-Anchors"><span class="nav-number">2.</span> <span class="nav-text">Layout Anchors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Format-Language"><span class="nav-number">3.</span> <span class="nav-text">Visual Format Language</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View用-括起来表示，例如"><span class="nav-number">3.0.1.</span> <span class="nav-text">View用[]括起来表示，例如:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SuperVie用’-’表示，例如："><span class="nav-number">3.0.2.</span> <span class="nav-text">SuperVie用’|’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><span class="nav-number">3.0.3.</span> <span class="nav-text">表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准间距-8px-用’-‘表示，例如："><span class="nav-number">3.0.4.</span> <span class="nav-text">标准间距(8px)用’-‘表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如："><span class="nav-number">3.0.5.</span> <span class="nav-text">长度约束用’>=’、’==’、’<=’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#没有间距，可以直接并列，例如："><span class="nav-number">3.0.6.</span> <span class="nav-text">没有间距，可以直接并列，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级用’-’加数字表示，例如："><span class="nav-number">3.0.7.</span> <span class="nav-text">优先级用’@’加数字表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个View的Constraints可以写在一条表达式中："><span class="nav-number">3.0.8.</span> <span class="nav-text">多个View的Constraints可以写在一条表达式中：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSLayoutConstraint-Class"><span class="nav-number">1.</span> <span class="nav-text">NSLayoutConstraint Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-Anchors"><span class="nav-number">2.</span> <span class="nav-text">Layout Anchors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Format-Language"><span class="nav-number">3.</span> <span class="nav-text">Visual Format Language</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View用-括起来表示，例如"><span class="nav-number">3.0.1.</span> <span class="nav-text">View用[]括起来表示，例如:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SuperVie用’-’表示，例如："><span class="nav-number">3.0.2.</span> <span class="nav-text">SuperVie用’|’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式前面用’H-’或者’V-’表示轴向，如果没有加上，默认是’H-’，例如："><span class="nav-number">3.0.3.</span> <span class="nav-text">表达式前面用’H:’或者’V:’表示轴向，如果没有加上，默认是’H:’，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准间距-8px-用’-‘表示，例如："><span class="nav-number">3.0.4.</span> <span class="nav-text">标准间距(8px)用’-‘表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长度约束用’-gt-’、’-’、’-lt-’表示，例如："><span class="nav-number">3.0.5.</span> <span class="nav-text">长度约束用’&gt;=’、’==’、’&lt;=’表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#没有间距，可以直接并列，例如："><span class="nav-number">3.0.6.</span> <span class="nav-text">没有间距，可以直接并列，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级用‘-’加数字表示，例如："><span class="nav-number">3.0.7.</span> <span class="nav-text">优先级用‘@’加数字表示，例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个View的Constraints可以写在一条表达式中："><span class="nav-number">3.0.8.</span> <span class="nav-text">多个View的Constraints可以写在一条表达式中：</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -668,10 +663,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

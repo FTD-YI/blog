@@ -4,19 +4,19 @@
 
 
 <html class="theme-next mist" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA" />
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -66,21 +66,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Database,Sqlite,C++," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Database,Sqlite,C++,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
@@ -88,12 +88,14 @@
 
 
 <meta name="description" content="Sqlite由于是基于文件建立的数据库，所以，相对于Mysql等其他数据库相对较慢，但是在细节上，可以通过一些方法进行优化。">
+<meta name="keywords" content="Database,Sqlite,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++-Sqlite优化">
 <meta property="og:url" content="http://www.linyibin.cn/2014/09/08/Cpp-Sqlite-Optimization/index.html">
 <meta property="og:site_name" content="YI">
 <meta property="og:description" content="Sqlite由于是基于文件建立的数据库，所以，相对于Mysql等其他数据库相对较慢，但是在细节上，可以通过一些方法进行优化。">
-<meta property="og:updated_time" content="2017-05-05T04:30:01.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-05T12:45:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++-Sqlite优化">
 <meta name="twitter:description" content="Sqlite由于是基于文件建立的数据库，所以，相对于Mysql等其他数据库相对较慢，但是在细节上，可以通过一些方法进行优化。">
@@ -124,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://www.linyibin.cn/2014/09/08/Cpp-Sqlite-Optimization/"/>
+  <link rel="canonical" href="http://www.linyibin.cn/2014/09/08/Cpp-Sqlite-Optimization/">
 
 
 
@@ -174,7 +176,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YI</span>
         <span class="logo-line-after"><i></i></span>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -237,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -301,7 +303,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YI">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
@@ -344,7 +346,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -410,12 +412,12 @@
 <a id="more"></a>
 <h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><p>处于每个表自带的ID字段，如果其他的字段，需要进行检索，最好是对其建立索引，可以极大的优化检索速度，但是建立索引会造成文件的增大，所以，在较小的数据量时，没必要建立索引：</p>
 <p>下面是实测数据对比：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">原始速度进行Update耗时：149ms</div><div class="line">直接通过ID进行Update耗时：20ms</div><div class="line">通过索引字段进行Update耗时：3ms</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始速度进行Update耗时：149ms</span><br><span class="line">直接通过ID进行Update耗时：20ms</span><br><span class="line">通过索引字段进行Update耗时：3ms</span><br></pre></td></tr></table></figure>
 <h3 id="不生成临时日志文件"><a href="#不生成临时日志文件" class="headerlink" title="不生成临时日志文件"></a>不生成临时日志文件</h3><p>如果数据库操作并不需要进行事务支持，即不需要回滚，那么可以设置其不生成临时数据文件，以提高速度，执行命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PRAGMA synchronous = OFF</div><div class="line">PRAGMA journal_mode = OFF</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PRAGMA synchronous = OFF</span><br><span class="line">PRAGMA journal_mode = OFF</span><br></pre></td></tr></table></figure>
 <p>注意，这个设置是单次有效的，所以，每次在代码中openDB时，都是执行一次命令。</p>
 <p>下面是实测数据对比：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">原始速度进行Update耗时：149ms</div><div class="line">设置不生成临时日志文件进行Update耗时：129ms</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原始速度进行Update耗时：149ms</span><br><span class="line">设置不生成临时日志文件进行Update耗时：129ms</span><br></pre></td></tr></table></figure>
 <h3 id="模糊检索-LIKE"><a href="#模糊检索-LIKE" class="headerlink" title="模糊检索(LIKE)"></a>模糊检索(LIKE)</h3><p>Sqlite中，使用<strong>like</strong>运算符可以进行模糊匹配，其中，可以搭配两个匹配符组合使用：</p>
 <ul>
 <li>百分号(%):表示零个、一个或者多个数字或字符</li>
@@ -445,16 +447,16 @@
 </tbody>
 </table>
 <p>LIKE语句在字符串较短时，检索效率还可以，但是如果字符串较长，例如’zhengquan%’，那效率非常低，但是又需要这样的模糊时，例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name LIKE &apos;abc%&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name LIKE &apos;abc%&apos;</span><br></pre></td></tr></table></figure>
 <p>可以这样优化:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name &gt;= &apos;abc&apos; AND name &lt; &apos;abd&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name &gt;= &apos;abc&apos; AND name &lt; &apos;abd&apos;</span><br></pre></td></tr></table></figure>
 <p>并且在name字段上建立索引，可以进一步加快速度。</p>
 <p>右边的边界就是最后一个字母加一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char maxLast = word[word.length() - 1] + 1;</div><div class="line">string maxPinyin = word.substr(0, word.length() - 1) + maxLast;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char maxLast = word[word.length() - 1] + 1;</span><br><span class="line">string maxPinyin = word.substr(0, word.length() - 1) + maxLast;</span><br></pre></td></tr></table></figure>
 <p>下面是实测数据对比：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LIKE匹配耗时：136ms</div><div class="line">左右边界匹配耗时：42ms</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LIKE匹配耗时：136ms</span><br><span class="line">左右边界匹配耗时：42ms</span><br></pre></td></tr></table></figure>
 <h3 id="清除空间"><a href="#清除空间" class="headerlink" title="清除空间"></a>清除空间</h3><p>如果移除了索引，或者删除了数据，Sqlite不会立即清空其占用的空间，需要通过命令进行清除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VACUUM</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VACUUM</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -462,11 +464,6 @@
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="YI wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
 
       
     </div>
@@ -562,7 +559,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -573,9 +570,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="YI" />
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
           <p class="site-author-name" itemprop="name">YI</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -586,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">221</span>
+                <span class="site-state-item-count">347</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -595,7 +590,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -604,7 +599,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -679,10 +674,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
