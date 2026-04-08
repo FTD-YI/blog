@@ -1,0 +1,928 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="BXPK0HDlNoHvYzTdH3VGbhcb3QMkSrEtfx32Aa2PBuA">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="iOS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Swift是一门新的iOS系统的开发语言，其更轻量级，类似脚本语言，支持ARC以及Playground。Playground文件可以在修改代码时，立即看到结果。">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Swift">
+<meta property="og:url" content="http://www.linyibin.cn/2016/02/01/ios-Swift/index.html">
+<meta property="og:site_name" content="YI">
+<meta property="og:description" content="Swift是一门新的iOS系统的开发语言，其更轻量级，类似脚本语言，支持ARC以及Playground。Playground文件可以在修改代码时，立即看到结果。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-25T16:38:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Swift">
+<meta name="twitter:description" content="Swift是一门新的iOS系统的开发语言，其更轻量级，类似脚本语言，支持ARC以及Playground。Playground文件可以在修改代码时，立即看到结果。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PTMG38K3MN',
+      apiKey: '63bcaeacbaf8245516a933513f253329',
+      indexName: 'BlogSearch',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.linyibin.cn/2016/02/01/ios-Swift/">
+
+
+
+
+
+  <title> iOS-Swift | YI </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5a9e8882a3d3fa2ab1269dddd45d2c8c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.linyibin.cn/2016/02/01/ios-Swift/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS-Swift
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-01T00:00:00+08:00">
+                2016-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/02/01/ios-Swift/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift是一门新的iOS系统的开发语言，其更轻量级，类似脚本语言，支持ARC以及Playground。Playground文件可以在修改代码时，立即看到结果。</p>
+<a id="more"></a>
+<p>Swift相比于OC有很多优势，例如，type-safe, 会做类型检查，避免类型转换异常;引入Optional类型，不用每次都用if语句判断一个值是否为nil;引入Tuples，可以在函数中一次返回多个不同类型的值。</p>
+<p>下面是Swift的语法介绍。</p>
+<h2 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h2><h3 id="Print"><a href="#Print" class="headerlink" title="Print"></a>Print</h3><p>无需导入输入输出或者字符串库:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Hello, world!&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果想不自动换行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;nimei&quot;, terminator:&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// This is a comment.</span><br><span class="line">/* This is also a comment</span><br><span class="line"> but is written over multiple lines. */</span><br><span class="line">/* This is the start of the first multiline comment.</span><br><span class="line">/* This is the second, nested multiline comment. */</span><br><span class="line"> This is the end of the first multiline comment. */</span><br></pre></td></tr></table></figure>
+<p><strong>注意，”/*”可以嵌套。</strong></p>
+<h3 id="Semicolons"><a href="#Semicolons" class="headerlink" title="Semicolons"></a>Semicolons</h3><p>一般不需要加”;”号，除非多行写成一行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let cat = &quot;🐱&quot;; print(cat)</span><br></pre></td></tr></table></figure>
+<h2 id="Simple-Values"><a href="#Simple-Values" class="headerlink" title="Simple Values"></a>Simple Values</h2><h3 id="用let定义常量，而var定义变量。不用定义类型"><a href="#用let定义常量，而var定义变量。不用定义类型" class="headerlink" title="用let定义常量，而var定义变量。不用定义类型:"></a>用let定义常量，而var定义变量。不用定义类型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var myVariable = 42</span><br><span class="line">myVariable = 50</span><br><span class="line">let myConstant = 42</span><br></pre></td></tr></table></figure>
+<p>如果需要<strong>显式定义</strong>，可以这样写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let explicitDouble: Double = 70</span><br></pre></td></tr></table></figure>
+<h3 id="没有隐式的类型转换，如果需要类型转换，需要显示定义"><a href="#没有隐式的类型转换，如果需要类型转换，需要显示定义" class="headerlink" title="没有隐式的类型转换，如果需要类型转换，需要显示定义:"></a>没有隐式的类型转换，如果需要类型转换，需要显示定义:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let widthLabel = &quot;The width is &quot; + String(94)</span><br></pre></td></tr></table></figure>
+<p>如果是在字符串中，可以用<strong>“\“+”()”</strong>来转换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let apples = 3</span><br><span class="line">let oranges = 5</span><br><span class="line">let appleSummary = &quot;I have \(apples) apples.&quot;</span><br><span class="line">let fruitSummary = &quot;I have \(apples + oranges) pieces of fruit.&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="用”-”来创建Array和Dictionary"><a href="#用”-”来创建Array和Dictionary" class="headerlink" title="用”[]”来创建Array和Dictionary:"></a>用”[]”来创建Array和Dictionary:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var shoppingList = [&quot;catfish&quot;, &quot;water&quot;, &quot;tulips&quot;, &quot;blue paint&quot;]</span><br><span class="line">shoppingList[1] = &quot;bottle of water&quot;</span><br><span class="line"> </span><br><span class="line">var occupations = [</span><br><span class="line">    &quot;Malcolm&quot;: &quot;Captain&quot;,</span><br><span class="line">    &quot;Kaylee&quot;: &quot;Mechanic&quot;,</span><br><span class="line">]</span><br><span class="line">occupations[&quot;Jayne&quot;] = &quot;Public Relations&quot;</span><br></pre></td></tr></table></figure>
+<p>定义一个<strong>空的</strong>需要用初始化函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let emptyArray = [String]()</span><br><span class="line">let emptyDictionary = [String: Float]()</span><br></pre></td></tr></table></figure>
+<p>如果是已经知道类型的变量，可以直接这样写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shoppingList = []</span><br><span class="line">occupations = [:]</span><br></pre></td></tr></table></figure>
+<h3 id="用”-”定义Optional类型，Optional类型可以有值，也可以为nil。用”-”可以给Optional类型赋值一个默认值"><a href="#用”-”定义Optional类型，Optional类型可以有值，也可以为nil。用”-”可以给Optional类型赋值一个默认值" class="headerlink" title="用”?”定义Optional类型，Optional类型可以有值，也可以为nil。用”??”可以给Optional类型赋值一个默认值:"></a>用”?”定义Optional类型，Optional类型可以有值，也可以为nil。用”??”可以给Optional类型赋值一个默认值:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let nickName: String? = nil</span><br><span class="line">let fullName: String = &quot;John Appleseed&quot;</span><br><span class="line">let informalGreeting = &quot;Hi \(nickName ?? fullName)&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h2><h3 id="if语句-必须是跟着Boolean类型，不能是数字，不会隐式跟0比较"><a href="#if语句-必须是跟着Boolean类型，不能是数字，不会隐式跟0比较" class="headerlink" title="if语句:必须是跟着Boolean类型，不能是数字，不会隐式跟0比较:"></a>if语句:必须是跟着Boolean类型，不能是数字，不会隐式跟0比较:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var score = 51</span><br><span class="line">if score &gt; 51 &#123;</span><br><span class="line">	score = 100</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	score = 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="if-let语句-必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句"><a href="#if-let语句-必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句" class="headerlink" title="if-let语句:必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句:"></a>if-let语句:必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var optionalString: String? = &quot;Hello&quot;</span><br><span class="line">print(optionalString == nil)</span><br><span class="line"> </span><br><span class="line">var optionalName: String? = &quot;John Appleseed&quot;</span><br><span class="line">var greeting = &quot;Hello!&quot;</span><br><span class="line">if let name = optionalName &#123;</span><br><span class="line">    greeting = &quot;Hello, \(name)&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="switch-支持任意格式的数据和表达式，不止整形和等式-同时，可以用let进行局部赋值。"><a href="#switch-支持任意格式的数据和表达式，不止整形和等式-同时，可以用let进行局部赋值。" class="headerlink" title="switch:支持任意格式的数据和表达式，不止整形和等式.同时，可以用let进行局部赋值。"></a>switch:支持任意格式的数据和表达式，不止整形和等式.同时，可以用let进行局部赋值。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let vegetable = &quot;red pepper&quot;</span><br><span class="line">switch vegetable &#123;</span><br><span class="line">case &quot;celery&quot;:</span><br><span class="line">    print(&quot;Add some raisins and make ants on a log.&quot;)</span><br><span class="line">case &quot;cucumber&quot;, &quot;watercress&quot;:</span><br><span class="line">    print(&quot;That would make a good tea sandwich.&quot;)</span><br><span class="line">case let x where x.hasSuffix(&quot;pepper&quot;):</span><br><span class="line">    print(&quot;Is it a spicy \(x)?&quot;)</span><br><span class="line">default:</span><br><span class="line">    print(&quot;Everything tastes good in soup.&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for-in:"></a>for-in:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">let individualScores = [75, 43, 103, 87, 12]</span><br><span class="line">var teamScore = 0</span><br><span class="line">for score in individualScores &#123;</span><br><span class="line">    if score &gt; 50 &#123;</span><br><span class="line">        teamScore += 3</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        teamScore += 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">print(teamScore)</span><br><span class="line"></span><br><span class="line">let interestingNumbers = [</span><br><span class="line">    &quot;Prime&quot;: [2, 3, 5, 7, 11, 13],</span><br><span class="line">    &quot;Fibonacci&quot;: [1, 1, 2, 3, 5, 8],</span><br><span class="line">    &quot;Square&quot;: [1, 4, 9, 16, 25],</span><br><span class="line">]</span><br><span class="line">var largest = 0</span><br><span class="line">for (kind, numbers) in interestingNumbers &#123;</span><br><span class="line">    for number in numbers &#123;</span><br><span class="line">        if number &gt; largest &#123;</span><br><span class="line">            largest = number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">print(largest)</span><br></pre></td></tr></table></figure>
+<h3 id="while"><a href="#while" class="headerlink" title="while:"></a>while:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var n = 2</span><br><span class="line">while n &lt; 100 &#123;</span><br><span class="line">    n = n * 2</span><br><span class="line">&#125;</span><br><span class="line">print(n)</span><br><span class="line"> </span><br><span class="line">var m = 2</span><br><span class="line">repeat &#123;</span><br><span class="line">    m = m * 2</span><br><span class="line">&#125; while m &lt; 100</span><br><span class="line">print(m)</span><br></pre></td></tr></table></figure>
+<h3 id="for-可以用”-lt-”来局部遍历索引。"><a href="#for-可以用”-lt-”来局部遍历索引。" class="headerlink" title="for:可以用”..&lt;”来局部遍历索引。"></a>for:可以用”..&lt;”来局部遍历索引。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var total = 0</span><br><span class="line">for i in 0..&lt;4 &#123;</span><br><span class="line">    total += i</span><br><span class="line">&#125;</span><br><span class="line">print(total)</span><br></pre></td></tr></table></figure>
+<h2 id="Functions-and-Closures"><a href="#Functions-and-Closures" class="headerlink" title="Functions and Closures"></a>Functions and Closures</h2><h3 id="func"><a href="#func" class="headerlink" title="func:"></a>func:</h3><p>用<strong>“-&gt;”</strong>来定义返回值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func greet(person: String, day: String) -&gt; String &#123;</span><br><span class="line">    return &quot;Hello \(person), today is \(day).&quot;</span><br><span class="line">&#125;</span><br><span class="line">greet(person: &quot;Bob&quot;, day: &quot;Tuesday&quot;)</span><br></pre></td></tr></table></figure>
+<p>参数前可以设置别名，或者用<strong>“_”</strong>表示别名为空:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func greet(_ person: String, on day: String) -&gt; String &#123;</span><br><span class="line">    return &quot;Hello \(person), today is \(day).&quot;</span><br><span class="line">&#125;</span><br><span class="line">greet(&quot;John&quot;, on: &quot;Wednesday&quot;)</span><br></pre></td></tr></table></figure>
+<p>参数可以定义成<strong>不定数</strong>的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func sumOf(numbers: Int...) -&gt; Int &#123;</span><br><span class="line">    var sum = 0</span><br><span class="line">    for number in numbers &#123;</span><br><span class="line">        sum += number</span><br><span class="line">    &#125;</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line">sumOf()</span><br><span class="line">sumOf(numbers: 42, 597, 12)</span><br></pre></td></tr></table></figure>
+<p>返回值可以用<strong>名称或者数字</strong>做索引:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func calculateStatistics(scores: [Int]) -&gt; (min: Int, max: Int, sum: Int) &#123;</span><br><span class="line">    ...</span><br><span class="line">    return (min, max, sum)</span><br><span class="line">&#125;</span><br><span class="line">let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])</span><br><span class="line">print(statistics.sum)</span><br><span class="line">print(statistics.2)</span><br></pre></td></tr></table></figure>
+<p>Func可以<strong>嵌套</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func returnFifteen() -&gt; Int &#123;</span><br><span class="line">    var y = 10</span><br><span class="line">    func add() &#123;</span><br><span class="line">        y += 5</span><br><span class="line">    &#125;</span><br><span class="line">    add()</span><br><span class="line">    return y</span><br><span class="line">&#125;</span><br><span class="line">returnFifteen()</span><br></pre></td></tr></table></figure>
+<p>Func可以作为参数和返回值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func hasAnyMatches(list: [Int], condition: (Int) -&gt; Bool) -&gt; Bool &#123;</span><br><span class="line">    for item in list &#123;</span><br><span class="line">        if condition(item) &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false</span><br><span class="line">&#125;</span><br><span class="line">func lessThanTen(number: Int) -&gt; Bool &#123;</span><br><span class="line">    return number &lt; 10</span><br><span class="line">&#125;</span><br><span class="line">var numbers = [20, 19, 7, 12]</span><br><span class="line">hasAnyMatches(list: numbers, condition: lessThanTen)</span><br><span class="line"></span><br><span class="line">func makeIncrementer() -&gt; ((Int) -&gt; Int) &#123;</span><br><span class="line">    func addOne(number: Int) -&gt; Int &#123;</span><br><span class="line">        return 1 + number</span><br><span class="line">    &#125;</span><br><span class="line">    return addOne</span><br><span class="line">&#125;</span><br><span class="line">var increment = makeIncrementer()</span><br><span class="line">increment(7)</span><br></pre></td></tr></table></figure>
+<h3 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h3><p>Closure用<strong>“{}”</strong>包含，并用<strong>in</strong>分割参数返回值和具体实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    (number: Int) -&gt; Int in</span><br><span class="line">    let result = 3 * number</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果Closure的类型已经确定，可以更精简地写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let mappedNumbers = numbers.map(&#123; number in 3 * number &#125;)</span><br><span class="line">print(mappedNumbers)</span><br></pre></td></tr></table></figure>
+<p>除了用名字，也可以用数字索引来表示参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let sortedNumbers = numbers.sorted &#123; $0 &gt; $1 &#125;</span><br><span class="line">print(sortedNumbers)</span><br></pre></td></tr></table></figure>
+<h2 id="Objects-and-Classes"><a href="#Objects-and-Classes" class="headerlink" title="Objects and Classes"></a>Objects and Classes</h2><h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes:"></a>Classes:</h3><p>定义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class NamedShape &#123;</span><br><span class="line">    var numberOfSides: Int = 0</span><br><span class="line">    var name: String</span><br><span class="line">    </span><br><span class="line">    init(name: String) &#123;</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    deinit &#123;</span><br><span class="line">        // Clean up</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    func simpleDescription() -&gt; String &#123;</span><br><span class="line">        return &quot;A shape with \(numberOfSides) sides.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意，Class的每个属性值都需要赋值，可以在定义时，也可以在构造函数中。</strong></p>
+<p>继承和重写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Square: NamedShape &#123;</span><br><span class="line">    var sideLength: Double</span><br><span class="line">    </span><br><span class="line">    init(sideLength: Double, name: String) &#123;</span><br><span class="line">        self.sideLength = sideLength</span><br><span class="line">        super.init(name: name)</span><br><span class="line">        numberOfSides = 4</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    func area() -&gt;  Double &#123;</span><br><span class="line">        return sideLength * sideLength</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    override func simpleDescription() -&gt; String &#123;</span><br><span class="line">        return &quot;A square with sides of length \(sideLength).&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let test = Square(sideLength: 5.2, name: &quot;my test square&quot;)</span><br><span class="line">test.area()</span><br><span class="line">test.simpleDescription()</span><br></pre></td></tr></table></figure>
+<p>Get/Set:(可以用<strong>newValue</strong>指代参数值)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var perimeter: Double &#123;</span><br><span class="line">	get &#123;</span><br><span class="line">   		return 3.0 * sideLength</span><br><span class="line">   	&#125;</span><br><span class="line">   set &#123;</span><br><span class="line">       sideLength = newValue / 3.0</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WillSet/DidSet:(在Set执行前后会被调用)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var square: Square &#123;</span><br><span class="line">	willSet &#123;</span><br><span class="line">   		triangle.sideLength = newValue.sideLength</span><br><span class="line">   &#125;</span><br><span class="line">   didSet &#123;</span><br><span class="line">   		print(oldValue.sideLength)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Objects"><a href="#Objects" class="headerlink" title="Objects:"></a>Objects:</h3><p>对于是Optional类型的对象，可以用<strong>“?”</strong>来进行判断，如果值为nil，则结果直接为nil，否则为具体值。但是赋值式左边的类型是Optional类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let optionalSquare: Square? = Square(sideLength: 2.5, name: &quot;optional square&quot;)</span><br><span class="line">let sideLength = optionalSquare?.sideLength</span><br></pre></td></tr></table></figure>
+<h2 id="Enumerations-and-Structures"><a href="#Enumerations-and-Structures" class="headerlink" title="Enumerations and Structures"></a>Enumerations and Structures</h2><h3 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations:"></a>Enumerations:</h3><p>Enum的Raw Values的类型，可以是<strong>Int, Float以及String</strong>。Int类型的默认从0开始，也可以强制设置为其他。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">enum Rank: Int &#123;</span><br><span class="line">    case ace = 1</span><br><span class="line">    case two, three, four, five, six, seven, eight, nine, ten</span><br><span class="line">    case jack, queen, king</span><br><span class="line">    func simpleDescription() -&gt; String &#123;</span><br><span class="line">        switch self &#123;</span><br><span class="line">        case .ace:</span><br><span class="line">            return &quot;ace&quot;</span><br><span class="line">        case .jack:</span><br><span class="line">            return &quot;jack&quot;</span><br><span class="line">        case .queen:</span><br><span class="line">            return &quot;queen&quot;</span><br><span class="line">        case .king:</span><br><span class="line">            return &quot;king&quot;</span><br><span class="line">        default:</span><br><span class="line">            return String(self.rawValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let ace = Rank.ace</span><br><span class="line">let aceRawValue = ace.rawValue</span><br></pre></td></tr></table></figure>
+<p>Raw Values类型也可以不设置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum Suit &#123;</span><br><span class="line">    case spades, hearts, diamonds, clubs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以直接用<strong>init?(rawValue:)</strong>来创造一个实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if let convertedRank = Rank(rawValue: 3) &#123;</span><br><span class="line">    let threeDescription = convertedRank.simpleDescription()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以添加参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">enum ServerResponse &#123;</span><br><span class="line">    case result(String, String)</span><br><span class="line">    case failure(String)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">let success = ServerResponse.result(&quot;6:00 am&quot;, &quot;8:09 pm&quot;)</span><br><span class="line">let failure = ServerResponse.failure(&quot;Out of cheese.&quot;)</span><br><span class="line"> </span><br><span class="line">switch success &#123;</span><br><span class="line">case let .result(sunrise, sunset):</span><br><span class="line">    print(&quot;Sunrise is at \(sunrise) and sunset is at \(sunset).&quot;)</span><br><span class="line">case let .failure(message):</span><br><span class="line">    print(&quot;Failure...  \(message)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h3><p><strong>Structs跟Classes的区别在于：Structs都是值传递，Classes都是引用传递。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct Card &#123;</span><br><span class="line">    var rank: Rank</span><br><span class="line">    var suit: Suit</span><br><span class="line">    func simpleDescription() -&gt; String &#123;</span><br><span class="line">        return &quot;The \(rank.simpleDescription()) of \(suit.simpleDescription())&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let threeOfSpades = Card(rank: .three, suit: .spades)</span><br><span class="line">let threeOfSpadesDescription = threeOfSpades.simpleDescription()</span><br></pre></td></tr></table></figure>
+<h2 id="Protocols-and-Extensions"><a href="#Protocols-and-Extensions" class="headerlink" title="Protocols and Extensions"></a>Protocols and Extensions</h2><h3 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protocol ExampleProtocol &#123;</span><br><span class="line">    var simpleDescription: String &#123; get &#125;</span><br><span class="line">    mutating func adjust()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Classed，Enumerations, Structs都可以适配Protocols:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class SimpleClass: ExampleProtocol &#123;</span><br><span class="line">    var simpleDescription: String = &quot;A very simple class.&quot;</span><br><span class="line">    var anotherProperty: Int = 69105</span><br><span class="line">    func adjust() &#123;</span><br><span class="line">        simpleDescription += &quot;  Now 100% adjusted.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = SimpleClass()</span><br><span class="line">a.adjust()</span><br><span class="line">let aDescription = a.simpleDescription</span><br><span class="line"> </span><br><span class="line">struct SimpleStructure: ExampleProtocol &#123;</span><br><span class="line">    var simpleDescription: String = &quot;A simple structure&quot;</span><br><span class="line">    mutating func adjust() &#123;</span><br><span class="line">        simpleDescription += &quot; (adjusted)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var b = SimpleStructure()</span><br><span class="line">b.adjust()</span><br><span class="line">let bDescription = b.simpleDescription</span><br></pre></td></tr></table></figure>
+<p><strong>注意:mutating关键字在Structs中使用，用于标识会修改Structs元素，而Classes不用，Classes的方法本来就可以修改Classes。</strong></p>
+<p>Protocols可以当类型使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let protocolValue: ExampleProtocol = a</span><br><span class="line">print(protocolValue.simpleDescription)</span><br></pre></td></tr></table></figure>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>Extensions用于给一个已有的类型添加功能，可以结合Extensions和Protocol一起使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extension Int: ExampleProtocol &#123;</span><br><span class="line">    var simpleDescription: String &#123;</span><br><span class="line">        return &quot;The number \(self)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    mutating func adjust() &#123;</span><br><span class="line">        self += 42</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">print(7.simpleDescription)</span><br></pre></td></tr></table></figure>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>Error定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum PrinterError: Error &#123;</span><br><span class="line">    case outOfPaper</span><br><span class="line">    case noToner</span><br><span class="line">    case onFire</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<strong>throw</strong>来抛出异常，<strong>throws</strong>关键字来标识Func:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func send(job: Int, toPrinter printerName: String) throws -&gt; String &#123;</span><br><span class="line">    if printerName == &quot;Never Has Toner&quot; &#123;</span><br><span class="line">        throw PrinterError.noToner</span><br><span class="line">    &#125;</span><br><span class="line">    return &quot;Job sent&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<strong>do-catch</strong>来捕获异常,在do中用<strong>try</strong>来标识可能抛出异常的地方:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    let printerResponse = try send(job: 1040, toPrinter: &quot;Bi Sheng&quot;)</span><br><span class="line">    print(printerResponse)</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>多catch</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    let printerResponse = try send(job: 1440, toPrinter: &quot;Gutenberg&quot;)</span><br><span class="line">    print(printerResponse)</span><br><span class="line">&#125; catch PrinterError.onFire &#123;</span><br><span class="line">    print(&quot;I&apos;ll just put this over here, with the rest of the fire.&quot;)</span><br><span class="line">&#125; catch let printerError as PrinterError &#123;</span><br><span class="line">    print(&quot;Printer error: \(printerError).&quot;)</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<strong>try?</strong>来转换结果为Optional，如果有异常，则结果为nil，否则则为实际值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let printerSuccess = try? send(job: 1884, toPrinter: &quot;Mergenthaler&quot;)</span><br><span class="line">let printerFailure = try? send(job: 1885, toPrinter: &quot;Never Has Toner&quot;)</span><br></pre></td></tr></table></figure>
+<p>用<strong>defer</strong>来定义在Func中其他代码都执行结束后，执行的代码(类似finally):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var fridgeIsOpen = false</span><br><span class="line">let fridgeContent = [&quot;milk&quot;, &quot;eggs&quot;, &quot;leftovers&quot;]</span><br><span class="line"> </span><br><span class="line">func fridgeContains(_ food: String) -&gt; Bool &#123;</span><br><span class="line">    fridgeIsOpen = true</span><br><span class="line">    defer &#123;</span><br><span class="line">        fridgeIsOpen = false</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    let result = fridgeContent.contains(food)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">fridgeContains(&quot;banana&quot;)</span><br><span class="line">print(fridgeIsOpen)</span><br></pre></td></tr></table></figure>
+<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>用<strong>“<type>“</type></strong>来定义Generics类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func makeArray&lt;Item&gt;(repeating item: Item, numberOfTimes: Int) -&gt; [Item] &#123;</span><br><span class="line">    var result = [Item]()</span><br><span class="line">    for _ in 0..&lt;numberOfTimes &#123;</span><br><span class="line">        result.append(item)</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line">makeArray(repeating: &quot;knock&quot;, numberOfTimes:4)</span><br></pre></td></tr></table></figure>
+<p><strong>Classed，Enumerations, Structs都定义Generics类型:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum OptionalValue&lt;Wrapped&gt; &#123;</span><br><span class="line">    case none</span><br><span class="line">    case some(Wrapped)</span><br><span class="line">&#125;</span><br><span class="line">var possibleInteger: OptionalValue&lt;Int&gt; = .none</span><br><span class="line">possibleInteger = .some(100)</span><br></pre></td></tr></table></figure>
+<p>用<strong>where</strong>关键字在Func后，来列出要求，例如，要求类型必须适配Protocol，要求两种类型必须相同，要求一个Class必须有一个指定的父类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func anyCommonElements&lt;T: Sequence, U: Sequence&gt;(_ lhs: T, _ rhs: U) -&gt; Bool</span><br><span class="line">    where T.Iterator.Element: Equatable, T.Iterator.Element == U.Iterator.Element &#123;</span><br><span class="line">        for lhsItem in lhs &#123;</span><br><span class="line">            for rhsItem in rhs &#123;</span><br><span class="line">                if lhsItem == rhsItem &#123;</span><br><span class="line">                    return true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false</span><br><span class="line">&#125;</span><br><span class="line">anyCommonElements([1, 2, 3], [3])</span><br><span class="line"></span><br><span class="line">&lt;T: Equatable&gt; 等同于 &lt;T&gt; ... where T: Equatable&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/20/economics-economics/" rel="next" title="Economics-Economics">
+                <i class="fa fa-chevron-left"></i> Economics-Economics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/03/ios-NSRegularExpression-Chinese/" rel="prev" title="iOS-NSRegularExpression匹配中文">
+                iOS-NSRegularExpression匹配中文 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="YI">
+          <p class="site-author-name" itemprop="name">YI</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">349</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FTD-YI/" target="_blank" rel="external nofollow" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Format"><span class="nav-number">1.</span> <span class="nav-text">Format</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Print"><span class="nav-number">1.1.</span> <span class="nav-text">Print</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">1.2.</span> <span class="nav-text">Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semicolons"><span class="nav-number">1.3.</span> <span class="nav-text">Semicolons</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Values"><span class="nav-number">2.</span> <span class="nav-text">Simple Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用let定义常量，而var定义变量。不用定义类型"><span class="nav-number">2.1.</span> <span class="nav-text">用let定义常量，而var定义变量。不用定义类型:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有隐式的类型转换，如果需要类型转换，需要显示定义"><span class="nav-number">2.2.</span> <span class="nav-text">没有隐式的类型转换，如果需要类型转换，需要显示定义:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用”-”来创建Array和Dictionary"><span class="nav-number">2.3.</span> <span class="nav-text">用”[]”来创建Array和Dictionary:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用”-”定义Optional类型，Optional类型可以有值，也可以为nil。用”-”可以给Optional类型赋值一个默认值"><span class="nav-number">2.4.</span> <span class="nav-text">用”?”定义Optional类型，Optional类型可以有值，也可以为nil。用”??”可以给Optional类型赋值一个默认值:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Flow"><span class="nav-number">3.</span> <span class="nav-text">Control Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if语句-必须是跟着Boolean类型，不能是数字，不会隐式跟0比较"><span class="nav-number">3.1.</span> <span class="nav-text">if语句:必须是跟着Boolean类型，不能是数字，不会隐式跟0比较:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-let语句-必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句"><span class="nav-number">3.2.</span> <span class="nav-text">if-let语句:必须是跟着Optional类型，如果Optional类型有值，则直接赋值，进入if语句，如果没有，则进入else语句:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch-支持任意格式的数据和表达式，不止整形和等式-同时，可以用let进行局部赋值。"><span class="nav-number">3.3.</span> <span class="nav-text">switch:支持任意格式的数据和表达式，不止整形和等式.同时，可以用let进行局部赋值。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in"><span class="nav-number">3.4.</span> <span class="nav-text">for-in:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while"><span class="nav-number">3.5.</span> <span class="nav-text">while:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-可以用”-lt-”来局部遍历索引。"><span class="nav-number">3.6.</span> <span class="nav-text">for:可以用”..&lt;”来局部遍历索引。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-and-Closures"><span class="nav-number">4.</span> <span class="nav-text">Functions and Closures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#func"><span class="nav-number">4.1.</span> <span class="nav-text">func:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure"><span class="nav-number">4.2.</span> <span class="nav-text">Closure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects-and-Classes"><span class="nav-number">5.</span> <span class="nav-text">Objects and Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Classes"><span class="nav-number">5.1.</span> <span class="nav-text">Classes:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects"><span class="nav-number">5.2.</span> <span class="nav-text">Objects:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-and-Structures"><span class="nav-number">6.</span> <span class="nav-text">Enumerations and Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Enumerations"><span class="nav-number">6.1.</span> <span class="nav-text">Enumerations:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Structs"><span class="nav-number">6.2.</span> <span class="nav-text">Structs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-and-Extensions"><span class="nav-number">7.</span> <span class="nav-text">Protocols and Extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocols"><span class="nav-number">7.1.</span> <span class="nav-text">Protocols</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extensions"><span class="nav-number">7.2.</span> <span class="nav-text">Extensions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-Handling"><span class="nav-number">8.</span> <span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generics"><span class="nav-number">9.</span> <span class="nav-text">Generics</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YI</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "fa92c4e878ab4ea3ade92d81538aed31",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+</body>
+</html>
