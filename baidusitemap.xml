@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.linyibin.cn/2022/10/12/database-mysql-Index/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/10/17/database-mysql-Index2/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/11/15/database-mysql-Index3/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/11/23/database-mysql-Index4/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/12/26/blockchain-remix/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/01/16/technology-hisi-omg/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/01/27/technology-hisi-crossCompile/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/02/12/blockchain-ethereum-smartContract/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/02/19/blockchain-ethereum-transaction/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/03/01/blockchain-ethereum-gas/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/03/20/blockchain-solidity-vfs/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2023/04/02/blockchain-curse/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2023/04/17/blockchain-ecdsa/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -17,191 +65,7 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2021/12/03/ubuntu-hcache/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2021/12/22/technology-so-lib/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/02/15/technology-jetson-memory/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/03/19/technology-so-IDA/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/05/04/distributedSystem-keyChracterristics/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/05/21/distributedSystem-loadBalancing/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/06/13/distributedSystem-cache/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/04/29/technology-RaspberryPi/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/06/28/distributedSystem-sharding/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/07/09/distributedSystem-proxy/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/07/19/distributedSystem-redundancy&replication/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/08/14/distributedSystem-sql&nosql/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/09/15/distributedSystem-ConsistentHashing/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/09/27/distributedSystem-Design/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/10/12/database-mysql-Index/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/08/27/distributedSystem-LongConnect/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/11/15/database-mysql-Index3/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/11/23/database-mysql-Index4/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/12/26/blockchain-remix/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2022/10/17/database-mysql-Index2/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/01/16/technology-hisi-omg/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/02/12/blockchain-ethereum-smartContract/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/02/19/blockchain-ethereum-transaction/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/01/27/technology-hisi-crossCompile/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/03/20/blockchain-solidity-vfs/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/04/02/blockchain-curse/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2023/03/01/blockchain-ethereum-gas/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/08/28/ubuntu-pip3/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/09/01/python-fakeTime/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/10/15/technology-mxnet/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/11/19/ubuntu-cleanAptCache/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/12/07/ubuntu-arm-node/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/09/14/ubuntu-stdcpp/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2019/12/22/ubuntu-cuda-driver/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/01/01/technology-opencv-noFile/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/01/13/react-taro/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/02/07/ubuntu-github-accelerate/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/03/01/ios-matchChineseChar/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/03/14/ubuntu-mvTooLong/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/03/29/python-rect/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/02/21/ubuntu-memory/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/06/16/ubuntu-fileEncoding/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/06/26/python-python3-dev/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/05/01/technology-opencv-qtPlugin/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/07/03/technology-opencv-contrib/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2020/04/06/python-throughNetwork/</loc>
+    <loc>http://www.linyibin.cn/2023/06/16/technology-docker-compose-profiles/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -217,11 +81,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2020/11/17/python-pip-ext/</loc>
+    <loc>http://www.linyibin.cn/2020/10/11/ubuntu-rename/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2020/10/11/ubuntu-rename/</loc>
+    <loc>http://www.linyibin.cn/2020/11/17/python-pip-ext/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -233,15 +97,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2021/01/15/ubuntu-zip-seperate/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2021/01/17/mac-sip/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2021/02/12/go-install/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2021/01/15/ubuntu-zip-seperate/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -269,10 +133,6 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2021/06/10/technology-checkpoint2pb/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2021/07/15/technology-ncnn/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -281,7 +141,7 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2021/08/18/ubuntu-iftop/</loc>
+    <loc>http://www.linyibin.cn/2021/06/10/technology-checkpoint2pb/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -289,7 +149,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2021/09/02/ubuntu-gpp-internalCompilerError/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2021/10/01/technology-ML-concept/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2021/08/18/ubuntu-iftop/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -297,59 +165,67 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2021/09/02/ubuntu-gpp-internalCompilerError/</loc>
+    <loc>http://www.linyibin.cn/2021/12/03/ubuntu-hcache/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/06/27/python-Mongodb/</loc>
+    <loc>http://www.linyibin.cn/2021/12/22/technology-so-lib/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/07/03/centos-nginx/</loc>
+    <loc>http://www.linyibin.cn/2022/01/18/technology-MachineLearning-DeepNLP-Word2Vec/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/07/22/python-IP/</loc>
+    <loc>http://www.linyibin.cn/2022/02/15/technology-jetson-memory/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/</loc>
+    <loc>http://www.linyibin.cn/2022/03/19/technology-so-IDA/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/08/18/mac-gstream/</loc>
+    <loc>http://www.linyibin.cn/2022/04/29/technology-RaspberryPi/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/09/11/python-pyinstall/</loc>
+    <loc>http://www.linyibin.cn/2022/05/04/distributedSystem-keyChracterristics/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/08/19/python-Des/</loc>
+    <loc>http://www.linyibin.cn/2022/05/21/distributedSystem-loadBalancing/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/09/15/python-file-change/</loc>
+    <loc>http://www.linyibin.cn/2022/06/13/distributedSystem-cache/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/10/02/centos-folderSize/</loc>
+    <loc>http://www.linyibin.cn/2022/06/28/distributedSystem-sharding/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/02/20/python-dlib/</loc>
+    <loc>http://www.linyibin.cn/2022/07/09/distributedSystem-proxy/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/03/18/python-tcp/</loc>
+    <loc>http://www.linyibin.cn/2022/07/19/distributedSystem-redundancy&replication/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/04/07/centos-tencentcloud/</loc>
+    <loc>http://www.linyibin.cn/2022/08/14/distributedSystem-sql&nosql/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/02/12/python-NNPack/</loc>
+    <loc>http://www.linyibin.cn/2022/08/27/distributedSystem-LongConnect/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/09/15/distributedSystem-ConsistentHashing/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2022/09/27/distributedSystem-Design/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -357,11 +233,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/04/18/python-performance/</loc>
+    <loc>http://www.linyibin.cn/2018/05/02/centos-ffmpeg/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/05/02/centos-ffmpeg/</loc>
+    <loc>http://www.linyibin.cn/2018/04/18/python-performance/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -369,11 +245,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/07/10/technolog-opencv2tensorflow/</loc>
+    <loc>http://www.linyibin.cn/2018/07/01/technology-torch/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/07/01/technology-torch/</loc>
+    <loc>http://www.linyibin.cn/2018/07/10/technolog-opencv2tensorflow/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -397,11 +273,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/10/14/technolog-opencv2caffe/</loc>
+    <loc>http://www.linyibin.cn/2018/10/07/technology-dgit/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/10/07/technology-dgit/</loc>
+    <loc>http://www.linyibin.cn/2018/10/14/technolog-opencv2caffe/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -421,19 +297,19 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2018/12/06/python-conda/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2018/12/16/python-matplotError/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2019/02/12/ubuntu-nmap/</loc>
+    <loc>http://www.linyibin.cn/2018/12/06/python-conda/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2019/01/18/mac-youtubedl/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2019/02/12/ubuntu-nmap/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -477,23 +353,83 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/01/24/database-Index/</loc>
+    <loc>http://www.linyibin.cn/2019/08/28/ubuntu-pip3/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
+    <loc>http://www.linyibin.cn/2019/09/01/python-fakeTime/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2017/02/09/economics-IndexFund/</loc>
+    <loc>http://www.linyibin.cn/2019/09/14/ubuntu-stdcpp/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2019/10/15/technology-mxnet/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2019/11/19/ubuntu-cleanAptCache/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2019/12/07/ubuntu-arm-node/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2019/12/22/ubuntu-cuda-driver/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/01/01/technology-opencv-noFile/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/01/13/react-taro/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/02/07/ubuntu-github-accelerate/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/02/21/ubuntu-memory/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/03/01/ios-matchChineseChar/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/03/14/ubuntu-mvTooLong/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/03/29/python-rect/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/04/06/python-throughNetwork/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/05/01/technology-opencv-qtPlugin/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/06/16/ubuntu-fileEncoding/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/06/26/python-python3-dev/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2020/07/03/technology-opencv-contrib/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2017/02/12/technology-ComputerNetworking-Internet/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -505,19 +441,19 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2017/03/14/python-python3/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/14/technology-ComputerNetworking-ApplicationLayer/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2017/03/10/technology-MachineLearning-FaceRecognition/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2017/04/18/centos-vlc/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2017/05/04/product-BussinessThinking/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2017/03/14/python-python3/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -529,6 +465,10 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2017/05/04/product-BussinessThinking/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2017/05/20/python-flask/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -537,47 +477,59 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/08/30/technology-DesignPattern-ChainOfResponsibility/</loc>
+    <loc>http://www.linyibin.cn/2017/06/12/technology-MachineLearning-DeepNLP-Introduction/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/08/31/technology-DesignPattern-Flyweight/</loc>
+    <loc>http://www.linyibin.cn/2017/06/27/python-Mongodb/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/08/29/technology-DesignPattern-Builder/</loc>
+    <loc>http://www.linyibin.cn/2017/07/03/centos-nginx/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/09/01/technology-DesignPattern-Memento/</loc>
+    <loc>http://www.linyibin.cn/2017/07/22/python-IP/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
+    <loc>http://www.linyibin.cn/2017/08/18/mac-gstream/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
+    <loc>http://www.linyibin.cn/2017/08/19/python-Des/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/09/05/technology-DesignPattern-Visitor/</loc>
+    <loc>http://www.linyibin.cn/2017/09/11/python-pyinstall/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/09/04/technology-DesignPattern-Interpreter/</loc>
+    <loc>http://www.linyibin.cn/2017/09/15/python-file-change/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/10/08/product-NewBussinessInBigCompany/</loc>
+    <loc>http://www.linyibin.cn/2017/10/02/centos-folderSize/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2018/02/12/python-NNPack/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2018/02/20/python-dlib/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2018/03/18/python-tcp/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2018/04/07/centos-tencentcloud/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2016/10/10/technology-Hexo-DomainBindGithubAndCoding/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/09/06/technology-DesignPattern-Classification/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -613,11 +565,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/10/24/ios-Security-DataStorage/</loc>
+    <loc>http://www.linyibin.cn/2016/10/22/ios-Security-Tools/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/10/22/ios-Security-Tools/</loc>
+    <loc>http://www.linyibin.cn/2016/10/24/ios-Security-DataStorage/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -645,11 +597,27 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2016/12/18/mac-UsbCamera/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2017/01/07/ios-SignatureProcess/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/12/18/mac-UsbCamera/</loc>
+    <loc>http://www.linyibin.cn/2017/01/24/database-Index/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/07/economics-ReminiscencesOfAStockOperator/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2017/02/09/economics-IndexFund/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2016/11/08/technology-IME/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -661,39 +629,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/11/08/technology-IME/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/13/ios-PreservationAndRestoration/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/15/ios-Inter-App-Communication/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/07/04/ios-Rendering/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2016/07/06/ios-UI-Smooth/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2016/07/13/ios-BackgroundExecution/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/06/23/ios-NSData-GetBytes/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -717,11 +657,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/08/16/technology-DesignPattern-Decorator/</loc>
+    <loc>http://www.linyibin.cn/2016/08/17/technology-DesignPattern-Factory/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/08/17/technology-DesignPattern-Factory/</loc>
+    <loc>http://www.linyibin.cn/2016/08/16/technology-DesignPattern-Decorator/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -769,31 +709,43 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/01/ios-Swift/</loc>
+    <loc>http://www.linyibin.cn/2016/08/29/technology-DesignPattern-Builder/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/03/ios-NSRegularExpression-Chinese/</loc>
+    <loc>http://www.linyibin.cn/2016/08/30/technology-DesignPattern-ChainOfResponsibility/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/05/JNI-Regex/</loc>
+    <loc>http://www.linyibin.cn/2016/08/31/technology-DesignPattern-Flyweight/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/04/CPP-Regex/</loc>
+    <loc>http://www.linyibin.cn/2016/09/01/technology-DesignPattern-Memento/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/</loc>
+    <loc>http://www.linyibin.cn/2016/09/03/technology-DesignPattern-Mediator/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/03/05/ios-Pcm-Mp3/</loc>
+    <loc>http://www.linyibin.cn/2016/09/05/technology-DesignPattern-Visitor/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/02/18/ios-DocumentPicker/</loc>
+    <loc>http://www.linyibin.cn/2016/09/02/technology-DesignPattern-Prototype/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2016/09/04/technology-DesignPattern-Interpreter/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2016/09/06/technology-DesignPattern-Classification/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2016/10/08/product-NewBussinessInBigCompany/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -801,11 +753,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/03/08/java-Pcm-Wav/</loc>
+    <loc>http://www.linyibin.cn/2016/03/07/java-Pcm-Play/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/03/07/java-Pcm-Play/</loc>
+    <loc>http://www.linyibin.cn/2016/03/08/java-Pcm-Wav/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -825,15 +777,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/04/02/android-AccesibilityService/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2016/03/21/android-PullApk/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/04/07/java-Maven-Error/</loc>
+    <loc>http://www.linyibin.cn/2016/04/02/android-AccesibilityService/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -841,11 +789,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/04/10/ios-Crash-DSYM/</loc>
+    <loc>http://www.linyibin.cn/2016/04/07/java-Maven-Error/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2016/04/10/android-Wechat-Share/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2016/04/10/ios-Crash-DSYM/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -865,6 +817,10 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2016/05/18/ios-CaptureScreenshotinBackground/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2016/05/20/android-Logcat-Filter/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -877,47 +833,27 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/05/18/ios-CaptureScreenshotinBackground/</loc>
+    <loc>http://www.linyibin.cn/2016/06/12/ios-StrategiedForHandlingAppStateTransitions/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch%20Events/</loc>
+    <loc>http://www.linyibin.cn/2016/06/13/ios-PreservationAndRestoration/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/09/24/ios-Event-RemoteControlEvents/</loc>
+    <loc>http://www.linyibin.cn/2016/06/14/ios-StrategiedForImplementingSpecificAppFeatures/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/09/26/ios-Emoji/</loc>
+    <loc>http://www.linyibin.cn/2016/06/15/ios-Inter-App-Communication/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/</loc>
+    <loc>http://www.linyibin.cn/2016/06/23/ios-NSData-GetBytes/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/10/20/ios-CoreAnimation-CADisplayLink/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/10/22/technology-Git/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/</loc>
+    <loc>http://www.linyibin.cn/2016/07/04/ios-Rendering/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -925,7 +861,19 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2015/10/22/technology-Git/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/04/ios-AutoLayout-InterfaceBuilder/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2015/11/07/ios-AutoLayout-StackView/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/02/ios-AutoLayout-Constraints/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -938,6 +886,10 @@
   </url>
   <url>
     <loc>http://www.linyibin.cn/2015/11/16/ios-AutoLayout-UIScollViewAndUITableViewCell/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/11/19/ios-AutoLayout-ChangingConstraints/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -957,15 +909,7 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/11/19/ios-AutoLayout-ChangingConstraints/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/12/28/JNI-android/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2016/01/04/JNI-LogCat/</loc>
+    <loc>http://www.linyibin.cn/2015/12/24/JNI-Process/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -973,15 +917,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2015/12/28/JNI-android/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2016/01/02/JNI-Eclipse/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2016/01/13/product-ToolAppBusiness/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/12/24/JNI-Process/</loc>
+    <loc>http://www.linyibin.cn/2016/01/04/JNI-LogCat/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -989,43 +933,43 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2016/01/13/product-ToolAppBusiness/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2016/01/20/economics-economics/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/03/17/Cpp-Sqlite/</loc>
+    <loc>http://www.linyibin.cn/2016/02/03/ios-NSRegularExpression-Chinese/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/03/10/ios-RunLoop/</loc>
+    <loc>http://www.linyibin.cn/2016/02/01/ios-Swift/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/03/24/ios-Compile-Optimization/</loc>
+    <loc>http://www.linyibin.cn/2016/02/04/CPP-Regex/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/04/03/java-WordToPinyin/</loc>
+    <loc>http://www.linyibin.cn/2016/02/05/JNI-Regex/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/04/10/ios-TTS/</loc>
+    <loc>http://www.linyibin.cn/2016/02/10/ios-DocumentInteraction/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/04/14/ios-Instruments/</loc>
+    <loc>http://www.linyibin.cn/2016/02/18/ios-DocumentPicker/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/04/17/ios-MultiThread/</loc>
+    <loc>http://www.linyibin.cn/2016/03/05/ios-Pcm-Mp3/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2015/05/01/ios-Concurrency/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1037,10 +981,6 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/06/20/ios-CompileUniverseBundle/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2015/06/11/ios-Dispatch-Timer/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -1049,15 +989,19 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2015/06/20/ios-CompileUniverseBundle/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2015/07/13/mac-ShowInvisibleFiles/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/07/23/mac-Cat/</loc>
+    <loc>http://www.linyibin.cn/2015/07/18/mac-Hosts/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/07/18/mac-Hosts/</loc>
+    <loc>http://www.linyibin.cn/2015/07/23/mac-Cat/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1069,11 +1013,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/08/18/mac-Brew/</loc>
+    <loc>http://www.linyibin.cn/2015/08/10/ios-Cocoapods/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/08/10/ios-Cocoapods/</loc>
+    <loc>http://www.linyibin.cn/2015/08/18/mac-Brew/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1097,6 +1041,34 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2015/09/20/ios-Event-Multitouch%20Events/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/09/22/ios-Event-MotionEvents/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/09/24/ios-Event-RemoteControlEvents/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/10/12/ios-CoreAnimation-Introduction/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/10/14/ios-CoreAnimation-SettingUpLayer/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/10/20/ios-CoreAnimation-CADisplayLink/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/09/26/ios-Emoji/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2014/03/26/python-pip/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -1109,11 +1081,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/04/12/python-pil/</loc>
+    <loc>http://www.linyibin.cn/2014/04/20/python-email/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/04/20/python-email/</loc>
+    <loc>http://www.linyibin.cn/2014/04/12/python-pil/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1125,15 +1097,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/05/14/java-Servlet-Cookie/</loc>
+    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2014/05/12/java-HttpClient/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2014/05/09/java-DynamicWebProject/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1149,6 +1117,10 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2014/05/14/java-Servlet-Cookie/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2014/06/11/django-FormUpload/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -1157,11 +1129,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
+    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/06/21/django-TimeFormat/</loc>
+    <loc>http://www.linyibin.cn/2014/06/26/java-Http/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1169,7 +1141,7 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/06/26/java-Http/</loc>
+    <loc>http://www.linyibin.cn/2014/06/17/java-TimeFormat/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1178,10 +1150,6 @@
   </url>
   <url>
     <loc>http://www.linyibin.cn/2014/07/01/ios-CellImageSize/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2014/07/05/django-ImageField/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1194,6 +1162,10 @@
   </url>
   <url>
     <loc>http://www.linyibin.cn/2014/07/14/ios-XMPP/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2014/07/05/django-ImageField/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1225,15 +1197,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/08/14/java-Sqlite-html/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2014/08/16/java-Sqlite-Transaction/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2014/08/17/sae-sae-SynataxError/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2014/08/14/java-Sqlite-html/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1249,10 +1221,6 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/08/26/java-Web-Timer/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2014/09/01/django-CSRF/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -1261,11 +1229,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/09/14/django-ForeignKey/</loc>
+    <loc>http://www.linyibin.cn/2014/09/08/Cpp-Sqlite-Optimization/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/09/08/Cpp-Sqlite-Optimization/</loc>
+    <loc>http://www.linyibin.cn/2014/08/26/java-Web-Timer/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1274,6 +1242,10 @@
   </url>
   <url>
     <loc>http://www.linyibin.cn/2014/09/24/html-SafariAutoPlay/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2014/09/14/django-ForeignKey/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1313,6 +1285,10 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2014/11/05/android-AssetsPath/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2014/11/26/ios-MixComile-Cpp/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
@@ -1333,15 +1309,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2014/12/23/Cpp-CalTime/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2014/11/05/android-AssetsPath/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
     <loc>http://www.linyibin.cn/2014/12/29/ios-PropertyCannotBeFoundInForwardClass/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2014/12/23/Cpp-CalTime/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1353,11 +1325,11 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/01/15/ios-HideStatusBar/</loc>
+    <loc>http://www.linyibin.cn/2015/01/17/ios-RotateView/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
-    <loc>http://www.linyibin.cn/2015/01/17/ios-RotateView/</loc>
+    <loc>http://www.linyibin.cn/2015/01/15/ios-HideStatusBar/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1373,15 +1345,15 @@
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
+    <loc>http://www.linyibin.cn/2015/02/02/Cpp-ZeroCost/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
     <loc>http://www.linyibin.cn/2015/02/08/ios-Unzip/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
     <loc>http://www.linyibin.cn/2015/02/17/ios-Exception/</loc>
-    <lastmod>2026-04-12</lastmod>
-  </url>
-  <url>
-    <loc>http://www.linyibin.cn/2015/02/02/Cpp-ZeroCost/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
@@ -1398,6 +1370,38 @@
   </url>
   <url>
     <loc>http://www.linyibin.cn/2015/03/07/ios-UIControlState/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/03/10/ios-RunLoop/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/03/17/Cpp-Sqlite/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/03/24/ios-Compile-Optimization/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/10/ios-TTS/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/17/ios-MultiThread/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/03/java-WordToPinyin/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/14/ios-Instruments/</loc>
+    <lastmod>2026-04-12</lastmod>
+  </url>
+  <url>
+    <loc>http://www.linyibin.cn/2015/04/18/ios-Thread-Sync/</loc>
     <lastmod>2026-04-12</lastmod>
   </url>
   <url>
